@@ -1,8 +1,5 @@
-<h1 class="page-header text-center">Transactions Overview</h1>
-<p><a ng-click="addTransaction()" class="btn btn-small btn-primary">
-  <span class="glyphicon glyphicon-plus-sign"></span> New Transaction </a>
+<h1 class="page-header text-center">Testsite Helden</h1>
 
-<p><input type="text" ng-model="filterTransaction" class="form-control" placeholder="Quick Search Transactions ..."></p>
 
 
 
@@ -10,22 +7,22 @@
   <thead>
   <tr>
     <th class="mainTh">
-      <a href="#" ng-click="sortType = 'dealNo'; sortDesc = !sortDesc ">Deal No.</a>
+      <a href="#" ng-click="sortType = 'dealNo'; sortDesc = !sortDesc ">Held Name</a>
       <span ng-show="sortType == 'dealNo' && sortDesc" class="fa fa-caret-down"></span>
       <span ng-show="sortType == 'dealNo' && !sortDesc" class="fa fa-caret-up"></span>
     </th>
     <th class="mainTh">
-      <a href="#" ng-click="sortType = 'signDate'; sortDesc = !sortDesc ">Sign Date</a>
+      <a href="#" ng-click="sortType = 'signDate'; sortDesc = !sortDesc ">HeldID</a>
       <span ng-show="sortType == 'signDate' && sortDesc" class="fa fa-caret-down"></span>
       <span ng-show="sortType == 'signDate' && !sortDesc" class="fa fa-caret-up"></span>
     </th>
     <th class="mainTh">
-      <a href="#" ng-click="sortType = 'companyName'; sortDesc = !sortDesc ">Company Name</a>
+      <a href="#" ng-click="sortType = 'companyName'; sortDesc = !sortDesc ">Held Index</a>
       <span ng-show="sortType == 'companyName' && sortDesc" class="fa fa-caret-down"></span>
       <span ng-show="sortType == 'companyName' && !sortDesc" class="fa fa-caret-up"></span>
     </th>
     <th class="mainTh">
-      <a href="#" ng-click="sortType = 'sebRole'; sortDesc = !sortDesc ">SEB Role</a>
+      <a href="#" ng-click="sortType = 'sebRole'; sortDesc = !sortDesc ">Held Name (dotabuff)</a>
       <span ng-show="sortType == 'sebRole' && sortDesc" class="fa fa-caret-down"></span>
       <span ng-show="sortType == 'sebRole' && !sortDesc" class="fa fa-caret-up"></span>
     </th>
@@ -40,18 +37,12 @@
   <span us-spinner="{radius:30, width:8, length: 16}" spinner-on="showSpinner"></span>
 
 
-  <tr ng-repeat="transaction in heroes">
+  <tr ng-repeat="transaction in heroes | orderBy:sortType:sortDesc">
     <td>{{ transaction.heldFullName }}</td>
     <td>{{ transaction.heldID }}</td>
     <td>{{ transaction.heldIndex }}</td>
     <td>{{ transaction.heldName }}</td>
 
-    <td><a ng-click="viewTransaction(transaction.transactionNo)" class="btn btn-small btn-success">
-      <span class="glyphicon glyphicon-th-list"></span> View Details </a></td>
-    <td><a ng-click="editTransaction(transaction.transactionNo)" class="btn btn-small btn-primary">
-      <span class="glyphicon glyphicon-edit"></span> Edit </a></td>
-    <td><a ng-click="deleteTransaction(transaction.transactionNo)" class="btn btn-small btn-danger">
-      <span class="glyphicon glyphicon-remove"></span> Delete </a></td>
     <!--<td><a ng-click="createTombstoneFor(transaction.id)" class="btn btn-small btn-success">-->
     <!--<span class="glyphicon glyphicon-th-list"></span> Create Tombstone </a></td>-->
   <!--</tr>
