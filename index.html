@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html ng-app="IBApp">
+<head>
+  <meta charset="UTF-8">
+
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css"
+        integrity="sha512-dTfge/zgoMYpP7QbHy4gWMEGsbsdZeCXz7irItjcC3sPUFtf0kuFbDz/ixG7ArTxmDjLXDmezHubeNikyKGVyQ=="
+        crossorigin="anonymous">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+  <link rel="stylesheet" type="text/css" href="http://cdn.jsdelivr.net/angular.wizard/latest/angular-wizard.min.css">
+  <link rel="stylesheet" href="assets/styles/core.css">
+
+  <link rel="icon" href="data:;base64,iVBORw0KGgo=">
+  <link rel="stylesheet" href="assets/styles/ngdialog/ngDialog.css">
+  <link href='http://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,700,400italic' rel='stylesheet'
+        type='text/css'>
+  <link rel="stylesheet" href="assets/styles/ngdialog/ngDialog-theme-default.css">
+  <link rel="stylesheet" href="assets/styles/ngdialog/ngDialog-theme-plain.css">
+  <link rel="stylesheet" href="assets/styles/ngdialog/ngDialog-custom-width.css">
+
+  <title>DotA</title>
+</head>
+<body>
+<nav class="navbar navbar-inverse">
+  <div class="navbar-header">
+    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+      <span class="icon-bar"></span>
+      <span class="icon-bar"></span>
+      <span class="icon-bar"></span>
+    </button>
+    <a class="navbar-brand" ui-sref="home">DotA</a>
+  </div>
+  <div class="collapse navbar-collapse" id="myNavbar">
+    <ul class="nav navbar-nav">
+      <li ui-sref-active="active">
+        <a ui-sref="home">Transactions</a>
+      </li>
+      <li ui-sref-active="active">
+        <a ui-sref="input">Input</a>
+      </li>
+      <li ui-sref-active="active">
+        <a ui-sref="wizard">Input2</a>
+      </li>
+      <li ui-sref-active="active">
+        <a ui-sref="input3">Input3</a>
+      </li>
+      <li ui-sref-active="active">
+        <a ui-sref="form.company">Input4</a>
+      </li>
+
+      <!--        <li ui-sref-active="active">
+                  <a ui-sref="about">About</a>
+              </li>-->
+
+    </ul>
+  </div>
+  <!--    <ul class=" nav navbar-nav navbar-right">
+          <li ui-sref-active="active">
+              <a ui-sref="dev">DEV Info</a>
+          </li>
+          <li>&nbsp;&nbsp;&nbsp;</li>
+      </ul>-->
+</nav>
+
+<div ui-view class="container"></div>
+
+<script src="assets/libs/jquery-1.11.3.js"></script>
+<script src="assets/libs/bootstrap.js"></script>
+<script src="assets/libs/angular.js"></script>
+<script src="assets/libs/angular-ui-router.js"></script>
+<script src="assets/libs/angular-resource.js"></script>
+<script src="assets/libs/angular-animate.js"></script>
+<script src="assets/libs/angular-modal-service.js"></script>
+<script src="assets/libs/ui-bootstrap.js"></script>
+<script src="assets/libs/ui-bootstrap-tpls.js"></script>
+<script src="assets/libs/ngDialog.min.js"></script>
+<script src="assets/libs/spin.min.js"></script>
+<script src="assets/libs/angular-spinner.min.js"></script>
+<script src="assets/libs/checklist-model.js"></script>
+<script src="assets/libs/lodash.min.js"></script>
+<script src="assets/libs/sx-wizard.js"></script>
+<script src="assets/libs/sx-wizard-tpls.js"></script>
+<script src="http://cdn.jsdelivr.net/angular.wizard/latest/angular-wizard.min.js"></script>
+
+
+<script src="app/app.module.js"></script>
+<script src="app/app.routes.js"></script>
+
+<script src="app/components/home/home.service.js"></script>
+<script src="app/components/home/home.ctrl.js"></script>
+
+
+
+</body>
+</html>
