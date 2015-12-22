@@ -14,7 +14,7 @@ Whenever you login, you can select the players you are playing with and heroes w
 The DotA 2 Analyzer also calculates an overall advantage of both teams concerning the current picks of both teams.
 
 <h2>Implementation</h2>
-The old DotA 2 Analyzer was designed with ASP.Net C#. It was created within 2 weeks during semester break. The performance wasn't rellay great, also it didn't support any kind of asynchronous data transfer.
+The old DotA 2 Analyzer was designed with ASP.Net C#. It was created within 2 weeks during semester break. The performance wasn't rellay great, also it didn't support any kind of asynchronous data transfer. <br>
 The new Frontend uses modern technology:
 - HTML5
 - JavaScript (Framework: AngularJS)
