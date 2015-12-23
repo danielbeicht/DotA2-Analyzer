@@ -784,7 +784,7 @@
 // Prereq: s is a string.
     var escapeForRegexp = function (s) {
         return s.replace(/([-()\[\]{}+?*.$\^|,:#<!\\])/g, '\\$1').
-            replace(/\x08/g, '\\x08');
+        replace(/\x08/g, '\\x08');
     };
 
 
@@ -1318,10 +1318,10 @@
         try {
             return element[0].nodeType === NODE_TYPE_TEXT ? lowercase(elemHtml) :
                 elemHtml.
-                    match(/^(<[^>]+>)/)[1].
-                    replace(/^<([\w\-]+)/, function (match, nodeName) {
-                        return '<' + lowercase(nodeName);
-                    });
+                match(/^(<[^>]+>)/)[1].
+                replace(/^<([\w\-]+)/, function (match, nodeName) {
+                    return '<' + lowercase(nodeName);
+                });
         } catch (e) {
             return lowercase(elemHtml);
         }
@@ -1409,9 +1409,9 @@
      */
     function encodeUriSegment(val) {
         return encodeUriQuery(val, true).
-            replace(/%26/gi, '&').
-            replace(/%3D/gi, '=').
-            replace(/%2B/gi, '+');
+        replace(/%26/gi, '&').
+        replace(/%3D/gi, '=').
+        replace(/%2B/gi, '+');
     }
 
 
@@ -1428,12 +1428,12 @@
      */
     function encodeUriQuery(val, pctEncodeSpaces) {
         return encodeURIComponent(val).
-            replace(/%40/gi, '@').
-            replace(/%3A/gi, ':').
-            replace(/%24/g, '$').
-            replace(/%2C/gi, ',').
-            replace(/%3B/gi, ';').
-            replace(/%20/g, (pctEncodeSpaces ? '%20' : '+'));
+        replace(/%40/gi, '@').
+        replace(/%3A/gi, ':').
+        replace(/%24/g, '$').
+        replace(/%2C/gi, ',').
+        replace(/%3B/gi, ';').
+        replace(/%20/g, (pctEncodeSpaces ? '%20' : '+'));
     }
 
     var ngAttrPrefixes = ['ng-', 'data-ng-', 'ng:', 'x-ng-'];
@@ -1688,12 +1688,12 @@
             modules.unshift('ng');
             var injector = createInjector(modules, config.strictDi);
             injector.invoke(['$rootScope', '$rootElement', '$compile', '$injector',
-                    function bootstrapApply(scope, element, compile, injector) {
-                        scope.$apply(function () {
-                            element.data('$injector', injector);
-                            compile(element)(scope);
-                        });
-                    }]
+                function bootstrapApply(scope, element, compile, injector) {
+                    scope.$apply(function () {
+                        element.data('$injector', injector);
+                        compile(element)(scope);
+                    });
+                }]
             );
             return injector;
         };
@@ -2464,57 +2464,57 @@
                     $$sanitizeUri: $$SanitizeUriProvider
                 });
                 $provide.provider('$compile', $CompileProvider).
-                    directive({
-                        a: htmlAnchorDirective,
-                        input: inputDirective,
-                        textarea: inputDirective,
-                        form: formDirective,
-                        script: scriptDirective,
-                        select: selectDirective,
-                        style: styleDirective,
-                        option: optionDirective,
-                        ngBind: ngBindDirective,
-                        ngBindHtml: ngBindHtmlDirective,
-                        ngBindTemplate: ngBindTemplateDirective,
-                        ngClass: ngClassDirective,
-                        ngClassEven: ngClassEvenDirective,
-                        ngClassOdd: ngClassOddDirective,
-                        ngCloak: ngCloakDirective,
-                        ngController: ngControllerDirective,
-                        ngForm: ngFormDirective,
-                        ngHide: ngHideDirective,
-                        ngIf: ngIfDirective,
-                        ngInclude: ngIncludeDirective,
-                        ngInit: ngInitDirective,
-                        ngNonBindable: ngNonBindableDirective,
-                        ngPluralize: ngPluralizeDirective,
-                        ngRepeat: ngRepeatDirective,
-                        ngShow: ngShowDirective,
-                        ngStyle: ngStyleDirective,
-                        ngSwitch: ngSwitchDirective,
-                        ngSwitchWhen: ngSwitchWhenDirective,
-                        ngSwitchDefault: ngSwitchDefaultDirective,
-                        ngOptions: ngOptionsDirective,
-                        ngTransclude: ngTranscludeDirective,
-                        ngModel: ngModelDirective,
-                        ngList: ngListDirective,
-                        ngChange: ngChangeDirective,
-                        pattern: patternDirective,
-                        ngPattern: patternDirective,
-                        required: requiredDirective,
-                        ngRequired: requiredDirective,
-                        minlength: minlengthDirective,
-                        ngMinlength: minlengthDirective,
-                        maxlength: maxlengthDirective,
-                        ngMaxlength: maxlengthDirective,
-                        ngValue: ngValueDirective,
-                        ngModelOptions: ngModelOptionsDirective
-                    }).
-                    directive({
-                        ngInclude: ngIncludeFillContentDirective
-                    }).
-                    directive(ngAttributeAliasDirectives).
-                    directive(ngEventDirectives);
+                directive({
+                    a: htmlAnchorDirective,
+                    input: inputDirective,
+                    textarea: inputDirective,
+                    form: formDirective,
+                    script: scriptDirective,
+                    select: selectDirective,
+                    style: styleDirective,
+                    option: optionDirective,
+                    ngBind: ngBindDirective,
+                    ngBindHtml: ngBindHtmlDirective,
+                    ngBindTemplate: ngBindTemplateDirective,
+                    ngClass: ngClassDirective,
+                    ngClassEven: ngClassEvenDirective,
+                    ngClassOdd: ngClassOddDirective,
+                    ngCloak: ngCloakDirective,
+                    ngController: ngControllerDirective,
+                    ngForm: ngFormDirective,
+                    ngHide: ngHideDirective,
+                    ngIf: ngIfDirective,
+                    ngInclude: ngIncludeDirective,
+                    ngInit: ngInitDirective,
+                    ngNonBindable: ngNonBindableDirective,
+                    ngPluralize: ngPluralizeDirective,
+                    ngRepeat: ngRepeatDirective,
+                    ngShow: ngShowDirective,
+                    ngStyle: ngStyleDirective,
+                    ngSwitch: ngSwitchDirective,
+                    ngSwitchWhen: ngSwitchWhenDirective,
+                    ngSwitchDefault: ngSwitchDefaultDirective,
+                    ngOptions: ngOptionsDirective,
+                    ngTransclude: ngTranscludeDirective,
+                    ngModel: ngModelDirective,
+                    ngList: ngListDirective,
+                    ngChange: ngChangeDirective,
+                    pattern: patternDirective,
+                    ngPattern: patternDirective,
+                    required: requiredDirective,
+                    ngRequired: requiredDirective,
+                    minlength: minlengthDirective,
+                    ngMinlength: minlengthDirective,
+                    maxlength: maxlengthDirective,
+                    ngMaxlength: maxlengthDirective,
+                    ngValue: ngValueDirective,
+                    ngModelOptions: ngModelOptionsDirective
+                }).
+                directive({
+                    ngInclude: ngIncludeFillContentDirective
+                }).
+                directive(ngAttributeAliasDirectives).
+                directive(ngEventDirectives);
                 $provide.provider({
                     $anchorScroll: $AnchorScrollProvider,
                     $animate: $AnimateProvider,
@@ -2705,10 +2705,10 @@
      */
     function camelCase(name) {
         return name.
-            replace(SPECIAL_CHARS_REGEXP, function (_, separator, letter, offset) {
-                return offset ? letter.toUpperCase() : letter;
-            }).
-            replace(MOZ_HACK_REGEXP, 'Moz$1');
+        replace(SPECIAL_CHARS_REGEXP, function (_, separator, letter, offset) {
+            return offset ? letter.toUpperCase() : letter;
+        }).
+        replace(MOZ_HACK_REGEXP, 'Moz$1');
     }
 
     var SINGLE_TAG_REGEXP = /^<([\w-]+)\s*\/?>(?:<\/\1>|)$/;
@@ -2938,16 +2938,16 @@
     function jqLiteHasClass(element, selector) {
         if (!element.getAttribute) return false;
         return ((" " + (element.getAttribute('class') || '') + " ").replace(/[\n\t]/g, " ").
-            indexOf(" " + selector + " ") > -1);
+        indexOf(" " + selector + " ") > -1);
     }
 
     function jqLiteRemoveClass(element, cssClasses) {
         if (cssClasses && element.setAttribute) {
             forEach(cssClasses.split(' '), function (cssClass) {
                 element.setAttribute('class', trim(
-                        (" " + (element.getAttribute('class') || '') + " ")
-                            .replace(/[\n\t]/g, " ")
-                            .replace(" " + trim(cssClass) + " ", " "))
+                    (" " + (element.getAttribute('class') || '') + " ")
+                        .replace(/[\n\t]/g, " ")
+                        .replace(" " + trim(cssClass) + " ", " "))
                 );
             });
         }
@@ -8730,19 +8730,19 @@
 
                                     ($$observers[name] || ($$observers[name] = [])).$$inter = true;
                                     (attr.$$observers && attr.$$observers[name].$$scope || scope).
-                                        $watch(interpolateFn, function interpolateFnWatchAction(newValue, oldValue) {
-                                            //special case for class attribute addition + removal
-                                            //so that class changes can tap into the animation
-                                            //hooks provided by the $animate service. Be sure to
-                                            //skip animations when the first digest occurs (when
-                                            //both the new and the old values are the same) since
-                                            //the CSS classes are the non-interpolated values
-                                            if (name === 'class' && newValue != oldValue) {
-                                                attr.$updateClass(newValue, oldValue);
-                                            } else {
-                                                attr.$set(name, newValue);
-                                            }
-                                        });
+                                    $watch(interpolateFn, function interpolateFnWatchAction(newValue, oldValue) {
+                                        //special case for class attribute addition + removal
+                                        //so that class changes can tap into the animation
+                                        //hooks provided by the $animate service. Be sure to
+                                        //skip animations when the first digest occurs (when
+                                        //both the new and the old values are the same) since
+                                        //the CSS classes are the non-interpolated values
+                                        if (name === 'class' && newValue != oldValue) {
+                                            attr.$updateClass(newValue, oldValue);
+                                        } else {
+                                            attr.$set(name, newValue);
+                                        }
+                                    });
                                 }
                             };
                         }
@@ -10943,7 +10943,7 @@
 
             function unescapeText(text) {
                 return text.replace(escapedStartRegexp, startSymbol).
-                    replace(escapedEndRegexp, endSymbol);
+                replace(escapedEndRegexp, endSymbol);
             }
 
             function stringify(value) {
@@ -16603,8 +16603,8 @@
                     'Illegal sequence *** in string matcher.  String: {0}', matcher);
             }
             matcher = escapeForRegexp(matcher).
-                replace('\\*\\*', '.*').
-                replace('\\*', '[^:/.?&;]*');
+            replace('\\*\\*', '.*').
+            replace('\\*', '[^:/.?&;]*');
             return new RegExp('^' + matcher + '$');
         } else if (isRegExp(matcher)) {
             // The only other type of matcher allowed is a Regexp.
@@ -18681,7 +18681,7 @@
             return (amount == null)
                 ? amount
                 : formatNumber(amount, formats.PATTERNS[1], formats.GROUP_SEP, formats.DECIMAL_SEP, fractionSize).
-                replace(/\u00A4/g, currencySymbol);
+            replace(/\u00A4/g, currencySymbol);
         };
     }
 

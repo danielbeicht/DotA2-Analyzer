@@ -11,17 +11,13 @@
     homeCtrl.$inject = ['$scope', '$http', 'TransactionsFactory', '$uibModal', '$log', '$state'];
 
 
-    function homeCtrl($scope, $http, TransactionsFactory,  $uibModal, $log, $state) {
+    function homeCtrl($scope, $http, TransactionsFactory, $uibModal, $log, $state) {
         initHome($scope, $http);
-
-
-
 
 
     }
 
     function initHome($scope, $http) {
-
 
 
         $scope.showSpinner = true;
@@ -32,29 +28,29 @@
                 $scope.heroes = result.hero;
                 $scope.showSpinner = false;
             })
-            .error(function (result, status){
+            .error(function (result, status) {
                 console.log(result + status);
             });
 
 
         // Von Li
         /*
-        $scope.hero = TransactionsFactory.findAll({},
-            function success() {
-                $scope.showSpinner = false;
-                console.log('GET Request for getting all Transactions successful');
-                console.log($scope.hero);
-            },
-            function err() {
-                $scope.serverErrRes = 'Failed to load data from server.';
-            });
-            testpush
-        */
+         $scope.hero = TransactionsFactory.findAll({},
+         function success() {
+         $scope.showSpinner = false;
+         console.log('GET Request for getting all Transactions successful');
+         console.log($scope.hero);
+         },
+         function err() {
+         $scope.serverErrRes = 'Failed to load data from server.';
+         });
+         testpush
+         */
         $scope.realh = [
-            {text:"Standard Message"},
-            {text:"Success Message!", type:"success"},
-            {text:"Alert Message!", type : "alert"},
-            {text:"secondary message...", type : "secondary"}
+            {text: "Standard Message"},
+            {text: "Success Message!", type: "success"},
+            {text: "Alert Message!", type: "alert"},
+            {text: "secondary message...", type: "secondary"}
         ];
 
         $scope.currentTransaction = null;
@@ -77,12 +73,12 @@
         });
     }
 
-    function getCurrentTransactionById(transactionId, TransactionFactory, $log){
+    function getCurrentTransactionById(transactionId, TransactionFactory, $log) {
         return TransactionFactory.findById({id: transactionId},
-            function success(){
+            function success() {
                 $log.info('GET transaction successful for id: ' + transactionId)
             },
-            function err(){
+            function err() {
                 $log.error('Failed to GET for id: ' + transactionId);
             });
     }

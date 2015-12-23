@@ -2,21 +2,52 @@
 ============================================================================= */
 
 /* form styling */
-#form-container                { background:#2f2f2f; margin-bottom:20px;
-    border-radius:5px; }
-#form-container .page-header   { background:#151515; margin:0; padding:30px; color:#FFF;
-    border-top-left-radius:5px; border-top-right-radius:5px; }
+#form-container {
+    background: #2f2f2f;
+    margin-bottom: 20px;
+    border-radius: 5px;
+}
+
+#form-container .page-header {
+    background: #151515;
+    margin: 0;
+    padding: 30px;
+    color: #FFF;
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+}
 
 /* numbered buttons */
-#status-buttons                 {  }
-#status-buttons a               { color:#FFF; display:inline-block; font-size:12px; margin-right:10px; text-align:center; text-transform:uppercase; }
-#status-buttons a:hover         { text-decoration:none; }
-#status-buttons span            { background:#080808; display:block; height:30px; margin:0 auto 10px; padding-top:5px; width:30px;
-    border-radius:50%; }
+#status-buttons {
+}
+
+#status-buttons a {
+    color: #FFF;
+    display: inline-block;
+    font-size: 12px;
+    margin-right: 10px;
+    text-align: center;
+    text-transform: uppercase;
+}
+
+#status-buttons a:hover {
+    text-decoration: none;
+}
+
+#status-buttons span {
+    background: #080808;
+    display: block;
+    height: 30px;
+    margin: 0 auto 10px;
+    padding-top: 5px;
+    width: 30px;
+    border-radius: 50%;
+}
 
 /* active buttons */
-#status-buttons a.active span   { background:#00BC8C; }
-
+#status-buttons a.active span {
+    background: #00BC8C;
+}
 
 .mainTh {
     min-width: 80px;
@@ -32,18 +63,20 @@
 
 .modal-header, h4, .close {
     background-color: #5cb85c;
-    color:white !important;
+    color: white !important;
     text-align: center;
     font-size: 30px;
 }
+
 .modal-footer {
     background-color: #f9f9f9;
 }
+
 .modal-header.dangerous, h4.dangerous, .close.dangerous {
     background-color: #d9534f;
 }
 
-.errMsg{
+.errMsg {
     font-size: 1.5em;
     font-weight: bold;
     color: red;
@@ -52,4 +85,8 @@
 
 .noBreak {
     white-space: nowrap;
+}
+
+.pickBox {
+    border: 1px solid black;
 }
