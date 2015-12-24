@@ -89,4 +89,10 @@
 
 .pickBox {
     border: 1px solid black;
+    width: 128px;
+    height: 77px;
+}
+
+section {
+    margin-bottom: 50px;
 }

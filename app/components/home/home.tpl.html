@@ -1,120 +1,29 @@
 <div class="container-fluid">
-  <div class="row">
-    <div class="col-md-5">
-      <div class="row">
-        <div class="col-md-1">
-          <br>
-          <br>
-          <br>
-          <br>
-          <br>
-          <br>
+  <section>
+    <div class="row">
+      <div class="col-md-5">
+        <div class="row">
+          <div class="col-md-2 col-md-offset-1 pickBox"></div>
+          <div class="col-md-2 pickBox"></div>
+          <div class="col-md-2 pickBox"></div>
+          <div class="col-md-2 pickBox"></div>
+          <div class="col-md-2 pickBox"></div>
         </div>
-        <div class="col-md-2 pickBox">
-          <br>
-          <br>
-          <br>
-          <br>
-          <br>
-          <br>
-        </div>
-        <div class="col-md-2 pickBox">
-          <br>
-          <br>
-          <br>
-          <br>
-          <br>
-          <br>
-        </div>
-        <div class="col-md-2 pickBox">
-          <br>
-          <br>
-          <br>
-          <br>
-          <br>
-          <br>
-        </div>
-        <div class="col-md-2 pickBox">
-          <br>
-          <br>
-          <br>
-          <br>
-          <br>
-          <br>
-        </div>
-        <div class="col-md-2 pickBox">
-          <br>
-          <br>
-          <br>
-          <br>
-          <br>
-          <br>
+      </div>
+      <div class="col-md-2">
+        <h1 style="color:red" class="text-center">VS</h1>
+      </div>
+      <div class="col-md-5">
+        <div class="row">
+          <div class="col-md-2 pickBox"></div>
+          <div class="col-md-2 pickBox"></div>
+          <div class="col-md-2 pickBox"></div>
+          <div class="col-md-2 pickBox"></div>
+          <div class="col-md-2 pickBox"></div>
         </div>
       </div>
     </div>
-    <div class="col-md-2">
-      <br>
-      <br>
-
-      <h1 style="color:red" class="text-center">VS</h1>
-      <br>
-      <br>
-      <br>
-      <br>
-    </div>
-    <div class="col-md-5">
-      <div class="row">
-        <div class="col-md-1">
-          <br>
-          <br>
-          <br>
-          <br>
-          <br>
-          <br>
-        </div>
-        <div class="col-md-2 pickBox">
-          <br>
-          <br>
-          <br>
-          <br>
-          <br>
-          <br>
-        </div>
-        <div class="col-md-2 pickBox">
-          <br>
-          <br>
-          <br>
-          <br>
-          <br>
-          <br>
-        </div>
-        <div class="col-md-2 pickBox">
-          <br>
-          <br>
-          <br>
-          <br>
-          <br>
-          <br>
-        </div>
-        <div class="col-md-2 pickBox">
-          <br>
-          <br>
-          <br>
-          <br>
-          <br>
-          <br>
-        </div>
-        <div class="col-md-2 pickBox">
-          <br>
-          <br>
-          <br>
-          <br>
-          <br>
-          <br>
-        </div>
-      </div>
-    </div>
-  </div> <!--pick hero section-->
+  </section><!--pick hero section-->
 
   <div class="row">
     <div class="col-md-5">
@@ -193,7 +102,9 @@
 
         <tbody><!-- | filter:searchHero-->
         <tr ng-repeat="hero in yourTeamHeroData | orderBy:sortTypeYourTeam:sortReverseYourTeam">
-          <td ng-show="([hero.hero] | filter:searchHeroYourTeam).length > 0"><img src="{{ hero.pic }}" style="width: 128px; height: 77px"></td>
+          <td ng-show="([hero.hero] | filter:searchHeroYourTeam).length > 0"><img src="{{ hero.pic }}"
+                                                                                  style="width: 128px; height: 77px">
+          </td>
           <td ng-show="([hero.hero] | filter:searchHeroYourTeam).length > 0">{{ $index + 1 }}</td>
           <td ng-show="([hero.hero] | filter:searchHeroYourTeam).length > 0">{{ hero.hero.heldFullName }}</td>
           <td ng-show="([hero.hero] | filter:searchHeroYourTeam).length > 0">{{ hero.winrate }}</td>
@@ -297,7 +208,9 @@
 
         <tbody><!-- | filter:searchHero-->
         <tr ng-repeat="hero in enemyTeamHeroData | orderBy:sortTypeEnemyTeam:sortReverseEnemyTeam">
-          <td ng-show="([hero.hero] | filter:searchHeroEnemyTeam).length > 0"><img src="{{ hero.pic }}" style="width: 128px; height: 77px"></td>
+          <td ng-show="([hero.hero] | filter:searchHeroEnemyTeam).length > 0"><img src="{{ hero.pic }}"
+                                                                                   style="width: 128px; height: 77px">
+          </td>
           <td ng-show="([hero.hero] | filter:searchHeroEnemyTeam).length > 0">{{ $index + 1 }}</td>
           <td ng-show="([hero.hero] | filter:searchHeroEnemyTeam).length > 0">{{ hero.hero.heldFullName }}</td>
           <td ng-show="([hero.hero] | filter:searchHeroEnemyTeam).length > 0">{{ hero.winrate }}</td>
