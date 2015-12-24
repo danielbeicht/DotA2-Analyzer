@@ -33,6 +33,9 @@
             // need deep copy here else pointing to same object later
             for (var i = 0; i < heroes.length; i++) {
                 var hero = heroes[i].heldFullName.trim();
+                if(hero==='Anti Mage'){
+                    hero = 'Anti-Mage';
+                }
                 var pic = 'http://dota.mz-host.de/Images/' + hero.replace(/\s/gi, "_") + '.jpg';
                 $scope.yourTeamHeroData[i] = {hero: hero, winrate: 0, advantage: 0, normalizedAdvantage: 0, pic: pic};
                 //console.log($scope.yourTeamHeroData[i].hero.heldFullName + "/end")
