@@ -33,6 +33,7 @@
             // need deep copy here else pointing to same object later
             for (var i = 0; i < heroes.length; i++) {
                 var hero = heroes[i].heldFullName.trim();
+                //fix for unconsistent api
                 if(hero==='Anti Mage'){
                     hero = 'Anti-Mage';
                 }
