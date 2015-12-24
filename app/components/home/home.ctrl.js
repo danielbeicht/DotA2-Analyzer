@@ -39,10 +39,10 @@
             $scope.showSpinner = false;
 
 
-            $scope.sortTypeYourTeam     = 'heldFullName'; // set the default sort type
+            $scope.sortTypeYourTeam     = 'hero.heldFullName'; // set the default sort type
             $scope.sortReverseYourTeam  = false;  // set the default sort order
 
-            $scope.sortTypeEnemyTeam     = 'heldFullName'; // set the default sort type
+            $scope.sortTypeEnemyTeam     = 'hero.heldFullName'; // set the default sort type
             $scope.sortReverseEnemyTeam  = false;  // set the default sort order
 
             $scope.searchHeroYourTeam   = '';     // set the default search/filter term
