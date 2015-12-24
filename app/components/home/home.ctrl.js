@@ -24,29 +24,31 @@
             method: 'GET',
             url: 'http://rest.mz-host.de:5015/DotAREST/webresources/heroes'
         }).then(function successCallback(response) {
-            $scope.heroes = response.data.hero;
+            var heroes = response.data.hero;
 
             // Erstelle zwei Arrays für beide Tabellen (initialisiere anfangs mit 0)
-            $scope.yourTeamHeroData = new Array($scope.heroes.length);
-            $scope.enemyTeamHeroData = new Array($scope.heroes.length);
+            $scope.yourTeamHeroData = new Array(heroes.length);
+            $scope.enemyTeamHeroData = new Array(heroes.length);
 
-            for (var i=0; i<$scope.heroes.length; i++){
-                $scope.yourTeamHeroData[i] = {hero:$scope.heroes[i], winrate: 0, advantage: 0, normalizedAdvantage: 0, rank: 0};
-                //
+            // need deep copy here else pointing to same object later
+            for (var i = 0; i < heroes.length; i++) {
+                var hero = heroes[i].heldFullName.trim();
+                var pic = 'http://dota.mz-host.de/Images/' + hero.replace(/\s/gi, "_") + '.jpg';
+                $scope.yourTeamHeroData[i] = {hero: hero, winrate: 0, advantage: 0, normalizedAdvantage: 0, pic: pic};
                 //console.log($scope.yourTeamHeroData[i].hero.heldFullName + "/end")
-                $scope.enemyTeamHeroData[i] = {hero:$scope.heroes[i], winrate: 0, advantage: 0, normalizedAdvantage: 0};
+                $scope.enemyTeamHeroData[i] = {hero: hero, winrate: 0, advantage: 0, normalizedAdvantage: 0, pic: pic};
             }
             $scope.showSpinner = false;
 
 
-            $scope.sortTypeYourTeam     = 'hero.heldFullName'; // set the default sort type
-            $scope.sortReverseYourTeam  = false;  // set the default sort order
+            $scope.sortTypeYourTeam = 'hero.heldFullName'; // set the default sort type
+            $scope.sortReverseYourTeam = false;  // set the default sort order
 
-            $scope.sortTypeEnemyTeam     = 'hero.heldFullName'; // set the default sort type
-            $scope.sortReverseEnemyTeam  = false;  // set the default sort order
+            $scope.sortTypeEnemyTeam = 'hero.heldFullName'; // set the default sort type
+            $scope.sortReverseEnemyTeam = false;  // set the default sort order
 
-            $scope.searchHeroYourTeam   = '';     // set the default search/filter term
-            $scope.searchHeroEnemyTeam   = '';
+            $scope.searchHeroYourTeam = '';     // set the default search/filter term
+            $scope.searchHeroEnemyTeam = '';
 
             // this callback will be called asynchronously
             // when the response is available
@@ -68,14 +70,11 @@
             // or server returns response with an error status.
         });
 
-
-
-
         $scope.realh = [
-            {text:"Standard Message"},
-            {text:"Success Message!", type:"success"},
-            {text:"Alert Message!", type : "alert"},
-            {text:"secondary message...", type : "secondary"}
+            {text: "Standard Message"},
+            {text: "Success Message!", type: "success"},
+            {text: "Alert Message!", type: "alert"},
+            {text: "secondary message...", type: "secondary"}
         ];
     }
 })();

@@ -1,191 +1,315 @@
 <div class="container-fluid">
-    <div class="row">
-        <div class="col-md-5 pickBox">
-            Pics here<br>
-            ics here<br>
-            ics here<br>
-            ics here<br>
-            Pics here<br>
-            ics here<br>
-            ics here<br>
-            ics here<br>
-        </div>
-        <div class="col-md-2">
-            <br>
-            <br>
-
-            <h1 style="color:red" class="text-center">VS</h1>
-            <br>
-            <br>
-            <br>
-            <br>
-        </div>
-        <div class="col-md-5 pickBox">
-            Pics here<br>
-            ics here<br>
-            ics here<br>
-            ics here<br>
-            Pics here<br>
-            ics here<br>
-            ics here<br>
-            ics here<br>
-        </div>
-    </div> <!--pick hero section-->
-
-    <div class="row">
-        <div class="col-md-5">
-            <form>
-                <div class="form-group">
-                    <div class="input-group">
-                        <div class="input-group-addon"><i class="fa fa-search"></i></div>
-                        <input type="text" class="form-control" placeholder="Search Hero" ng-model="searchHeroYourTeam">
-                    </div>
-                </div>
-            </form>
-
-
-            <select id="dropDownPickYourTeam" class="input-block-level" ng-model="selectedHeroYourTeam" ng-options="obj.heldIndex as obj.heldFullName for obj in heroes">
-                <option value="">Select hero</option>
-            </select>
-            <!--<p>$scope.list_category: {{list_category}}<p>-->
-            <button ng-click="">
-                Placeholder Add Hero
-            </button>
-
-            <table class="table table-bordered table-striped">
-
-                <thead>
-                <tr>
-                    <td>
-                        <a>
-                            Ranking
-                        </a>
-                    </td>
-                    <td>
-                        <a href="#" ng-click="sortTypeYourTeam = 'hero.heldFullName'; sortReverseYourTeam = !sortReverseYourTeam">
-                            Hero Name
-                            <span ng-show="sortTypeYourTeam == 'hero.heldFullName' && !sortReverseYourTeam" class="fa fa-caret-down"></span>
-                            <span ng-show="sortTypeYourTeam == 'hero.heldFullName' && sortReverseYourTeam" class="fa fa-caret-up"></span>
-                        </a>
-                    </td>
-                    <td>
-                        <a href="#" ng-click="sortTypeYourTeam = 'winrate'; sortReverseYourTeam = !sortReverseYourTeam">
-                            Winrate
-                            <span ng-show="sortTypeYourTeam == 'winrate' && !sortReverseYourTeam" class="fa fa-caret-down"></span>
-                            <span ng-show="sortTypeYourTeam == 'winrate' && sortReverseYourTeam" class="fa fa-caret-up"></span>
-                        </a>
-                    </td>
-                    <td>
-                        <a href="#" ng-click="sortTypeYourTeam = 'normalizedAdvantage'; sortReverseYourTeam = !sortReverseYourTeam">
-                            Normalized Advantage
-                            <span ng-show="sortTypeYourTeam == 'normalizedAdvantage' && !sortReverseYourTeam" class="fa fa-caret-down"></span>
-                            <span ng-show="sortTypeYourTeam == 'normalizedAdvantage' && sortReverseYourTeam" class="fa fa-caret-up"></span>
-                        </a>
-                    </td>
-                    <td>
-                        <a href="#" ng-click="sortTypeYourTeam = 'advantage'; sortReverseYourTeam = !sortReverseYourTeam">
-                            Advantage
-                            <span ng-show="sortTypeYourTeam == 'advantage' && !sortReverseYourTeam" class="fa fa-caret-down"></span>
-                            <span ng-show="sortTypeYourTeam == 'advantage' && sortReverseYourTeam" class="fa fa-caret-up"></span>
-                        </a>
-                    </td>
-                </tr>
-                </thead>
-
-                <tbody><!-- | filter:searchHero-->
-                <tr ng-repeat="transaction in yourTeamHeroData | orderBy:sortTypeYourTeam:sortReverseYourTeam">
-                    <td ng-show="([transaction.hero.heldFullName] | filter:searchHeroYourTeam).length > 0">{{ $index + 1 }}</td>
-                    <td ng-show="([transaction.hero.heldFullName] | filter:searchHeroYourTeam).length > 0">{{ transaction.hero.heldFullName }}</td>
-                    <td ng-show="([transaction.hero.heldFullName] | filter:searchHeroYourTeam).length > 0">{{ transaction.winrate }}</td>
-                    <td ng-show="([transaction.hero.heldFullName] | filter:searchHeroYourTeam).length > 0">{{ transaction.normalizedAdvantage }}</td>
-                    <td ng-show="([transaction.hero.heldFullName] | filter:searchHeroYourTeam).length > 0">{{ transaction.advantage }}</td>
-                </tr>
-                </tbody>
-            </table>
+  <div class="row">
+    <div class="col-md-5">
+      <div class="row">
+        <div class="col-md-1">
+          <br>
+          <br>
+          <br>
+          <br>
+          <br>
+          <br>
         </div>
         <div class="col-md-2 pickBox">
-            some feature here??
-            <ul ng-repeat="row in heroes" class="list-unstyled">
-                <li>&nbsp;</li>
-            </ul>
-            <ul ng-repeat="row in heroes" class="list-unstyled">
-                <li>&nbsp;</li>
-            </ul>
+          <br>
+          <br>
+          <br>
+          <br>
+          <br>
+          <br>
         </div>
-        <div class="col-md-5">
-
-            <form>
-                <div class="form-group">
-                    <div class="input-group">
-                        <div class="input-group-addon"><i class="fa fa-search"></i></div>
-                        <input type="text" class="form-control" placeholder="Search Hero" ng-model="searchHeroEnemyTeam">
-                    </div>
-                </div>
-            </form>
-
-            <select id="dropDownPickEnemyTeam" class="input-block-level" ng-model="selectedHeroEnemyTeam" ng-options="obj.heldIndex as obj.heldFullName for obj in heroes">
-                <option value="">Select hero</option>
-            </select>
-            <!--<p>$scope.list_category: {{list_category}}<p>-->
-            <button ng-click="">
-                Placeholder Add Hero
-            </button>
-
-            <table class="table table-bordered table-striped">
-
-                <thead>
-                <tr>
-                    <td>
-                        <a>
-                            Ranking
-                            <span ng-show="sortTypeEnemyTeam == 'ranking' && !sortReverseEnemyTeam" class="fa fa-caret-down"></span>
-                            <span ng-show="sortTypeEnemyTeam == 'ranking' && sortReverseEnemyTeam" class="fa fa-caret-up"></span>
-                        </a>
-                    </td>
-                    <td>
-                        <a href="#" ng-click="sortTypeEnemyTeam = 'hero.heldFullName'; sortReverseEnemyTeam = !sortReverseEnemyTeam">
-                            Hero Name
-                            <span ng-show="sortTypeEnemyTeam == 'hero.heldFullName' && !sortReverseEnemyTeam" class="fa fa-caret-down"></span>
-                            <span ng-show="sortTypeEnemyTeam == 'hero.heldFullName' && sortReverseEnemyTeam" class="fa fa-caret-up"></span>
-                        </a>
-                    </td>
-                    <td>
-                        <a href="#" ng-click="sortTypeEnemyTeam = 'winrate'; sortReverse = !sortReverseEnemyTeam">
-                            Winrate
-                            <span ng-show="sortTypeEnemyTeam == 'winrate' && !sortReverseEnemyTeam" class="fa fa-caret-down"></span>
-                            <span ng-show="sortTypeEnemyTeam == 'winrate' && sortReverseEnemyTeam" class="fa fa-caret-up"></span>
-                        </a>
-                    </td>
-                    <td>
-                        <a href="#" ng-click="sortTypeEnemyTeam = 'normalizedAdvantage'; sortReverseEnemyTeam = !sortReverse">
-                            Normalized Advantage
-                            <span ng-show="sortTypeEnemyTeam == 'normalizedAdvantage' && !sortReverseEnemyTeam" class="fa fa-caret-down"></span>
-                            <span ng-show="sortTypeEnemyTeam == 'normalizedAdvantage' && sortReverseEnemyTeam" class="fa fa-caret-up"></span>
-                        </a>
-                    </td>
-                    <td>
-                        <a href="#" ng-click="sortTypeEnemyTeam = 'advantage'; sortReverse = !sortReverseEnemyTeam">
-                            Advantage
-                            <span ng-show="sortTypeEnemyTeam == 'advantage' && !sortReverseEnemyTeam" class="fa fa-caret-down"></span>
-                            <span ng-show="sortTypeEnemyTeam == 'advantage' && sortReverseEnemyTeam" class="fa fa-caret-up"></span>
-                        </a>
-                    </td>
-                </tr>
-                </thead>
-
-                <tbody><!-- | filter:searchHero-->
-                <tr ng-repeat="transaction in enemyTeamHeroData | orderBy:sortTypeEnemyTeam:sortReverseEnemyTeam">
-                    <td ng-show="([transaction.hero.heldFullName] | filter:searchHeroEnemyTeam).length > 0">{{ $index + 1 }}</td>
-                    <td ng-show="([transaction.hero.heldFullName] | filter:searchHeroEnemyTeam).length > 0">{{ transaction.hero.heldFullName }}</td>
-                    <td ng-show="([transaction.hero.heldFullName] | filter:searchHeroEnemyTeam).length > 0">{{ transaction.winrate }}</td>
-                    <td ng-show="([transaction.hero.heldFullName] | filter:searchHeroEnemyTeam).length > 0">{{ transaction.normalizedAdvantage }}</td>
-                    <td ng-show="([transaction.hero.heldFullName] | filter:searchHeroEnemyTeam).length > 0">{{ transaction.advantage }}</td>
-                </tr>
-                </tbody>
-            </table>
-
+        <div class="col-md-2 pickBox">
+          <br>
+          <br>
+          <br>
+          <br>
+          <br>
+          <br>
         </div>
-    </div> <!-- hero table section-->
+        <div class="col-md-2 pickBox">
+          <br>
+          <br>
+          <br>
+          <br>
+          <br>
+          <br>
+        </div>
+        <div class="col-md-2 pickBox">
+          <br>
+          <br>
+          <br>
+          <br>
+          <br>
+          <br>
+        </div>
+        <div class="col-md-2 pickBox">
+          <br>
+          <br>
+          <br>
+          <br>
+          <br>
+          <br>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-2">
+      <br>
+      <br>
 
-    <p class="errMsg"> {{ serverErrRes }} </p>
+      <h1 style="color:red" class="text-center">VS</h1>
+      <br>
+      <br>
+      <br>
+      <br>
+    </div>
+    <div class="col-md-5">
+      <div class="row">
+        <div class="col-md-1">
+          <br>
+          <br>
+          <br>
+          <br>
+          <br>
+          <br>
+        </div>
+        <div class="col-md-2 pickBox">
+          <br>
+          <br>
+          <br>
+          <br>
+          <br>
+          <br>
+        </div>
+        <div class="col-md-2 pickBox">
+          <br>
+          <br>
+          <br>
+          <br>
+          <br>
+          <br>
+        </div>
+        <div class="col-md-2 pickBox">
+          <br>
+          <br>
+          <br>
+          <br>
+          <br>
+          <br>
+        </div>
+        <div class="col-md-2 pickBox">
+          <br>
+          <br>
+          <br>
+          <br>
+          <br>
+          <br>
+        </div>
+        <div class="col-md-2 pickBox">
+          <br>
+          <br>
+          <br>
+          <br>
+          <br>
+          <br>
+        </div>
+      </div>
+    </div>
+  </div> <!--pick hero section-->
+
+  <div class="row">
+    <div class="col-md-5">
+      <div class="row">
+        <div class="col-md-4">
+          <form>
+            <div class="form-group">
+              <div class="input-group">
+                <div class="input-group-addon"><i class="fa fa-search"></i></div>
+                <input type="text" class="form-control" placeholder="Search Hero"
+                       ng-model="searchHeroYourTeam">
+              </div>
+            </div>
+          </form>
+        </div>
+        <div class="col-md-4">
+          <select id="dropDownPickYourTeam" class="form-control" ng-model="selectedHeroYourTeam"
+                  ng-options="obj.hero as obj.hero for obj in yourTeamHeroData">
+            <option value="">Select hero</option>
+          </select>
+        </div>
+        <!--<p>$scope.list_category: {{list_category}}<p>-->
+        <div class="col-md-4">
+          <button class="btn btn-success" ng-click="">
+            Placeholder Add Hero
+          </button>
+        </div>
+      </div>
+      <table class="table table-bordered table-striped">
+
+        <thead>
+        <tr>
+          <td><a></a></td>
+          <td><a>Ranking</a></td>
+          <td>
+            <a href="#"
+               ng-click="sortTypeYourTeam = 'hero.heldFullName'; sortReverseYourTeam = !sortReverseYourTeam">
+              Hero Name
+                            <span ng-show="sortTypeYourTeam == 'hero.heldFullName' && !sortReverseYourTeam"
+                                  class="fa fa-caret-down"></span>
+                            <span ng-show="sortTypeYourTeam == 'hero.heldFullName' && sortReverseYourTeam"
+                                  class="fa fa-caret-up"></span>
+            </a>
+          </td>
+          <td>
+            <a href="#" ng-click="sortTypeYourTeam = 'winrate'; sortReverseYourTeam = !sortReverseYourTeam">
+              Winrate
+                            <span ng-show="sortTypeYourTeam == 'winrate' && !sortReverseYourTeam"
+                                  class="fa fa-caret-down"></span>
+                            <span ng-show="sortTypeYourTeam == 'winrate' && sortReverseYourTeam"
+                                  class="fa fa-caret-up"></span>
+            </a>
+          </td>
+          <td>
+            <a href="#"
+               ng-click="sortTypeYourTeam = 'normalizedAdvantage'; sortReverseYourTeam = !sortReverseYourTeam">
+              Normalized Advantage
+                            <span ng-show="sortTypeYourTeam == 'normalizedAdvantage' && !sortReverseYourTeam"
+                                  class="fa fa-caret-down"></span>
+                            <span ng-show="sortTypeYourTeam == 'normalizedAdvantage' && sortReverseYourTeam"
+                                  class="fa fa-caret-up"></span>
+            </a>
+          </td>
+          <td>
+            <a href="#"
+               ng-click="sortTypeYourTeam = 'advantage'; sortReverseYourTeam = !sortReverseYourTeam">
+              Advantage
+                            <span ng-show="sortTypeYourTeam == 'advantage' && !sortReverseYourTeam"
+                                  class="fa fa-caret-down"></span>
+                            <span ng-show="sortTypeYourTeam == 'advantage' && sortReverseYourTeam"
+                                  class="fa fa-caret-up"></span>
+            </a>
+          </td>
+        </tr>
+        </thead>
+
+        <tbody><!-- | filter:searchHero-->
+        <tr ng-repeat="hero in yourTeamHeroData | orderBy:sortTypeYourTeam:sortReverseYourTeam">
+          <td ng-show="([hero.hero] | filter:searchHeroYourTeam).length > 0"><img src="{{ hero.pic }}"></td>
+          <td ng-show="([hero.hero] | filter:searchHeroYourTeam).length > 0">{{ $index + 1 }}</td>
+          <td ng-show="([hero.hero] | filter:searchHeroYourTeam).length > 0">{{ hero.hero }}</td>
+          <td ng-show="([hero.hero] | filter:searchHeroYourTeam).length > 0">{{ hero.winrate }}</td>
+          <td ng-show="([hero.hero] | filter:searchHeroYourTeam).length > 0">{{ hero.normalizedAdvantage }}
+          </td>
+          <td ng-show="([hero.hero] | filter:searchHeroYourTeam).length > 0">{{ hero.advantage }}</td>
+        </tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="col-md-2 pickBox">
+      some feature here??
+      <ul ng-repeat="row in heroes" class="list-unstyled">
+        <li>&nbsp;</li>
+      </ul>
+      <ul ng-repeat="row in heroes" class="list-unstyled">
+        <li>&nbsp;</li>
+      </ul>
+    </div>
+    <div class="col-md-5">
+      <div class="row">
+        <div class="col-md-4">
+          <form>
+            <div class="form-group">
+              <div class="input-group">
+                <div class="input-group-addon"><i class="fa fa-search"></i></div>
+                <input type="text" class="form-control" placeholder="Search Hero"
+                       ng-model="searchHeroEnemyTeam">
+              </div>
+            </div>
+          </form>
+        </div>
+        <div class="col-md-4">
+          <select id="dropDownPickEnemyTeam" class="form-control" ng-model="selectedHeroEnemyTeam"
+                  ng-options="obj.hero as obj.hero for obj in enemyTeamHeroData">
+            <option value="">Select hero</option>
+          </select>
+        </div>
+        <!--<p>$scope.list_category: {{list_category}}<p>-->
+        <div class="col-md-4">
+          <button class="btn btn-success" ng-click="">
+            Placeholder Add Hero
+          </button>
+        </div>
+      </div>
+
+      <table class="table table-bordered table-striped">
+
+        <thead>
+        <tr>
+          <td><a></a></td>
+          <td>
+            <a>
+              Ranking
+                            <span ng-show="sortTypeEnemyTeam == 'ranking' && !sortReverseEnemyTeam"
+                                  class="fa fa-caret-down"></span>
+                            <span ng-show="sortTypeEnemyTeam == 'ranking' && sortReverseEnemyTeam"
+                                  class="fa fa-caret-up"></span>
+            </a>
+          </td>
+          <td>
+            <a href="#"
+               ng-click="sortTypeEnemyTeam = 'hero.heldFullName'; sortReverseEnemyTeam = !sortReverseEnemyTeam">
+              Hero Name
+                            <span ng-show="sortTypeEnemyTeam == 'hero.heldFullName' && !sortReverseEnemyTeam"
+                                  class="fa fa-caret-down"></span>
+                            <span ng-show="sortTypeEnemyTeam == 'hero.heldFullName' && sortReverseEnemyTeam"
+                                  class="fa fa-caret-up"></span>
+            </a>
+          </td>
+          <td>
+            <a href="#" ng-click="sortTypeEnemyTeam = 'winrate'; sortReverse = !sortReverseEnemyTeam">
+              Winrate
+                            <span ng-show="sortTypeEnemyTeam == 'winrate' && !sortReverseEnemyTeam"
+                                  class="fa fa-caret-down"></span>
+                            <span ng-show="sortTypeEnemyTeam == 'winrate' && sortReverseEnemyTeam"
+                                  class="fa fa-caret-up"></span>
+            </a>
+          </td>
+          <td>
+            <a href="#"
+               ng-click="sortTypeEnemyTeam = 'normalizedAdvantage'; sortReverseEnemyTeam = !sortReverse">
+              Normalized Advantage
+                            <span ng-show="sortTypeEnemyTeam == 'normalizedAdvantage' && !sortReverseEnemyTeam"
+                                  class="fa fa-caret-down"></span>
+                            <span ng-show="sortTypeEnemyTeam == 'normalizedAdvantage' && sortReverseEnemyTeam"
+                                  class="fa fa-caret-up"></span>
+            </a>
+          </td>
+          <td>
+            <a href="#" ng-click="sortTypeEnemyTeam = 'advantage'; sortReverse = !sortReverseEnemyTeam">
+              Advantage
+                            <span ng-show="sortTypeEnemyTeam == 'advantage' && !sortReverseEnemyTeam"
+                                  class="fa fa-caret-down"></span>
+                            <span ng-show="sortTypeEnemyTeam == 'advantage' && sortReverseEnemyTeam"
+                                  class="fa fa-caret-up"></span>
+            </a>
+          </td>
+        </tr>
+        </thead>
+
+        <tbody><!-- | filter:searchHero-->
+        <tr ng-repeat="hero in enemyTeamHeroData | orderBy:sortTypeEnemyTeam:sortReverseEnemyTeam">
+          <td ng-show="([hero.hero] | filter:searchHeroYourTeam).length > 0"><img src="{{ hero.pic }}"></td>
+          <td ng-show="([hero.hero] | filter:searchHeroEnemyTeam).length > 0">{{ $index + 1 }}</td>
+          <td ng-show="([hero.hero] | filter:searchHeroEnemyTeam).length > 0">{{ hero.hero }}</td>
+          <td ng-show="([hero.hero] | filter:searchHeroEnemyTeam).length > 0">{{ hero.winrate }}</td>
+          <td ng-show="([hero.hero] | filter:searchHeroEnemyTeam).length > 0">{{ hero.normalizedAdvantage }}
+          </td>
+          <td ng-show="([hero.hero] | filter:searchHeroEnemyTeam).length > 0">{{ hero.advantage }}</td>
+        </tr>
+        </tbody>
+      </table>
+
+    </div>
+  </div> <!-- hero table section-->
+
+  <p class="errMsg"> {{ serverErrRes }} </p>
 </div>
