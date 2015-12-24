@@ -96,3 +96,9 @@
 section {
     margin-bottom: 50px;
 }
+
+body {
+    background-image: url(//subtlepatterns.com/patterns/scribble_light.png);
+    font-family: Calluna, Arial, sans-serif;
+    min-height: 1000px;
+}
