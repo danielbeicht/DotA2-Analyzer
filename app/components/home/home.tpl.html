@@ -132,7 +132,7 @@
         </div>
         <div class="col-md-4">
           <select id="dropDownPickYourTeam" class="form-control" ng-model="selectedHeroYourTeam"
-                  ng-options="obj.hero as obj.hero for obj in yourTeamHeroData">
+                  ng-options="obj.hero.heldIndex as obj.hero.heldFullName for obj in yourTeamHeroData | orderBy:'hero.heldFullName'">
             <option value="">Select hero</option>
           </select>
         </div>
@@ -195,7 +195,7 @@
         <tr ng-repeat="hero in yourTeamHeroData | orderBy:sortTypeYourTeam:sortReverseYourTeam">
           <td ng-show="([hero.hero] | filter:searchHeroYourTeam).length > 0"><img src="{{ hero.pic }}"></td>
           <td ng-show="([hero.hero] | filter:searchHeroYourTeam).length > 0">{{ $index + 1 }}</td>
-          <td ng-show="([hero.hero] | filter:searchHeroYourTeam).length > 0">{{ hero.hero }}</td>
+          <td ng-show="([hero.hero] | filter:searchHeroYourTeam).length > 0">{{ hero.hero.heldFullName }}</td>
           <td ng-show="([hero.hero] | filter:searchHeroYourTeam).length > 0">{{ hero.winrate }}</td>
           <td ng-show="([hero.hero] | filter:searchHeroYourTeam).length > 0">{{ hero.normalizedAdvantage }}
           </td>
@@ -227,8 +227,8 @@
           </form>
         </div>
         <div class="col-md-4">
-          <select id="dropDownPickEnemyTeam" class="form-control" ng-model="selectedHeroEnemyTeam"
-                  ng-options="obj.hero as obj.hero for obj in enemyTeamHeroData">
+          <select id="dropDownPickEnemyTeam" class="form-control" ng-model="selectedHeroYourTeam"
+                  ng-options="obj.hero.heldIndex as obj.hero.heldFullName for obj in enemyTeamHeroData | orderBy:'hero.heldFullName'">
             <option value="">Select hero</option>
           </select>
         </div>
@@ -297,9 +297,9 @@
 
         <tbody><!-- | filter:searchHero-->
         <tr ng-repeat="hero in enemyTeamHeroData | orderBy:sortTypeEnemyTeam:sortReverseEnemyTeam">
-          <td ng-show="([hero.hero] | filter:searchHeroYourTeam).length > 0"><img src="{{ hero.pic }}"></td>
+          <td ng-show="([hero.hero] | filter:searchHeroEnemyTeam).length > 0"><img src="{{ hero.pic }}"></td>
           <td ng-show="([hero.hero] | filter:searchHeroEnemyTeam).length > 0">{{ $index + 1 }}</td>
-          <td ng-show="([hero.hero] | filter:searchHeroEnemyTeam).length > 0">{{ hero.hero }}</td>
+          <td ng-show="([hero.hero] | filter:searchHeroEnemyTeam).length > 0">{{ hero.hero.heldFullName }}</td>
           <td ng-show="([hero.hero] | filter:searchHeroEnemyTeam).length > 0">{{ hero.winrate }}</td>
           <td ng-show="([hero.hero] | filter:searchHeroEnemyTeam).length > 0">{{ hero.normalizedAdvantage }}
           </td>

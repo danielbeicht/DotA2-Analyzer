@@ -32,15 +32,11 @@
 
             // need deep copy here else pointing to same object later
             for (var i = 0; i < heroes.length; i++) {
-                var hero = heroes[i].heldFullName.trim();
-                //fix for unconsistent api
-                if(hero==='Anti Mage'){
-                    hero = 'Anti-Mage';
-                }
-                var pic = 'http://dota.mz-host.de/Images/' + hero.replace(/\s/gi, "_") + '.jpg';
-                $scope.yourTeamHeroData[i] = {hero: hero, winrate: 0, advantage: 0, normalizedAdvantage: 0, pic: pic};
-                //console.log($scope.yourTeamHeroData[i].hero.heldFullName + "/end")
-                $scope.enemyTeamHeroData[i] = {hero: hero, winrate: 0, advantage: 0, normalizedAdvantage: 0, pic: pic};
+                var heroYourTeam = angular.copy(heroes[i]);
+                var heroEnemyTeam = angular.copy(heroes[i]);
+                var pic = 'assets/images/heroes/' + heroes[i].heldFullName.trim().replace(/\s/gi, "_") + '.jpg';
+                $scope.yourTeamHeroData[i] = {hero: heroYourTeam, winrate: 0, advantage: 0, normalizedAdvantage: 0, pic: pic};
+                $scope.enemyTeamHeroData[i] = {hero: heroEnemyTeam, winrate: 0, advantage: 0, normalizedAdvantage: 0, pic: pic};
             }
             $scope.showSpinner = false;
 
