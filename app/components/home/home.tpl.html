@@ -193,7 +193,7 @@
 
         <tbody><!-- | filter:searchHero-->
         <tr ng-repeat="hero in yourTeamHeroData | orderBy:sortTypeYourTeam:sortReverseYourTeam">
-          <td ng-show="([hero.hero] | filter:searchHeroYourTeam).length > 0"><img src="{{ hero.pic }}"></td>
+          <td ng-show="([hero.hero] | filter:searchHeroYourTeam).length > 0"><img src="{{ hero.pic }}" style="width: 128px; height: 77px"></td>
           <td ng-show="([hero.hero] | filter:searchHeroYourTeam).length > 0">{{ $index + 1 }}</td>
           <td ng-show="([hero.hero] | filter:searchHeroYourTeam).length > 0">{{ hero.hero.heldFullName }}</td>
           <td ng-show="([hero.hero] | filter:searchHeroYourTeam).length > 0">{{ hero.winrate }}</td>
@@ -297,7 +297,7 @@
 
         <tbody><!-- | filter:searchHero-->
         <tr ng-repeat="hero in enemyTeamHeroData | orderBy:sortTypeEnemyTeam:sortReverseEnemyTeam">
-          <td ng-show="([hero.hero] | filter:searchHeroEnemyTeam).length > 0"><img src="{{ hero.pic }}"></td>
+          <td ng-show="([hero.hero] | filter:searchHeroEnemyTeam).length > 0"><img src="{{ hero.pic }}" style="width: 128px; height: 77px"></td>
           <td ng-show="([hero.hero] | filter:searchHeroEnemyTeam).length > 0">{{ $index + 1 }}</td>
           <td ng-show="([hero.hero] | filter:searchHeroEnemyTeam).length > 0">{{ hero.hero.heldFullName }}</td>
           <td ng-show="([hero.hero] | filter:searchHeroEnemyTeam).length > 0">{{ hero.winrate }}</td>
