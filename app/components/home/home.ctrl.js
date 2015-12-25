@@ -14,10 +14,13 @@
     function homeCtrl($scope, $http) {
         initHome($scope, $http);
 
+        $scope.testfunc = function(i){
+            console.log(i);
+        }
 
-        $scope.yourTeamHeroPick = function(){
-            if ($scope.selectedHeroYourTeam != null){
-                var selectedHero = $scope.heroesSortedByIndex[$scope.selectedHeroYourTeam];
+        $scope.yourTeamHeroPick = function(heroIndexParameter){
+            if (heroIndexParameter != null){
+                var selectedHero = $scope.heroesSortedByIndex[heroIndexParameter];
                 var heroAlreadyPicked = false;
 
                 for (var i=0; i<5; i++){
@@ -31,7 +34,7 @@
                     var heroPicked = false;
                     for (var i=0; i<5; i++){
                         if ($scope.yourTeamPicks[i] == null){
-                            $scope.yourTeamPicks[i] = $scope.heroesSortedByIndex[$scope.selectedHeroYourTeam];
+                            $scope.yourTeamPicks[i] = $scope.heroesSortedByIndex[heroIndexParameter];
                             heroPicked = true;
                             break;
                         }
@@ -44,11 +47,12 @@
 
         }
 
-        $scope.enemyTeamHeroPick = function(){
-            if ($scope.selectedHeroEnemyTeam != null) {
-                var selectedHero = $scope.heroesSortedByIndex[$scope.selectedHeroEnemyTeam];
+        $scope.enemyTeamHeroPick = function(heroIndexParameter){
+            console.log(heroIndexParameter);
+            if (heroIndexParameter != null) {
+                console.log(heroIndexParameter);
+                var selectedHero = $scope.heroesSortedByIndex[heroIndexParameter];
                 var heroAlreadyPicked = false;
-
                 for (var i=0; i<5; i++){
                     if (($scope.yourTeamPicks[i] != null && $scope.yourTeamPicks[i].heroIndex === selectedHero.heroIndex) || ($scope.enemyTeamPicks[i] != null && $scope.enemyTeamPicks[i].heroIndex === selectedHero.heroIndex)){
                         heroAlreadyPicked = true;
@@ -60,7 +64,7 @@
                     var heroPicked = false;
                     for (var i = 0; i < 5; i++) {
                         if ($scope.enemyTeamPicks[i] == null) {
-                            $scope.enemyTeamPicks[i] = $scope.heroesSortedByIndex[$scope.selectedHeroEnemyTeam];
+                            $scope.enemyTeamPicks[i] = $scope.heroesSortedByIndex[heroIndexParameter];
                             heroPicked = true;
                             break;
                         }

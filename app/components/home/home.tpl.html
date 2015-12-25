@@ -55,7 +55,7 @@
         </div>
         <!--<p>$scope.list_category: {{list_category}}<p>-->
         <div class="col-md-4">
-          <button class="btn btn-success" ng-click="yourTeamHeroPick()">
+          <button class="btn btn-success" ng-click="yourTeamHeroPick(selectedHeroYourTeam)">
             Placeholder Add Hero
           </button>
         </div>
@@ -68,11 +68,11 @@
           <td><a>Ranking</a></td>
           <td>
             <a href="#"
-               ng-click="sortTypeYourTeam = 'hero.heldFullName'; sortReverseYourTeam = !sortReverseYourTeam">
+               ng-click="sortTypeYourTeam = 'heroFullName'; sortReverseYourTeam = !sortReverseYourTeam">
               Hero Name
-                            <span ng-show="sortTypeYourTeam == 'hero.heldFullName' && !sortReverseYourTeam"
+                            <span ng-show="sortTypeYourTeam == 'heroFullName' && !sortReverseYourTeam"
                                   class="fa fa-caret-down"></span>
-                            <span ng-show="sortTypeYourTeam == 'hero.heldFullName' && sortReverseYourTeam"
+                            <span ng-show="sortTypeYourTeam == 'heroFullName' && sortReverseYourTeam"
                                   class="fa fa-caret-up"></span>
             </a>
           </td>
@@ -100,7 +100,7 @@
 
         <tbody><!-- | filter:searchHero-->
         <tr ng-repeat="hero in heroes | orderBy:sortTypeYourTeam:sortReverseYourTeam">
-          <td ng-show="([hero] | filter:searchHeroYourTeam).length > 0"><img src="{{ hero.heroImageURL }}" style="width: 128px; height: 77px"></td>
+          <td ng-show="([hero] | filter:searchHeroYourTeam).length > 0"><img ng-click="yourTeamHeroPick(hero.heroIndex)" src="{{ hero.heroImageURL }}" style="width: 128px; height: 77px"></td>
           <td ng-show="([hero] | filter:searchHeroYourTeam).length > 0">{{ $index + 1 }}</td>
           <td ng-show="([hero] | filter:searchHeroYourTeam).length > 0">{{ hero.heroFullName }}</td>
           <td ng-show="([hero] | filter:searchHeroYourTeam).length > 0">{{ hero.yourTeamWinrate }}</td>
@@ -139,7 +139,7 @@
         </div>
         <!--<p>$scope.list_category: {{list_category}}<p>-->
         <div class="col-md-4">
-          <button class="btn btn-success" ng-click="enemyTeamHeroPick()">
+          <button class="btn btn-success" ng-click="enemyTeamHeroPick(selectedHeroEnemyTeam)">
             Placeholder Add Hero
           </button>
         </div>
@@ -161,11 +161,11 @@
           </td>
           <td>
             <a href="#"
-               ng-click="sortTypeEnemyTeam = 'hero.heldFullName'; sortReverseEnemyTeam = !sortReverseEnemyTeam">
+               ng-click="sortTypeEnemyTeam = 'heroFullName'; sortReverseEnemyTeam = !sortReverseEnemyTeam">
               Hero Name
-                            <span ng-show="sortTypeEnemyTeam == 'hero.heldFullName' && !sortReverseEnemyTeam"
+                            <span ng-show="sortTypeEnemyTeam == 'heroFullName' && !sortReverseEnemyTeam"
                                   class="fa fa-caret-down"></span>
-                            <span ng-show="sortTypeEnemyTeam == 'hero.heldFullName' && sortReverseEnemyTeam"
+                            <span ng-show="sortTypeEnemyTeam == 'heroFullName' && sortReverseEnemyTeam"
                                   class="fa fa-caret-up"></span>
             </a>
           </td>
@@ -192,7 +192,7 @@
 
         <tbody><!-- | filter:searchHero-->
         <tr ng-repeat="hero in heroes | orderBy:sortTypeEnemyTeam:sortReverseEnemyTeam">
-          <td ng-show="([hero] | filter:searchHeroEnemyTeam).length > 0"><img src="{{ hero.heroImageURL }}" style="width: 128px; height: 77px"></td>
+          <td ng-show="([hero] | filter:searchHeroEnemyTeam).length > 0"><img ng-click="enemyTeamHeroPick(hero.heroIndex)" src="{{ hero.heroImageURL }}" style="width: 128px; height: 77px"></td>
           <td ng-show="([hero] | filter:searchHeroEnemyTeam).length > 0">{{ $index + 1 }}</td>
           <td ng-show="([hero] | filter:searchHeroEnemyTeam).length > 0">{{ hero.heroFullName }}</td>
           <td ng-show="([hero] | filter:searchHeroEnemyTeam).length > 0">{{ hero.enemyTeamWinrate }}</td>
