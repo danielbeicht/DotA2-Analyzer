@@ -8,16 +8,11 @@
         .module('IBApp')
         .controller('homeCtrl', homeCtrl);
 
-    homeCtrl.$inject = ['$scope', '$http', 'TransactionsFactory', '$uibModal', '$log', '$state'];
+    homeCtrl.$inject = ['$scope', '$http', '$log'];
 
 
-    function homeCtrl($scope, $http) {
+    function homeCtrl($scope, $http, $log) {
         initHome($scope, $http);
-
-        $scope.testfunc = function(i){
-            console.log(i);
-        }
-
         $scope.yourTeamHeroPick = function(heroIndexParameter){
             if (heroIndexParameter != null){
                 var selectedHero = $scope.heroesSortedByIndex[heroIndexParameter];
@@ -48,9 +43,7 @@
         }
 
         $scope.enemyTeamHeroPick = function(heroIndexParameter){
-            console.log(heroIndexParameter);
             if (heroIndexParameter != null) {
-                console.log(heroIndexParameter);
                 var selectedHero = $scope.heroesSortedByIndex[heroIndexParameter];
                 var heroAlreadyPicked = false;
                 for (var i=0; i<5; i++){
@@ -91,9 +84,6 @@
     function initHome($scope, $http) {
         $scope.showSpinner = true;
 
-
-
-        var templateHero = {pic: 'h'}
         $scope.yourTeamPicks = new Array(5);
         $scope.enemyTeamPicks = new Array(5);
         // Get all heroes
@@ -139,7 +129,7 @@
             method: 'GET',
             url: 'http://rest.mz-host.de:5015/DotAREST/webresources/matchups'
         }).then(function successCallback(response) {
-            $scope.matchups = response.data.matchup;                     // Mal sehen ob man das braucht; ansonsten in lokale Variable speichern
+            $scope.matchups = response.data.matchup;
             // this callback will be called asynchronously
             // when the response is available
         }, function errorCallback(response) {
