@@ -87,7 +87,7 @@
 
         $scope.banHero = function(heroIndexParameter){
 
-            if (heroIndexParameter != null){
+            if (heroIndexParameter != null && $scope.allowBanning){
                 var selectedHero = $scope.heroesSortedByIndex[heroIndexParameter];
                 var heroAlreadyPicked = false;
                 for (var i=0; i<5; i++){
@@ -215,6 +215,14 @@
                 $scope.heroesSortedByIndex[i].enemyTeamWinrate = (parseFloat(enemyWinrate) / parseFloat(teamHeroCount)).toFixed(2);
             }
         }
+
+        $scope.$watch('allowBanning', function(newValue){
+            if (newValue == false){
+                for (var i=0; i<10; i++){
+                    $scope.heroBans[i] = null;
+                }
+            }
+        });
     }
 
 
@@ -236,7 +244,7 @@
         $scope.enemyTeamPicks = new Array(5);
         $scope.heroBans = new Array(10);
 
-        $scope.gameMode = 2;       // 1=All Pick; 2=Captains Mode
+        $scope.allowBanning = false;
         // Get all heroes
         $http({
             method: 'GET',
