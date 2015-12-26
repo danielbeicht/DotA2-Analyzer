@@ -12,6 +12,7 @@
 
 
     function homeCtrl($scope, $http, $log) {
+        $scope.dataLoaded = false;
         initHome($scope, $http, $log);
 
         // Function called when a hero is picked for you team; Adds hero to yourTeamPicks-Array
@@ -272,7 +273,7 @@
                 $scope.heroesSortedByIndex[i] = $scope.heroes[i];
             }
             $scope.heroesSortedByIndex.sort(compare);
-
+            $scope.dataLoaded = true;
             // this callback will be called asynchronously
             // when the response is available
         }, function errorCallback(response) {
