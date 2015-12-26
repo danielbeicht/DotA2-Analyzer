@@ -105,7 +105,7 @@ body {
 }
 
 .scrollThis {
-  width: 500px;
-  height: 500px;
+  width: 490px;
+  height: 720px;
   overflow: scroll;
 }
