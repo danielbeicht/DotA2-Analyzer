@@ -176,6 +176,18 @@
                         }
                     }
                 }
+                if (!exit){
+                    for (var j=0; j<10; j++){
+                        if ($scope.heroBans[j]!= null){
+                            if ($scope.heroBans[j].heroIndex == i){
+                                console.log("DRIN");
+                                exit = true;
+                                break;
+                            }
+                        }
+                    }
+                }
+
                 if (exit) {
                     $scope.heroesSortedByIndex[i].yourTeamWinrate = '0.00';
                     $scope.heroesSortedByIndex[i].enemyTeamWinrate = '0.00';
