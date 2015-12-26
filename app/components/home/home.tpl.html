@@ -2,16 +2,16 @@
   <section class="row">
     <div class="col-md-5">
       <div class="row">
-        <div class="col-md-2 col-md-offset-1 pickBox" ng-click="yourTeamPicks[0]=null; updateAdvantages()" ng-show="yourTeamPicks[0] != null"><img ng-src="{{ yourTeamPicks[0].heroImageURL }}" style="width: 128px; height: 77px"></div>
-        <div class="col-md-2 col-md-offset-1 pickBox" ng-show="yourTeamPicks[0] == null"><img ng-src="assets/images/hero_unselected.jpg" style="width: 128px; height: 77px"></div>
-        <div class="col-md-2 pickBox" ng-click="yourTeamPicks[1]=null; updateAdvantages()" ng-click="yourTeamPicks[1]=null" ng-show="yourTeamPicks[1] != null"><img ng-src="{{ yourTeamPicks[1].heroImageURL }}" style="width: 128px; height: 77px"> </div>
-        <div class="col-md-2 pickBox" ng-show="yourTeamPicks[1] == null"><img ng-src="assets/images/hero_unselected.jpg" style="width: 128px; height: 77px"> </div>
-        <div class="col-md-2 pickBox" ng-click="yourTeamPicks[2]=null; updateAdvantages()" ng-show="yourTeamPicks[2] != null"><img ng-src="{{ yourTeamPicks[2].heroImageURL }}" style="width: 128px; height: 77px"></div>
-        <div class="col-md-2 pickBox" ng-show="yourTeamPicks[2] == null"><img ng-src="assets/images/hero_unselected.jpg" style="width: 128px; height: 77px"> </div>
-        <div class="col-md-2 pickBox" ng-click="yourTeamPicks[3]=null; updateAdvantages()" ng-show="yourTeamPicks[3] != null"><img ng-src="{{ yourTeamPicks[3].heroImageURL }}" style="width: 128px; height: 77px"></div>
-        <div class="col-md-2 pickBox" ng-show="yourTeamPicks[3] == null"><img ng-src="assets/images/hero_unselected.jpg" style="width: 128px; height: 77px"> </div>
-        <div class="col-md-2 pickBox" ng-click="yourTeamPicks[4]=null; updateAdvantages()" ng-show="yourTeamPicks[4] != null"><img ng-src="{{ yourTeamPicks[4].heroImageURL }}" style="width: 128px; height: 77px"></div>
-        <div class="col-md-2 pickBox" ng-show="yourTeamPicks[4] == null"><img ng-src="assets/images/hero_unselected.jpg" style="width: 128px; height: 77px"> </div>
+        <div class="col-md-2 col-md-offset-1 pickBox" ng-click="yourTeamPicks[0]=null; updateAdvantages()" ng-show="yourTeamPicks[0] != null"><img ng-src="{{ yourTeamPicks[0].heroImageURL }}" style="width: 96px; height: 58px"></div>
+        <div class="col-md-2 col-md-offset-1 pickBox" ng-show="yourTeamPicks[0] == null"><img ng-src="assets/images/hero_unselected.jpg" style="width: 96px; height: 58px"></div>
+        <div class="col-md-2 pickBox" ng-click="yourTeamPicks[1]=null; updateAdvantages()" ng-click="yourTeamPicks[1]=null" ng-show="yourTeamPicks[1] != null"><img ng-src="{{ yourTeamPicks[1].heroImageURL }}" style="width: 96px; height: 58px"> </div>
+        <div class="col-md-2 pickBox" ng-show="yourTeamPicks[1] == null"><img ng-src="assets/images/hero_unselected.jpg" style="width: 96px; height: 58px"> </div>
+        <div class="col-md-2 pickBox" ng-click="yourTeamPicks[2]=null; updateAdvantages()" ng-show="yourTeamPicks[2] != null"><img ng-src="{{ yourTeamPicks[2].heroImageURL }}" style="width: 96px; height: 58px"></div>
+        <div class="col-md-2 pickBox" ng-show="yourTeamPicks[2] == null"><img ng-src="assets/images/hero_unselected.jpg" style="width: 96px; height: 58px"> </div>
+        <div class="col-md-2 pickBox" ng-click="yourTeamPicks[3]=null; updateAdvantages()" ng-show="yourTeamPicks[3] != null"><img ng-src="{{ yourTeamPicks[3].heroImageURL }}" style="width: 96px; height: 58px"></div>
+        <div class="col-md-2 pickBox" ng-show="yourTeamPicks[3] == null"><img ng-src="assets/images/hero_unselected.jpg" style="width: 96px; height: 58px"> </div>
+        <div class="col-md-2 pickBox" ng-click="yourTeamPicks[4]=null; updateAdvantages()" ng-show="yourTeamPicks[4] != null"><img ng-src="{{ yourTeamPicks[4].heroImageURL }}" style="width: 96px; height: 58px"></div>
+        <div class="col-md-2 pickBox" ng-show="yourTeamPicks[4] == null"><img ng-src="assets/images/hero_unselected.jpg" style="width: 96px; height: 58px"> </div>
 
 
       </div>
@@ -19,16 +19,16 @@
     <div class="col-md-2"><h1 style="color:red" class="text-center">VS</h1></div>
     <div class="col-md-5">
       <div class="row">
-        <div class="col-md-2 pickBox" ng-click="enemyTeamPicks[0]=null; updateAdvantages()" ng-show="enemyTeamPicks[0] != null"><img ng-src="{{ enemyTeamPicks[0].heroImageURL }}" style="width: 128px; height: 77px"></div>
-        <div class="col-md-2 pickBox" ng-show="enemyTeamPicks[0] == null"><img ng-src="assets/images/hero_unselected.jpg" style="width: 128px; height: 77px"></div>
-        <div class="col-md-2 pickBox" ng-click="enemyTeamPicks[1]=null; updateAdvantages()" ng-show="enemyTeamPicks[1] != null"><img ng-src="{{ enemyTeamPicks[1].heroImageURL }}" style="width: 128px; height: 77px"> </div>
-        <div class="col-md-2 pickBox" ng-show="enemyTeamPicks[1] == null"><img ng-src="assets/images/hero_unselected.jpg" style="width: 128px; height: 77px"> </div>
-        <div class="col-md-2 pickBox" ng-click="enemyTeamPicks[2]=null; updateAdvantages()" ng-show="enemyTeamPicks[2] != null"><img ng-src="{{ enemyTeamPicks[2].heroImageURL }}" style="width: 128px; height: 77px"></div>
-        <div class="col-md-2 pickBox" ng-show="enemyTeamPicks[2] == null"><img ng-src="assets/images/hero_unselected.jpg" style="width: 128px; height: 77px"> </div>
-        <div class="col-md-2 pickBox" ng-click="enemyTeamPicks[3]=null; updateAdvantages()" ng-show="enemyTeamPicks[3] != null"><img ng-src="{{ enemyTeamPicks[3].heroImageURL }}" style="width: 128px; height: 77px"></div>
-        <div class="col-md-2 pickBox" ng-show="enemyTeamPicks[3] == null"><img ng-src="assets/images/hero_unselected.jpg" style="width: 128px; height: 77px"> </div>
-        <div class="col-md-2 pickBox" ng-click="enemyTeamPicks[4]=null; updateAdvantages()" ng-show="enemyTeamPicks[4] != null"><img ng-src="{{ enemyTeamPicks[4].heroImageURL }}" style="width: 128px; height: 77px"></div>
-        <div class="col-md-2 pickBox" ng-show="enemyTeamPicks[4] == null"><img ng-src="assets/images/hero_unselected.jpg" style="width: 128px; height: 77px"> </div>
+        <div class="col-md-2 pickBox" ng-click="enemyTeamPicks[0]=null; updateAdvantages()" ng-show="enemyTeamPicks[0] != null"><img ng-src="{{ enemyTeamPicks[0].heroImageURL }}" style="width: 96px; height: 58px"></div>
+        <div class="col-md-2 pickBox" ng-show="enemyTeamPicks[0] == null"><img ng-src="assets/images/hero_unselected.jpg" style="width: 96px; height: 58px"></div>
+        <div class="col-md-2 pickBox" ng-click="enemyTeamPicks[1]=null; updateAdvantages()" ng-show="enemyTeamPicks[1] != null"><img ng-src="{{ enemyTeamPicks[1].heroImageURL }}" style="width: 96px; height: 58px"> </div>
+        <div class="col-md-2 pickBox" ng-show="enemyTeamPicks[1] == null"><img ng-src="assets/images/hero_unselected.jpg" style="width: 96px; height: 58px"> </div>
+        <div class="col-md-2 pickBox" ng-click="enemyTeamPicks[2]=null; updateAdvantages()" ng-show="enemyTeamPicks[2] != null"><img ng-src="{{ enemyTeamPicks[2].heroImageURL }}" style="width: 96px; height: 58px"></div>
+        <div class="col-md-2 pickBox" ng-show="enemyTeamPicks[2] == null"><img ng-src="assets/images/hero_unselected.jpg" style="width: 96px; height: 58px"> </div>
+        <div class="col-md-2 pickBox" ng-click="enemyTeamPicks[3]=null; updateAdvantages()" ng-show="enemyTeamPicks[3] != null"><img ng-src="{{ enemyTeamPicks[3].heroImageURL }}" style="width: 96px; height: 58px"></div>
+        <div class="col-md-2 pickBox" ng-show="enemyTeamPicks[3] == null"><img ng-src="assets/images/hero_unselected.jpg" style="width: 96px; height: 58px"> </div>
+        <div class="col-md-2 pickBox" ng-click="enemyTeamPicks[4]=null; updateAdvantages()" ng-show="enemyTeamPicks[4] != null"><img ng-src="{{ enemyTeamPicks[4].heroImageURL }}" style="width: 96px; height: 58px"></div>
+        <div class="col-md-2 pickBox" ng-show="enemyTeamPicks[4] == null"><img ng-src="assets/images/hero_unselected.jpg" style="width: 96px; height: 58px"> </div>
       </div>
     </div>
   </section><!--pick hero section-->
