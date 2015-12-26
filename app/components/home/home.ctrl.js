@@ -13,6 +13,10 @@
 
     function homeCtrl($scope, $http, $log) {
         initHome($scope, $http, $log);
+
+
+
+
         $scope.yourTeamHeroPick = function(heroIndexParameter){
             if (heroIndexParameter != null){
                 var selectedHero = $scope.heroesSortedByIndex[heroIndexParameter];
@@ -159,6 +163,7 @@
             }
         }
 
+
     }
 
 
@@ -178,6 +183,17 @@
 
         $scope.yourTeamPicks = new Array(5);
         $scope.enemyTeamPicks = new Array(5);
+/*
+        for (var i=0; i<5; i++){
+            if ($scope.yourTeamPicks[i] == null){
+                console.log("ES IST NULL");
+            } else {
+                console.log($scope.yourTeamPicks[i]);
+            }
+        }
+*/
+
+        $scope.gameMode = 2;       // 1=All Pick; 2=Captains Mode
         // Get all heroes
         $http({
             method: 'GET',
@@ -242,6 +258,26 @@
             // called asynchronously if an error occurs
             // or server returns response with an error status.
         });
+
+        $scope.picked = function(index){
+            var exists = false;
+
+            for (var i=0; i<5; i++){
+                if ($scope.yourTeamPicks[i]!=null && $scope.yourTeamPicks[i].heroIndex == index){
+                    exists = true;
+                }
+
+                if ($scope.enemyTeamPicks[i]!=null && $scope.enemyTeamPicks[i].heroIndex == index){
+                    exists = true;
+                }
+            }
+            if (exists == false){
+                return true;
+            } else {
+                return false;
+            }
+        }
+
 
 
 
