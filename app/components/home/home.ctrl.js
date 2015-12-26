@@ -47,7 +47,7 @@
                 }
             }
             $scope.updateAdvantages();
-        }
+        };
 
 
         // Function called when a hero is picked for enemy team; Adds hero to enemyTeamPicks-Array
@@ -116,11 +116,7 @@
                     }
                 }
             }
-        }
-
-        $scope.decrement = function(){
-            console.log("TEST");
-        }
+        };
 
 
         // Checks via hero-index if hero has already been picked
@@ -159,34 +155,23 @@
                 // Check if hero has already been selected; if yes: ignore hero
                 var exit = false;
                 for (var j=0; j<5; j++){
-                    if ($scope.yourTeamPicks[j]!=null){
-                        if ($scope.yourTeamPicks[j].heroIndex == i){
+                    if ($scope.yourTeamPicks[j]!=null && $scope.yourTeamPicks[j].heroIndex == i){
                             exit = true;
                             break;
-                        }
-                    }
-                }
-                if (!exit){
-                    for (var j=0; j<5; j++){
-                        if ($scope.enemyTeamPicks[j]!=null){
-                            if ($scope.enemyTeamPicks[j].heroIndex == i){
-                                exit = true;
-                                break;
-                            }
-                        }
+                    } else if ($scope.enemyTeamPicks[j]!=null && $scope.enemyTeamPicks[j].heroIndex == i){
+                        exit = true;
+                        break;
                     }
                 }
                 if (!exit){
                     for (var j=0; j<10; j++){
-                        if ($scope.heroBans[j]!= null){
-                            if ($scope.heroBans[j].heroIndex == i){
-                                console.log("DRIN");
+                        if ($scope.heroBans[j]!= null && $scope.heroBans[j].heroIndex == i){
                                 exit = true;
                                 break;
-                            }
                         }
                     }
                 }
+
 
                 if (exit) {
                     $scope.heroesSortedByIndex[i].yourTeamWinrate = '0.00';
@@ -226,7 +211,7 @@
                 $scope.heroesSortedByIndex[i].yourTeamWinrate = (parseFloat(teamWinrate) / parseFloat(enemyHeroCount)).toFixed(2);
                 $scope.heroesSortedByIndex[i].enemyTeamWinrate = (parseFloat(enemyWinrate) / parseFloat(teamHeroCount)).toFixed(2);
             }
-        }
+        };
 
         $scope.$watch('allowBanning', function(newValue){
             if (newValue == false){
@@ -339,19 +324,20 @@
                     exists = true;
                 }
             }
-
+            return !exists;
+            /*
             if (exists == false){
                 return true;
             } else {
                 return false;
-            }
-        }
+            }*/
+        };
 
         $scope.realh = [
-            {text: "Standard Message"},
-            {text: "Success Message!", type: "success"},
-            {text: "Alert Message!", type: "alert"},
-            {text: "secondary message...", type: "secondary"}
+            {text: 'Standard Message'},
+            {text: 'Success Message!', type: "success"},
+            {text: 'Alert Message!', type: "alert"},
+            {text: 'secondary message...', type: 'secondary'}
         ];
     }
 
