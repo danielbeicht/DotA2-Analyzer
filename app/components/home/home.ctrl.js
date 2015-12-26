@@ -118,6 +118,10 @@
             }
         }
 
+        $scope.decrement = function(){
+            console.log("TEST");
+        }
+
 
         // Checks via hero-index if hero has already been picked
         /*
@@ -332,20 +336,29 @@
     }
 
 
+
+
+
+
+
+
 })();
 
-
-app.directive('ngRightClick', function($parse) {
-    return function(scope, element, attrs) {
-        var fn = $parse(attrs.ngRightClick);
-        element.bind('contextmenu', function(event) {
-            scope.$apply(function() {
-                event.preventDefault();
-                fn(scope, {$event:event});
+angular
+    .module('IBApp')
+    .directive('ngRightClick', function($parse) {
+        return function(scope, element, attrs) {
+            var fn = $parse(attrs.ngRightClick);
+            element.bind('contextmenu', function(event) {
+                scope.$apply(function() {
+                    event.preventDefault();
+                    fn(scope, {$event:event});
+                });
             });
-        });
-    };
-});
+        };
+    });
+
+
 
 /* Müllhalde
 
