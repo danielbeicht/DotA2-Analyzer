@@ -14,9 +14,7 @@
     function homeCtrl($scope, $http, $log) {
         initHome($scope, $http, $log);
 
-
-
-
+        // Function called when a hero is picked for you team; Adds hero to yourTeamPicks-Array
         $scope.yourTeamHeroPick = function(heroIndexParameter){
             if (heroIndexParameter != null){
                 var selectedHero = $scope.heroesSortedByIndex[heroIndexParameter];
@@ -26,6 +24,11 @@
                     if (($scope.yourTeamPicks[i] != null && $scope.yourTeamPicks[i].heroIndex === selectedHero.heroIndex) || ($scope.enemyTeamPicks[i] != null && $scope.enemyTeamPicks[i].heroIndex === selectedHero.heroIndex)){
                         heroAlreadyPicked = true;
                         // TODO: POPUP Held wurde bereits gewählt
+                    }
+                }
+                for (var i=0; i<10; i++){
+                    if ($scope.heroBans[i] != null && $scope.heroBans[i].heroIndex === selectedHero.heroIndex){
+                        heroAlreadyPicked = true;
                     }
                 }
 
@@ -46,17 +49,8 @@
             $scope.updateAdvantages();
         }
 
-        $scope.isPicked = function(index){
-            var exists = false;
-            for (var i=0; i<5; i++){
-                if ($scope.yourTeamPicks[i].heroIndex == index || $scope.enemyTeamPicks[i].heroIndex == index){
-                    console.log("true");
-                    exists = true;
-                }
-            }
-            return exists;
-        }
 
+        // Function called when a hero is picked for enemy team; Adds hero to enemyTeamPicks-Array
         $scope.enemyTeamHeroPick = function(heroIndexParameter){
             if (heroIndexParameter != null) {
                 var selectedHero = $scope.heroesSortedByIndex[heroIndexParameter];
@@ -65,6 +59,11 @@
                     if (($scope.yourTeamPicks[i] != null && $scope.yourTeamPicks[i].heroIndex === selectedHero.heroIndex) || ($scope.enemyTeamPicks[i] != null && $scope.enemyTeamPicks[i].heroIndex === selectedHero.heroIndex)){
                         heroAlreadyPicked = true;
                         // TODO: POPUP Held wurde bereits gewählt
+                    }
+                }
+                for (var i=0; i<10; i++){
+                    if ($scope.heroBans[i] != null && $scope.heroBans[i].heroIndex === selectedHero.heroIndex){
+                        heroAlreadyPicked = true;
                     }
                 }
 
@@ -86,6 +85,60 @@
         }
 
 
+        $scope.banHero = function(heroIndexParameter){
+
+            if (heroIndexParameter != null){
+                var selectedHero = $scope.heroesSortedByIndex[heroIndexParameter];
+                var heroAlreadyPicked = false;
+                for (var i=0; i<5; i++){
+                    if (($scope.yourTeamPicks[i] != null && $scope.yourTeamPicks[i].heroIndex === selectedHero.heroIndex) || ($scope.enemyTeamPicks[i] != null && $scope.enemyTeamPicks[i].heroIndex === selectedHero.heroIndex)){
+                        heroAlreadyPicked = true;
+                        // TODO: POPUP Held wurde bereits gewählt
+                    }
+                }
+                for (var i=0; i<10; i++){
+                    if ($scope.heroBans[i] != null && $scope.heroBans[i].heroIndex === selectedHero.heroIndex){
+                        heroAlreadyPicked = true;
+                    }
+                }
+
+                if (!heroAlreadyPicked) {
+                    var heroBanned = false;
+                    for (var i = 0; i < 10; i++) {
+                        if ($scope.heroBans[i] == null) {
+                            $scope.heroBans[i] = $scope.heroesSortedByIndex[heroIndexParameter];
+                            heroBanned = true;
+                            break;
+                        }
+                    }
+                    if (heroBanned == false) {
+                        // TODO: POPUP schon 5 Helden gewählt
+                    }
+                }
+            }
+        }
+
+
+        // Checks via hero-index if hero has already been picked
+        /*
+        $scope.isPicked = function(index){
+            var exists = false;
+            for (var i=0; i<5; i++){
+                if ($scope.yourTeamPicks[i].heroIndex == index || $scope.enemyTeamPicks[i].heroIndex == index){
+                    console.log("true");
+                    exists = true;
+                }
+            }
+            for (var i=0; i<10; i++){
+                if ($scope.heroBans[i].heroIndex == index){
+                    exists = true;
+                }
+            }
+            return exists;
+        }*/
+
+
+        // Update hero Advantages
         $scope.updateAdvantages = function() {
             // TODO: Get Info about partaking players
 
@@ -124,14 +177,10 @@
                     $scope.heroesSortedByIndex[i].enemyTeamWinrate = '0.00';
                     continue;
                 }
-
-
-
                 var teamAdvantage = 0.0;
                 var enemyAdvantage = 0.0;
                 var teamWinrate = 0.0;
                 var enemyWinrate = 0.0;
-
                 var teamHeroCount = 0;
                 var enemyHeroCount = 0;
 
@@ -162,8 +211,6 @@
                 $scope.heroesSortedByIndex[i].enemyTeamWinrate = (parseFloat(enemyWinrate) / parseFloat(teamHeroCount)).toFixed(2);
             }
         }
-
-
     }
 
 
@@ -183,15 +230,7 @@
 
         $scope.yourTeamPicks = new Array(5);
         $scope.enemyTeamPicks = new Array(5);
-/*
-        for (var i=0; i<5; i++){
-            if ($scope.yourTeamPicks[i] == null){
-                console.log("ES IST NULL");
-            } else {
-                console.log($scope.yourTeamPicks[i]);
-            }
-        }
-*/
+        $scope.heroBans = new Array(10);
 
         $scope.gameMode = 2;       // 1=All Pick; 2=Captains Mode
         // Get all heroes
@@ -271,15 +310,18 @@
                     exists = true;
                 }
             }
+            for (var i=0; i<10; i++){
+                if ($scope.heroBans[i]!=null && $scope.heroBans[i].heroIndex == index){
+                    exists = true;
+                }
+            }
+
             if (exists == false){
                 return true;
             } else {
                 return false;
             }
         }
-
-
-
 
         $scope.realh = [
             {text: "Standard Message"},
@@ -291,3 +333,21 @@
 
 
 })();
+
+
+app.directive('ngRightClick', function($parse) {
+    return function(scope, element, attrs) {
+        var fn = $parse(attrs.ngRightClick);
+        element.bind('contextmenu', function(event) {
+            scope.$apply(function() {
+                event.preventDefault();
+                fn(scope, {$event:event});
+            });
+        });
+    };
+});
+
+/* Müllhalde
+
+
+ */

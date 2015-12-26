@@ -30,26 +30,56 @@
       </div>
     </div>
     <div class="col-xs-2">
-      <div class="col-xs-1 pickBox" ng-show="gameMode==2"><img ng-src="assets/images/hero_unselected.jpg"
+      <div class="col-xs-1 pickBox" ng-click="heroBans[0]=null; updateAdvantages()"
+           ng-show="heroBans[0] != null"><img ng-src="{{ heroBans[0].heroImageURL }}"
                                                    style="width: 96px; height: 58px"></div>
-      <div class="col-xs-1 pickBox" ng-show="gameMode==2"><img ng-src="assets/images/hero_unselected.jpg"
-                                                               style="width: 96px; height: 58px"></div>
-      <div class="col-xs-1 pickBox" ng-show="gameMode==2"><img ng-src="assets/images/hero_unselected.jpg"
-                                                               style="width: 96px; height: 58px"></div>
-      <div class="col-xs-1 pickBox" ng-show="gameMode==2"><img ng-src="assets/images/hero_unselected.jpg"
-                                                               style="width: 96px; height: 58px"></div>
-      <div class="col-xs-1 pickBox" ng-show="gameMode==2"><img ng-src="assets/images/hero_unselected.jpg"
-                                                               style="width: 96px; height: 58px"></div>
-      <div class="col-xs-1 pickBox" ng-show="gameMode==2"><img ng-src="assets/images/hero_unselected.jpg"
-                                                               style="width: 96px; height: 58px"></div>
-      <div class="col-xs-1 pickBox" ng-show="gameMode==2"><img ng-src="assets/images/hero_unselected.jpg"
-                                                               style="width: 96px; height: 58px"></div>
-      <div class="col-xs-1 pickBox" ng-show="gameMode==2"><img ng-src="assets/images/hero_unselected.jpg"
-                                                               style="width: 96px; height: 58px"></div>
-      <div class="col-xs-1 pickBox" ng-show="gameMode==2"><img ng-src="assets/images/hero_unselected.jpg"
-                                                               style="width: 96px; height: 58px"></div>
-      <div class="col-xs-1 pickBox" ng-show="gameMode==2"><img ng-src="assets/images/hero_unselected.jpg"
-                                                               style="width: 96px; height: 58px"></div>
+      <div class="col-xs-1 pickBox" ng-show="heroBans[0] == null"><img ng-src="assets/images/hero_unselected.jpg"
+                                                   style="width: 96px; height: 58px"></div>
+      <div class="col-xs-1 pickBox" ng-click="heroBans[1]=null; updateAdvantages()"
+           ng-show="heroBans[1] != null"><img ng-src="{{ heroBans[1].heroImageURL }}"
+                                              style="width: 96px; height: 58px"></div>
+      <div class="col-xs-1 pickBox" ng-show="heroBans[1] == null"><img ng-src="assets/images/hero_unselected.jpg"
+                                                                       style="width: 96px; height: 58px"></div>
+      <div class="col-xs-1 pickBox" ng-click="heroBans[2]=null; updateAdvantages()"
+           ng-show="heroBans[2] != null"><img ng-src="{{ heroBans[2].heroImageURL }}"
+                                              style="width: 96px; height: 58px"></div>
+      <div class="col-xs-1 pickBox" ng-show="heroBans[2] == null"><img ng-src="assets/images/hero_unselected.jpg"
+                                                                       style="width: 96px; height: 58px"></div>
+      <div class="col-xs-1 pickBox" ng-click="heroBans[3]=null; updateAdvantages()"
+           ng-show="heroBans[3] != null"><img ng-src="{{ heroBans[3].heroImageURL }}"
+                                              style="width: 96px; height: 58px"></div>
+      <div class="col-xs-1 pickBox" ng-show="heroBans[3] == null"><img ng-src="assets/images/hero_unselected.jpg"
+                                                                       style="width: 96px; height: 58px"></div>
+      <div class="col-xs-1 pickBox" ng-click="heroBans[4]=null; updateAdvantages()"
+           ng-show="heroBans[4] != null"><img ng-src="{{ heroBans[4].heroImageURL }}"
+                                              style="width: 96px; height: 58px"></div>
+      <div class="col-xs-1 pickBox" ng-show="heroBans[4] == null"><img ng-src="assets/images/hero_unselected.jpg"
+                                                                       style="width: 96px; height: 58px"></div>
+      <div class="col-xs-1 pickBox" ng-click="heroBans[5]=null; updateAdvantages()"
+           ng-show="heroBans[5] != null"><img ng-src="{{ heroBans[5].heroImageURL }}"
+                                              style="width: 96px; height: 58px"></div>
+      <div class="col-xs-1 pickBox" ng-show="heroBans[5] == null"><img ng-src="assets/images/hero_unselected.jpg"
+                                                                       style="width: 96px; height: 58px"></div>
+      <div class="col-xs-1 pickBox" ng-click="heroBans[6]=null; updateAdvantages()"
+           ng-show="heroBans[6] != null"><img ng-src="{{ heroBans[6].heroImageURL }}"
+                                              style="width: 96px; height: 58px"></div>
+      <div class="col-xs-1 pickBox" ng-show="heroBans[6] == null"><img ng-src="assets/images/hero_unselected.jpg"
+                                                                       style="width: 96px; height: 58px"></div>
+      <div class="col-xs-1 pickBox" ng-click="heroBans[7]=null; updateAdvantages()"
+           ng-show="heroBans[7] != null"><img ng-src="{{ heroBans[7].heroImageURL }}"
+                                              style="width: 96px; height: 58px"></div>
+      <div class="col-xs-1 pickBox" ng-show="heroBans[7] == null"><img ng-src="assets/images/hero_unselected.jpg"
+                                                                       style="width: 96px; height: 58px"></div>
+      <div class="col-xs-1 pickBox" ng-click="heroBans[8]=null; updateAdvantages()"
+           ng-show="heroBans[8] != null"><img ng-src="{{ heroBans[8].heroImageURL }}"
+                                              style="width: 96px; height: 58px"></div>
+      <div class="col-xs-1 pickBox" ng-show="heroBans[8] == null"><img ng-src="assets/images/hero_unselected.jpg"
+                                                                       style="width: 96px; height: 58px"></div>
+      <div class="col-xs-1 pickBox" ng-click="heroBans[9]=null; updateAdvantages()"
+           ng-show="heroBans[9] != null"><img ng-src="{{ heroBans[9].heroImageURL }}"
+                                              style="width: 96px; height: 58px"></div>
+      <div class="col-xs-1 pickBox" ng-show="heroBans[9] == null"><img ng-src="assets/images/hero_unselected.jpg"
+                                                                       style="width: 96px; height: 58px"></div>
 
     </div>
     <div class="col-xs-5">
@@ -159,11 +189,22 @@
             <td ng-show="([hero.heroFullName] | filter:searchHeroYourTeam).length > 0 && picked(hero.heroIndex)">{{ hero.yourTeamAdvantage }}</td>
           </tr>
           </tbody>
-
         </table>
       </div>
     </div>
     <div class="col-xs-2">
+        <select id="dropDownBanHero" class="form-control" ng-model="selectedHeroBan"
+                ng-options="obj.heroIndex as obj.heroFullName for obj in heroes | orderBy:'heroFullName'">
+          <option value="">Select hero</option>
+        </select>
+
+        <button class="btn btn-success" ng-click="banHero(selectedHeroBan)">
+          Ban
+        </button>
+      <br><br>
+
+
+
       <label>All Pick(click on pic)</label>
       <p>
         <img src="https://cdn0.iconfinder.com/data/icons/huge-basic-icons-part-3/512/Pointer.png"width="90x" height="90px">
