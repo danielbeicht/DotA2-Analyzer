@@ -139,7 +139,7 @@
         </div>
         <!--<p>$scope.list_category: {{list_category}}<p>-->
         <div class="col-xs-4">
-          <button class="btn btn-success" ng-click="yourTeamHeroPick(selectedHeroYourTeam)">
+          <button class="btn btn-success" ng-click="yourTeamHeroPick(selectedHeroYourTeam); selectedHeroYourTeam=''">
             Pick
           </button>
         </div>
@@ -204,7 +204,7 @@
           <option value="">Select hero</option>
         </select>
 
-        <button class="btn btn-success" ng-click="banHero(selectedHeroBan)" ng-show="allowBanning">
+        <button class="btn btn-success" ng-click="banHero(selectedHeroBan); selectedHeroBan=''" ng-show="allowBanning">
           Ban
         </button>
     </div>
@@ -229,7 +229,7 @@
         </div>
         <!--<p>$scope.list_category: {{list_category}}<p>-->
         <div class="col-xs-2">
-          <button class="btn btn-success" ng-click="enemyTeamHeroPick(selectedHeroEnemyTeam)">
+          <button class="btn btn-success" ng-click="enemyTeamHeroPick(selectedHeroEnemyTeam); selectedHeroEnemyTeam=''">
             Pick
           </button>
         </div>
