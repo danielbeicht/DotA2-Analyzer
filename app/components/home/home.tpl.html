@@ -1,42 +1,126 @@
-<div class="container-fluid">
+<img src="http://i.imgur.com/ho5WPcQ.png" ng-show="!dataLoaded">
+<div class="container-fluid" ng-show="dataLoaded">
   <section class="row">
-    <div class="col-md-5">
+    <div class="col-xs-5">
       <div class="row">
-        <div class="col-md-2 col-md-offset-1 pickBox" ng-click="yourTeamPicks[0]=null; updateAdvantages()" ng-show="yourTeamPicks[0] != null"><img ng-src="{{ yourTeamPicks[0].heroImageURL }}" style="width: 128px; height: 77px"></div>
-        <div class="col-md-2 col-md-offset-1 pickBox" ng-show="yourTeamPicks[0] == null"><img ng-src="assets/images/hero_unselected.jpg" style="width: 128px; height: 77px"></div>
-        <div class="col-md-2 pickBox" ng-click="yourTeamPicks[1]=null; updateAdvantages()" ng-click="yourTeamPicks[1]=null" ng-show="yourTeamPicks[1] != null"><img ng-src="{{ yourTeamPicks[1].heroImageURL }}" style="width: 128px; height: 77px"> </div>
-        <div class="col-md-2 pickBox" ng-show="yourTeamPicks[1] == null"><img ng-src="assets/images/hero_unselected.jpg" style="width: 128px; height: 77px"> </div>
-        <div class="col-md-2 pickBox" ng-click="yourTeamPicks[2]=null; updateAdvantages()" ng-show="yourTeamPicks[2] != null"><img ng-src="{{ yourTeamPicks[2].heroImageURL }}" style="width: 128px; height: 77px"></div>
-        <div class="col-md-2 pickBox" ng-show="yourTeamPicks[2] == null"><img ng-src="assets/images/hero_unselected.jpg" style="width: 128px; height: 77px"> </div>
-        <div class="col-md-2 pickBox" ng-click="yourTeamPicks[3]=null; updateAdvantages()" ng-show="yourTeamPicks[3] != null"><img ng-src="{{ yourTeamPicks[3].heroImageURL }}" style="width: 128px; height: 77px"></div>
-        <div class="col-md-2 pickBox" ng-show="yourTeamPicks[3] == null"><img ng-src="assets/images/hero_unselected.jpg" style="width: 128px; height: 77px"> </div>
-        <div class="col-md-2 pickBox" ng-click="yourTeamPicks[4]=null; updateAdvantages()" ng-show="yourTeamPicks[4] != null"><img ng-src="{{ yourTeamPicks[4].heroImageURL }}" style="width: 128px; height: 77px"></div>
-        <div class="col-md-2 pickBox" ng-show="yourTeamPicks[4] == null"><img ng-src="assets/images/hero_unselected.jpg" style="width: 128px; height: 77px"> </div>
-
-
+        <div class="col-xs-1 pickBox" ng-click="yourTeamPicks[0]=null; updateAdvantages()"
+             ng-show="yourTeamPicks[0] != null"><img ng-src="{{ yourTeamPicks[0].heroImageURL }}"
+                                                     style="width: 96px; height: 58px"></div>
+        <div class="col-xs-1 pickBox" ng-show="yourTeamPicks[0] == null"><img
+          ng-src="assets/images/hero_unselected.jpg" style="width: 96px; height: 58px"></div>
+        <div class="col-xs-1 pickBox" ng-click="yourTeamPicks[1]=null; updateAdvantages()"
+             ng-click="yourTeamPicks[1]=null" ng-show="yourTeamPicks[1] != null"><img
+          ng-src="{{ yourTeamPicks[1].heroImageURL }}" style="width: 96px; height: 58px"></div>
+        <div class="col-xs-1 pickBox" ng-show="yourTeamPicks[1] == null"><img ng-src="assets/images/hero_unselected.jpg"
+                                                                              style="width: 96px; height: 58px"></div>
+        <div class="col-xs-1 pickBox" ng-click="yourTeamPicks[2]=null; updateAdvantages()"
+             ng-show="yourTeamPicks[2] != null"><img ng-src="{{ yourTeamPicks[2].heroImageURL }}"
+                                                     style="width: 96px; height: 58px"></div>
+        <div class="col-xs-1 pickBox" ng-show="yourTeamPicks[2] == null"><img ng-src="assets/images/hero_unselected.jpg"
+                                                                              style="width: 96px; height: 58px"></div>
+        <div class="col-xs-1 pickBox" ng-click="yourTeamPicks[3]=null; updateAdvantages()"
+             ng-show="yourTeamPicks[3] != null"><img ng-src="{{ yourTeamPicks[3].heroImageURL }}"
+                                                     style="width: 96px; height: 58px"></div>
+        <div class="col-xs-1 pickBox" ng-show="yourTeamPicks[3] == null"><img ng-src="assets/images/hero_unselected.jpg"
+                                                                              style="width: 96px; height: 58px"></div>
+        <div class="col-xs-1 pickBox" ng-click="yourTeamPicks[4]=null; updateAdvantages()"
+             ng-show="yourTeamPicks[4] != null"><img ng-src="{{ yourTeamPicks[4].heroImageURL }}"
+                                                     style="width: 96px; height: 58px"></div>
+        <div class="col-xs-1 pickBox" ng-show="yourTeamPicks[4] == null"><img ng-src="assets/images/hero_unselected.jpg"
+                                                                              style="width: 96px; height: 58px"></div>
       </div>
     </div>
-    <div class="col-md-2"><h1 style="color:red" class="text-center">VS</h1></div>
-    <div class="col-md-5">
+    <div class="col-xs-2">
+      <label>Allow Banning:
+        <input type="checkbox" ng-model="allowBanning">
+      </label><br>
+      <div class="col-xs-1 pickBox" ng-click="heroBans[0]=null; updateAdvantages()"
+           ng-show="heroBans[0] != null && allowBanning"><img ng-src="{{ heroBans[0].heroImageURL }}"
+                                                   style="width: 96px; height: 58px"></div>
+      <div class="col-xs-1 pickBox" ng-show="heroBans[0] == null && allowBanning"><img ng-src="assets/images/hero_unselected.jpg"
+                                                   style="width: 96px; height: 58px"></div>
+      <div class="col-xs-1 pickBox" ng-click="heroBans[1]=null; updateAdvantages()"
+           ng-show="heroBans[1] != null && allowBanning"><img ng-src="{{ heroBans[1].heroImageURL }}"
+                                              style="width: 96px; height: 58px"></div>
+      <div class="col-xs-1 pickBox" ng-show="heroBans[1] == null && allowBanning"><img ng-src="assets/images/hero_unselected.jpg"
+                                                                       style="width: 96px; height: 58px"></div>
+      <div class="col-xs-1 pickBox" ng-click="heroBans[2]=null; updateAdvantages()"
+           ng-show="heroBans[2] != null && allowBanning"><img ng-src="{{ heroBans[2].heroImageURL }}"
+                                              style="width: 96px; height: 58px"></div>
+      <div class="col-xs-1 pickBox" ng-show="heroBans[2] == null && allowBanning"><img ng-src="assets/images/hero_unselected.jpg"
+                                                                       style="width: 96px; height: 58px"></div>
+      <div class="col-xs-1 pickBox" ng-click="heroBans[3]=null; updateAdvantages()"
+           ng-show="heroBans[3] != null && allowBanning"><img ng-src="{{ heroBans[3].heroImageURL }}"
+                                              style="width: 96px; height: 58px"></div>
+      <div class="col-xs-1 pickBox" ng-show="heroBans[3] == null && allowBanning"><img ng-src="assets/images/hero_unselected.jpg"
+                                                                       style="width: 96px; height: 58px"></div>
+      <div class="col-xs-1 pickBox" ng-click="heroBans[4]=null; updateAdvantages()"
+           ng-show="heroBans[4] != null && allowBanning"><img ng-src="{{ heroBans[4].heroImageURL }}"
+                                              style="width: 96px; height: 58px"></div>
+      <div class="col-xs-1 pickBox" ng-show="heroBans[4] == null && allowBanning"><img ng-src="assets/images/hero_unselected.jpg"
+                                                                       style="width: 96px; height: 58px"></div>
+      <div class="col-xs-1 pickBox" ng-click="heroBans[5]=null; updateAdvantages()"
+           ng-show="heroBans[5] != null && allowBanning"><img ng-src="{{ heroBans[5].heroImageURL }}"
+                                              style="width: 96px; height: 58px"></div>
+      <div class="col-xs-1 pickBox" ng-show="heroBans[5] == null && allowBanning"><img ng-src="assets/images/hero_unselected.jpg"
+                                                                       style="width: 96px; height: 58px"></div>
+      <div class="col-xs-1 pickBox" ng-click="heroBans[6]=null; updateAdvantages()"
+           ng-show="heroBans[6] != null && allowBanning"><img ng-src="{{ heroBans[6].heroImageURL }}"
+                                              style="width: 96px; height: 58px"></div>
+      <div class="col-xs-1 pickBox" ng-show="heroBans[6] == null && allowBanning"><img ng-src="assets/images/hero_unselected.jpg"
+                                                                       style="width: 96px; height: 58px"></div>
+      <div class="col-xs-1 pickBox" ng-click="heroBans[7]=null; updateAdvantages()"
+           ng-show="heroBans[7] != null && allowBanning"><img ng-src="{{ heroBans[7].heroImageURL }}"
+                                              style="width: 96px; height: 58px"></div>
+      <div class="col-xs-1 pickBox" ng-show="heroBans[7] == null && allowBanning"><img ng-src="assets/images/hero_unselected.jpg"
+                                                                       style="width: 96px; height: 58px"></div>
+      <div class="col-xs-1 pickBox" ng-click="heroBans[8]=null; updateAdvantages()"
+           ng-show="heroBans[8] != null && allowBanning"><img ng-src="{{ heroBans[8].heroImageURL }}"
+                                              style="width: 96px; height: 58px"></div>
+      <div class="col-xs-1 pickBox" ng-show="heroBans[8] == null && allowBanning"><img ng-src="assets/images/hero_unselected.jpg"
+                                                                       style="width: 96px; height: 58px"></div>
+      <div class="col-xs-1 pickBox" ng-click="heroBans[9]=null; updateAdvantages()"
+           ng-show="heroBans[9] != null && allowBanning"><img ng-src="{{ heroBans[9].heroImageURL }}"
+                                              style="width: 96px; height: 58px"></div>
+      <div class="col-xs-1 pickBox" ng-show="heroBans[9] == null && allowBanning"><img ng-src="assets/images/hero_unselected.jpg"
+                                                                       style="width: 96px; height: 58px"></div>
+
+    </div>
+    <div class="col-xs-5">
       <div class="row">
-        <div class="col-md-2 pickBox" ng-click="enemyTeamPicks[0]=null; updateAdvantages()" ng-show="enemyTeamPicks[0] != null"><img ng-src="{{ enemyTeamPicks[0].heroImageURL }}" style="width: 128px; height: 77px"></div>
-        <div class="col-md-2 pickBox" ng-show="enemyTeamPicks[0] == null"><img ng-src="assets/images/hero_unselected.jpg" style="width: 128px; height: 77px"></div>
-        <div class="col-md-2 pickBox" ng-click="enemyTeamPicks[1]=null; updateAdvantages()" ng-show="enemyTeamPicks[1] != null"><img ng-src="{{ enemyTeamPicks[1].heroImageURL }}" style="width: 128px; height: 77px"> </div>
-        <div class="col-md-2 pickBox" ng-show="enemyTeamPicks[1] == null"><img ng-src="assets/images/hero_unselected.jpg" style="width: 128px; height: 77px"> </div>
-        <div class="col-md-2 pickBox" ng-click="enemyTeamPicks[2]=null; updateAdvantages()" ng-show="enemyTeamPicks[2] != null"><img ng-src="{{ enemyTeamPicks[2].heroImageURL }}" style="width: 128px; height: 77px"></div>
-        <div class="col-md-2 pickBox" ng-show="enemyTeamPicks[2] == null"><img ng-src="assets/images/hero_unselected.jpg" style="width: 128px; height: 77px"> </div>
-        <div class="col-md-2 pickBox" ng-click="enemyTeamPicks[3]=null; updateAdvantages()" ng-show="enemyTeamPicks[3] != null"><img ng-src="{{ enemyTeamPicks[3].heroImageURL }}" style="width: 128px; height: 77px"></div>
-        <div class="col-md-2 pickBox" ng-show="enemyTeamPicks[3] == null"><img ng-src="assets/images/hero_unselected.jpg" style="width: 128px; height: 77px"> </div>
-        <div class="col-md-2 pickBox" ng-click="enemyTeamPicks[4]=null; updateAdvantages()" ng-show="enemyTeamPicks[4] != null"><img ng-src="{{ enemyTeamPicks[4].heroImageURL }}" style="width: 128px; height: 77px"></div>
-        <div class="col-md-2 pickBox" ng-show="enemyTeamPicks[4] == null"><img ng-src="assets/images/hero_unselected.jpg" style="width: 128px; height: 77px"> </div>
+        <div class="col-xs-1 col-xs-offset-2 pickBox" ng-click="enemyTeamPicks[0]=null; updateAdvantages()"
+             ng-show="enemyTeamPicks[0] != null"><img ng-src="{{ enemyTeamPicks[0].heroImageURL }}"
+                                                      style="width: 96px; height: 58px"></div>
+        <div class="col-xs-1 col-xs-offset-2 pickBox" ng-show="enemyTeamPicks[0] == null"><img
+          ng-src="assets/images/hero_unselected.jpg" style="width: 96px; height: 58px"></div>
+        <div class="col-xs-1 pickBox" ng-click="enemyTeamPicks[1]=null; updateAdvantages()"
+             ng-show="enemyTeamPicks[1] != null"><img ng-src="{{ enemyTeamPicks[1].heroImageURL }}"
+                                                      style="width: 96px; height: 58px"></div>
+        <div class="col-xs-1 pickBox" ng-show="enemyTeamPicks[1] == null"><img
+          ng-src="assets/images/hero_unselected.jpg" style="width: 96px; height: 58px"></div>
+        <div class="col-xs-1 pickBox" ng-click="enemyTeamPicks[2]=null; updateAdvantages()"
+             ng-show="enemyTeamPicks[2] != null"><img ng-src="{{ enemyTeamPicks[2].heroImageURL }}"
+                                                      style="width: 96px; height: 58px"></div>
+        <div class="col-xs-1 pickBox" ng-show="enemyTeamPicks[2] == null"><img
+          ng-src="assets/images/hero_unselected.jpg" style="width: 96px; height: 58px"></div>
+        <div class="col-xs-1 pickBox" ng-click="enemyTeamPicks[3]=null; updateAdvantages()"
+             ng-show="enemyTeamPicks[3] != null"><img ng-src="{{ enemyTeamPicks[3].heroImageURL }}"
+                                                      style="width: 96px; height: 58px"></div>
+        <div class="col-xs-1 pickBox" ng-show="enemyTeamPicks[3] == null"><img
+          ng-src="assets/images/hero_unselected.jpg" style="width: 96px; height: 58px"></div>
+        <div class="col-xs-1 pickBox" ng-click="enemyTeamPicks[4]=null; updateAdvantages()"
+             ng-show="enemyTeamPicks[4] != null"><img ng-src="{{ enemyTeamPicks[4].heroImageURL }}"
+                                                      style="width: 96px; height: 58px"></div>
+        <div class="col-xs-1 pickBox" ng-show="enemyTeamPicks[4] == null"><img
+          ng-src="assets/images/hero_unselected.jpg" style="width: 96px; height: 58px"></div>
       </div>
     </div>
   </section><!--pick hero section-->
 
   <section class="row">
-    <div class="col-md-5">
+    <div class="col-xs-5">
       <div class="row">
-        <div class="col-md-4">
+        <div class="col-xs-4">
           <form>
             <div class="form-group">
               <div class="input-group">
@@ -47,80 +131,86 @@
             </div>
           </form>
         </div>
-        <div class="col-md-4">
+        <div class="col-xs-4">
           <select id="dropDownPickYourTeam" class="form-control" ng-model="selectedHeroYourTeam"
                   ng-options="obj.heroIndex as obj.heroFullName for obj in heroes | orderBy:'heroFullName'">
             <option value="">Select hero</option>
           </select>
         </div>
         <!--<p>$scope.list_category: {{list_category}}<p>-->
-        <div class="col-md-4">
-          <button class="btn btn-success" ng-click="yourTeamHeroPick(selectedHeroYourTeam)">
-            Pick Hero
+        <div class="col-xs-4">
+          <button class="btn btn-success" ng-click="yourTeamHeroPick(selectedHeroYourTeam); selectedHeroYourTeam=''">
+            Pick
           </button>
         </div>
       </div>
-      <table class="table table-bordered table-striped">
-
-        <thead>
-        <tr>
-          <td><a></a></td>
-          <td><a>Ranking</a></td>
-          <td>
-            <a href="#"
-               ng-click="sortTypeYourTeam = 'heroFullName'; sortReverseYourTeam = !sortReverseYourTeam">
-              Hero Name
+      <div class="scrollThis">
+        <table class="table table-striped">
+          <thead>
+          <tr>
+            <td><a></a></td>
+            <td><a>Ranking</a></td>
+            <td>
+              <a href="#"
+                 ng-click="sortTypeYourTeam = 'heroFullName'; sortReverseYourTeam = !sortReverseYourTeam">
+                Hero Name
                             <span ng-show="sortTypeYourTeam == 'heroFullName' && !sortReverseYourTeam"
                                   class="fa fa-caret-down"></span>
                             <span ng-show="sortTypeYourTeam == 'heroFullName' && sortReverseYourTeam"
                                   class="fa fa-caret-up"></span>
-            </a>
-          </td>
-          <td>
-            <a href="#" ng-click="sortTypeYourTeam = 'yourTeamWinrate'; sortReverseYourTeam = !sortReverseYourTeam">
-              Winrate
+              </a>
+            </td>
+            <td>
+              <a href="#" ng-click="sortTypeYourTeam = 'yourTeamWinrate'; sortReverseYourTeam = !sortReverseYourTeam">
+                Winrate
                             <span ng-show="sortTypeYourTeam == 'yourTeamWinrate' && !sortReverseYourTeam"
                                   class="fa fa-caret-down"></span>
                             <span ng-show="sortTypeYourTeam == 'yourTeamWinrate' && sortReverseYourTeam"
                                   class="fa fa-caret-up"></span>
-            </a>
-          </td>
-          <td>
-            <a href="#"
-               ng-click="sortTypeYourTeam = 'yourTeamAdvantage'; sortReverseYourTeam = !sortReverseYourTeam">
-              Advantage
+              </a>
+            </td>
+            <td>
+              <a href="#"
+                 ng-click="sortTypeYourTeam = 'yourTeamAdvantage'; sortReverseYourTeam = !sortReverseYourTeam">
+                Advantage
                             <span ng-show="sortTypeYourTeam == 'yourTeamAdvantage' && !sortReverseYourTeam"
                                   class="fa fa-caret-down"></span>
                             <span ng-show="sortTypeYourTeam == 'yourTeamAdvantage' && sortReverseYourTeam"
                                   class="fa fa-caret-up"></span>
-            </a>
-          </td>
-        </tr>
-        </thead>
+              </a>
+            </td>
+          </tr>
+          </thead>
 
-        <tbody><!-- | filter:searchHero-->
-        <tr ng-repeat="hero in heroes | orderBy:sortTypeYourTeam:sortReverseYourTeam">
-          <td ng-show="([hero.heroFullName] | filter:searchHeroYourTeam).length > 0"><img ng-click="yourTeamHeroPick(hero.heroIndex)" src="{{ hero.heroImageURL }}" style="width: 96px; height: 58px"></td>
-          <td ng-show="([hero.heroFullName] | filter:searchHeroYourTeam).length > 0">{{ $index + 1 }}</td>
-          <td ng-show="([hero.heroFullName] | filter:searchHeroYourTeam).length > 0">{{ hero.heroFullName }}</td>
-          <td ng-show="([hero.heroFullName] | filter:searchHeroYourTeam).length > 0">{{ hero.yourTeamWinrate }}%</td>
-          <td ng-show="([hero.heroFullName] | filter:searchHeroYourTeam).length > 0">{{ hero.yourTeamAdvantage }}</td>
-        </tr>
-        </tbody>
-      </table>
+          <tbody><!-- | filter:searchHero-->
+          <tr ng-repeat="hero in heroes | orderBy:sortTypeYourTeam:sortReverseYourTeam">
+            <td ng-show="([hero.heroFullName] | filter:searchHeroYourTeam).length > 0 && picked(hero.heroIndex)"><img
+              ng-click="yourTeamHeroPick(hero.heroIndex)" ng-right-click="banHero(hero.heroIndex)" src="{{ hero.heroImageURL }}"
+              style="width: 96px; height: 58px"></td>
+            <td ng-show="([hero.heroFullName] | filter:searchHeroYourTeam).length > 0 && picked(hero.heroIndex)">{{ $index + 1 }}</td>
+            <td ng-show="([hero.heroFullName] | filter:searchHeroYourTeam).length > 0 && picked(hero.heroIndex)">{{ hero.heroFullName }}</td>
+            <td ng-show="([hero.heroFullName] | filter:searchHeroYourTeam).length > 0 && picked(hero.heroIndex)">{{ hero.yourTeamWinrate }}%</td>
+            <td ng-show="([hero.heroFullName] | filter:searchHeroYourTeam).length > 0 && picked(hero.heroIndex)">{{ hero.yourTeamAdvantage }}</td>
+          </tr>
+          </tbody>
+        </table>
+      </div>
     </div>
-    <div class="col-md-2 pickBox">
-      some feature here??
-      <ul ng-repeat="row in heroes" class="list-unstyled">
-        <li>&nbsp;</li>
-      </ul>
-      <ul ng-repeat="row in heroes" class="list-unstyled">
-        <li>&nbsp;</li>
-      </ul>
+    <div class="col-xs-2">
+
+
+        <select id="dropDownBanHero" class="form-control" ng-model="selectedHeroBan"
+                ng-options="obj.heroIndex as obj.heroFullName for obj in heroes | orderBy:'heroFullName'" ng-show="allowBanning">
+          <option value="">Select hero</option>
+        </select>
+
+        <button class="btn btn-success" ng-click="banHero(selectedHeroBan); selectedHeroBan=''" ng-show="allowBanning">
+          Ban
+        </button>
     </div>
-    <div class="col-md-5">
+    <div class="col-xs-5">
       <div class="row">
-        <div class="col-md-4">
+        <div class="col-xs-4 col-xs-offset-2">
           <form>
             <div class="form-group">
               <div class="input-group">
@@ -131,75 +221,87 @@
             </div>
           </form>
         </div>
-        <div class="col-md-4">
+        <div class="col-xs-4">
           <select id="dropDownPickEnemyTeam" class="form-control" ng-model="selectedHeroEnemyTeam"
                   ng-options="obj.heroIndex as obj.heroFullName for obj in heroes | orderBy:'heroFullName'">
             <option value="">Select hero</option>
           </select>
         </div>
         <!--<p>$scope.list_category: {{list_category}}<p>-->
-        <div class="col-md-4">
-          <button class="btn btn-success" ng-click="enemyTeamHeroPick(selectedHeroEnemyTeam)">
-            Pick Hero
+        <div class="col-xs-2">
+          <button class="btn btn-success" ng-click="enemyTeamHeroPick(selectedHeroEnemyTeam); selectedHeroEnemyTeam=''">
+            Pick
           </button>
         </div>
       </div>
+      <div class="row">
+        <div class="col-xs-10 col-xs-offset-2">
+          <div class="scrollThis">
+            <table class="table table-striped">
 
-      <table class="table table-bordered table-striped">
-
-        <thead>
-        <tr>
-          <td><a></a></td>
-          <td>
-            <a>
-              Ranking
+              <thead>
+              <tr>
+                <td><a></a></td>
+                <td>
+                  <a>
+                    Ranking
                             <span ng-show="sortTypeEnemyTeam == 'ranking' && !sortReverseEnemyTeam"
                                   class="fa fa-caret-down"></span>
                             <span ng-show="sortTypeEnemyTeam == 'ranking' && sortReverseEnemyTeam"
                                   class="fa fa-caret-up"></span>
-            </a>
-          </td>
-          <td>
-            <a href="#"
-               ng-click="sortTypeEnemyTeam = 'heroFullName'; sortReverseEnemyTeam = !sortReverseEnemyTeam">
-              Hero Name
+                  </a>
+                </td>
+                <td>
+                  <a href="#"
+                     ng-click="sortTypeEnemyTeam = 'heroFullName'; sortReverseEnemyTeam = !sortReverseEnemyTeam">
+                    Hero Name
                             <span ng-show="sortTypeEnemyTeam == 'heroFullName' && !sortReverseEnemyTeam"
                                   class="fa fa-caret-down"></span>
                             <span ng-show="sortTypeEnemyTeam == 'heroFullName' && sortReverseEnemyTeam"
                                   class="fa fa-caret-up"></span>
-            </a>
-          </td>
-          <td>
-            <a href="#" ng-click="sortTypeEnemyTeam = 'enemyTeamWinrate'; sortReverseEnemyTeam = !sortReverseEnemyTeam">
-              Winrate
+                  </a>
+                </td>
+                <td>
+                  <a href="#"
+                     ng-click="sortTypeEnemyTeam = 'enemyTeamWinrate'; sortReverseEnemyTeam = !sortReverseEnemyTeam">
+                    Winrate
                             <span ng-show="sortTypeEnemyTeam == 'enemyTeamWinrate' && !sortReverseEnemyTeam"
                                   class="fa fa-caret-down"></span>
                             <span ng-show="sortTypeEnemyTeam == 'enemyTeamWinrate' && sortReverseEnemyTeam"
                                   class="fa fa-caret-up"></span>
-            </a>
-          </td>
-          <td>
-            <a href="#" ng-click="sortTypeEnemyTeam = 'enemyTeamAdvantage'; sortReverseEnemyTeam = !sortReverseEnemyTeam">
-              Advantage
+                  </a>
+                </td>
+                <td>
+                  <a href="#"
+                     ng-click="sortTypeEnemyTeam = 'enemyTeamAdvantage'; sortReverseEnemyTeam = !sortReverseEnemyTeam">
+                    Advantage
                             <span ng-show="sortTypeEnemyTeam == 'enemyTeamAdvantage' && !sortReverseEnemyTeam"
                                   class="fa fa-caret-down"></span>
                             <span ng-show="sortTypeEnemyTeam == 'enemyTeamAdvantage' && sortReverseEnemyTeam"
                                   class="fa fa-caret-up"></span>
-            </a>
-          </td>
-        </tr>
-        </thead>
+                  </a>
+                </td>
+              </tr>
+              </thead>
 
-        <tbody><!-- | filter:searchHero-->
-        <tr ng-repeat="hero in heroes | orderBy:sortTypeEnemyTeam:sortReverseEnemyTeam">
-          <td ng-show="([hero.heroFullName] | filter:searchHeroEnemyTeam).length > 0"><img ng-click="enemyTeamHeroPick(hero.heroIndex)" src="{{ hero.heroImageURL }}" style="width: 96px; height: 58px"></td>
-          <td ng-show="([hero.heroFullName] | filter:searchHeroEnemyTeam).length > 0">{{ $index + 1 }}</td>
-          <td ng-show="([hero.heroFullName] | filter:searchHeroEnemyTeam).length > 0">{{ hero.heroFullName }}</td>
-          <td ng-show="([hero.heroFullName] | filter:searchHeroEnemyTeam).length > 0">{{ hero.enemyTeamWinrate }}%</td>
-          <td ng-show="([hero.heroFullName] | filter:searchHeroEnemyTeam).length > 0">{{ hero.enemyTeamAdvantage }}</td>
-        </tr>
-        </tbody>
-      </table>
+              <tbody><!-- | filter:searchHero-->
+              <tr ng-repeat="hero in heroes | orderBy:sortTypeEnemyTeam:sortReverseEnemyTeam">
+                <td ng-show="([hero.heroFullName] | filter:searchHeroEnemyTeam).length > 0 && picked(hero.heroIndex)"><img
+                  ng-click="enemyTeamHeroPick(hero.heroIndex)" ng-right-click="banHero(hero.heroIndex)" src="{{ hero.heroImageURL }}"
+                  style="width: 96px; height: 58px"></td>
+                <td ng-show="([hero.heroFullName] | filter:searchHeroEnemyTeam).length > 0 && picked(hero.heroIndex)">{{ $index + 1 }}</td>
+                <td ng-show="([hero.heroFullName] | filter:searchHeroEnemyTeam).length > 0 && picked(hero.heroIndex)">{{ hero.heroFullName }}</td>
+                <td ng-show="([hero.heroFullName] | filter:searchHeroEnemyTeam).length > 0 && picked(hero.heroIndex)">{{ hero.enemyTeamWinrate }}%
+                </td>
+                <td ng-show="([hero.heroFullName] | filter:searchHeroEnemyTeam).length > 0 && picked(hero.heroIndex)">{{ hero.enemyTeamAdvantage
+                  }}
+                </td>
+              </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
     </div>
   </section><!-- hero table section-->
 
