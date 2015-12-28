@@ -1,0 +1,23 @@
+<div id="wrapper">
+  <div class="input-group buttomPadding">
+    <div class="input-group-addon"><i class="fa fa-search"></i></div>
+    <input type="text" class="form-control" placeholder="Search Hero"
+           ng-model="searchHeroByName">
+  </div>
+  <div id="columns">
+    <span ng-repeat-start="x in yourTeamHeroData | filter:searchHeroByName "></span>
+    <div class="pin">
+      <img src="{{x.pic}}"/>
+      <label ng-model="searchHeroByName">{{x.hero.heldFullName}}</label>
+      <p>
+        Winrate:
+        <canvas id="myHeroWin_{{$index}}" width="100" height="10"></canvas>
+        {{x.winrate}} <br>
+        Advantage:
+        <canvas id="myHeroAdv_{{$index}}" width="82" height="10"></canvas>
+        {{x.advantage}}
+      </p>
+    </div>
+  <span ng-repeat-end></span>
+  </div>
+</div>

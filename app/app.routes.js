@@ -28,6 +28,11 @@
                 templateUrl: 'app/components/about/about.tpl.html',
                 controller: 'aboutCtrl'
             })
+          .state('cards', {
+              url: '/cards',
+              templateUrl: 'app/components/cards/cards.html',
+              controller: 'cardsCtrl'
+          })
         ;
 
         $httpProvider.defaults.useXDomain = true;
