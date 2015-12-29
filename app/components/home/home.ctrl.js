@@ -46,7 +46,7 @@
       // Get all heroes
       $http({
         method: 'GET',
-        url: 'http://rest.mz-host.de:5015/DotAREST/webresources/heroes'
+        url: 'http://rest.mz-host.de:5016/DotAREST/webresources/heroes'
       }).then(function successCallback(response) {
         var heroesTemp = response.data.hero;
 
@@ -81,7 +81,7 @@
       // Get all Matchup-data
       $http({
         method: 'GET',
-        url: 'http://rest.mz-host.de:5015/DotAREST/webresources/matchups'
+        url: 'http://rest.mz-host.de:5016/DotAREST/webresources/matchups'
       }).then(function successCallback(response) {
         //$scope.matchupsTemp = response.data.matchup;
 
