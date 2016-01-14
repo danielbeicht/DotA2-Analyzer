@@ -1,3 +1,22 @@
+<script type="text/ng-template" id="myModalContent.html">
+  <div class="modal-header">
+    <h3 class="modal-title">Hero picker</h3>
+  </div>
+  <div class="modal-body">
+    <ul>
+      <li ng-repeat="item in items">
+        <a href="#" ng-click="$event.preventDefault(); selected.item = item">{{ item }}</a>
+      </li>
+    </ul>
+    Selected: <b>{{ selected.item }}</b>
+  </div>
+  <div class="modal-footer">
+    <button class="btn btn-primary" type="button" ng-click="ok()">OK</button>
+    <button class="btn btn-warning" type="button" ng-click="cancel()">Cancel</button>
+  </div>
+</script>
+
+
 <img src="http://i.imgur.com/ho5WPcQ.png" ng-show="!dataLoaded">
 <div class="container-fluid" ng-show="dataLoaded">
   <section class="row">
@@ -6,27 +25,27 @@
         <div class="col-xs-1 pickBox" ng-click="yourTeamPicks[0]=null; updateAdvantages()"
              ng-show="yourTeamPicks[0] != null"><img ng-src="{{ yourTeamPicks[0].heroImageURL }}"
                                                      style="width: 96px; height: 58px"></div>
-        <div class="col-xs-1 pickBox" ng-show="yourTeamPicks[0] == null"><img
+        <div class="col-xs-1 pickBox" ng-click="open()" ng-show="yourTeamPicks[0] == null"><img
           ng-src="assets/images/hero_unselected.jpg" style="width: 96px; height: 58px"></div>
         <div class="col-xs-1 pickBox" ng-click="yourTeamPicks[1]=null; updateAdvantages()"
              ng-click="yourTeamPicks[1]=null" ng-show="yourTeamPicks[1] != null"><img
           ng-src="{{ yourTeamPicks[1].heroImageURL }}" style="width: 96px; height: 58px"></div>
-        <div class="col-xs-1 pickBox" ng-show="yourTeamPicks[1] == null"><img ng-src="assets/images/hero_unselected.jpg"
+        <div class="col-xs-1 pickBox" ng-click="open()" ng-show="yourTeamPicks[1] == null"><img ng-src="assets/images/hero_unselected.jpg"
                                                                               style="width: 96px; height: 58px"></div>
         <div class="col-xs-1 pickBox" ng-click="yourTeamPicks[2]=null; updateAdvantages()"
              ng-show="yourTeamPicks[2] != null"><img ng-src="{{ yourTeamPicks[2].heroImageURL }}"
                                                      style="width: 96px; height: 58px"></div>
-        <div class="col-xs-1 pickBox" ng-show="yourTeamPicks[2] == null"><img ng-src="assets/images/hero_unselected.jpg"
+        <div class="col-xs-1 pickBox" ng-click="open()" ng-show="yourTeamPicks[2] == null"><img ng-src="assets/images/hero_unselected.jpg"
                                                                               style="width: 96px; height: 58px"></div>
         <div class="col-xs-1 pickBox" ng-click="yourTeamPicks[3]=null; updateAdvantages()"
              ng-show="yourTeamPicks[3] != null"><img ng-src="{{ yourTeamPicks[3].heroImageURL }}"
                                                      style="width: 96px; height: 58px"></div>
-        <div class="col-xs-1 pickBox" ng-show="yourTeamPicks[3] == null"><img ng-src="assets/images/hero_unselected.jpg"
+        <div class="col-xs-1 pickBox" ng-click="open()" ng-show="yourTeamPicks[3] == null"><img ng-src="assets/images/hero_unselected.jpg"
                                                                               style="width: 96px; height: 58px"></div>
         <div class="col-xs-1 pickBox" ng-click="yourTeamPicks[4]=null; updateAdvantages()"
              ng-show="yourTeamPicks[4] != null"><img ng-src="{{ yourTeamPicks[4].heroImageURL }}"
                                                      style="width: 96px; height: 58px"></div>
-        <div class="col-xs-1 pickBox" ng-show="yourTeamPicks[4] == null"><img ng-src="assets/images/hero_unselected.jpg"
+        <div class="col-xs-1 pickBox" ng-click="open()" ng-show="yourTeamPicks[4] == null"><img ng-src="assets/images/hero_unselected.jpg"
                                                                               style="width: 96px; height: 58px"></div>
       </div>
     </div>
@@ -37,52 +56,52 @@
       <div class="col-xs-1 pickBox" ng-click="heroBans[0]=null; updateAdvantages()"
            ng-show="heroBans[0] != null && allowBanning"><img ng-src="{{ heroBans[0].heroImageURL }}"
                                                    style="width: 96px; height: 58px"></div>
-      <div class="col-xs-1 pickBox" ng-show="heroBans[0] == null && allowBanning"><img ng-src="assets/images/hero_unselected.jpg"
+      <div class="col-xs-1 pickBox" ng-click="open()" ng-show="heroBans[0] == null && allowBanning"><img ng-src="assets/images/hero_unselected.jpg"
                                                    style="width: 96px; height: 58px"></div>
       <div class="col-xs-1 pickBox" ng-click="heroBans[1]=null; updateAdvantages()"
            ng-show="heroBans[1] != null && allowBanning"><img ng-src="{{ heroBans[1].heroImageURL }}"
                                               style="width: 96px; height: 58px"></div>
-      <div class="col-xs-1 pickBox" ng-show="heroBans[1] == null && allowBanning"><img ng-src="assets/images/hero_unselected.jpg"
+      <div class="col-xs-1 pickBox" ng-click="open()" ng-show="heroBans[1] == null && allowBanning"><img ng-src="assets/images/hero_unselected.jpg"
                                                                        style="width: 96px; height: 58px"></div>
       <div class="col-xs-1 pickBox" ng-click="heroBans[2]=null; updateAdvantages()"
            ng-show="heroBans[2] != null && allowBanning"><img ng-src="{{ heroBans[2].heroImageURL }}"
                                               style="width: 96px; height: 58px"></div>
-      <div class="col-xs-1 pickBox" ng-show="heroBans[2] == null && allowBanning"><img ng-src="assets/images/hero_unselected.jpg"
+      <div class="col-xs-1 pickBox" ng-click="open()" ng-show="heroBans[2] == null && allowBanning"><img ng-src="assets/images/hero_unselected.jpg"
                                                                        style="width: 96px; height: 58px"></div>
       <div class="col-xs-1 pickBox" ng-click="heroBans[3]=null; updateAdvantages()"
            ng-show="heroBans[3] != null && allowBanning"><img ng-src="{{ heroBans[3].heroImageURL }}"
                                               style="width: 96px; height: 58px"></div>
-      <div class="col-xs-1 pickBox" ng-show="heroBans[3] == null && allowBanning"><img ng-src="assets/images/hero_unselected.jpg"
+      <div class="col-xs-1 pickBox" ng-click="open()" ng-show="heroBans[3] == null && allowBanning"><img ng-src="assets/images/hero_unselected.jpg"
                                                                        style="width: 96px; height: 58px"></div>
       <div class="col-xs-1 pickBox" ng-click="heroBans[4]=null; updateAdvantages()"
            ng-show="heroBans[4] != null && allowBanning"><img ng-src="{{ heroBans[4].heroImageURL }}"
                                               style="width: 96px; height: 58px"></div>
-      <div class="col-xs-1 pickBox" ng-show="heroBans[4] == null && allowBanning"><img ng-src="assets/images/hero_unselected.jpg"
+      <div class="col-xs-1 pickBox" ng-click="open()" ng-show="heroBans[4] == null && allowBanning"><img ng-src="assets/images/hero_unselected.jpg"
                                                                        style="width: 96px; height: 58px"></div>
       <div class="col-xs-1 pickBox" ng-click="heroBans[5]=null; updateAdvantages()"
            ng-show="heroBans[5] != null && allowBanning"><img ng-src="{{ heroBans[5].heroImageURL }}"
                                               style="width: 96px; height: 58px"></div>
-      <div class="col-xs-1 pickBox" ng-show="heroBans[5] == null && allowBanning"><img ng-src="assets/images/hero_unselected.jpg"
+      <div class="col-xs-1 pickBox" ng-click="open()" ng-show="heroBans[5] == null && allowBanning"><img ng-src="assets/images/hero_unselected.jpg"
                                                                        style="width: 96px; height: 58px"></div>
       <div class="col-xs-1 pickBox" ng-click="heroBans[6]=null; updateAdvantages()"
            ng-show="heroBans[6] != null && allowBanning"><img ng-src="{{ heroBans[6].heroImageURL }}"
                                               style="width: 96px; height: 58px"></div>
-      <div class="col-xs-1 pickBox" ng-show="heroBans[6] == null && allowBanning"><img ng-src="assets/images/hero_unselected.jpg"
+      <div class="col-xs-1 pickBox" ng-click="open()" ng-show="heroBans[6] == null && allowBanning"><img ng-src="assets/images/hero_unselected.jpg"
                                                                        style="width: 96px; height: 58px"></div>
       <div class="col-xs-1 pickBox" ng-click="heroBans[7]=null; updateAdvantages()"
            ng-show="heroBans[7] != null && allowBanning"><img ng-src="{{ heroBans[7].heroImageURL }}"
                                               style="width: 96px; height: 58px"></div>
-      <div class="col-xs-1 pickBox" ng-show="heroBans[7] == null && allowBanning"><img ng-src="assets/images/hero_unselected.jpg"
+      <div class="col-xs-1 pickBox" ng-click="open()" ng-show="heroBans[7] == null && allowBanning"><img ng-src="assets/images/hero_unselected.jpg"
                                                                        style="width: 96px; height: 58px"></div>
       <div class="col-xs-1 pickBox" ng-click="heroBans[8]=null; updateAdvantages()"
            ng-show="heroBans[8] != null && allowBanning"><img ng-src="{{ heroBans[8].heroImageURL }}"
                                               style="width: 96px; height: 58px"></div>
-      <div class="col-xs-1 pickBox" ng-show="heroBans[8] == null && allowBanning"><img ng-src="assets/images/hero_unselected.jpg"
+      <div class="col-xs-1 pickBox" ng-click="open()" ng-show="heroBans[8] == null && allowBanning"><img ng-src="assets/images/hero_unselected.jpg"
                                                                        style="width: 96px; height: 58px"></div>
       <div class="col-xs-1 pickBox" ng-click="heroBans[9]=null; updateAdvantages()"
            ng-show="heroBans[9] != null && allowBanning"><img ng-src="{{ heroBans[9].heroImageURL }}"
                                               style="width: 96px; height: 58px"></div>
-      <div class="col-xs-1 pickBox" ng-show="heroBans[9] == null && allowBanning"><img ng-src="assets/images/hero_unselected.jpg"
+      <div class="col-xs-1 pickBox" ng-click="open()" ng-show="heroBans[9] == null && allowBanning"><img ng-src="assets/images/hero_unselected.jpg"
                                                                        style="width: 96px; height: 58px"></div>
 
     </div>
