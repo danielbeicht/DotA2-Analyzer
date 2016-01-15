@@ -7322,9 +7322,9 @@ button.close {
     overflow: scroll;
 }
 
-@media (min-width: 768px) {
+@media (min-width: 2000px) {
     .modal-dialog {
-        width: 600px;
+        width: 2000px;
         margin: 30px auto;
     }
 

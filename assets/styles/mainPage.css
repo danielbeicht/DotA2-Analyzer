@@ -1,0 +1,36 @@
+.bodyMainPage {
+    margin:0;
+}
+.wrapperMainPage {
+    height:100%;
+}
+
+/* grid */
+
+.gridMainPage {
+    width:100%;
+}
+.gridMainPage .spanMainPageLeft {
+    /*background:#FFB2B2;*/
+    border-right:1em solid #FFFFFF;
+    float:left;
+    position: relative;
+    width:43.0%; /* 3 columns */
+}
+
+.gridMainPage .spanMainPageRight {
+    /*background:#FFB2B2;*/
+    border-right:1em solid #FFFFFF;
+    float:right;
+    position: relative;
+    width:43.0%; /* 3 columns */
+}
+
+.gridMainPage .spanMainPageMid {
+    /*background:#FFB2B2;*/
+    border-right:1em solid #FFFFFF;
+    float:left;
+    position: relative;
+    width:14.0%; /* 3 columns */
+}
+

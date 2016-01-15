@@ -1,6 +1,7 @@
 /**
  * Created by Daniel on 14.01.2016.
  */
+/*
 console.log("AUSGEFÜHRT");
 (function () {
   'use strict';
@@ -27,4 +28,19 @@ console.log("AUSGEFÜHRT");
     };
   }
 
-})();
+})();*/
+
+angular.module('IBApp').controller('ModalInstanceCtrl', function ($scope, $uibModalInstance, pickSetting) {
+
+
+
+
+  $scope.ok = function (heroname) {
+    var tempArray = new Array(heroname, pickSetting);
+    $uibModalInstance.close(tempArray);
+  };
+
+  $scope.cancel = function () {
+    $uibModalInstance.dismiss('cancel');
+  };
+});

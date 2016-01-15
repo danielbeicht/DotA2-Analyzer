@@ -1,329 +1,475 @@
 <script type="text/ng-template" id="myModalContent.html">
   <div class="modal-header">
+      <button type="button" class="close" ng-click="cancel()" aria-label="Close"><span aria-hidden="true">&times;</span></button>
     <h3 class="modal-title">Hero picker</h3>
   </div>
+
+
+
+
   <div class="modal-body">
-    <ul>
-      <li ng-repeat="item in items">
-        <a href="#" ng-click="$event.preventDefault(); selected.item = item">{{ item }}</a>
-      </li>
-    </ul>
-    Selected: <b>{{ selected.item }}</b>
-  </div>
+      <div class="gridheroes">
+          <div class="wrapperheroes">
+              <div class="spanheroes">
+
+                  <div style="text-align: center;">
+                      <p class="attributes">Strength <img src="assets/images/attributes/strength.png"alt="Strength"></p>
+                  </div>
+
+                  <table>
+                      <tr>
+                          <th><img src="assets/images/heroes/Earthshaker.jpg" ng-click="ok('earthshaker')" class="img-responsive" alt="Earthshaker" max-width="256" ></th>
+                          <th><img src="assets/images/heroes/Sven.jpg" ng-click="ok('sven')" class="img-responsive" alt="Sven" max-width="256" ></th>
+                          <th><img src="assets/images/heroes/Tiny.jpg" ng-click="ok('tiny')" class="img-responsive" alt="Tiny" max-width="256" ></th>
+                          <th><img src="assets/images/heroes/Kunkka.jpg" ng-click="ok('kunkka')" class="img-responsive" alt="Kunkka" max-width="256" ></th>
+                          <th><img src="assets/images/heroes/Beastmaster.jpg" ng-click="ok('beastmaster')" class="img-responsive" alt="Beastmaster" max-width="256" ></th>
+                          <th><img src="assets/images/heroes/Dragon_Knight.jpg" ng-click="ok('dragon-knight')" class="img-responsive" alt="Dragon Knight" max-width="256" ></th>
+                          <th><img src="assets/images/heroes/Clockwerk.jpg" ng-click="ok('clockwerk')" class="img-responsive" alt="Clockwerk" max-width="256" ></th>
+                      </tr>
+                      <tr>
+                          <th><img src="assets/images/heroes/Omniknight.jpg" ng-click="ok('omniknight')" class="img-responsive" alt="Omniknight" max-width="256" ></th>
+                          <th><img src="assets/images/heroes/Huskar.jpg" ng-click="ok('huskar')" class="img-responsive" alt="Huskar" max-width="256" ></th>
+                          <th><img src="assets/images/heroes/Alchemist.jpg" ng-click="ok('alchemist')" class="img-responsive" alt="Alchemist" max-width="256" ></th>
+                          <th><img src="assets/images/heroes/Brewmaster.jpg" ng-click="ok('brewmaster')" class="img-responsive" alt="Brewmaster" max-width="256" ></th>
+                          <th><img src="assets/images/heroes/Treant_Protector.jpg" ng-click="ok('treant-protector')" class="img-responsive" alt="Treant Protector" max-width="256" ></th>
+                          <th><img src="assets/images/heroes/Io.jpg" ng-click="ok('io')" class="img-responsive" alt="Io" max-width="256" ></th>
+                          <th><img src="assets/images/heroes/Centaur_Warrunner.jpg" ng-click="ok('centaur-warrunner')" class="img-responsive" alt="Centaur Warrunner" max-width="256" ></th>
+                      </tr>
+                      <tr>
+                          <th><img src="assets/images/heroes/Timbersaw.jpg" ng-click="ok('timbersaw')" class="img-responsive" alt="Timbersaw" max-width="256" ></th>
+                          <th><img src="assets/images/heroes/Bristleback.jpg" ng-click="ok('bristleback')" class="img-responsive" alt="Bristleback" max-width="256" ></th>
+                          <th><img src="assets/images/heroes/Tusk.jpg" ng-click="ok('tusk')" class="img-responsive" alt="Tusk" max-width="256" ></th>
+                          <th><img src="assets/images/heroes/Elder_Titan.jpg" ng-click="ok('elder-titan')" class="img-responsive" alt="Elder Titan" max-width="256" ></th>
+                          <th><img src="assets/images/heroes/Legion_Commander.jpg" ng-click="ok('legion-commander')" class="img-responsive" alt="Legion Commander" max-width="256" ></th>
+                          <th><img src="assets/images/heroes/Earth_Spirit.jpg" ng-click="ok('earth-spirit')" class="img-responsive" alt="Earth Spirit" max-width="256" ></th>
+                          <th><img src="assets/images/heroes/Phoenix.jpg" ng-click="ok('phoenix')" class="img-responsive" alt="Phönix" max-width="256" ></th>
+                      </tr>
+                  </table>
+                  <br>
+                  <table>
+                      <tr>
+                          <th><img src="assets/images/heroes/Axe.jpg" ng-click="ok('axe')" class="img-responsive" alt="Axe" max-width="256" ></th>
+                          <th><img src="assets/images/heroes/Pudge.jpg" ng-click="ok('pudge')" class="img-responsive" alt="Pudge" max-width="256" ></th>
+                          <th><img src="assets/images/heroes/Sand_King.jpg" ng-click="ok('sand-king')" class="img-responsive" alt="Sand King" max-width="256" ></th>
+                          <th><img src="assets/images/heroes/Slardar.jpg" ng-click="ok('slardar')" class="img-responsive" alt="Slardar" max-width="256" ></th>
+                          <th><img src="assets/images/heroes/Tidehunter.jpg" ng-click="ok('tidehunter')" class="img-responsive" alt="Tidehunter" max-width="256" ></th>
+                          <th><img src="assets/images/heroes/Wraith_King.jpg" ng-click="ok('wraith-king')" class="img-responsive" alt="Wraith King" max-width="256" ></th>
+                          <th><img src="assets/images/heroes/Lifestealer.jpg" ng-click="ok('lifestealer')" class="img-responsive" alt="Lifestealer" max-width="256" ></th>
+                      </tr>
+                      <tr>
+                          <th><img src="assets/images/heroes/Night_Stalker.jpg" ng-click="ok('night-stalker')" class="img-responsive" alt="Night Stalker" max-width="256" ></th>
+                          <th><img src="assets/images/heroes/Doom.jpg" ng-click="ok('doom')" class="img-responsive" alt="Doom" max-width="256" ></th>
+                          <th><img src="assets/images/heroes/Spirit_Breaker.jpg" ng-click="ok('spirit-breaker')" class="img-responsive" alt="Spirit Breaker" max-width="256" ></th>
+                          <th><img src="assets/images/heroes/Lycan.jpg" ng-click="ok('lycan')" class="img-responsive" alt="Lycan" max-width="256" ></th>
+                          <th><img src="assets/images/heroes/Chaos_Knight.jpg" ng-click="ok('chaos-knight')" class="img-responsive" alt="Chaos Knight" max-width="256" ></th>
+                          <th><img src="assets/images/heroes/Undying.jpg" ng-click="ok('undying')" class="img-responsive" alt="Undying" max-width="256" ></th>
+                          <th><img src="assets/images/heroes/Magnus.jpg" ng-click="ok('magnus')" class="img-responsive" alt="Magnus" max-width="256" ></th>
+                      </tr>
+                      <tr>
+                          <th><img src="assets/images/heroes/Abaddon.jpg" ng-click="ok('abaddon')" class="img-responsive" alt="Abaddon" max-width="256" ></th>
+                      </tr>
+                  </table>
+
+              </div>
+              <div class="spanheroes">
+                  <div style="text-align: center;">
+                      <p class="attributes">Agility <img src="assets/images/attributes/agility.png"alt="Agility"></p>
+                  </div>
+                  <table>
+                      <tr>
+                          <th><img src="assets/images/heroes/Anti_Mage.jpg" ng-click="ok('anti-mage')" class="img-responsive" alt="Anti Mage" max-width="256" ></th>
+                          <th><img src="assets/images/heroes/Drow_Ranger.jpg" ng-click="ok('drow-ranger')" class="img-responsive" alt="Drow Ranger" max-width="256" ></th>
+                          <th><img src="assets/images/heroes/Juggernaut.jpg" ng-click="ok('juggernaut')" class="img-responsive" alt="Juggernaut" max-width="256" ></th>
+                          <th><img src="assets/images/heroes/Mirana.jpg" ng-click="ok('mirana')" class="img-responsive" alt="Mirana" max-width="256" ></th>
+                          <th><img src="assets/images/heroes/Morphling.jpg" ng-click="ok('morphling')" class="img-responsive" alt="Morphling" max-width="256" ></th>
+                          <th><img src="assets/images/heroes/Phantom_Lancer.jpg" ng-click="ok('phantom-lancer')" class="img-responsive" alt="Phantom Lancer" max-width="256" ></th>
+                          <th><img src="assets/images/heroes/Vengeful_Spirit.jpg" ng-click="ok('vengeful-spirit')" class="img-responsive" alt="Vengeful Spirit" max-width="256" ></th>
+                      </tr>
+                      <tr>
+                          <th><img src="assets/images/heroes/Riki.jpg" ng-click="ok('riki')" class="img-responsive" alt="Riki" max-width="256" ></th>
+                          <th><img src="assets/images/heroes/Sniper.jpg" ng-click="ok('sniper')" class="img-responsive" alt="Sniper" max-width="256" ></th>
+                          <th><img src="assets/images/heroes/Templar_Assassin.jpg" ng-click="ok('templar-assassin')" class="img-responsive" alt="Templar Assassin" max-width="256" ></th>
+                          <th><img src="assets/images/heroes/Luna.jpg" ng-click="ok('Luna')" class="img-responsive" alt="Luna" max-width="256" ></th>
+                          <th><img src="assets/images/heroes/Bounty_Hunter.jpg" ng-click="ok('bounty-hunter')" class="img-responsive" alt="Bounty Hunter" max-width="256" ></th>
+                          <th><img src="assets/images/heroes/Ursa.jpg" ng-click="ok('ursa')" class="img-responsive" alt="Ursa" max-width="256" ></th>
+                          <th><img src="assets/images/heroes/Gyrocopter.jpg" ng-click="ok('gyrocopter')" class="img-responsive" alt="Gyrocpoter" max-width="256" ></th>
+                      </tr>
+                      <tr>
+                          <th><img src="assets/images/heroes/Lone_Druid.jpg" ng-click="ok('lone-druid')" class="img-responsive" alt="Lone Druid" max-width="256" ></th>
+                          <th><img src="assets/images/heroes/Naga_Siren.jpg" ng-click="ok('maga-siren')" class="img-responsive" alt="Naga Siren" max-width="256" ></th>
+                          <th><img src="assets/images/heroes/Troll_Warlord.jpg" ng-click="ok('troll-warlord')" class="img-responsive" alt="Troll Warlord" max-width="256" ></th>
+                          <th><img src="assets/images/heroes/Ember_Spirit.jpg" ng-click="ok('ember-spirit')" class="img-responsive" alt="Ember Spirit" max-width="256" ></th>
+                      </tr>
+                  </table>
+                  <br>
+                  <table>
+                      <tr>
+                          <th><img src="assets/images/heroes/Bloodseeker.jpg" ng-click="ok('bloodseeker')" class="img-responsive" alt="Bloodseeker" max-width="256" ></th>
+                          <th><img src="assets/images/heroes/Shadow_Fiend.jpg" ng-click="ok('shadow-fiend')" class="img-responsive" alt="Shadow Fiend" max-width="256" ></th>
+                          <th><img src="assets/images/heroes/Razor.jpg" ng-click="ok('razor')" class="img-responsive" alt="Razor" max-width="256" ></th>
+                          <th><img src="assets/images/heroes/Venomancer.jpg" ng-click="ok('venomancer')" class="img-responsive" alt="Venomancer" max-width="256" ></th>
+                          <th><img src="assets/images/heroes/Faceless_Void.jpg" ng-click="ok('faceless-void')" class="img-responsive" alt="Faceless Void" max-width="256" ></th>
+                          <th><img src="assets/images/heroes/Phantom_Assassin.jpg" ng-click="ok('phantom-assassin')" class="img-responsive" alt="Phantom Assassin" max-width="256" ></th>
+                          <th><img src="assets/images/heroes/Viper.jpg" ng-click="ok('viper')" class="img-responsive" alt="Viper" max-width="256" ></th>
+                      </tr>
+                      <tr>
+                          <th><img src="assets/images/heroes/Clinkz.jpg" ng-click="ok('clinkz')" class="img-responsive" alt="Clinkz" max-width="256" ></th>
+                          <th><img src="assets/images/heroes/Broodmother.jpg" ng-click="ok('broodmother')" class="img-responsive" alt="Broodmother" max-width="256" ></th>
+                          <th><img src="assets/images/heroes/Weaver.jpg" ng-click="ok('weaver')" class="img-responsive" alt="Weaver" max-width="256" ></th>
+                          <th><img src="assets/images/heroes/Spectre.jpg" ng-click="ok('spectre')" class="img-responsive" alt="Spectre" max-width="256" ></th>
+                          <th><img src="assets/images/heroes/Meepo.jpg" ng-click="ok('meepo')" class="img-responsive" alt="Meepo" max-width="256" ></th>
+                          <th><img src="assets/images/heroes/Nyx_Assassin.jpg" ng-click="ok('nyx-assassin')" class="img-responsive" alt="Nyx Assassin" max-width="256" ></th>
+                          <th><img src="assets/images/heroes/Slark.jpg" ng-click="ok('slark')" class="img-responsive" alt="Slark" max-width="256" ></th>
+                      </tr>
+                      <tr>
+                          <th><img src="assets/images/heroes/Medusa.jpg" ng-click="ok('medusa')" class="img-responsive" alt="Medusa" max-width="256" ></th>
+                          <th><img src="assets/images/heroes/Terrorblade.jpg" ng-click="ok('terrorblade')" class="img-responsive" alt="Terrorblade" max-width="256" ></th>
+                          <th><img src="assets/images/heroes/Arc_Warden.jpg" ng-click="ok('arc-warden')" class="img-responsive" alt="Arc Warden max-width="256" ></th>
+                      </tr>
+                  </table>
+              </div>
+              <div class="spanheroes">
+                  <div style="text-align: center;">
+                      <p class="attributes">Inteligence <img src="assets/images/attributes/intelligence.png"alt="Intelligence"></p>
+                  </div>
+                  <table>
+                      <tr>
+                          <th><img src="assets/images/heroes/Crystal_Maiden.jpg" ng-click="ok('crystal-maiden')" class="img-responsive" alt="Crystal Maiden" max-width="256" ></th>
+                          <th><img src="assets/images/heroes/Puck.jpg" ng-click="ok('puck')" class="img-responsive" alt="Puck" max-width="256" ></th>
+                          <th><img src="assets/images/heroes/Storm_Spirit.jpg" ng-click="ok('storm-spirit')" class="img-responsive" alt="Storm Spirit" max-width="256" ></th>
+                          <th><img src="assets/images/heroes/Windranger.jpg" ng-click="ok('windranger')" class="img-responsive" alt="Windranger" max-width="256" ></th>
+                          <th><img src="assets/images/heroes/Zeus.jpg" ng-click="ok('zeus')" class="img-responsive" alt="Zeus" max-width="256" ></th>
+                          <th><img src="assets/images/heroes/Lina.jpg" ng-click="ok('lina')" class="img-responsive" alt="Lina" max-width="256" ></th>
+                          <th><img src="assets/images/heroes/Shadow_Shaman.jpg" ng-click="ok('shadow-shaman')" class="img-responsive" alt="Shadow Shaman" max-width="256" ></th>
+                      </tr>
+                      <tr>
+                          <th><img src="assets/images/heroes/Tinker.jpg" ng-click="ok('tinker')" class="img-responsive" alt="Tinker" max-width="256" ></th>
+                          <th><img src="assets/images/heroes/Nature's_Prophet.jpg" ng-click="ok('natures-prophet')" class="img-responsive" alt="Nature's Prophet" max-width="256" ></th>
+                          <th><img src="assets/images/heroes/Enchantress.jpg" ng-click="ok('enchantress')" class="img-responsive" alt="Enchantress" max-width="256" ></th>
+                          <th><img src="assets/images/heroes/Jakiro.jpg" ng-click="ok('jakiro')" class="img-responsive" alt="Jakiro" max-width="256" ></th>
+                          <th><img src="assets/images/heroes/Chen.jpg" ng-click="ok('chen')" class="img-responsive" alt="Chen" max-width="256" ></th>
+                          <th><img src="assets/images/heroes/Silencer.jpg" ng-click="ok('silencer')" class="img-responsive" alt="Silencer" max-width="256" ></th>
+                          <th><img src="assets/images/heroes/Ogre_Magi.jpg" ng-click="ok('ogre-magi')" class="img-responsive" alt="Ogre Magi" max-width="256" ></th>
+                      </tr>
+                      <tr>
+                          <th><img src="assets/images/heroes/Rubick.jpg" ng-click="ok('rubick')" class="img-responsive" alt="Rubick" max-width="256" ></th>
+                          <th><img src="assets/images/heroes/Disruptor.jpg" ng-click="ok('disruptor')" class="img-responsive" alt="Disruptor" max-width="256" ></th>
+                          <th><img src="assets/images/heroes/Keeper_of_the_Light.jpg" ng-click="ok('keeper-of-the-light')" class="img-responsive" alt="Keeper of the Light" max-width="256" ></th>
+                          <th><img src="assets/images/heroes/Skywrath_Mage.jpg" ng-click="ok('skywrath-mage')" class="img-responsive" alt="Skywrath Mage" max-width="256" ></th>
+                          <th><img src="assets/images/heroes/Oracle.jpg" ng-click="ok('oracle')" class="img-responsive" alt="Oracle" max-width="256" ></th>
+                          <th><img src="assets/images/heroes/Techies.jpg" ng-click="ok('techies')" class="img-responsive" alt="Techies" max-width="256" ></th>
+                      </tr>
+                  </table>
+                  <br>
+                  <table>
+                      <tr>
+                          <th><img src="assets/images/heroes/Bane.jpg" ng-click="ok('bane')" class="img-responsive" alt="Bane" max-width="256" ></th>
+                          <th><img src="assets/images/heroes/Lich.jpg" ng-click="ok('lich')" class="img-responsive" alt="Lich" max-width="256" ></th>
+                          <th><img src="assets/images/heroes/Lion.jpg" ng-click="ok('lion')" class="img-responsive" alt="Lion" max-width="256" ></th>
+                          <th><img src="assets/images/heroes/Witch_Doctor.jpg" ng-click="ok('witch-doctor')" class="img-responsive" alt="Witch Doctor" max-width="256" ></th>
+                          <th><img src="assets/images/heroes/Enigma.jpg" ng-click="ok('enigma')" class="img-responsive" alt="Enigma" max-width="256" ></th>
+                          <th><img src="assets/images/heroes/Necrophos.jpg" ng-click="ok('necrophos')" class="img-responsive" alt="Necrophos" max-width="256" ></th>
+                          <th><img src="assets/images/heroes/Warlock.jpg" ng-click="ok('warlock')" class="img-responsive" alt="Warlock" max-width="256" ></th>
+                      </tr>
+                      <tr>
+                          <th><img src="assets/images/heroes/Queen_of_Pain.jpg" ng-click="ok('queen-of-pain')" class="img-responsive" alt="Queen of Pain" max-width="256" ></th>
+                          <th><img src="assets/images/heroes/Death_Prophet.jpg" ng-click="ok('death-prophet')" class="img-responsive" alt="Death Prophet" max-width="256" ></th>
+                          <th><img src="assets/images/heroes/Pugna.jpg" ng-click="ok('pugna')" class="img-responsive" alt="Pugna" max-width="256" ></th>
+                          <th><img src="assets/images/heroes/Dazzle.jpg" ng-click="ok('dazzle')" class="img-responsive" alt="Dazzle" max-width="256" ></th>
+                          <th><img src="assets/images/heroes/Leshrac.jpg" ng-click="ok('leshrac')" class="img-responsive" alt="Leshrac" max-width="256" ></th>
+                          <th><img src="assets/images/heroes/Dark_Seer.jpg" ng-click="ok('dark-seer')" class="img-responsive" alt="Dark Seer" max-width="256" ></th>
+                          <th><img src="assets/images/heroes/Batrider.jpg" ng-click="ok('batrider')" class="img-responsive" alt="Batrider" max-width="256" ></th>
+                      </tr>
+                      <tr>
+                          <th><img src="assets/images/heroes/Ancient_Apparition.jpg" ng-click="ok('ancient-apparition')" class="img-responsive" alt="Ancient Apparition" max-width="256" ></th>
+                          <th><img src="assets/images/heroes/Invoker.jpg" ng-click="ok('invoker')" class="img-responsive" alt="Invoker" max-width="256" ></th>
+                          <th><img src="assets/images/heroes/Outworld_Devourer.jpg" ng-click="ok('outworld-devourer')" class="img-responsive" alt="Outworld Devourer" max-width="256" ></th>
+                          <th><img src="assets/images/heroes/Shadow_Demon.jpg" ng-click="ok('shadown-demon')" class="img-responsive" alt="Shadow Demon" max-width="256" ></th>
+                          <th><img src="assets/images/heroes/Visage.jpg" ng-click="ok('visage')" class="img-responsive" alt="Visage" max-width="256" ></th>
+                          <th><img src="assets/images/heroes/Winter_Wyvern.jpg" ng-click="ok('winter-wyvern')" class="img-responsive" alt="Winter Wyvern" max-width="256" ></th>
+                      </tr>
+                  </table>
+              </div>
+          </div>
+      </div>
+      .
+    </div>
   <div class="modal-footer">
-    <button class="btn btn-primary" type="button" ng-click="ok()">OK</button>
-    <button class="btn btn-warning" type="button" ng-click="cancel()">Cancel</button>
+    <button class="btn btn-danger" type="button" ng-click="cancel()">Cancel</button>
   </div>
 </script>
 
+<div class="gridMainPage">
+    <div class="wrapperMainPages">
+        <div class="spanMainPageLeft">
+            <table>
+                <tr>
+                    <td ng-click="yourTeamPicks[0]=null; updateAdvantages()" ng-show="yourTeamPicks[0] != null"><img ng-src="{{ yourTeamPicks[0].heroImageURL }}" class="img-responsive" max-width="500"></td>
+                    <td ng-click="open('yourTeamPick')" ng-show="yourTeamPicks[0] == null"><img ng-src="assets/images/hero_unselected.jpg" class="img-responsive" max-width="500"></td>
 
-<img src="http://i.imgur.com/ho5WPcQ.png" ng-show="!dataLoaded">
-<div class="container-fluid" ng-show="dataLoaded">
-  <section class="row">
-    <div class="col-xs-5">
-      <div class="row">
-        <div class="col-xs-1 pickBox" ng-click="yourTeamPicks[0]=null; updateAdvantages()"
-             ng-show="yourTeamPicks[0] != null"><img ng-src="{{ yourTeamPicks[0].heroImageURL }}"
-                                                     style="width: 96px; height: 58px"></div>
-        <div class="col-xs-1 pickBox" ng-click="open()" ng-show="yourTeamPicks[0] == null"><img
-          ng-src="assets/images/hero_unselected.jpg" style="width: 96px; height: 58px"></div>
-        <div class="col-xs-1 pickBox" ng-click="yourTeamPicks[1]=null; updateAdvantages()"
-             ng-click="yourTeamPicks[1]=null" ng-show="yourTeamPicks[1] != null"><img
-          ng-src="{{ yourTeamPicks[1].heroImageURL }}" style="width: 96px; height: 58px"></div>
-        <div class="col-xs-1 pickBox" ng-click="open()" ng-show="yourTeamPicks[1] == null"><img ng-src="assets/images/hero_unselected.jpg"
-                                                                              style="width: 96px; height: 58px"></div>
-        <div class="col-xs-1 pickBox" ng-click="yourTeamPicks[2]=null; updateAdvantages()"
-             ng-show="yourTeamPicks[2] != null"><img ng-src="{{ yourTeamPicks[2].heroImageURL }}"
-                                                     style="width: 96px; height: 58px"></div>
-        <div class="col-xs-1 pickBox" ng-click="open()" ng-show="yourTeamPicks[2] == null"><img ng-src="assets/images/hero_unselected.jpg"
-                                                                              style="width: 96px; height: 58px"></div>
-        <div class="col-xs-1 pickBox" ng-click="yourTeamPicks[3]=null; updateAdvantages()"
-             ng-show="yourTeamPicks[3] != null"><img ng-src="{{ yourTeamPicks[3].heroImageURL }}"
-                                                     style="width: 96px; height: 58px"></div>
-        <div class="col-xs-1 pickBox" ng-click="open()" ng-show="yourTeamPicks[3] == null"><img ng-src="assets/images/hero_unselected.jpg"
-                                                                              style="width: 96px; height: 58px"></div>
-        <div class="col-xs-1 pickBox" ng-click="yourTeamPicks[4]=null; updateAdvantages()"
-             ng-show="yourTeamPicks[4] != null"><img ng-src="{{ yourTeamPicks[4].heroImageURL }}"
-                                                     style="width: 96px; height: 58px"></div>
-        <div class="col-xs-1 pickBox" ng-click="open()" ng-show="yourTeamPicks[4] == null"><img ng-src="assets/images/hero_unselected.jpg"
-                                                                              style="width: 96px; height: 58px"></div>
-      </div>
-    </div>
-    <div class="col-xs-2">
-      <label>Allow Banning:
-        <input type="checkbox" ng-model="allowBanning">
-      </label><br>
-      <div class="col-xs-1 pickBox" ng-click="heroBans[0]=null; updateAdvantages()"
-           ng-show="heroBans[0] != null && allowBanning"><img ng-src="{{ heroBans[0].heroImageURL }}"
-                                                   style="width: 96px; height: 58px"></div>
-      <div class="col-xs-1 pickBox" ng-click="open()" ng-show="heroBans[0] == null && allowBanning"><img ng-src="assets/images/hero_unselected.jpg"
-                                                   style="width: 96px; height: 58px"></div>
-      <div class="col-xs-1 pickBox" ng-click="heroBans[1]=null; updateAdvantages()"
-           ng-show="heroBans[1] != null && allowBanning"><img ng-src="{{ heroBans[1].heroImageURL }}"
-                                              style="width: 96px; height: 58px"></div>
-      <div class="col-xs-1 pickBox" ng-click="open()" ng-show="heroBans[1] == null && allowBanning"><img ng-src="assets/images/hero_unselected.jpg"
-                                                                       style="width: 96px; height: 58px"></div>
-      <div class="col-xs-1 pickBox" ng-click="heroBans[2]=null; updateAdvantages()"
-           ng-show="heroBans[2] != null && allowBanning"><img ng-src="{{ heroBans[2].heroImageURL }}"
-                                              style="width: 96px; height: 58px"></div>
-      <div class="col-xs-1 pickBox" ng-click="open()" ng-show="heroBans[2] == null && allowBanning"><img ng-src="assets/images/hero_unselected.jpg"
-                                                                       style="width: 96px; height: 58px"></div>
-      <div class="col-xs-1 pickBox" ng-click="heroBans[3]=null; updateAdvantages()"
-           ng-show="heroBans[3] != null && allowBanning"><img ng-src="{{ heroBans[3].heroImageURL }}"
-                                              style="width: 96px; height: 58px"></div>
-      <div class="col-xs-1 pickBox" ng-click="open()" ng-show="heroBans[3] == null && allowBanning"><img ng-src="assets/images/hero_unselected.jpg"
-                                                                       style="width: 96px; height: 58px"></div>
-      <div class="col-xs-1 pickBox" ng-click="heroBans[4]=null; updateAdvantages()"
-           ng-show="heroBans[4] != null && allowBanning"><img ng-src="{{ heroBans[4].heroImageURL }}"
-                                              style="width: 96px; height: 58px"></div>
-      <div class="col-xs-1 pickBox" ng-click="open()" ng-show="heroBans[4] == null && allowBanning"><img ng-src="assets/images/hero_unselected.jpg"
-                                                                       style="width: 96px; height: 58px"></div>
-      <div class="col-xs-1 pickBox" ng-click="heroBans[5]=null; updateAdvantages()"
-           ng-show="heroBans[5] != null && allowBanning"><img ng-src="{{ heroBans[5].heroImageURL }}"
-                                              style="width: 96px; height: 58px"></div>
-      <div class="col-xs-1 pickBox" ng-click="open()" ng-show="heroBans[5] == null && allowBanning"><img ng-src="assets/images/hero_unselected.jpg"
-                                                                       style="width: 96px; height: 58px"></div>
-      <div class="col-xs-1 pickBox" ng-click="heroBans[6]=null; updateAdvantages()"
-           ng-show="heroBans[6] != null && allowBanning"><img ng-src="{{ heroBans[6].heroImageURL }}"
-                                              style="width: 96px; height: 58px"></div>
-      <div class="col-xs-1 pickBox" ng-click="open()" ng-show="heroBans[6] == null && allowBanning"><img ng-src="assets/images/hero_unselected.jpg"
-                                                                       style="width: 96px; height: 58px"></div>
-      <div class="col-xs-1 pickBox" ng-click="heroBans[7]=null; updateAdvantages()"
-           ng-show="heroBans[7] != null && allowBanning"><img ng-src="{{ heroBans[7].heroImageURL }}"
-                                              style="width: 96px; height: 58px"></div>
-      <div class="col-xs-1 pickBox" ng-click="open()" ng-show="heroBans[7] == null && allowBanning"><img ng-src="assets/images/hero_unselected.jpg"
-                                                                       style="width: 96px; height: 58px"></div>
-      <div class="col-xs-1 pickBox" ng-click="heroBans[8]=null; updateAdvantages()"
-           ng-show="heroBans[8] != null && allowBanning"><img ng-src="{{ heroBans[8].heroImageURL }}"
-                                              style="width: 96px; height: 58px"></div>
-      <div class="col-xs-1 pickBox" ng-click="open()" ng-show="heroBans[8] == null && allowBanning"><img ng-src="assets/images/hero_unselected.jpg"
-                                                                       style="width: 96px; height: 58px"></div>
-      <div class="col-xs-1 pickBox" ng-click="heroBans[9]=null; updateAdvantages()"
-           ng-show="heroBans[9] != null && allowBanning"><img ng-src="{{ heroBans[9].heroImageURL }}"
-                                              style="width: 96px; height: 58px"></div>
-      <div class="col-xs-1 pickBox" ng-click="open()" ng-show="heroBans[9] == null && allowBanning"><img ng-src="assets/images/hero_unselected.jpg"
-                                                                       style="width: 96px; height: 58px"></div>
+                    <td ng-click="yourTeamPicks[1]=null; updateAdvantages()" ng-show="yourTeamPicks[1] != null"><img ng-src="{{ yourTeamPicks[1].heroImageURL }}" class="img-responsive" max-width="500"></td>
+                    <td ng-click="open('yourTeamPick')" ng-show="yourTeamPicks[1] == null"><img ng-src="assets/images/hero_unselected.jpg" class="img-responsive" max-width="500"></td>
 
-    </div>
-    <div class="col-xs-5">
-      <div class="row">
-        <div class="col-xs-1 col-xs-offset-2 pickBox" ng-click="enemyTeamPicks[0]=null; updateAdvantages()"
-             ng-show="enemyTeamPicks[0] != null"><img ng-src="{{ enemyTeamPicks[0].heroImageURL }}"
-                                                      style="width: 96px; height: 58px"></div>
-        <div class="col-xs-1 col-xs-offset-2 pickBox" ng-show="enemyTeamPicks[0] == null"><img
-          ng-src="assets/images/hero_unselected.jpg" style="width: 96px; height: 58px"></div>
-        <div class="col-xs-1 pickBox" ng-click="enemyTeamPicks[1]=null; updateAdvantages()"
-             ng-show="enemyTeamPicks[1] != null"><img ng-src="{{ enemyTeamPicks[1].heroImageURL }}"
-                                                      style="width: 96px; height: 58px"></div>
-        <div class="col-xs-1 pickBox" ng-show="enemyTeamPicks[1] == null"><img
-          ng-src="assets/images/hero_unselected.jpg" style="width: 96px; height: 58px"></div>
-        <div class="col-xs-1 pickBox" ng-click="enemyTeamPicks[2]=null; updateAdvantages()"
-             ng-show="enemyTeamPicks[2] != null"><img ng-src="{{ enemyTeamPicks[2].heroImageURL }}"
-                                                      style="width: 96px; height: 58px"></div>
-        <div class="col-xs-1 pickBox" ng-show="enemyTeamPicks[2] == null"><img
-          ng-src="assets/images/hero_unselected.jpg" style="width: 96px; height: 58px"></div>
-        <div class="col-xs-1 pickBox" ng-click="enemyTeamPicks[3]=null; updateAdvantages()"
-             ng-show="enemyTeamPicks[3] != null"><img ng-src="{{ enemyTeamPicks[3].heroImageURL }}"
-                                                      style="width: 96px; height: 58px"></div>
-        <div class="col-xs-1 pickBox" ng-show="enemyTeamPicks[3] == null"><img
-          ng-src="assets/images/hero_unselected.jpg" style="width: 96px; height: 58px"></div>
-        <div class="col-xs-1 pickBox" ng-click="enemyTeamPicks[4]=null; updateAdvantages()"
-             ng-show="enemyTeamPicks[4] != null"><img ng-src="{{ enemyTeamPicks[4].heroImageURL }}"
-                                                      style="width: 96px; height: 58px"></div>
-        <div class="col-xs-1 pickBox" ng-show="enemyTeamPicks[4] == null"><img
-          ng-src="assets/images/hero_unselected.jpg" style="width: 96px; height: 58px"></div>
-      </div>
-    </div>
-  </section><!--pick hero section-->
+                    <td ng-click="yourTeamPicks[2]=null; updateAdvantages()" ng-show="yourTeamPicks[2] != null"><img ng-src="{{ yourTeamPicks[2].heroImageURL }}" class="img-responsive" max-width="500"></td>
+                    <td ng-click="open('yourTeamPick')" ng-show="yourTeamPicks[2] == null"><img ng-src="assets/images/hero_unselected.jpg" class="img-responsive" max-width="500"></td>
 
-  <section class="row">
-    <div class="col-xs-5">
-      <div class="row">
-        <div class="col-xs-4">
-          <form>
-            <div class="form-group">
-              <div class="input-group">
-                <div class="input-group-addon"><i class="fa fa-search"></i></div>
-                <input type="text" class="form-control" placeholder="Search Hero"
-                       ng-model="searchHeroYourTeam">
-              </div>
+                    <td ng-click="yourTeamPicks[3]=null; updateAdvantages()" ng-show="yourTeamPicks[3] != null"><img ng-src="{{ yourTeamPicks[3].heroImageURL }}" class="img-responsive" max-width="500"></td>
+                    <td ng-click="open('yourTeamPick')" ng-show="yourTeamPicks[3] == null"><img ng-src="assets/images/hero_unselected.jpg" class="img-responsive" max-width="500"></td>
+
+                    <td ng-click="yourTeamPicks[4]=null; updateAdvantages()" ng-show="yourTeamPicks[4] != null"><img ng-src="{{ yourTeamPicks[4].heroImageURL }}" class="img-responsive" max-width="500"></td>
+                    <td ng-click="open('yourTeamPick')" ng-show="yourTeamPicks[4] == null"><img ng-src="assets/images/hero_unselected.jpg" class="img-responsive" max-width="500"></td>
+                </tr>
+            </table>
+            <br>
+            <div class="col-md-6">
+                <form>
+                    <div class="form-group">
+                        <div class="input-group">
+                            <div class="input-group-addon"><i class="fa fa-search"></i></div>
+                            <input type="text" class="form-control" placeholder="Search Hero"
+                                   ng-model="searchHeroYourTeam">
+                        </div>
+                    </div>
+                </form>
             </div>
-          </form>
-        </div>
-        <div class="col-xs-4">
-          <select id="dropDownPickYourTeam" class="form-control" ng-model="selectedHeroYourTeam"
-                  ng-options="obj.heroIndex as obj.heroFullName for obj in heroes | orderBy:'heroFullName'">
-            <option value="">Select hero</option>
-          </select>
-        </div>
-        <!--<p>$scope.list_category: {{list_category}}<p>-->
-        <div class="col-xs-4">
-          <button class="btn btn-success" ng-click="yourTeamHeroPick(selectedHeroYourTeam); selectedHeroYourTeam=''">
-            Pick
-          </button>
-        </div>
-      </div>
-      <div class="scrollThis">
-        <table class="table table-striped">
-          <thead>
-          <tr>
-            <td><a></a></td>
-            <td><a>Ranking</a></td>
-            <td>
-              <a href="#"
-                 ng-click="sortTypeYourTeam = 'heroFullName'; sortReverseYourTeam = !sortReverseYourTeam">
-                Hero Name
-                            <span ng-show="sortTypeYourTeam == 'heroFullName' && !sortReverseYourTeam"
-                                  class="fa fa-caret-down"></span>
-                            <span ng-show="sortTypeYourTeam == 'heroFullName' && sortReverseYourTeam"
-                                  class="fa fa-caret-up"></span>
-              </a>
-            </td>
-            <td>
-              <a href="#" ng-click="sortTypeYourTeam = 'yourTeamWinrate'; sortReverseYourTeam = !sortReverseYourTeam">
-                Winrate
-                            <span ng-show="sortTypeYourTeam == 'yourTeamWinrate' && !sortReverseYourTeam"
-                                  class="fa fa-caret-down"></span>
-                            <span ng-show="sortTypeYourTeam == 'yourTeamWinrate' && sortReverseYourTeam"
-                                  class="fa fa-caret-up"></span>
-              </a>
-            </td>
-            <td>
-              <a href="#"
-                 ng-click="sortTypeYourTeam = 'yourTeamAdvantage'; sortReverseYourTeam = !sortReverseYourTeam">
-                Advantage
-                            <span ng-show="sortTypeYourTeam == 'yourTeamAdvantage' && !sortReverseYourTeam"
-                                  class="fa fa-caret-down"></span>
-                            <span ng-show="sortTypeYourTeam == 'yourTeamAdvantage' && sortReverseYourTeam"
-                                  class="fa fa-caret-up"></span>
-              </a>
-            </td>
-          </tr>
-          </thead>
-
-          <tbody><!-- | filter:searchHero-->
-          <tr ng-repeat="hero in heroes | orderBy:sortTypeYourTeam:sortReverseYourTeam">
-            <td ng-show="([hero.heroFullName] | filter:searchHeroYourTeam).length > 0 && picked(hero.heroIndex)"><img
-              ng-click="yourTeamHeroPick(hero.heroIndex)" ng-right-click="banHero(hero.heroIndex)" src="{{ hero.heroImageURL }}"
-              style="width: 96px; height: 58px"></td>
-            <td ng-show="([hero.heroFullName] | filter:searchHeroYourTeam).length > 0 && picked(hero.heroIndex)">{{ $index + 1 }}</td>
-            <td ng-show="([hero.heroFullName] | filter:searchHeroYourTeam).length > 0 && picked(hero.heroIndex)">{{ hero.heroFullName }}</td>
-            <td ng-show="([hero.heroFullName] | filter:searchHeroYourTeam).length > 0 && picked(hero.heroIndex)">{{ hero.yourTeamWinrate }}%</td>
-            <td ng-show="([hero.heroFullName] | filter:searchHeroYourTeam).length > 0 && picked(hero.heroIndex)">{{ hero.yourTeamAdvantage }}</td>
-          </tr>
-          </tbody>
-        </table>
-      </div>
-    </div>
-    <div class="col-xs-2">
-
-
-        <select id="dropDownBanHero" class="form-control" ng-model="selectedHeroBan"
-                ng-options="obj.heroIndex as obj.heroFullName for obj in heroes | orderBy:'heroFullName'" ng-show="allowBanning">
-          <option value="">Select hero</option>
-        </select>
-
-        <button class="btn btn-success" ng-click="banHero(selectedHeroBan); selectedHeroBan=''" ng-show="allowBanning">
-          Ban
-        </button>
-    </div>
-    <div class="col-xs-5">
-      <div class="row">
-        <div class="col-xs-4 col-xs-offset-2">
-          <form>
-            <div class="form-group">
-              <div class="input-group">
-                <div class="input-group-addon"><i class="fa fa-search"></i></div>
-                <input type="text" class="form-control" placeholder="Search Hero"
-                       ng-model="searchHeroEnemyTeam">
-              </div>
+            <div class="col-md-6">
+                <div class="input-group">
+                    <select id="dropDownPickYourTeam" class="form-control" ng-model="selectedHeroYourTeam"
+                            ng-options="obj.heroIndex as obj.heroFullName for obj in heroes | orderBy:'heroFullName'" style="display: inline;">
+                        <option value="">Select hero</option>
+                    </select>
+                   <span class="input-group-btn">
+                       <button class="btn btn-success" ng-click="yourTeamHeroPick(selectedHeroYourTeam); selectedHeroYourTeam=''">
+                           Pick
+                       </button>
+                   </span>
+                </div>
             </div>
-          </form>
-        </div>
-        <div class="col-xs-4">
-          <select id="dropDownPickEnemyTeam" class="form-control" ng-model="selectedHeroEnemyTeam"
-                  ng-options="obj.heroIndex as obj.heroFullName for obj in heroes | orderBy:'heroFullName'">
-            <option value="">Select hero</option>
-          </select>
-        </div>
-        <!--<p>$scope.list_category: {{list_category}}<p>-->
-        <div class="col-xs-2">
-          <button class="btn btn-success" ng-click="enemyTeamHeroPick(selectedHeroEnemyTeam); selectedHeroEnemyTeam=''">
-            Pick
-          </button>
-        </div>
-      </div>
-      <div class="row">
-        <div class="col-xs-10 col-xs-offset-2">
-          <div class="scrollThis">
-            <table class="table table-striped">
 
-              <thead>
-              <tr>
-                <td><a></a></td>
-                <td>
-                  <a>
-                    Ranking
+            <br><br><br>
+
+            <div class="table-responsive">
+                <table class="table table-striped">
+                    <thead>
+                    <tr>
+                        <td><a></a></td>
+                        <td><a>Ranking</a></td>
+                        <td>
+                            <a href="#"
+                               ng-click="sortTypeYourTeam = 'heroFullName'; sortReverseYourTeam = !sortReverseYourTeam">
+                                Hero Name
+                                <span ng-show="sortTypeYourTeam == 'heroFullName' && !sortReverseYourTeam"
+                                      class="fa fa-caret-down"></span>
+                                <span ng-show="sortTypeYourTeam == 'heroFullName' && sortReverseYourTeam"
+                                      class="fa fa-caret-up"></span>
+                            </a>
+                        </td>
+                        <td>
+                            <a href="#" ng-click="sortTypeYourTeam = 'yourTeamWinrate'; sortReverseYourTeam = !sortReverseYourTeam">
+                                Winrate
+                                <span ng-show="sortTypeYourTeam == 'yourTeamWinrate' && !sortReverseYourTeam"
+                                      class="fa fa-caret-down"></span>
+                                <span ng-show="sortTypeYourTeam == 'yourTeamWinrate' && sortReverseYourTeam"
+                                      class="fa fa-caret-up"></span>
+                            </a>
+                        </td>
+                        <td>
+                            <a href="#"
+                               ng-click="sortTypeYourTeam = 'yourTeamAdvantage'; sortReverseYourTeam = !sortReverseYourTeam">
+                                Advantage
+                                <span ng-show="sortTypeYourTeam == 'yourTeamAdvantage' && !sortReverseYourTeam"
+                                      class="fa fa-caret-down"></span>
+                                <span ng-show="sortTypeYourTeam == 'yourTeamAdvantage' && sortReverseYourTeam"
+                                      class="fa fa-caret-up"></span>
+                            </a>
+                        </td>
+                    </tr>
+                    </thead>
+
+                    <tbody><!-- | filter:searchHero-->
+                    <tr ng-repeat="hero in heroes | orderBy:sortTypeYourTeam:sortReverseYourTeam">
+                        <td ng-show="([hero.heroFullName] | filter:searchHeroYourTeam).length > 0 && picked(hero.heroIndex)"><img
+                                ng-click="yourTeamHeroPick(hero.heroIndex)" ng-right-click="banHero(hero.heroIndex)" src="{{ hero.heroImageURL }}"
+                                style="width: 96px; height: 58px"></td>
+                        <td ng-show="([hero.heroFullName] | filter:searchHeroYourTeam).length > 0 && picked(hero.heroIndex)">{{ $index + 1 }}</td>
+                        <td ng-show="([hero.heroFullName] | filter:searchHeroYourTeam).length > 0 && picked(hero.heroIndex)">{{ hero.heroFullName }}</td>
+                        <td ng-show="([hero.heroFullName] | filter:searchHeroYourTeam).length > 0 && picked(hero.heroIndex)">{{ hero.yourTeamWinrate }}%</td>
+                        <td ng-show="([hero.heroFullName] | filter:searchHeroYourTeam).length > 0 && picked(hero.heroIndex)">{{ hero.yourTeamAdvantage }}</td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+
+
+        <div class="spanMainPageMid">
+
+            <div style="text-align: center;">
+                <label>Allow Banning:
+                <input type="checkbox" ng-model="allowBanning"></label>
+            </div>
+
+            <table>
+                <tr>
+                    <td ng-click="heroBans[0]=null; updateAdvantages()" ng-show="heroBans[0] != null && allowBanning"><img ng-src="{{ heroBans[0].heroImageURL }}" class="img-responsive" max-width="500"></td>
+                    <td ng-show="heroBans[0] == null && allowBanning"><img ng-src="assets/images/hero_unselected.jpg" class="img-responsive" max-width="500"></td>
+
+                    <td ng-click="heroBans[1]=null; updateAdvantages()" ng-show="heroBans[1] != null && allowBanning"><img ng-src="{{ heroBans[1].heroImageURL }}" class="img-responsive" max-width="500"></td>
+                    <td ng-show="heroBans[1] == null && allowBanning"><img ng-src="assets/images/hero_unselected.jpg" class="img-responsive" max-width="500"></td>
+                </tr>
+                <tr>
+                    <td ng-click="heroBans[2]=null; updateAdvantages()" ng-show="heroBans[2] != null && allowBanning"><img ng-src="{{ heroBans[2].heroImageURL }}" class="img-responsive" max-width="500"></td>
+                    <td ng-show="heroBans[2] == null && allowBanning"><img ng-src="assets/images/hero_unselected.jpg" class="img-responsive" max-width="500"></td>
+
+                    <td ng-click="heroBans[3]=null; updateAdvantages()" ng-show="heroBans[3] != null && allowBanning"><img ng-src="{{ heroBans[3].heroImageURL }}" class="img-responsive" max-width="500"></td>
+                    <td ng-show="heroBans[3] == null && allowBanning"><img ng-src="assets/images/hero_unselected.jpg" class="img-responsive" max-width="500"></td>
+                </tr>
+                <tr>
+                    <td ng-click="heroBans[4]=null; updateAdvantages()" ng-show="heroBans[4] != null && allowBanning"><img ng-src="{{ heroBans[4].heroImageURL }}" class="img-responsive" max-width="500"></td>
+                    <td ng-show="heroBans[4] == null && allowBanning"><img ng-src="assets/images/hero_unselected.jpg" class="img-responsive" max-width="500"></td>
+
+                    <td ng-click="heroBans[5]=null; updateAdvantages()" ng-show="heroBans[5] != null && allowBanning"><img ng-src="{{ heroBans[5].heroImageURL }}" class="img-responsive" max-width="500"></td>
+                    <td ng-show="heroBans[5] == null && allowBanning"><img ng-src="assets/images/hero_unselected.jpg" class="img-responsive" max-width="500"></td>
+                </tr>
+                <tr>
+                    <td ng-click="heroBans[6]=null; updateAdvantages()" ng-show="heroBans[6] != null && allowBanning"><img ng-src="{{ heroBans[6].heroImageURL }}" class="img-responsive" max-width="500"></td>
+                    <td ng-show="heroBans[6] == null && allowBanning"><img ng-src="assets/images/hero_unselected.jpg" class="img-responsive" max-width="500"></td>
+
+                    <td ng-click="heroBans[7]=null; updateAdvantages()" ng-show="heroBans[7] != null && allowBanning"><img ng-src="{{ heroBans[7].heroImageURL }}" class="img-responsive" max-width="500"></td>
+                    <td ng-show="heroBans[7] == null && allowBanning"><img ng-src="assets/images/hero_unselected.jpg" class="img-responsive" max-width="500"></td>
+                </tr>
+                <tr>
+                    <td ng-click="heroBans[8]=null; updateAdvantages()" ng-show="heroBans[8] != null && allowBanning"><img ng-src="{{ heroBans[8].heroImageURL }}" class="img-responsive" max-width="500"></td>
+                    <td ng-show="heroBans[8] == null && allowBanning"><img ng-src="assets/images/hero_unselected.jpg" class="img-responsive" max-width="500"></td>
+
+                    <td ng-click="heroBans[9]=null; updateAdvantages()" ng-show="heroBans[9] != null && allowBanning"><img ng-src="{{ heroBans[9].heroImageURL }}" class="img-responsive" max-width="500"></td>
+                    <td ng-show="heroBans[9] == null && allowBanning"><img ng-src="assets/images/hero_unselected.jpg" class="img-responsive" max-width="500"></td>
+                </tr>
+            </table>
+
+
+
+
+        </div>
+        <div class="spanMainPageRight">
+            <table>
+                <tr>
+                    <td ng-click="enemyTeamPicks[0]=null; updateAdvantages()" ng-show="enemyTeamPicks[0] != null"><img ng-src="{{ enemyTeamPicks[0].heroImageURL }}" class="img-responsive" max-width="500"></td>
+                    <td ng-click="open('enemyTeamPick')" ng-show="enemyTeamPicks[0] == null"><img ng-src="assets/images/hero_unselected.jpg" class="img-responsive" max-width="500"></td>
+
+                    <td ng-click="enemyTeamPicks[1]=null; updateAdvantages()" ng-show="enemyTeamPicks[1] != null"><img ng-src="{{ enemyTeamPicks[1].heroImageURL }}" class="img-responsive" max-width="500"></td>
+                    <td ng-click="open('enemyTeamPick')" ng-show="enemyTeamPicks[1] == null"><img ng-src="assets/images/hero_unselected.jpg" class="img-responsive" max-width="500"></td>
+
+                    <td ng-click="enemyTeamPicks[2]=null; updateAdvantages()" ng-show="enemyTeamPicks[2] != null"><img ng-src="{{ enemyTeamPicks[2].heroImageURL }}" class="img-responsive" max-width="500"></td>
+                    <td ng-click="open('enemyTeamPick')" ng-show="enemyTeamPicks[2] == null"><img ng-src="assets/images/hero_unselected.jpg" class="img-responsive" max-width="500"></td>
+
+                    <td ng-click="enemyTeamPicks[3]=null; updateAdvantages()" ng-show="enemyTeamPicks[3] != null"><img ng-src="{{ enemyTeamPicks[3].heroImageURL }}" class="img-responsive" max-width="500"></td>
+                    <td ng-click="open('enemyTeamPick')" ng-show="enemyTeamPicks[3] == null"><img ng-src="assets/images/hero_unselected.jpg" class="img-responsive" max-width="500"></td>
+
+                    <td ng-click="enemyTeamPicks[4]=null; updateAdvantages()" ng-show="enemyTeamPicks[4] != null"><img ng-src="{{ enemyTeamPicks[4].heroImageURL }}" class="img-responsive" max-width="500"></td>
+                    <td ng-click="open('enemyTeamPick')" ng-show="enemyTeamPicks[4] == null"><img ng-src="assets/images/hero_unselected.jpg" class="img-responsive" max-width="500"></td>
+                </tr>
+            </table>
+            <br>
+            <div class="col-md-6">
+                <form>
+                    <div class="form-group">
+                        <div class="input-group">
+                            <div class="input-group-addon"><i class="fa fa-search"></i></div>
+                            <input type="text" class="form-control" placeholder="Search Hero"
+                                   ng-model="searchHeroEnemyTeam">
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div class="col-md-6">
+                <div class="input-group">
+                    <select id="dropDownPickEnemyTeam" class="form-control" ng-model="selectedHeroEnemyTeam"
+                            ng-options="obj.heroIndex as obj.heroFullName for obj in heroes | orderBy:'heroFullName'">
+                        <option value="">Select hero</option>
+                    </select>
+                   <span class="input-group-btn">
+                       <button class="btn btn-success" ng-click="enemyTeamHeroPick(selectedHeroEnemyTeam); selectedHeroEnemyTeam=''">
+                           Pick
+                       </button>
+                   </span>
+                </div>
+            </div>
+
+            <br><br><br>
+
+
+            <div class="table-responsive">
+                <table class="table table-striped">
+
+                    <thead>
+                    <tr>
+                        <td><a></a></td>
+                        <td>
+                            <a>
+                                Ranking
                             <span ng-show="sortTypeEnemyTeam == 'ranking' && !sortReverseEnemyTeam"
                                   class="fa fa-caret-down"></span>
                             <span ng-show="sortTypeEnemyTeam == 'ranking' && sortReverseEnemyTeam"
                                   class="fa fa-caret-up"></span>
-                  </a>
-                </td>
-                <td>
-                  <a href="#"
-                     ng-click="sortTypeEnemyTeam = 'heroFullName'; sortReverseEnemyTeam = !sortReverseEnemyTeam">
-                    Hero Name
+                            </a>
+                        </td>
+                        <td>
+                            <a href="#"
+                               ng-click="sortTypeEnemyTeam = 'heroFullName'; sortReverseEnemyTeam = !sortReverseEnemyTeam">
+                                Hero Name
                             <span ng-show="sortTypeEnemyTeam == 'heroFullName' && !sortReverseEnemyTeam"
                                   class="fa fa-caret-down"></span>
                             <span ng-show="sortTypeEnemyTeam == 'heroFullName' && sortReverseEnemyTeam"
                                   class="fa fa-caret-up"></span>
-                  </a>
-                </td>
-                <td>
-                  <a href="#"
-                     ng-click="sortTypeEnemyTeam = 'enemyTeamWinrate'; sortReverseEnemyTeam = !sortReverseEnemyTeam">
-                    Winrate
+                            </a>
+                        </td>
+                        <td>
+                            <a href="#"
+                               ng-click="sortTypeEnemyTeam = 'enemyTeamWinrate'; sortReverseEnemyTeam = !sortReverseEnemyTeam">
+                                Winrate
                             <span ng-show="sortTypeEnemyTeam == 'enemyTeamWinrate' && !sortReverseEnemyTeam"
                                   class="fa fa-caret-down"></span>
                             <span ng-show="sortTypeEnemyTeam == 'enemyTeamWinrate' && sortReverseEnemyTeam"
                                   class="fa fa-caret-up"></span>
-                  </a>
-                </td>
-                <td>
-                  <a href="#"
-                     ng-click="sortTypeEnemyTeam = 'enemyTeamAdvantage'; sortReverseEnemyTeam = !sortReverseEnemyTeam">
-                    Advantage
+                            </a>
+                        </td>
+                        <td>
+                            <a href="#"
+                               ng-click="sortTypeEnemyTeam = 'enemyTeamAdvantage'; sortReverseEnemyTeam = !sortReverseEnemyTeam">
+                                Advantage
                             <span ng-show="sortTypeEnemyTeam == 'enemyTeamAdvantage' && !sortReverseEnemyTeam"
                                   class="fa fa-caret-down"></span>
                             <span ng-show="sortTypeEnemyTeam == 'enemyTeamAdvantage' && sortReverseEnemyTeam"
                                   class="fa fa-caret-up"></span>
-                  </a>
-                </td>
-              </tr>
-              </thead>
+                            </a>
+                        </td>
+                    </tr>
+                    </thead>
 
-              <tbody><!-- | filter:searchHero-->
-              <tr ng-repeat="hero in heroes | orderBy:sortTypeEnemyTeam:sortReverseEnemyTeam">
-                <td ng-show="([hero.heroFullName] | filter:searchHeroEnemyTeam).length > 0 && picked(hero.heroIndex)"><img
-                  ng-click="enemyTeamHeroPick(hero.heroIndex)" ng-right-click="banHero(hero.heroIndex)" src="{{ hero.heroImageURL }}"
-                  style="width: 96px; height: 58px"></td>
-                <td ng-show="([hero.heroFullName] | filter:searchHeroEnemyTeam).length > 0 && picked(hero.heroIndex)">{{ $index + 1 }}</td>
-                <td ng-show="([hero.heroFullName] | filter:searchHeroEnemyTeam).length > 0 && picked(hero.heroIndex)">{{ hero.heroFullName }}</td>
-                <td ng-show="([hero.heroFullName] | filter:searchHeroEnemyTeam).length > 0 && picked(hero.heroIndex)">{{ hero.enemyTeamWinrate }}%
-                </td>
-                <td ng-show="([hero.heroFullName] | filter:searchHeroEnemyTeam).length > 0 && picked(hero.heroIndex)">{{ hero.enemyTeamAdvantage
-                  }}
-                </td>
-              </tr>
-              </tbody>
-            </table>
-          </div>
+                    <tbody><!-- | filter:searchHero-->
+                    <tr ng-repeat="hero in heroes | orderBy:sortTypeEnemyTeam:sortReverseEnemyTeam">
+                        <td ng-show="([hero.heroFullName] | filter:searchHeroEnemyTeam).length > 0 && picked(hero.heroIndex)"><img
+                                ng-click="enemyTeamHeroPick(hero.heroIndex)" ng-right-click="banHero(hero.heroIndex)" src="{{ hero.heroImageURL }}"
+                                style="width: 96px; height: 58px"></td>
+                        <td ng-show="([hero.heroFullName] | filter:searchHeroEnemyTeam).length > 0 && picked(hero.heroIndex)">{{ $index + 1 }}</td>
+                        <td ng-show="([hero.heroFullName] | filter:searchHeroEnemyTeam).length > 0 && picked(hero.heroIndex)">{{ hero.heroFullName }}</td>
+                        <td ng-show="([hero.heroFullName] | filter:searchHeroEnemyTeam).length > 0 && picked(hero.heroIndex)">{{ hero.enemyTeamWinrate }}%
+                        </td>
+                        <td ng-show="([hero.heroFullName] | filter:searchHeroEnemyTeam).length > 0 && picked(hero.heroIndex)">{{ hero.enemyTeamAdvantage
+                            }}
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
         </div>
-      </div>
     </div>
-  </section><!-- hero table section-->
-
-  <p class="errMsg"> {{ serverErrRes }} </p>
-
 </div>
+
+
+<!-- MODAL OVER -->
+
+
+

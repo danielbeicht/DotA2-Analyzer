@@ -19,25 +19,45 @@
 
     $scope.animationsEnabled = true;
 
-    $scope.open = function () {
+    $scope.open = function (pickSetting) {
       var modalInstance = $uibModal.open({
         animation: $scope.animationsEnabled,
         templateUrl: 'myModalContent.html',
         controller: 'ModalInstanceCtrl',
-        size: 'lg',
         resolve: {
-          items: function () {
-            return $scope.items;
+          pickSetting: function() {
+            return pickSetting;
           }
         }
       });
 
-      modalInstance.result.then(function (selectedItem) {
-        $scope.selected = selectedItem;
+      modalInstance.result.then(function (result) {
+        var selectedHero = result[0];
+        var pick = result[1];
+        if (pick === 'yourTeamPick'){
+          console.log(selectedHero);
+          for (var i=0; i < $scope.heroesSortedByIndex.length; i++){
+            if ($scope.heroesSortedByIndex[i].heroName.trim() === selectedHero){
+              yourTeamHeroPick($scope.heroesSortedByIndex[i].heroIndex);
+              break;
+            }
+          }
+        } else if (pick === 'enemyTeamPick'){
+          for (var i=0; i < $scope.heroesSortedByIndex.length; i++){
+            if ($scope.heroesSortedByIndex[i].heroName.trim() === selectedHero){
+              enemyTeamHeroPick($scope.heroesSortedByIndex[i].heroIndex);
+              break;
+            }
+          }
+        }
+
+
       }, function () {
         $log.info('Modal dismissed at: ' + new Date());
       });
     };
+
+
 
     $scope.toggleAnimation = function () {
       $scope.animationsEnabled = !$scope.animationsEnabled;
