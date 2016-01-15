@@ -34,4 +34,8 @@
     width:14.0%; /* 3 columns */
 }
 
-
+[ng-click],
+[data-ng-click],
+[x-ng-click] {
+    cursor: pointer;
+}
