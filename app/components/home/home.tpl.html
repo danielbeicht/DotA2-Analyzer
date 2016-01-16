@@ -13,12 +13,13 @@
               <div class="spanheroes">
 
                   <div style="text-align: center;">
-                      <p class="attributes">Strength <img src="assets/images/attributes/strength.png"alt="Strength"></p>
+                      <p class="attributes">Strength <img src="assets/images/attributes/strength.png" alt="Strength"></p>
                   </div>
 
                   <table>
                       <tr>
-                          <th><img src="assets/images/heroes/Earthshaker.jpg" ng-click="ok('earthshaker')" class="img-responsive" alt="Earthshaker" max-width="256" ></th>
+                          <th ng-hide="!picked(27)"><img src="assets/images/heroes/Earthshaker.jpg" ng-click="ok('earthshaker')" class="img-responsive" alt="Earthshaker" max-width="256" title="test"></th>
+                          <th ng-hide="picked(27)"><img src="assets/images/heroes_gray/Earthshaker.jpg" class="img-responsive" alt="Earthshaker" max-width="256" ></th>
                           <th><img src="assets/images/heroes/Sven.jpg" ng-click="ok('sven')" class="img-responsive" alt="Sven" max-width="256" ></th>
                           <th><img src="assets/images/heroes/Tiny.jpg" ng-click="ok('tiny')" class="img-responsive" alt="Tiny" max-width="256" ></th>
                           <th><img src="assets/images/heroes/Kunkka.jpg" ng-click="ok('kunkka')" class="img-responsive" alt="Kunkka" max-width="256" ></th>
@@ -73,7 +74,7 @@
               </div>
               <div class="spanheroes">
                   <div style="text-align: center;">
-                      <p class="attributes">Agility <img src="assets/images/attributes/agility.png"alt="Agility"></p>
+                      <p class="attributes">Agility <img src="assets/images/attributes/agility.png" alt="Agility"></p>
                   </div>
                   <table>
                       <tr>
@@ -130,7 +131,7 @@
               </div>
               <div class="spanheroes">
                   <div style="text-align: center;">
-                      <p class="attributes">Inteligence <img src="assets/images/attributes/intelligence.png"alt="Intelligence"></p>
+                      <p class="attributes">Inteligence <img src="assets/images/attributes/intelligence.png" alt="Intelligence"></p>
                   </div>
                   <table>
                       <tr>
@@ -304,7 +305,9 @@
 
 
         <div class="spanMainPageMid">
-
+            <button class="btn btn-success" ng-click="debugFunction()">
+                Debug Function
+            </button>
             <div style="text-align: center;">
                 <label>Allow Banning:
                 <input type="checkbox" ng-model="allowBanning"></label>

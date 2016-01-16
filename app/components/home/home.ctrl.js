@@ -12,7 +12,9 @@
 
 
   function homeCtrl($scope, $http, $log, $uibModal) {
-
+  $scope.debugFunction = function (){
+    $log.info($scope.picked(27));
+  };
 
     // TEMP
     $scope.items = ['item1', 'item2', 'item3'];
@@ -24,6 +26,7 @@
         animation: $scope.animationsEnabled,
         templateUrl: 'myModalContent.html',
         controller: 'ModalInstanceCtrl',
+        scope: $scope,
         resolve: {
           pickSetting: function() {
             return pickSetting;
