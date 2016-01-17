@@ -4,9 +4,6 @@
         <h3 class="modal-title">Hero picker</h3>
     </div>
 
-
-
-
     <div class="modal-body">
         <div class="gridheroes">
             <div class="wrapperheroes">
@@ -15,11 +12,8 @@
                         <p class="attributes">Strength <img src="assets/images/attributes/strength.png" alt="Strength"></p>
                     </div>
 
-                    <table cellpadding="1000">
+                    <table>
                         <tr class="tableHeroPicker">
-                            <!--<th ng-hide="!picked(27)"><img src="assets/images/heroes/Earthshaker.jpg" ng-click="ok('earthshaker')" class="img-responsive" alt="Earthshaker" max-width="256" title="test"></th>-->
-                            <!--<th ng-hide="!picked(27)"><img src="assets/images/heroes/Earthshaker.jpg" ng-click="ok('earthshaker')" class="img-responsive" alt="Earthshaker" max-width="256" title="test"></th>-->
-                            <!--<th ng-hide="picked(27)"><img src="assets/images/heroes_gray/Earthshaker.jpg" class="img-responsive" alt="Earthshaker" max-width="256" ></th>-->
                             <th class="tableHeroPicker"><img ng-src="{{pickedHeroName(27)}}" ng-click="!picked(27)||ok('earthshaker')" class="img-responsive" alt="Earthshaker" max-width="256" title="Earthshaker"></th>
                             <th class="tableHeroPicker"><img ng-src="{{pickedHeroName(87)}}" ng-click="!picked(87)||ok('sven')" class="img-responsive" alt="Sven" max-width="256" ></th>
                             <th class="tableHeroPicker"><img ng-src="{{pickedHeroName(94)}}" ng-click="!picked(94)||ok('tiny')" class="img-responsive" alt="Tiny" max-width="256" ></th>
@@ -247,7 +241,6 @@
                 </tr>
             </table>
         </div>
-
     </div>
 </div>
 
@@ -255,7 +248,14 @@
     <div class="row"></div>
     <div class="row">
         <div class="col-md-4"></div>
-        <div class="col-md-4"><br><br><uib-progress><uib-bar ng-repeat="bar in stacked track by $index" value="bar.value" type="{{bar.type}}"><span ng-hide="bar.value < 5">{{bar.value}}%</span></uib-bar></uib-progress></div>
+        <div class="col-md-4"><br><br>
+            <div style="text-align: center;">
+                <uib-progress>
+                    <uib-bar style="background:rgba(245, 245, 245, 1)" ng-repeat="bar in stacked track by $index" ng-if="bar.isPlaceholder" value="bar.value"><span>{{bar.adv}}</span></uib-bar>
+                    <uib-bar id="progressValue" style="background:black" ng-repeat="bar in stacked track by $index" ng-if="!bar.isPlaceholder" value="bar.value" type="{{changeProgressbarColor(bar)}}"><span>{{bar.adv}}</span></uib-bar>
+                </uib-progress>
+            </div>
+        </div>
         <div class="col-md-4"></div>
     </div>
 </div>

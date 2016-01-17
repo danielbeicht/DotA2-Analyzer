@@ -14,14 +14,13 @@
   function homeCtrl($scope, $http, $log, $uibModal) {
   $scope.debugFunction = function (){
     for (var i=0; i<$scope.heroes.length; i++){
-      console.log($scope.heroes[i].heroFullName + " " + $scope.heroes[i].heroIndex);
     }
   };
 
     // TEMP
     $scope.items = ['item1', 'item2', 'item3'];
 
-    $scope.animationsEnabled = true;
+    $scope.animationsEnabled = false;
 
     $scope.open = function (pickSetting) {
       var modalInstance = $uibModal.open({
@@ -342,18 +341,7 @@
     // Update hero Advantages
     function updateAdvantages() {
       // TODO: Get Info about partaking players
-      $scope.yourTeamOverallAdvantage = 0;
-      $scope.enemyTeamOverallAdvantage = 0;
-      for (var i=0; i < 5; i++) {
-        if ($scope.yourTeamPicks[i] != null) {
-          $scope.yourTeamOverallAdvantage += $scope.yourTeamPicks[i].yourTeamAdvantage;
-        }
-        if ($scope.enemyTeamPicks[i] != null) {
-          $scope.enemyTeamOverallAdvantage += $scope.enemyTeamPicks[i].enemyTeamAdvantage;
-        }
-      }
-      console.log($scope.yourTeamOverallAdvantage);
-      console.log($scope.enemyTeamOverallAdvantage);
+
 
       for (var i = 0; i < $scope.heroesSortedByIndex.length; i++) {
         // TODO: Check if hero is banned; continue if hero is banned
@@ -389,7 +377,7 @@
         if (exit) {
           $scope.heroesSortedByIndex[i].yourTeamWinrate = '0.00';
           $scope.heroesSortedByIndex[i].enemyTeamWinrate = '0.00';
-          continue;
+          //continue;
         }
         var teamAdvantage = 0.0;
         var enemyAdvantage = 0.0;
@@ -424,7 +412,65 @@
         $scope.heroesSortedByIndex[i].yourTeamWinrate = (parseFloat(teamWinrate) / parseFloat(enemyHeroCount)).toFixed(2);
         $scope.heroesSortedByIndex[i].enemyTeamWinrate = (parseFloat(enemyWinrate) / parseFloat(teamHeroCount)).toFixed(2);
       }
+
+      $scope.yourTeamOverallAdvantage = 0;
+      $scope.enemyTeamOverallAdvantage = 0;
+      for (var i=0; i < 5; i++) {
+        if ($scope.yourTeamPicks[i] != null) {
+          $scope.yourTeamOverallAdvantage += $scope.yourTeamPicks[i].yourTeamAdvantage;
+        }
+        if ($scope.enemyTeamPicks[i] != null) {
+          $scope.enemyTeamOverallAdvantage += $scope.enemyTeamPicks[i].enemyTeamAdvantage;
+        }
+      }
+
+      $scope.stacked = [];
+      $scope.maxAdvantage = 80;
+      var multiplier = 100/$scope.maxAdvantage;
+      var yourTeamValue = $scope.yourTeamOverallAdvantage/$scope.maxAdvantage*50;
+      var enemyTeamValue = $scope.enemyTeamOverallAdvantage/$scope.maxAdvantage*50;
+
+      if (yourTeamValue >= enemyTeamValue) {
+        $scope.dif = yourTeamValue - enemyTeamValue;
+        $scope.placeHolderValue = $scope.maxAdvantage/2 - $scope.dif;
+        $scope.stacked.push({
+          value: ($scope.placeHolderValue*multiplier).toFixed(2),
+          adv: '',
+          isPlaceholder: true
+        });
+        $scope.stacked.push({
+          value: ($scope.dif*multiplier).toFixed(2),
+          adv: ($scope.dif).toFixed(2),
+          isPlaceholder: false
+        });
+      } else {
+        $scope.dif = enemyTeamValue - yourTeamValue;
+
+        $scope.placeHolderValue = $scope.maxAdvantage/2;
+
+        $scope.stacked.push({
+          value: (50),
+          adv: '',
+          isPlaceholder: true,
+          isValue: false
+        });
+        $scope.stacked.push({
+          value: ($scope.dif*multiplier).toFixed(2),
+          adv: ($scope.dif).toFixed(2),
+          isPlaceholder: false,
+          isValue: true
+        });;
+      }
     };
+
+    // Checks if element is Placeholder or Value; Return is color
+    $scope.changeProgressbarColor = function(vari) {
+        var cols = document.getElementById('progressValue');
+        var percent = vari.value / ($scope.maxAdvantage/2) * 100;
+        cols.style.background = 'rgba(' + (255-(percent/100*255).toFixed(0)) + ', 255, 0, 1)';
+    };
+
+
 
     // Sort heroes by Index
     function compare(a, b) {
