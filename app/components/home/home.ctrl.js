@@ -13,7 +13,9 @@
 
   function homeCtrl($scope, $http, $log, $uibModal) {
   $scope.debugFunction = function (){
-    $log.info($scope.picked(27));
+    for (var i=0; i<$scope.heroes.length; i++){
+      console.log($scope.heroes[i].heroFullName + " " + $scope.heroes[i].heroIndex);
+    }
   };
 
     // TEMP
@@ -26,6 +28,7 @@
         animation: $scope.animationsEnabled,
         templateUrl: 'myModalContent.html',
         controller: 'ModalInstanceCtrl',
+        windowClass: 'app-modal-window',
         scope: $scope,
         resolve: {
           pickSetting: function() {
@@ -38,7 +41,6 @@
         var selectedHero = result[0];
         var pick = result[1];
         if (pick === 'yourTeamPick'){
-          console.log(selectedHero);
           for (var i=0; i < $scope.heroesSortedByIndex.length; i++){
             if ($scope.heroesSortedByIndex[i].heroName.trim() === selectedHero){
               yourTeamHeroPick($scope.heroesSortedByIndex[i].heroIndex);
@@ -70,13 +72,6 @@
     // TEMP
 
 
-
-
-
-
-
-
-
     // APIs
     $scope.yourTeamHeroPick = yourTeamHeroPick;
     $scope.enemyTeamHeroPick = enemyTeamHeroPick;
@@ -93,7 +88,6 @@
     });
 
     function initHome() {
-        console.log("DRIN");
       $scope.dataLoaded = false;
       $scope.yourTeamPicks = new Array(5);
       $scope.enemyTeamPicks = new Array(5);
@@ -108,6 +102,22 @@
 
       $scope.searchHeroYourTeam = '';     // set the default search/filter term
       $scope.searchHeroEnemyTeam = '';
+
+      $scope.yourTeamOverallAdvantage = 0.0;
+      $scope.enemyTeamOverallAdvantage = 0.0;
+
+
+      $scope.overallAdvantages = [];
+      $scope.overallAdvantages.push({
+        value: 0,
+        type: 'success'
+      });
+      $scope.overallAdvantages.push({
+        value: 0,
+        type: 'alert'
+      });
+
+
 
       // Get all heroes
       $http({
@@ -205,6 +215,23 @@
       ];
     }
 
+    // return image URL (gray when picked; with color when unpicked)
+    $scope.pickedHeroName = function (heroIndex){
+      for (var i=0; i<5; i++) {
+        if ($scope.heroesSortedByIndex[heroIndex] == $scope.yourTeamPicks[i]){
+          return "assets/images/heroes_gray/" + $scope.heroesSortedByIndex[heroIndex].heroFullName.trim().replace(/\s/gi, "_") + '.jpg';
+        } else if ($scope.heroesSortedByIndex[heroIndex] == $scope.enemyTeamPicks[i]){
+          return "assets/images/heroes_gray/" + $scope.heroesSortedByIndex[heroIndex].heroFullName.trim().replace(/\s/gi, "_") + '.jpg';
+        }
+      }
+      for (var i=0; i<10; i++) {
+        if ($scope.heroesSortedByIndex[heroIndex] == $scope.heroBans[i]) {
+          return "assets/images/heroes_gray/" + $scope.heroesSortedByIndex[heroIndex].heroFullName.trim().replace(/\s/gi, "_") + '.jpg';
+        }
+      }
+      return "assets/images/heroes/" + $scope.heroesSortedByIndex[heroIndex].heroFullName.trim().replace(/\s/gi, "_") + '.jpg';
+    }
+
     // call on 1st load + reload
     initHome();
 
@@ -232,6 +259,7 @@
             if ($scope.yourTeamPicks[i] == null) {
               $scope.yourTeamPicks[i] = $scope.heroesSortedByIndex[heroIndexParameter];
               heroPicked = true;
+
               break;
             }
           }
@@ -266,6 +294,7 @@
             if ($scope.enemyTeamPicks[i] == null) {
               $scope.enemyTeamPicks[i] = $scope.heroesSortedByIndex[heroIndexParameter];
               heroPicked = true;
+              $scope.enemyTeamOverallAdvantage += $scope.heroesSortedByIndex[heroIndexParameter].enemyTeamAdvantage;;
               break;
             }
           }
@@ -313,17 +342,30 @@
     // Update hero Advantages
     function updateAdvantages() {
       // TODO: Get Info about partaking players
+      $scope.yourTeamOverallAdvantage = 0;
+      $scope.enemyTeamOverallAdvantage = 0;
+      for (var i=0; i < 5; i++) {
+        if ($scope.yourTeamPicks[i] != null) {
+          $scope.yourTeamOverallAdvantage += $scope.yourTeamPicks[i].yourTeamAdvantage;
+        }
+        if ($scope.enemyTeamPicks[i] != null) {
+          $scope.enemyTeamOverallAdvantage += $scope.enemyTeamPicks[i].enemyTeamAdvantage;
+        }
+      }
+      console.log($scope.yourTeamOverallAdvantage);
+      console.log($scope.enemyTeamOverallAdvantage);
 
       for (var i = 0; i < $scope.heroesSortedByIndex.length; i++) {
         // TODO: Check if hero is banned; continue if hero is banned
-
         // Reset advantage data
-        $scope.heroesSortedByIndex[i].yourTeamWinrate = 0.0;
-        $scope.heroesSortedByIndex[i].yourTeamAdvantage = 0.0;
-        $scope.heroesSortedByIndex[i].enemyTeamWinrate = 0.0;
-        $scope.heroesSortedByIndex[i].enemyTeamAdvantage = 0.0;
+        //$scope.heroesSortedByIndex[i].yourTeamWinrate = 0.0;
+        //$scope.heroesSortedByIndex[i].yourTeamAdvantage = 0.0;
+        //$scope.heroesSortedByIndex[i].enemyTeamWinrate = 0.0;
+        //$scope.heroesSortedByIndex[i].enemyTeamAdvantage = 0.0;
 
         // Check if hero has already been selected; if yes: ignore hero
+
+
         var exit = false;
         for (var j = 0; j < 5; j++) {
           if ($scope.yourTeamPicks[j] != null && $scope.yourTeamPicks[j].heroIndex == i) {
@@ -408,6 +450,7 @@ angular
       });
     };
   });
+
 
 
 /* Müllhalde

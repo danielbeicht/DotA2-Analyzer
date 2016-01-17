@@ -36,6 +36,7 @@ angular.module('IBApp').controller('ModalInstanceCtrl', function ($scope, $uibMo
 
 
   $scope.ok = function (heroname) {
+    console.log("OK fired");
     var tempArray = new Array(heroname, pickSetting);
     $uibModalInstance.close(tempArray);
   };

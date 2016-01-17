@@ -39,3 +39,8 @@
 [x-ng-click] {
     cursor: pointer;
 }
+
+.app-modal-window .modal-dialog {
+    width: 1920px;
+}
+

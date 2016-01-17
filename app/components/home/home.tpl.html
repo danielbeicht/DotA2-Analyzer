@@ -1,204 +1,206 @@
 <script type="text/ng-template" id="myModalContent.html">
-  <div class="modal-header">
-      <button type="button" class="close" ng-click="cancel()" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-    <h3 class="modal-title">Hero picker</h3>
-  </div>
-
-
-
-
-  <div class="modal-body">
-      <div class="gridheroes">
-          <div class="wrapperheroes">
-              <div class="spanheroes">
-
-                  <div style="text-align: center;">
-                      <p class="attributes">Strength <img src="assets/images/attributes/strength.png" alt="Strength"></p>
-                  </div>
-
-                  <table>
-                      <tr>
-                          <th ng-hide="!picked(27)"><img src="assets/images/heroes/Earthshaker.jpg" ng-click="ok('earthshaker')" class="img-responsive" alt="Earthshaker" max-width="256" title="test"></th>
-                          <th ng-hide="picked(27)"><img src="assets/images/heroes_gray/Earthshaker.jpg" class="img-responsive" alt="Earthshaker" max-width="256" ></th>
-                          <th><img src="assets/images/heroes/Sven.jpg" ng-click="ok('sven')" class="img-responsive" alt="Sven" max-width="256" ></th>
-                          <th><img src="assets/images/heroes/Tiny.jpg" ng-click="ok('tiny')" class="img-responsive" alt="Tiny" max-width="256" ></th>
-                          <th><img src="assets/images/heroes/Kunkka.jpg" ng-click="ok('kunkka')" class="img-responsive" alt="Kunkka" max-width="256" ></th>
-                          <th><img src="assets/images/heroes/Beastmaster.jpg" ng-click="ok('beastmaster')" class="img-responsive" alt="Beastmaster" max-width="256" ></th>
-                          <th><img src="assets/images/heroes/Dragon_Knight.jpg" ng-click="ok('dragon-knight')" class="img-responsive" alt="Dragon Knight" max-width="256" ></th>
-                          <th><img src="assets/images/heroes/Clockwerk.jpg" ng-click="ok('clockwerk')" class="img-responsive" alt="Clockwerk" max-width="256" ></th>
-                      </tr>
-                      <tr>
-                          <th><img src="assets/images/heroes/Omniknight.jpg" ng-click="ok('omniknight')" class="img-responsive" alt="Omniknight" max-width="256" ></th>
-                          <th><img src="assets/images/heroes/Huskar.jpg" ng-click="ok('huskar')" class="img-responsive" alt="Huskar" max-width="256" ></th>
-                          <th><img src="assets/images/heroes/Alchemist.jpg" ng-click="ok('alchemist')" class="img-responsive" alt="Alchemist" max-width="256" ></th>
-                          <th><img src="assets/images/heroes/Brewmaster.jpg" ng-click="ok('brewmaster')" class="img-responsive" alt="Brewmaster" max-width="256" ></th>
-                          <th><img src="assets/images/heroes/Treant_Protector.jpg" ng-click="ok('treant-protector')" class="img-responsive" alt="Treant Protector" max-width="256" ></th>
-                          <th><img src="assets/images/heroes/Io.jpg" ng-click="ok('io')" class="img-responsive" alt="Io" max-width="256" ></th>
-                          <th><img src="assets/images/heroes/Centaur_Warrunner.jpg" ng-click="ok('centaur-warrunner')" class="img-responsive" alt="Centaur Warrunner" max-width="256" ></th>
-                      </tr>
-                      <tr>
-                          <th><img src="assets/images/heroes/Timbersaw.jpg" ng-click="ok('timbersaw')" class="img-responsive" alt="Timbersaw" max-width="256" ></th>
-                          <th><img src="assets/images/heroes/Bristleback.jpg" ng-click="ok('bristleback')" class="img-responsive" alt="Bristleback" max-width="256" ></th>
-                          <th><img src="assets/images/heroes/Tusk.jpg" ng-click="ok('tusk')" class="img-responsive" alt="Tusk" max-width="256" ></th>
-                          <th><img src="assets/images/heroes/Elder_Titan.jpg" ng-click="ok('elder-titan')" class="img-responsive" alt="Elder Titan" max-width="256" ></th>
-                          <th><img src="assets/images/heroes/Legion_Commander.jpg" ng-click="ok('legion-commander')" class="img-responsive" alt="Legion Commander" max-width="256" ></th>
-                          <th><img src="assets/images/heroes/Earth_Spirit.jpg" ng-click="ok('earth-spirit')" class="img-responsive" alt="Earth Spirit" max-width="256" ></th>
-                          <th><img src="assets/images/heroes/Phoenix.jpg" ng-click="ok('phoenix')" class="img-responsive" alt="Phönix" max-width="256" ></th>
-                      </tr>
-                  </table>
-                  <br>
-                  <table>
-                      <tr>
-                          <th><img src="assets/images/heroes/Axe.jpg" ng-click="ok('axe')" class="img-responsive" alt="Axe" max-width="256" ></th>
-                          <th><img src="assets/images/heroes/Pudge.jpg" ng-click="ok('pudge')" class="img-responsive" alt="Pudge" max-width="256" ></th>
-                          <th><img src="assets/images/heroes/Sand_King.jpg" ng-click="ok('sand-king')" class="img-responsive" alt="Sand King" max-width="256" ></th>
-                          <th><img src="assets/images/heroes/Slardar.jpg" ng-click="ok('slardar')" class="img-responsive" alt="Slardar" max-width="256" ></th>
-                          <th><img src="assets/images/heroes/Tidehunter.jpg" ng-click="ok('tidehunter')" class="img-responsive" alt="Tidehunter" max-width="256" ></th>
-                          <th><img src="assets/images/heroes/Wraith_King.jpg" ng-click="ok('wraith-king')" class="img-responsive" alt="Wraith King" max-width="256" ></th>
-                          <th><img src="assets/images/heroes/Lifestealer.jpg" ng-click="ok('lifestealer')" class="img-responsive" alt="Lifestealer" max-width="256" ></th>
-                      </tr>
-                      <tr>
-                          <th><img src="assets/images/heroes/Night_Stalker.jpg" ng-click="ok('night-stalker')" class="img-responsive" alt="Night Stalker" max-width="256" ></th>
-                          <th><img src="assets/images/heroes/Doom.jpg" ng-click="ok('doom')" class="img-responsive" alt="Doom" max-width="256" ></th>
-                          <th><img src="assets/images/heroes/Spirit_Breaker.jpg" ng-click="ok('spirit-breaker')" class="img-responsive" alt="Spirit Breaker" max-width="256" ></th>
-                          <th><img src="assets/images/heroes/Lycan.jpg" ng-click="ok('lycan')" class="img-responsive" alt="Lycan" max-width="256" ></th>
-                          <th><img src="assets/images/heroes/Chaos_Knight.jpg" ng-click="ok('chaos-knight')" class="img-responsive" alt="Chaos Knight" max-width="256" ></th>
-                          <th><img src="assets/images/heroes/Undying.jpg" ng-click="ok('undying')" class="img-responsive" alt="Undying" max-width="256" ></th>
-                          <th><img src="assets/images/heroes/Magnus.jpg" ng-click="ok('magnus')" class="img-responsive" alt="Magnus" max-width="256" ></th>
-                      </tr>
-                      <tr>
-                          <th><img src="assets/images/heroes/Abaddon.jpg" ng-click="ok('abaddon')" class="img-responsive" alt="Abaddon" max-width="256" ></th>
-                      </tr>
-                  </table>
-
-              </div>
-              <div class="spanheroes">
-                  <div style="text-align: center;">
-                      <p class="attributes">Agility <img src="assets/images/attributes/agility.png" alt="Agility"></p>
-                  </div>
-                  <table>
-                      <tr>
-                          <th><img src="assets/images/heroes/Anti_Mage.jpg" ng-click="ok('anti-mage')" class="img-responsive" alt="Anti Mage" max-width="256" ></th>
-                          <th><img src="assets/images/heroes/Drow_Ranger.jpg" ng-click="ok('drow-ranger')" class="img-responsive" alt="Drow Ranger" max-width="256" ></th>
-                          <th><img src="assets/images/heroes/Juggernaut.jpg" ng-click="ok('juggernaut')" class="img-responsive" alt="Juggernaut" max-width="256" ></th>
-                          <th><img src="assets/images/heroes/Mirana.jpg" ng-click="ok('mirana')" class="img-responsive" alt="Mirana" max-width="256" ></th>
-                          <th><img src="assets/images/heroes/Morphling.jpg" ng-click="ok('morphling')" class="img-responsive" alt="Morphling" max-width="256" ></th>
-                          <th><img src="assets/images/heroes/Phantom_Lancer.jpg" ng-click="ok('phantom-lancer')" class="img-responsive" alt="Phantom Lancer" max-width="256" ></th>
-                          <th><img src="assets/images/heroes/Vengeful_Spirit.jpg" ng-click="ok('vengeful-spirit')" class="img-responsive" alt="Vengeful Spirit" max-width="256" ></th>
-                      </tr>
-                      <tr>
-                          <th><img src="assets/images/heroes/Riki.jpg" ng-click="ok('riki')" class="img-responsive" alt="Riki" max-width="256" ></th>
-                          <th><img src="assets/images/heroes/Sniper.jpg" ng-click="ok('sniper')" class="img-responsive" alt="Sniper" max-width="256" ></th>
-                          <th><img src="assets/images/heroes/Templar_Assassin.jpg" ng-click="ok('templar-assassin')" class="img-responsive" alt="Templar Assassin" max-width="256" ></th>
-                          <th><img src="assets/images/heroes/Luna.jpg" ng-click="ok('Luna')" class="img-responsive" alt="Luna" max-width="256" ></th>
-                          <th><img src="assets/images/heroes/Bounty_Hunter.jpg" ng-click="ok('bounty-hunter')" class="img-responsive" alt="Bounty Hunter" max-width="256" ></th>
-                          <th><img src="assets/images/heroes/Ursa.jpg" ng-click="ok('ursa')" class="img-responsive" alt="Ursa" max-width="256" ></th>
-                          <th><img src="assets/images/heroes/Gyrocopter.jpg" ng-click="ok('gyrocopter')" class="img-responsive" alt="Gyrocpoter" max-width="256" ></th>
-                      </tr>
-                      <tr>
-                          <th><img src="assets/images/heroes/Lone_Druid.jpg" ng-click="ok('lone-druid')" class="img-responsive" alt="Lone Druid" max-width="256" ></th>
-                          <th><img src="assets/images/heroes/Naga_Siren.jpg" ng-click="ok('maga-siren')" class="img-responsive" alt="Naga Siren" max-width="256" ></th>
-                          <th><img src="assets/images/heroes/Troll_Warlord.jpg" ng-click="ok('troll-warlord')" class="img-responsive" alt="Troll Warlord" max-width="256" ></th>
-                          <th><img src="assets/images/heroes/Ember_Spirit.jpg" ng-click="ok('ember-spirit')" class="img-responsive" alt="Ember Spirit" max-width="256" ></th>
-                      </tr>
-                  </table>
-                  <br>
-                  <table>
-                      <tr>
-                          <th><img src="assets/images/heroes/Bloodseeker.jpg" ng-click="ok('bloodseeker')" class="img-responsive" alt="Bloodseeker" max-width="256" ></th>
-                          <th><img src="assets/images/heroes/Shadow_Fiend.jpg" ng-click="ok('shadow-fiend')" class="img-responsive" alt="Shadow Fiend" max-width="256" ></th>
-                          <th><img src="assets/images/heroes/Razor.jpg" ng-click="ok('razor')" class="img-responsive" alt="Razor" max-width="256" ></th>
-                          <th><img src="assets/images/heroes/Venomancer.jpg" ng-click="ok('venomancer')" class="img-responsive" alt="Venomancer" max-width="256" ></th>
-                          <th><img src="assets/images/heroes/Faceless_Void.jpg" ng-click="ok('faceless-void')" class="img-responsive" alt="Faceless Void" max-width="256" ></th>
-                          <th><img src="assets/images/heroes/Phantom_Assassin.jpg" ng-click="ok('phantom-assassin')" class="img-responsive" alt="Phantom Assassin" max-width="256" ></th>
-                          <th><img src="assets/images/heroes/Viper.jpg" ng-click="ok('viper')" class="img-responsive" alt="Viper" max-width="256" ></th>
-                      </tr>
-                      <tr>
-                          <th><img src="assets/images/heroes/Clinkz.jpg" ng-click="ok('clinkz')" class="img-responsive" alt="Clinkz" max-width="256" ></th>
-                          <th><img src="assets/images/heroes/Broodmother.jpg" ng-click="ok('broodmother')" class="img-responsive" alt="Broodmother" max-width="256" ></th>
-                          <th><img src="assets/images/heroes/Weaver.jpg" ng-click="ok('weaver')" class="img-responsive" alt="Weaver" max-width="256" ></th>
-                          <th><img src="assets/images/heroes/Spectre.jpg" ng-click="ok('spectre')" class="img-responsive" alt="Spectre" max-width="256" ></th>
-                          <th><img src="assets/images/heroes/Meepo.jpg" ng-click="ok('meepo')" class="img-responsive" alt="Meepo" max-width="256" ></th>
-                          <th><img src="assets/images/heroes/Nyx_Assassin.jpg" ng-click="ok('nyx-assassin')" class="img-responsive" alt="Nyx Assassin" max-width="256" ></th>
-                          <th><img src="assets/images/heroes/Slark.jpg" ng-click="ok('slark')" class="img-responsive" alt="Slark" max-width="256" ></th>
-                      </tr>
-                      <tr>
-                          <th><img src="assets/images/heroes/Medusa.jpg" ng-click="ok('medusa')" class="img-responsive" alt="Medusa" max-width="256" ></th>
-                          <th><img src="assets/images/heroes/Terrorblade.jpg" ng-click="ok('terrorblade')" class="img-responsive" alt="Terrorblade" max-width="256" ></th>
-                          <th><img src="assets/images/heroes/Arc_Warden.jpg" ng-click="ok('arc-warden')" class="img-responsive" alt="Arc Warden max-width="256" ></th>
-                      </tr>
-                  </table>
-              </div>
-              <div class="spanheroes">
-                  <div style="text-align: center;">
-                      <p class="attributes">Inteligence <img src="assets/images/attributes/intelligence.png" alt="Intelligence"></p>
-                  </div>
-                  <table>
-                      <tr>
-                          <th><img src="assets/images/heroes/Crystal_Maiden.jpg" ng-click="ok('crystal-maiden')" class="img-responsive" alt="Crystal Maiden" max-width="256" ></th>
-                          <th><img src="assets/images/heroes/Puck.jpg" ng-click="ok('puck')" class="img-responsive" alt="Puck" max-width="256" ></th>
-                          <th><img src="assets/images/heroes/Storm_Spirit.jpg" ng-click="ok('storm-spirit')" class="img-responsive" alt="Storm Spirit" max-width="256" ></th>
-                          <th><img src="assets/images/heroes/Windranger.jpg" ng-click="ok('windranger')" class="img-responsive" alt="Windranger" max-width="256" ></th>
-                          <th><img src="assets/images/heroes/Zeus.jpg" ng-click="ok('zeus')" class="img-responsive" alt="Zeus" max-width="256" ></th>
-                          <th><img src="assets/images/heroes/Lina.jpg" ng-click="ok('lina')" class="img-responsive" alt="Lina" max-width="256" ></th>
-                          <th><img src="assets/images/heroes/Shadow_Shaman.jpg" ng-click="ok('shadow-shaman')" class="img-responsive" alt="Shadow Shaman" max-width="256" ></th>
-                      </tr>
-                      <tr>
-                          <th><img src="assets/images/heroes/Tinker.jpg" ng-click="ok('tinker')" class="img-responsive" alt="Tinker" max-width="256" ></th>
-                          <th><img src="assets/images/heroes/Nature's_Prophet.jpg" ng-click="ok('natures-prophet')" class="img-responsive" alt="Nature's Prophet" max-width="256" ></th>
-                          <th><img src="assets/images/heroes/Enchantress.jpg" ng-click="ok('enchantress')" class="img-responsive" alt="Enchantress" max-width="256" ></th>
-                          <th><img src="assets/images/heroes/Jakiro.jpg" ng-click="ok('jakiro')" class="img-responsive" alt="Jakiro" max-width="256" ></th>
-                          <th><img src="assets/images/heroes/Chen.jpg" ng-click="ok('chen')" class="img-responsive" alt="Chen" max-width="256" ></th>
-                          <th><img src="assets/images/heroes/Silencer.jpg" ng-click="ok('silencer')" class="img-responsive" alt="Silencer" max-width="256" ></th>
-                          <th><img src="assets/images/heroes/Ogre_Magi.jpg" ng-click="ok('ogre-magi')" class="img-responsive" alt="Ogre Magi" max-width="256" ></th>
-                      </tr>
-                      <tr>
-                          <th><img src="assets/images/heroes/Rubick.jpg" ng-click="ok('rubick')" class="img-responsive" alt="Rubick" max-width="256" ></th>
-                          <th><img src="assets/images/heroes/Disruptor.jpg" ng-click="ok('disruptor')" class="img-responsive" alt="Disruptor" max-width="256" ></th>
-                          <th><img src="assets/images/heroes/Keeper_of_the_Light.jpg" ng-click="ok('keeper-of-the-light')" class="img-responsive" alt="Keeper of the Light" max-width="256" ></th>
-                          <th><img src="assets/images/heroes/Skywrath_Mage.jpg" ng-click="ok('skywrath-mage')" class="img-responsive" alt="Skywrath Mage" max-width="256" ></th>
-                          <th><img src="assets/images/heroes/Oracle.jpg" ng-click="ok('oracle')" class="img-responsive" alt="Oracle" max-width="256" ></th>
-                          <th><img src="assets/images/heroes/Techies.jpg" ng-click="ok('techies')" class="img-responsive" alt="Techies" max-width="256" ></th>
-                      </tr>
-                  </table>
-                  <br>
-                  <table>
-                      <tr>
-                          <th><img src="assets/images/heroes/Bane.jpg" ng-click="ok('bane')" class="img-responsive" alt="Bane" max-width="256" ></th>
-                          <th><img src="assets/images/heroes/Lich.jpg" ng-click="ok('lich')" class="img-responsive" alt="Lich" max-width="256" ></th>
-                          <th><img src="assets/images/heroes/Lion.jpg" ng-click="ok('lion')" class="img-responsive" alt="Lion" max-width="256" ></th>
-                          <th><img src="assets/images/heroes/Witch_Doctor.jpg" ng-click="ok('witch-doctor')" class="img-responsive" alt="Witch Doctor" max-width="256" ></th>
-                          <th><img src="assets/images/heroes/Enigma.jpg" ng-click="ok('enigma')" class="img-responsive" alt="Enigma" max-width="256" ></th>
-                          <th><img src="assets/images/heroes/Necrophos.jpg" ng-click="ok('necrophos')" class="img-responsive" alt="Necrophos" max-width="256" ></th>
-                          <th><img src="assets/images/heroes/Warlock.jpg" ng-click="ok('warlock')" class="img-responsive" alt="Warlock" max-width="256" ></th>
-                      </tr>
-                      <tr>
-                          <th><img src="assets/images/heroes/Queen_of_Pain.jpg" ng-click="ok('queen-of-pain')" class="img-responsive" alt="Queen of Pain" max-width="256" ></th>
-                          <th><img src="assets/images/heroes/Death_Prophet.jpg" ng-click="ok('death-prophet')" class="img-responsive" alt="Death Prophet" max-width="256" ></th>
-                          <th><img src="assets/images/heroes/Pugna.jpg" ng-click="ok('pugna')" class="img-responsive" alt="Pugna" max-width="256" ></th>
-                          <th><img src="assets/images/heroes/Dazzle.jpg" ng-click="ok('dazzle')" class="img-responsive" alt="Dazzle" max-width="256" ></th>
-                          <th><img src="assets/images/heroes/Leshrac.jpg" ng-click="ok('leshrac')" class="img-responsive" alt="Leshrac" max-width="256" ></th>
-                          <th><img src="assets/images/heroes/Dark_Seer.jpg" ng-click="ok('dark-seer')" class="img-responsive" alt="Dark Seer" max-width="256" ></th>
-                          <th><img src="assets/images/heroes/Batrider.jpg" ng-click="ok('batrider')" class="img-responsive" alt="Batrider" max-width="256" ></th>
-                      </tr>
-                      <tr>
-                          <th><img src="assets/images/heroes/Ancient_Apparition.jpg" ng-click="ok('ancient-apparition')" class="img-responsive" alt="Ancient Apparition" max-width="256" ></th>
-                          <th><img src="assets/images/heroes/Invoker.jpg" ng-click="ok('invoker')" class="img-responsive" alt="Invoker" max-width="256" ></th>
-                          <th><img src="assets/images/heroes/Outworld_Devourer.jpg" ng-click="ok('outworld-devourer')" class="img-responsive" alt="Outworld Devourer" max-width="256" ></th>
-                          <th><img src="assets/images/heroes/Shadow_Demon.jpg" ng-click="ok('shadown-demon')" class="img-responsive" alt="Shadow Demon" max-width="256" ></th>
-                          <th><img src="assets/images/heroes/Visage.jpg" ng-click="ok('visage')" class="img-responsive" alt="Visage" max-width="256" ></th>
-                          <th><img src="assets/images/heroes/Winter_Wyvern.jpg" ng-click="ok('winter-wyvern')" class="img-responsive" alt="Winter Wyvern" max-width="256" ></th>
-                      </tr>
-                  </table>
-              </div>
-          </div>
-      </div>
-      .
+    <div class="modal-header">
+        <button type="button" class="close" ng-click="cancel()" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h3 class="modal-title">Hero picker</h3>
     </div>
-  <div class="modal-footer">
-    <button class="btn btn-danger" type="button" ng-click="cancel()">Cancel</button>
-  </div>
+
+
+
+
+    <div class="modal-body">
+        <div class="gridheroes">
+            <div class="wrapperheroes">
+                <div class="spanheroes">
+                    <div style="text-align: center;">
+                        <p class="attributes">Strength <img src="assets/images/attributes/strength.png" alt="Strength"></p>
+                    </div>
+
+                    <table cellpadding="1000">
+                        <tr class="tableHeroPicker">
+                            <!--<th ng-hide="!picked(27)"><img src="assets/images/heroes/Earthshaker.jpg" ng-click="ok('earthshaker')" class="img-responsive" alt="Earthshaker" max-width="256" title="test"></th>-->
+                            <!--<th ng-hide="!picked(27)"><img src="assets/images/heroes/Earthshaker.jpg" ng-click="ok('earthshaker')" class="img-responsive" alt="Earthshaker" max-width="256" title="test"></th>-->
+                            <!--<th ng-hide="picked(27)"><img src="assets/images/heroes_gray/Earthshaker.jpg" class="img-responsive" alt="Earthshaker" max-width="256" ></th>-->
+                            <th class="tableHeroPicker"><img ng-src="{{pickedHeroName(27)}}" ng-click="!picked(27)||ok('earthshaker')" class="img-responsive" alt="Earthshaker" max-width="256" title="Earthshaker"></th>
+                            <th class="tableHeroPicker"><img ng-src="{{pickedHeroName(87)}}" ng-click="!picked(87)||ok('sven')" class="img-responsive" alt="Sven" max-width="256" ></th>
+                            <th class="tableHeroPicker"><img ng-src="{{pickedHeroName(94)}}" ng-click="!picked(94)||ok('tiny')" class="img-responsive" alt="Tiny" max-width="256" ></th>
+                            <th class="tableHeroPicker"><img ng-src="{{pickedHeroName(41)}}" ng-click="!picked(41)||ok('kunkka')" class="img-responsive" alt="Kunkka" max-width="256" ></th>
+                            <th class="tableHeroPicker"><img ng-src="{{pickedHeroName(8)}}" ng-click="!picked(8)||ok('beastmaster')" class="img-responsive" alt="Beastmaster" max-width="256" ></th>
+                            <th class="tableHeroPicker"><img ng-src="{{pickedHeroName(25)}}" ng-click="!picked(25)||ok('dragon-knight')" class="img-responsive" alt="Dragon Knight" max-width="256" ></th>
+                            <th class="tableHeroPicker"><img ng-src="{{pickedHeroName(18)}}" ng-click="!picked(18)||ok('clockwerk')" class="img-responsive" alt="Clockwerk" max-width="256" ></th>
+                        </tr>
+                        <tr class="tableHeroPicker">
+                            <th class="tableHeroPicker"><img ng-src="{{pickedHeroName(62)}}" ng-click="!picked(62)||ok('omniknight')" class="img-responsive" alt="Omniknight" max-width="256" title="Omniknight"></th>
+                            <th class="tableHeroPicker"><img ng-src="{{pickedHeroName(35)}}" ng-click="!picked(35)||ok('huskar')" class="img-responsive" alt="Huskar" max-width="256" title="Huskar"></th>
+                            <th class="tableHeroPicker"><img ng-src="{{pickedHeroName(1)}}" ng-click="!picked(1)||ok('alchemist')" class="img-responsive" alt="Alchemist" max-width="256" title="Alchemist"></th>
+                            <th class="tableHeroPicker"><img ng-src="{{pickedHeroName(11)}}" ng-click="!picked(11)||ok('brewmaster')" class="img-responsive" alt="Brewmaster" max-width="256" title="Brewmaster"></th>
+                            <th class="tableHeroPicker"><img ng-src="{{pickedHeroName(95)}}" ng-click="!picked(95)||ok('treant-protector')" class="img-responsive" alt="Treant Protector" max-width="256" title="Treant Protector"></th>
+                            <th class="tableHeroPicker"><img ng-src="{{pickedHeroName(37)}}" ng-click="!picked(37)||ok('io')" class="img-responsive" alt="Io" max-width="256" title="Io"></th>
+                            <th class="tableHeroPicker"><img ng-src="{{pickedHeroName(14)}}" ng-click="!picked(14)||ok('centaur-warrunner')" class="img-responsive" alt="Centaur Warrunner" max-width="256" title="Centaur Warrunner"></th>
+                        </tr>
+                        <tr class="tableHeroPicker">
+                            <th class="tableHeroPicker"><img ng-src="{{pickedHeroName(92)}}" ng-click="!picked(92)||ok('timbersaw')" class="img-responsive" alt="Timbersaw" max-width="256" title="Timbersaw"></th>
+                            <th class="tableHeroPicker"><img ng-src="{{pickedHeroName(12)}}" ng-click="!picked(12)||ok('bristleback')" class="img-responsive" alt="Bristleback" max-width="256" title="Bristleback"></th>
+                            <th class="tableHeroPicker"><img ng-src="{{pickedHeroName(97)}}" ng-click="!picked(97)||ok('tusk')" class="img-responsive" alt="Tusk" max-width="256" title="Tusk"></th>
+                            <th class="tableHeroPicker"><img ng-src="{{pickedHeroName(29)}}" ng-click="!picked(29)||ok('elder-titan')" class="img-responsive" alt="Elder Titan" max-width="256" title="Elder Titan"></th>
+                            <th class="tableHeroPicker"><img ng-src="{{pickedHeroName(42)}}" ng-click="!picked(42)||ok('legion-commander')" class="img-responsive" alt="Legion Commander" max-width="256" title="Legion Commander"></th>
+                            <th class="tableHeroPicker"><img ng-src="{{pickedHeroName(28)}}" ng-click="!picked(28)||ok('earth-spirit')" class="img-responsive" alt="Earth Spirit" max-width="256" title="Earth Spirit"></th>
+                            <th class="tableHeroPicker"><img ng-src="{{pickedHeroName(67)}}" ng-click="!picked(67)||ok('phoenix')" class="img-responsive" alt="Phönix" max-width="256" title="Phoenix"></th>
+                        </tr>
+                    </table>
+                    <br>
+                    <table class="tableHeroPicker">
+                        <tr class="tableHeroPicker">
+                            <th class="tableHeroPicker"><img ng-src="{{pickedHeroName(5)}}" ng-click="!picked(5)||ok('axe')" class="img-responsive" alt="Axe" max-width="256" title="Axe"></th>
+                            <th class="tableHeroPicker"><img ng-src="{{pickedHeroName(69)}}" ng-click="!picked(69)||ok('pudge')" class="img-responsive" alt="Pudge" max-width="256" title="Pudge"></th>
+                            <th class="tableHeroPicker"><img ng-src="{{pickedHeroName(75)}}" ng-click="!picked(75)||ok('sand-king')" class="img-responsive" alt="Sand King" max-width="256" title="Sand King"></th>
+                            <th class="tableHeroPicker"><img ng-src="{{pickedHeroName(81)}}" ng-click="!picked(81)||ok('slardar')" class="img-responsive" alt="Slardar" max-width="256" title="Slardar"></th>
+                            <th class="tableHeroPicker"><img ng-src="{{pickedHeroName(91)}}" ng-click="!picked(91)||ok('tidehunter')" class="img-responsive" alt="Tidehunter" max-width="256" title="Tidehunter"></th>
+                            <th class="tableHeroPicker"><img ng-src="{{pickedHeroName(109)}}" ng-click="!picked(109)||ok('wraith-king')" class="img-responsive" alt="Wraith King" max-width="256" title="Wraith King"></th>
+                            <th class="tableHeroPicker"><img ng-src="{{pickedHeroName(45)}}" ng-click="!picked(45)||ok('lifestealer')" class="img-responsive" alt="Lifestealer" max-width="256" title="Lifestealer"></th>
+                        </tr>
+                        <tr class="tableHeroPicker">
+                            <th class="tableHeroPicker"><img ng-src="{{pickedHeroName(59)}}" ng-click="!picked(59)||ok('night-stalker')" class="img-responsive" alt="Night Stalker" max-width="256" title="Night Stalker"></th>
+                            <th class="tableHeroPicker"><img ng-src="{{pickedHeroName(24)}}" ng-click="!picked(24)||ok('doom')" class="img-responsive" alt="Doom" max-width="256" title="Doom"></th>
+                            <th class="tableHeroPicker"><img ng-src="{{pickedHeroName(85)}}" ng-click="!picked(85)||ok('spirit-breaker')" class="img-responsive" alt="Spirit Breaker" max-width="256" title="Spirit Breaker"></th>
+                            <th class="tableHeroPicker"><img ng-src="{{pickedHeroName(50)}}" ng-click="!picked(50)||ok('lycan')" class="img-responsive" alt="Lycan" max-width="256" title="Lycan"></th>
+                            <th class="tableHeroPicker"><img ng-src="{{pickedHeroName(15)}}" ng-click="!picked(15)||ok('chaos-knight')" class="img-responsive" alt="Chaos Knight" max-width="256" title="Chaos Knight"></th>
+                            <th class="tableHeroPicker"><img ng-src="{{pickedHeroName(98)}}" ng-click="!picked(98)||ok('undying')" class="img-responsive" alt="Undying" max-width="256" title="Undying"></th>
+                            <th class="tableHeroPicker"><img ng-src="{{pickedHeroName(51)}}" ng-click="!picked(51)||ok('magnus')" class="img-responsive" alt="Magnus" max-width="256" title="Magnus"></th>
+                        </tr>
+                        <tr class="tableHeroPicker">
+                            <th class="tableHeroPicker"><img ng-src="{{pickedHeroName(0)}}" ng-click="!picked(0)||ok('abaddon')" class="img-responsive" alt="Abaddon" max-width="256" title="Abaddon"></th>
+                        </tr>
+                    </table>
+
+                </div>
+                <div class="spanheroes">
+                    <div style="text-align: center;">
+                        <p class="attributes">Agility <img src="assets/images/attributes/agility.png" alt="Agility"></p>
+                    </div>
+                    <table class="tableHeroPicker">
+                        <tr class="tableHeroPicker">
+                            <th class="tableHeroPicker"><img ng-src="{{pickedHeroName(3)}}" ng-click="!picked(3)||ok('anti-mage')" class="img-responsive" alt="Anti Mage" max-width="256" title="Anti Mage"></th>
+                            <th class="tableHeroPicker"><img ng-src="{{pickedHeroName(26)}}" ng-click="!picked(26)||ok('drow-ranger')" class="img-responsive" alt="Drow Ranger" max-width="256" title="Drow Ranger"></th>
+                            <th class="tableHeroPicker"><img ng-src="{{pickedHeroName(39)}}" ng-click="!picked(39)||ok('juggernaut')" class="img-responsive" alt="Juggernaut" max-width="256" title="Juggernaut"></th>
+                            <th class="tableHeroPicker"><img ng-src="{{pickedHeroName(54)}}" ng-click="!picked(54)||ok('mirana')" class="img-responsive" alt="Mirana" max-width="256" title="Mirana"></th>
+                            <th class="tableHeroPicker"><img ng-src="{{pickedHeroName(55)}}" ng-click="!picked(55)||ok('morphling')" class="img-responsive" alt="Morphling" max-width="256" title="Morphling"></th>
+                            <th class="tableHeroPicker"><img ng-src="{{pickedHeroName(66)}}" ng-click="!picked(66)||ok('phantom-lancer')" class="img-responsive" alt="Phantom Lancer" max-width="256" title="Phantom Lancer"></th>
+                            <th class="tableHeroPicker"><img ng-src="{{pickedHeroName(100)}}" ng-click="!picked(100)||ok('vengeful-spirit')" class="img-responsive" alt="Vengeful Spirit" max-width="256" title="Vengeful Spirit"></th>
+                        </tr>
+                        <tr class="tableHeroPicker">
+                            <th class="tableHeroPicker"><img ng-src="{{pickedHeroName(73)}}" ng-click="!picked(73)||ok('riki')" class="img-responsive" alt="Riki" max-width="256" title="Riki"></th>
+                            <th class="tableHeroPicker"><img ng-src="{{pickedHeroName(83)}}" ng-click="!picked(83)||ok('sniper')" class="img-responsive" alt="Sniper" max-width="256" title="Sniper"></th>
+                            <th class="tableHeroPicker"><img ng-src="{{pickedHeroName(89)}}" ng-click="!picked(89)||ok('templar-assassin')" class="img-responsive" alt="Templar Assassin" max-width="256" title="Templar Assassin"></th>
+                            <th class="tableHeroPicker"><img ng-src="{{pickedHeroName(49)}}" ng-click="!picked(49)||ok('Luna')" class="img-responsive" alt="Luna" max-width="256" title="Luna"></th>
+                            <th class="tableHeroPicker"><img ng-src="{{pickedHeroName(10)}}" ng-click="!picked(10)||ok('bounty-hunter')" class="img-responsive" alt="Bounty Hunter" max-width="256" title="Bounty Hunter"></th>
+                            <th class="tableHeroPicker"><img ng-src="{{pickedHeroName(99)}}" ng-click="!picked(99)||ok('ursa')" class="img-responsive" alt="Ursa" max-width="256" title="Ursa"></th>
+                            <th class="tableHeroPicker"><img ng-src="{{pickedHeroName(34)}}" ng-click="!picked(34)||ok('gyrocopter')" class="img-responsive" alt="Gyrocpoter" max-width="256" title="Gyrocopter"></th>
+                        </tr>
+                        <tr class="tableHeroPicker">
+                            <th class="tableHeroPicker"><img ng-src="{{pickedHeroName(48)}}" ng-click="!picked(48)||ok('lone-druid')" class="img-responsive" alt="Lone Druid" max-width="256" title="Lone Druid"></th>
+                            <th class="tableHeroPicker"><img ng-src="{{pickedHeroName(56)}}" ng-click="!picked(56)||ok('naga-siren')" class="img-responsive" alt="Naga Siren" max-width="256" title="Naga Siren"></th>
+                            <th class="tableHeroPicker"><img ng-src="{{pickedHeroName(96)}}" ng-click="!picked(96)||ok('troll-warlord')" class="img-responsive" alt="Troll Warlord" max-width="256" title="Troll Warlord"></th>
+                            <th class="tableHeroPicker"><img ng-src="{{pickedHeroName(30)}}" ng-click="!picked(30)||ok('ember-spirit')" class="img-responsive" alt="Ember Spirit" max-width="256" title="Ember Spirit"></th>
+                        </tr>
+                    </table>
+                    <br>
+                    <table class="tableHeroPicker">
+                        <tr class="tableHeroPicker">
+                            <th class="tableHeroPicker"><img ng-src="{{pickedHeroName(9)}}" ng-click="!picked(9)||ok('bloodseeker')" class="img-responsive" alt="Bloodseeker" max-width="256" title="Bloodseeker"></th>
+                            <th class="tableHeroPicker"><img ng-src="{{pickedHeroName(77)}}" ng-click="!picked(77)||ok('shadow-fiend')" class="img-responsive" alt="Shadow Fiend" max-width="256" title="Shadow Fiend"></th>
+                            <th class="tableHeroPicker"><img ng-src="{{pickedHeroName(72)}}" ng-click="!picked(72)||ok('razor')" class="img-responsive" alt="Razor" max-width="256" title="Razor"></th>
+                            <th class="tableHeroPicker"><img ng-src="{{pickedHeroName(101)}}" ng-click="!picked(101)||ok('venomancer')" class="img-responsive" alt="Venomancer" max-width="256" title="Venomancer"></th>
+                            <th class="tableHeroPicker"><img ng-src="{{pickedHeroName(33)}}" ng-click="!picked(33)||ok('faceless-void')" class="img-responsive" alt="Faceless Void" max-width="256" title="Faceless Void"></th>
+                            <th class="tableHeroPicker"><img ng-src="{{pickedHeroName(65)}}" ng-click="!picked(65)||ok('phantom-assassin')" class="img-responsive" alt="Phantom Assassin" max-width="256" title="Phantom Assassin"></th>
+                            <th class="tableHeroPicker"><img ng-src="{{pickedHeroName(102)}}" ng-click="!picked(102)||ok('viper')" class="img-responsive" alt="Viper" max-width="256" title="Viper"></th>
+                        </tr>
+                        <tr class="tableHeroPicker">
+                            <th class="tableHeroPicker"><img ng-src="{{pickedHeroName(17)}}" ng-click="!picked(17)||ok('clinkz')" class="img-responsive" alt="Clinkz" max-width="256" title="Clinkz"></th>
+                            <th class="tableHeroPicker"><img ng-src="{{pickedHeroName(13)}}" ng-click="!picked(13)||ok('broodmother')" class="img-responsive" alt="Broodmother" max-width="256" title="Broodmother"></th>
+                            <th class="tableHeroPicker"><img ng-src="{{pickedHeroName(105)}}" ng-click="!picked(105)||ok('weaver')" class="img-responsive" alt="Weaver" max-width="256" title="Weaver"></th>
+                            <th class="tableHeroPicker"><img ng-src="{{pickedHeroName(84)}}" ng-click="!picked(84)||ok('spectre')" class="img-responsive" alt="Spectre" max-width="256" title="Spectre"></th>
+                            <th class="tableHeroPicker"><img ng-src="{{pickedHeroName(53)}}" ng-click="!picked(53)||ok('meepo')" class="img-responsive" alt="Meepo" max-width="256" title="Meepo"></th>
+                            <th class="tableHeroPicker"><img ng-src="{{pickedHeroName(60)}}" ng-click="!picked(60)||ok('nyx-assassin')" class="img-responsive" alt="Nyx Assassin" max-width="256" title="Nyx Assassin"></th>
+                            <th class="tableHeroPicker"><img ng-src="{{pickedHeroName(82)}}" ng-click="!picked(82)||ok('slark')" class="img-responsive" alt="Slark" max-width="256" title="Slark"></th>
+                        </tr>
+                        <tr class="tableHeroPicker">
+                            <th class="tableHeroPicker"><img ng-src="{{pickedHeroName(52)}}" ng-click="!picked(52)||ok('medusa')" class="img-responsive" alt="Medusa" max-width="256" title="Medusa"></th>
+                            <th class="tableHeroPicker"><img ng-src="{{pickedHeroName(90)}}" ng-click="!picked(90)||ok('terrorblade')" class="img-responsive" alt="Terrorblade" max-width="256" title="Terrorblade"></th>
+                            <th class="tableHeroPicker"><img ng-src="{{pickedHeroName(4)}}" ng-click="!picked(4)||ok('arc-warden')" class="img-responsive" alt="Arc Warden" max-width="256" title="Arc Warden"></th>
+                        </tr>
+                    </table>
+                </div>
+                <div class="spanheroes">
+                    <div style="text-align: center;">
+                        <p class="attributes">Intelligence <img src="assets/images/attributes/intelligence.png"alt="Intelligence"></p>
+                    </div>
+                    <table class="tableHeroPicker">
+                        <tr class="tableHeroPicker">
+                            <th class="tableHeroPicker"><img ng-src="{{pickedHeroName(19)}}" ng-click="!picked(19)||ok('crystal-maiden')" class="img-responsive" alt="Crystal Maiden" max-width="256" title="Crystal Maiden"></th>
+                            <th class="tableHeroPicker"><img ng-src="{{pickedHeroName(68)}}" ng-click="!picked(68)||ok('puck')" class="img-responsive" alt="Puck" max-width="256" title="Puck"></th>
+                            <th class="tableHeroPicker"><img ng-src="{{pickedHeroName(86)}}" ng-click="!picked(86)||ok('storm-spirit')" class="img-responsive" alt="Storm Spirit" max-width="256" title="Storm Spirit"></th>
+                            <th class="tableHeroPicker"><img ng-src="{{pickedHeroName(106)}}" ng-click="!picked(106)||ok('windranger')" class="img-responsive" alt="Windranger" max-width="256" title="Windranger"></th>
+                            <th class="tableHeroPicker"><img ng-src="{{pickedHeroName(110)}}" ng-click="!picked(110)||ok('zeus')" class="img-responsive" alt="Zeus" max-width="256" title="Zeus"></th>
+                            <th class="tableHeroPicker"><img ng-src="{{pickedHeroName(46)}}" ng-click="!picked(46)||ok('lina')" class="img-responsive" alt="Lina" max-width="256" title="Lina"></th>
+                            <th class="tableHeroPicker"><img ng-src="{{pickedHeroName(78)}}" ng-click="!picked(78)||ok('shadow-shaman')" class="img-responsive" alt="Shadow Shaman" max-width="256" title="Shadow Shaman"></th>
+                        </tr>
+                        <tr class="tableHeroPicker">
+                            <th class="tableHeroPicker"><img ng-src="{{pickedHeroName(93)}}" ng-click="!picked(93)||ok('tinker')" class="img-responsive" alt="Tinker" max-width="256" title="Tinker"></th>
+                            <th class="tableHeroPicker"><img ng-src="{{pickedHeroName(57)}}" ng-click="!picked(57)||ok('natures-prophet')" class="img-responsive" alt="Nature's Prophet" max-width="256" title="Nature's Prophet"></th>
+                            <th class="tableHeroPicker"><img ng-src="{{pickedHeroName(31)}}" ng-click="!picked(31)||ok('enchantress')" class="img-responsive" alt="Enchantress" max-width="256" title="Enchantress"></th>
+                            <th class="tableHeroPicker"><img ng-src="{{pickedHeroName(38)}}" ng-click="!picked(38)||ok('jakiro')" class="img-responsive" alt="Jakiro" max-width="256" title="Jakiro"></th>
+                            <th class="tableHeroPicker"><img ng-src="{{pickedHeroName(16)}}" ng-click="!picked(16)||ok('chen')" class="img-responsive" alt="Chen" max-width="256" title="Chen"></th>
+                            <th class="tableHeroPicker"><img ng-src="{{pickedHeroName(79)}}" ng-click="!picked(79)||ok('silencer')" class="img-responsive" alt="Silencer" max-width="256" title="Silencer"></th>
+                            <th class="tableHeroPicker"><img ng-src="{{pickedHeroName(61)}}" ng-click="!picked(61)||ok('ogre-magi')" class="img-responsive" alt="Ogre Magi" max-width="256" title="Ogre Magi"></th>
+                        </tr>
+                        <tr class="tableHeroPicker">
+                            <th class="tableHeroPicker"><img ng-src="{{pickedHeroName(74)}}" ng-click="!picked(74)||ok('rubick')" class="img-responsive" alt="Rubick" max-width="256" title="Rubick"></th>
+                            <th class="tableHeroPicker"><img ng-src="{{pickedHeroName(23)}}" ng-click="!picked(23)||ok('disruptor')" class="img-responsive" alt="Disruptor" max-width="256" title="Disruptor"></th>
+                            <th class="tableHeroPicker"><img ng-src="{{pickedHeroName(40)}}" ng-click="!picked(40)||ok('keeper-of-the-light')" class="img-responsive" alt="Keeper of the Light" max-width="256" title="Keeper of the Light"></th>
+                            <th class="tableHeroPicker"><img ng-src="{{pickedHeroName(80)}}" ng-click="!picked(80)||ok('skywrath-mage')" class="img-responsive" alt="Skywrath Mage" max-width="256" title="Skywrath Mage"></th>
+                            <th class="tableHeroPicker"><img ng-src="{{pickedHeroName(63)}}" ng-click="!picked(63)||ok('oracle')" class="img-responsive" alt="Oracle" max-width="256" title="Oracle"></th>
+                            <th class="tableHeroPicker"><img ng-src="{{pickedHeroName(88)}}" ng-click="!picked(88)||ok('techies')" class="img-responsive" alt="Techies" max-width="256" title="Techies"></th>
+                        </tr>
+                    </table>
+                    <br>
+                    <table class="tableHeroPicker">
+                        <tr class="tableHeroPicker">
+                            <th class="tableHeroPicker"><img ng-src="{{pickedHeroName(6)}}" ng-click="!picked(6)||ok('bane')" class="img-responsive" alt="Bane" max-width="256" title="Bane"></th>
+                            <th class="tableHeroPicker"><img ng-src="{{pickedHeroName(44)}}" ng-click="!picked(44)||ok('lich')" class="img-responsive" alt="Lich" max-width="256" title="Lich"></th>
+                            <th class="tableHeroPicker"><img ng-src="{{pickedHeroName(47)}}" ng-click="!picked(47)||ok('lion')" class="img-responsive" alt="Lion" max-width="256" title="Lion"></th>
+                            <th class="tableHeroPicker"><img ng-src="{{pickedHeroName(108)}}" ng-click="!picked(108)||ok('witch-doctor')" class="img-responsive" alt="Witch Doctor" max-width="256" title="Witch Doctor"></th>
+                            <th class="tableHeroPicker"><img ng-src="{{pickedHeroName(32)}}" ng-click="!picked(32)||ok('enigma')" class="img-responsive" alt="Enigma" max-width="256" title="Enigma"></th>
+                            <th class="tableHeroPicker"><img ng-src="{{pickedHeroName(58)}}" ng-click="!picked(58)||ok('necrophos')" class="img-responsive" alt="Necrophos" max-width="256" title="Necrophos"></th>
+                            <th class="tableHeroPicker"><img ng-src="{{pickedHeroName(104)}}" ng-click="!picked(104)||ok('warlock')" class="img-responsive" alt="Warlock" max-width="256" title="Warlock"></th>
+                        </tr>
+                        <tr class="tableHeroPicker">
+                            <th class="tableHeroPicker"><img ng-src="{{pickedHeroName(71)}}" ng-click="!picked(71)||ok('queen-of-pain')" class="img-responsive" alt="Queen of Pain" max-width="256" title="Queen of Pain"></th>
+                            <th class="tableHeroPicker"><img ng-src="{{pickedHeroName(22)}}" ng-click="!picked(22)||ok('death-prophet')" class="img-responsive" alt="Death Prophet" max-width="256" title="Death Prophet"></th>
+                            <th class="tableHeroPicker"><img ng-src="{{pickedHeroName(70)}}" ng-click="!picked(70)||ok('pugna')" class="img-responsive" alt="Pugna" max-width="256" title="Pugna"></th>
+                            <th class="tableHeroPicker"><img ng-src="{{pickedHeroName(21)}}" ng-click="!picked(21)||ok('dazzle')" class="img-responsive" alt="Dazzle" max-width="256" title="Dazzle"></th>
+                            <th class="tableHeroPicker"><img ng-src="{{pickedHeroName(43)}}" ng-click="!picked(43)||ok('leshrac')" class="img-responsive" alt="Leshrac" max-width="256" title="Leshrac"></th>
+                            <th class="tableHeroPicker"><img ng-src="{{pickedHeroName(20)}}" ng-click="!picked(20)||ok('dark-seer')" class="img-responsive" alt="Dark Seer" max-width="256" title="Dark Seer"></th>
+                            <th class="tableHeroPicker"><img ng-src="{{pickedHeroName(7)}}" ng-click="!picked(7)||ok('batrider')" class="img-responsive" alt="Batrider" max-width="256" title="Batrider"></th>
+                        </tr>
+                        <tr class="tableHeroPicker">
+                            <th class="tableHeroPicker"><img ng-src="{{pickedHeroName(2)}}" ng-click="!picked(2)||ok('ancient-apparition')" class="img-responsive" alt="Ancient Apparition" max-width="256" title="Ancient Apparition"></th>
+                            <th class="tableHeroPicker"><img ng-src="{{pickedHeroName(36)}}" ng-click="!picked(36)||ok('invoker')" class="img-responsive" alt="Invoker" max-width="256" title="Invoker"></th>
+                            <th class="tableHeroPicker"><img ng-src="{{pickedHeroName(64)}}" ng-click="!picked(64)||ok('outworld-devourer')" class="img-responsive" alt="Outworld Devourer" max-width="256" title="Outworld Devourer"></th>
+                            <th class="tableHeroPicker"><img ng-src="{{pickedHeroName(76)}}" ng-click="!picked(76)||ok('shadown-demon')" class="img-responsive" alt="Shadow Demon" max-width="256" title="Shadow Demon"></th>
+                            <th class="tableHeroPicker"><img ng-src="{{pickedHeroName(103)}}" ng-click="!picked(103)||ok('visage')" class="img-responsive" alt="Visage" max-width="256" title="Visage"></th>
+                            <th class="tableHeroPicker"><img ng-src="{{pickedHeroName(107)}}" ng-click="!picked(107)||ok('winter-wyvern')" class="img-responsive" alt="Winter Wyvern" max-width="256" title="Winter Wyvern"></th>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+        </div>
+        .
+    </div>
+    <div class="modal-footer">
+        <button class="btn btn-danger" type="button" ng-click="cancel()">Cancel</button>
+    </div>
 </script>
+
 
 <div class="gridMainPage">
     <div class="wrapperMainPages">
@@ -221,6 +223,50 @@
                     <td ng-click="open('yourTeamPick')" ng-show="yourTeamPicks[4] == null"><img ng-src="assets/images/hero_unselected.jpg" class="img-responsive" max-width="500"></td>
                 </tr>
             </table>
+        </div>
+        <div class="spanMainPageMid">
+
+        </div>
+        <div class="spanMainPageRight">
+            <table>
+                <tr>
+                    <td ng-click="enemyTeamPicks[0]=null; updateAdvantages()" ng-show="enemyTeamPicks[0] != null"><img ng-src="{{ enemyTeamPicks[0].heroImageURL }}" class="img-responsive" max-width="500"></td>
+                    <td ng-click="open('enemyTeamPick')" ng-show="enemyTeamPicks[0] == null"><img ng-src="assets/images/hero_unselected.jpg" class="img-responsive" max-width="500"></td>
+
+                    <td ng-click="enemyTeamPicks[1]=null; updateAdvantages()" ng-show="enemyTeamPicks[1] != null"><img ng-src="{{ enemyTeamPicks[1].heroImageURL }}" class="img-responsive" max-width="500"></td>
+                    <td ng-click="open('enemyTeamPick')" ng-show="enemyTeamPicks[1] == null"><img ng-src="assets/images/hero_unselected.jpg" class="img-responsive" max-width="500"></td>
+
+                    <td ng-click="enemyTeamPicks[2]=null; updateAdvantages()" ng-show="enemyTeamPicks[2] != null"><img ng-src="{{ enemyTeamPicks[2].heroImageURL }}" class="img-responsive" max-width="500"></td>
+                    <td ng-click="open('enemyTeamPick')" ng-show="enemyTeamPicks[2] == null"><img ng-src="assets/images/hero_unselected.jpg" class="img-responsive" max-width="500"></td>
+
+                    <td ng-click="enemyTeamPicks[3]=null; updateAdvantages()" ng-show="enemyTeamPicks[3] != null"><img ng-src="{{ enemyTeamPicks[3].heroImageURL }}" class="img-responsive" max-width="500"></td>
+                    <td ng-click="open('enemyTeamPick')" ng-show="enemyTeamPicks[3] == null"><img ng-src="assets/images/hero_unselected.jpg" class="img-responsive" max-width="500"></td>
+
+                    <td ng-click="enemyTeamPicks[4]=null; updateAdvantages()" ng-show="enemyTeamPicks[4] != null"><img ng-src="{{ enemyTeamPicks[4].heroImageURL }}" class="img-responsive" max-width="500"></td>
+                    <td ng-click="open('enemyTeamPick')" ng-show="enemyTeamPicks[4] == null"><img ng-src="assets/images/hero_unselected.jpg" class="img-responsive" max-width="500"></td>
+                </tr>
+            </table>
+        </div>
+
+    </div>
+</div>
+
+<div class="container">
+    <div class="row"></div>
+    <div class="row">
+        <div class="col-md-4"></div>
+        <div class="col-md-4"><br><br><uib-progress><uib-bar ng-repeat="bar in stacked track by $index" value="bar.value" type="{{bar.type}}"><span ng-hide="bar.value < 5">{{bar.value}}%</span></uib-bar></uib-progress></div>
+        <div class="col-md-4"></div>
+    </div>
+</div>
+
+
+
+
+<div class="gridMainPage">
+    <div class="wrapperMainPages">
+        <div class="spanMainPageLeft">
+
             <br>
             <div class="col-md-6">
                 <form>
@@ -254,7 +300,7 @@
                     <thead>
                     <tr>
                         <td><a></a></td>
-                        <td><a>Ranking</a></td>
+                        <td><a>Rank</a></td>
                         <td>
                             <a href="#"
                                ng-click="sortTypeYourTeam = 'heroFullName'; sortReverseYourTeam = !sortReverseYourTeam">
@@ -287,7 +333,7 @@
                     </tr>
                     </thead>
 
-                    <tbody><!-- | filter:searchHero-->
+                    <tbody>
                     <tr ng-repeat="hero in heroes | orderBy:sortTypeYourTeam:sortReverseYourTeam">
                         <td ng-show="([hero.heroFullName] | filter:searchHeroYourTeam).length > 0 && picked(hero.heroIndex)"><img
                                 ng-click="yourTeamHeroPick(hero.heroIndex)" ng-right-click="banHero(hero.heroIndex)" src="{{ hero.heroImageURL }}"
@@ -310,7 +356,7 @@
             </button>
             <div style="text-align: center;">
                 <label>Allow Banning:
-                <input type="checkbox" ng-model="allowBanning"></label>
+                    <input type="checkbox" ng-model="allowBanning"></label>
             </div>
 
             <table>
@@ -356,24 +402,7 @@
 
         </div>
         <div class="spanMainPageRight">
-            <table>
-                <tr>
-                    <td ng-click="enemyTeamPicks[0]=null; updateAdvantages()" ng-show="enemyTeamPicks[0] != null"><img ng-src="{{ enemyTeamPicks[0].heroImageURL }}" class="img-responsive" max-width="500"></td>
-                    <td ng-click="open('enemyTeamPick')" ng-show="enemyTeamPicks[0] == null"><img ng-src="assets/images/hero_unselected.jpg" class="img-responsive" max-width="500"></td>
 
-                    <td ng-click="enemyTeamPicks[1]=null; updateAdvantages()" ng-show="enemyTeamPicks[1] != null"><img ng-src="{{ enemyTeamPicks[1].heroImageURL }}" class="img-responsive" max-width="500"></td>
-                    <td ng-click="open('enemyTeamPick')" ng-show="enemyTeamPicks[1] == null"><img ng-src="assets/images/hero_unselected.jpg" class="img-responsive" max-width="500"></td>
-
-                    <td ng-click="enemyTeamPicks[2]=null; updateAdvantages()" ng-show="enemyTeamPicks[2] != null"><img ng-src="{{ enemyTeamPicks[2].heroImageURL }}" class="img-responsive" max-width="500"></td>
-                    <td ng-click="open('enemyTeamPick')" ng-show="enemyTeamPicks[2] == null"><img ng-src="assets/images/hero_unselected.jpg" class="img-responsive" max-width="500"></td>
-
-                    <td ng-click="enemyTeamPicks[3]=null; updateAdvantages()" ng-show="enemyTeamPicks[3] != null"><img ng-src="{{ enemyTeamPicks[3].heroImageURL }}" class="img-responsive" max-width="500"></td>
-                    <td ng-click="open('enemyTeamPick')" ng-show="enemyTeamPicks[3] == null"><img ng-src="assets/images/hero_unselected.jpg" class="img-responsive" max-width="500"></td>
-
-                    <td ng-click="enemyTeamPicks[4]=null; updateAdvantages()" ng-show="enemyTeamPicks[4] != null"><img ng-src="{{ enemyTeamPicks[4].heroImageURL }}" class="img-responsive" max-width="500"></td>
-                    <td ng-click="open('enemyTeamPick')" ng-show="enemyTeamPicks[4] == null"><img ng-src="assets/images/hero_unselected.jpg" class="img-responsive" max-width="500"></td>
-                </tr>
-            </table>
             <br>
             <div class="col-md-6">
                 <form>
@@ -411,7 +440,7 @@
                         <td><a></a></td>
                         <td>
                             <a>
-                                Ranking
+                                Rank
                             <span ng-show="sortTypeEnemyTeam == 'ranking' && !sortReverseEnemyTeam"
                                   class="fa fa-caret-down"></span>
                             <span ng-show="sortTypeEnemyTeam == 'ranking' && sortReverseEnemyTeam"
@@ -451,7 +480,7 @@
                     </tr>
                     </thead>
 
-                    <tbody><!-- | filter:searchHero-->
+                    <tbody>
                     <tr ng-repeat="hero in heroes | orderBy:sortTypeEnemyTeam:sortReverseEnemyTeam">
                         <td ng-show="([hero.heroFullName] | filter:searchHeroEnemyTeam).length > 0 && picked(hero.heroIndex)"><img
                                 ng-click="enemyTeamHeroPick(hero.heroIndex)" ng-right-click="banHero(hero.heroIndex)" src="{{ hero.heroImageURL }}"

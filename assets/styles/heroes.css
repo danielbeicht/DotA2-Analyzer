@@ -22,3 +22,7 @@ p.attributes {
     font-size: 30px;
     font-family: Arial, Helvetica, sans-serif;
 }
+
+.tableHeroPicker {
+    border: 2px solid black;
+}
