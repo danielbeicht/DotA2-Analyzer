@@ -252,7 +252,7 @@
             <div style="text-align: center;">
                 <uib-progress>
                     <uib-bar style="background:rgba(245, 245, 245, 1)" ng-repeat="bar in stacked track by $index" ng-if="bar.isPlaceholder" value="bar.value"><span>{{bar.adv}}</span></uib-bar>
-                    <uib-bar id="progressValue" style="background:black" ng-repeat="bar in stacked track by $index" ng-if="!bar.isPlaceholder" value="bar.value" type="{{changeProgressbarColor(bar)}}"><span>{{bar.adv}}</span></uib-bar>
+                    <uib-bar id="progressValue" style="background:black" ng-repeat="bar in stacked track by $index" ng-if="!bar.isPlaceholder" value="bar.value" type="{{changeProgressbarColor(bar)}}"><span style="color: black">{{bar.adv}}</span></uib-bar>
                 </uib-progress>
             </div>
         </div>
