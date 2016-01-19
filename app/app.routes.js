@@ -18,14 +18,9 @@
                 templateUrl: 'app/components/home/home.tpl.html',
                 controller: 'homeCtrl'
             })
-            .state('details', {
-                url: '/details/:id',
-                templateUrl: 'app/components/detail/read/detail.read.html',
-                controller: 'detailReadCtrl'
-            })
             .state('about', {
                 url: '/about',
-                templateUrl: 'app/components/about/about.tpl.html',
+                templateUrl: 'app/components/about/about.html',
                 controller: 'aboutCtrl'
             })
           .state('cards', {

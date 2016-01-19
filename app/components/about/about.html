@@ -1,0 +1,38 @@
+<div class="container">
+    <div class="row">
+        <div class="col-md-12">
+            <h1>DotA 2 Analyzer</h1>
+            <h2>What is DotA 2 Analyzer?</h2>
+            DotA 2 Analyzer calculates, which hero picks might be good choice against the enemy picks. The tool also calculates the best choices for the enemy team, so that you can react by banning those heroes in Captains Mode.
+            <br><br>
+            <h2>Calculations</h2>
+            The calculations are based on Dotabuff advantage data. They does neither include hero synergies nor the distribution of the hero roles. It only examines the enemy picks. To mark heroes, that you or your friends might want to play, you can create an account and add players to this account. You can choose a hero pool for each player within your account, which will be saved in our database. Whenever you login, you can select the players you are playing with and heroes will be marked with different colors to give you an easy overview. The DotA 2 Analyzer also calculates an overall advantage of both teams concerning the current picks of both teams.
+            <br><br>
+            <h2>Implementation</h2>
+            <h3>Frontend</h3>
+            The old DotA 2 Analyzer was designed with ASP.Net C#. It was created within 2 weeks during semester break. The performance wasn't rellay great, also it didn't support any kind of asynchronous data transfer.<br>
+            The new Frontend uses modern technology:
+            <ul>
+                <li>HTML5</li>
+                <li>JavaScript (Framework: AngularJS)</li>
+                <li>CSS (Bootstrap)</li>
+            </ul>
+            <br>
+            <h3>Backend</h3>
+            The Backend is structed as follows:<br>
+            <strong>DotA 2 Updater:</strong><br>
+            The DotA 2 Updater is fetchting data from dotabuff.com and updates the SQL-database. The DotA 2 Updater is written in C#.<br><br>
+            <strong>DotA 2 Analyzer REST API</strong><br>
+            DotA 2 Analyzer REST API is written in Java and uses the JAX-RS specification and Jersey framework. For simplicity, the API only supports JSON format.
+
+
+<br><br><br><br>
+            <h2>Changelog</h2>
+            <h3>Version: 0.09 Alpha</h3>
+            - implemented "About" Page <br>
+            - fixed wrong ui-bar calculations <br>
+            - performance improvements <br>
+
+        </div>
+    </div>
+</div>
