@@ -8,16 +8,6 @@
     <link rel="stylesheet" href="assets/styles/heroes.css">
     <link rel="stylesheet" href="assets/styles/mainPage.css">
 
-    <!--<<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">-->
-    <!--<<link rel="stylesheet" type="text/css" href="http://cdn.jsdelivr.net/angular.wizard/latest/angular-wizard.min.css">-->
-    <!--<link rel="icon" href="data:;base64,iVBORw0KGgo=">-->
-    <!--<link rel="stylesheet" href="assets/styles/ngdialog/ngDialog.css">-->
-    <!--<link href='http://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,700,400italic' rel='stylesheet' type='text/css'>-->
-    <!--<link rel="stylesheet" href="assets/styles/ngdialog/ngDialog-theme-default.css">-->
-    <!--<link rel="stylesheet" href="assets/styles/ngdialog/ngDialog-theme-plain.css">-->
-    <!--<link rel="stylesheet" href="assets/styles/ngdialog/ngDialog-custom-width.css">-->
-    <!--<link rel="stylesheet" href="app/components/cards/cards.css">-->
-
     <title>DotA 2 Analyzer</title>
 </head>
 <body>
@@ -49,25 +39,27 @@
 
 <div ui-view></div>
 
-<!--<script src="assets/libs/jquery-1.11.3.js"></script>-->
-<!--<script src="assets/libs/bootstrap.js"></script>-->
-<!--<script src="assets/libs/angular-modal-service.js"></script>-->
-<!--<script src="assets/libs/ui-bootstrap.js"></script>-->
-<!--<script src="assets/libs/spin.min.js"></script>-->
-<!--<script src="assets/libs/lodash.min.js"></script>-->
+
+<!-- Piwik -->
+<script type="text/javascript">
+    var _paq = _paq || [];
+    _paq.push(['trackPageView']);
+    _paq.push(['enableLinkTracking']);
+    (function() {
+        var u="//dotademo.mz-host.de/";
+        _paq.push(["setTrackerUrl", u+"piwik.php"]);
+        _paq.push(["setSiteId", "1"]);
+        var d=document, g=d.createElement("script"), s=d.getElementsByTagName("script")[0];
+        g.type="text/javascript"; g.async=true; g.defer=true; g.src=u+"piwik.php"; s.parentNode.insertBefore(g,s);
+    })();
+</script>
+<!-- End Piwik Code -->
 
 <script src="assets/libs/angular.js"></script>
 <script src="assets/libs/angular-ui-router.js"></script>
 <script src="assets/libs/angular-resource.js"></script>
 <script src="assets/libs/angular-animate.js"></script>
 <script src="assets/libs/ui-bootstrap-tpls-1.0.3.min.js"></script>
-<!--<script src="assets/libs/ngDialog.min.js"></script>-->
-<!--<script src="assets/libs/angular-spinner.min.js"></script>-->
-<!--<script src="assets/libs/checklist-model.js"></script>-->
-<!--<script src="assets/libs/smart-table.min.js"></script>-->
-<!--<script src="assets/libs/angular-wizard.min.js"></script>-->
-<!--<script src="assets/libs/sx-wizard.js"></script>-->
-<!--<script src="assets/libs/sx-wizard-tpls.js"></script>-->
 
 <script src="app/app.module.js"></script>
 <script src="app/app.routes.js"></script>

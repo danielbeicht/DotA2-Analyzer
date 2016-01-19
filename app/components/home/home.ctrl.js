@@ -470,7 +470,7 @@
 })();
 
 angular
-  .module('IBApp')
+  .module('DotAAnalyzerApp')
   .directive('ngRightClick', function ($parse) {
     return function (scope, element, attrs) {
       var fn = $parse(attrs.ngRightClick);
