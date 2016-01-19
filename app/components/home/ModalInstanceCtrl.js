@@ -30,7 +30,7 @@ console.log("AUSGEFÜHRT");
 
 })();*/
 
-angular.module('IBApp').controller('ModalInstanceCtrl', function ($scope, $uibModalInstance, pickSetting) {
+angular.module('DotAAnalyzerApp').controller('ModalInstanceCtrl', function ($scope, $uibModalInstance, pickSetting) {
 
 
 

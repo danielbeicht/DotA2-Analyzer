@@ -5,7 +5,7 @@
   'use strict';
 
   angular
-    .module('IBApp')
+    .module('DotAAnalyzerApp')
     .controller('cardsCtrl', cardsCtrl);
 
   cardsCtrl.$inject = ['$scope', '$http', '$timeout'];

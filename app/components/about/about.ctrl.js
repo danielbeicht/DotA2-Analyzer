@@ -5,7 +5,7 @@
     'use strict';
 
     angular
-        .module('IBApp')
+        .module('DotAAnalyzerApp')
         .controller('aboutCtrl', aboutCtrl);
 
     aboutCtrl.$inject = ['$scope', '$log'];

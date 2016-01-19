@@ -5,7 +5,7 @@
   'use strict';
 
   angular
-    .module('IBApp')
+    .module('DotAAnalyzerApp')
     .controller('homeCtrl', homeCtrl);
 
   homeCtrl.$inject = ['$scope', '$http', '$log', '$uibModal'];

@@ -30,7 +30,7 @@
     'use strict';
     var baseUrl = 'http://rest.mz-host.de:5015/DotAREST/webresources';
     angular
-        .module('IBApp')
+        .module('DotAAnalyzerApp')
         .config(['$resourceProvider', resourceConfig])
         .factory('TransactionsFactory', TransactionsFactory);
 

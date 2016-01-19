@@ -5,7 +5,7 @@
 (function () {
     'use strict';
     angular
-        .module('IBApp')
+        .module('DotAAnalyzerApp')
         .config(uiRouterConfig);
 
     uiRouterConfig.$inject = ['$stateProvider', '$urlRouterProvider', '$httpProvider'];

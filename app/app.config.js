@@ -5,7 +5,7 @@
 (function () {
     'use strict';
     angular
-        .module('IBApp')
+        .module('DotAAnalyzerApp')
         .config(['ngDialogProvider', function (ngDialogProvider) {
             ngDialogProvider.setDefaults({
                 className: 'ngdialog-theme-default',

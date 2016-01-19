@@ -5,17 +5,10 @@
     'use strict';
     //modules/services that the app uses/depends on
     angular
-        .module('IBApp', [
+        .module('DotAAnalyzerApp', [
             'ui.router',
             'ngResource',
-            'ngAnimate',
-            'ui.bootstrap',
-            'angularSpinner',
-            'checklist-model',
-            'ngDialog',
-            'mgo-angular-wizard',
-            'sx.wizard',
-            'smart-table'
+            'ui.bootstrap'
         ]);
 
 })();
