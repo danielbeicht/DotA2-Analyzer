@@ -17,11 +17,8 @@
     }
   };
 
-    // TEMP
-    $scope.items = ['item1', 'item2', 'item3'];
-
-    $scope.animationsEnabled = false;
-
+    // Initialize Heropicker Modal
+    $scope.animationsEnabled = true;
     $scope.open = function (pickSetting) {
       var modalInstance = $uibModal.open({
         animation: $scope.animationsEnabled,
@@ -35,7 +32,6 @@
           }
         }
       });
-
       modalInstance.result.then(function (result) {
         var selectedHero = result[0];
         var pick = result[1];
@@ -54,10 +50,8 @@
             }
           }
         }
-
-
       }, function () {
-        $log.info('Modal dismissed at: ' + new Date());
+        //$log.info('Modal dismissed at: ' + new Date());
       });
     };
 
@@ -66,10 +60,6 @@
     $scope.toggleAnimation = function () {
       $scope.animationsEnabled = !$scope.animationsEnabled;
     };
-
-
-    // TEMP
-
 
     // APIs
     $scope.yourTeamHeroPick = yourTeamHeroPick;
@@ -344,16 +334,6 @@
 
 
       for (var i = 0; i < $scope.heroesSortedByIndex.length; i++) {
-        // TODO: Check if hero is banned; continue if hero is banned
-        // Reset advantage data
-        //$scope.heroesSortedByIndex[i].yourTeamWinrate = 0.0;
-        //$scope.heroesSortedByIndex[i].yourTeamAdvantage = 0.0;
-        //$scope.heroesSortedByIndex[i].enemyTeamWinrate = 0.0;
-        //$scope.heroesSortedByIndex[i].enemyTeamAdvantage = 0.0;
-
-        // Check if hero has already been selected; if yes: ignore hero
-
-
         var exit = false;
         for (var j = 0; j < 5; j++) {
           if ($scope.yourTeamPicks[j] != null && $scope.yourTeamPicks[j].heroIndex == i) {
@@ -372,7 +352,6 @@
             }
           }
         }
-
 
         if (exit) {
           $scope.heroesSortedByIndex[i].yourTeamWinrate = '0.00';
@@ -424,30 +403,29 @@
         }
       }
 
+      /* Array stacked stores all ui-bar objects
+      yourTeamValue and enemyTeamValue are the calculated values which are needed to display them on a 0-100 ui-bar
+      */
       $scope.stacked = [];
-      $scope.maxAdvantage = 80;
+      $scope.maxAdvantage = 100;
       var multiplier = 100/$scope.maxAdvantage;
       var yourTeamValue = $scope.yourTeamOverallAdvantage/$scope.maxAdvantage*50;
       var enemyTeamValue = $scope.enemyTeamOverallAdvantage/$scope.maxAdvantage*50;
 
       if (yourTeamValue >= enemyTeamValue) {
-        $scope.dif = yourTeamValue - enemyTeamValue;
-        $scope.placeHolderValue = $scope.maxAdvantage/2 - $scope.dif;
+        var difference = yourTeamValue - enemyTeamValue;
         $scope.stacked.push({
-          value: ($scope.placeHolderValue*multiplier).toFixed(2),
+          value: ($scope.maxAdvantage/2 - difference)*multiplier.toFixed(2),
           adv: '',
           isPlaceholder: true
         });
         $scope.stacked.push({
-          value: ($scope.dif*multiplier).toFixed(2),
-          adv: ($scope.dif).toFixed(2),
+          value: (difference*multiplier).toFixed(2),
+          adv: (difference).toFixed(2),
           isPlaceholder: false
         });
       } else {
-        $scope.dif = enemyTeamValue - yourTeamValue;
-
-        $scope.placeHolderValue = $scope.maxAdvantage/2;
-
+        var difference = enemyTeamValue - yourTeamValue;
         $scope.stacked.push({
           value: (50),
           adv: '',
@@ -455,19 +433,20 @@
           isValue: false
         });
         $scope.stacked.push({
-          value: ($scope.dif*multiplier).toFixed(2),
-          adv: ($scope.dif).toFixed(2),
+          value: (difference*multiplier).toFixed(2),
+          adv: (difference).toFixed(2),
           isPlaceholder: false,
           isValue: true
         });;
       }
     };
 
+
     // Checks if element is Placeholder or Value; Return is color
     $scope.changeProgressbarColor = function(vari) {
-        var cols = document.getElementById('progressValue');
-        var percent = vari.value / ($scope.maxAdvantage/2) * 100;
-        cols.style.background = 'rgba(' + (255-(percent/100*255).toFixed(0)) + ', 255, 0, 1)';
+      var cols = document.getElementById('progressValue');
+      var greenValue = ((255/(1.5*($scope.maxAdvantage/2)))*vari.value).toFixed(0);
+      cols.style.background = 'rgba(' + (255-greenValue) + ', 255, 0, 1)';
     };
 
 
@@ -496,10 +475,3 @@ angular
       });
     };
   });
-
-
-
-/* Müllhalde
-
-
- */

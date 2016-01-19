@@ -1,5 +1,5 @@
 # DotA2-Analyzer
-DotA 2 Analyzer is the best tool to analyze the best hero picks / counter picks
+DotA 2 Analyzer is the best tool to analyze hero picks / counter picks
 
 <h2>What is DotA 2 Analyzer?</h2>
 DotA 2 Analyzer calculates, which hero picks might be good choice against the enemy picks.

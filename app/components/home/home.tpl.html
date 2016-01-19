@@ -336,7 +336,7 @@
                     <tbody>
                     <tr ng-repeat="hero in heroes | orderBy:sortTypeYourTeam:sortReverseYourTeam">
                         <td ng-show="([hero.heroFullName] | filter:searchHeroYourTeam).length > 0 && picked(hero.heroIndex)"><img
-                                ng-click="yourTeamHeroPick(hero.heroIndex)" ng-right-click="banHero(hero.heroIndex)" src="{{ hero.heroImageURL }}"
+                                ng-click="yourTeamHeroPick(hero.heroIndex)" ng-right-click="banHero(hero.heroIndex)" ng-src="{{ hero.heroImageURL }}"
                                 style="width: 96px; height: 58px"></td>
                         <td ng-show="([hero.heroFullName] | filter:searchHeroYourTeam).length > 0 && picked(hero.heroIndex)">{{ $index + 1 }}</td>
                         <td ng-show="([hero.heroFullName] | filter:searchHeroYourTeam).length > 0 && picked(hero.heroIndex)">{{ hero.heroFullName }}</td>
@@ -483,7 +483,7 @@
                     <tbody>
                     <tr ng-repeat="hero in heroes | orderBy:sortTypeEnemyTeam:sortReverseEnemyTeam">
                         <td ng-show="([hero.heroFullName] | filter:searchHeroEnemyTeam).length > 0 && picked(hero.heroIndex)"><img
-                                ng-click="enemyTeamHeroPick(hero.heroIndex)" ng-right-click="banHero(hero.heroIndex)" src="{{ hero.heroImageURL }}"
+                                ng-click="enemyTeamHeroPick(hero.heroIndex)" ng-right-click="banHero(hero.heroIndex)" ng-src="{{ hero.heroImageURL }}"
                                 style="width: 96px; height: 58px"></td>
                         <td ng-show="([hero.heroFullName] | filter:searchHeroEnemyTeam).length > 0 && picked(hero.heroIndex)">{{ $index + 1 }}</td>
                         <td ng-show="([hero.heroFullName] | filter:searchHeroEnemyTeam).length > 0 && picked(hero.heroIndex)">{{ hero.heroFullName }}</td>
