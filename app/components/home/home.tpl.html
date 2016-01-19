@@ -351,9 +351,9 @@
 
 
         <div class="spanMainPageMid">
-            <button class="btn btn-success" ng-click="debugFunction()">
+            <!--<button class="btn btn-success" ng-click="debugFunction()">
                 Debug Function
-            </button>
+            </button>-->
             <div style="text-align: center;">
                 <label>Allow Banning:
                     <input type="checkbox" ng-model="allowBanning"></label>
@@ -362,38 +362,38 @@
             <table>
                 <tr>
                     <td ng-click="heroBans[0]=null; updateAdvantages()" ng-show="heroBans[0] != null && allowBanning"><img ng-src="{{ heroBans[0].heroImageURL }}" class="img-responsive" max-width="500"></td>
-                    <td ng-show="heroBans[0] == null && allowBanning"><img ng-src="assets/images/hero_unselected.jpg" class="img-responsive" max-width="500"></td>
+                    <td ng-click="open('ban')" ng-show="heroBans[0] == null && allowBanning"><img ng-src="assets/images/hero_unselected.jpg" class="img-responsive" max-width="500"></td>
 
                     <td ng-click="heroBans[1]=null; updateAdvantages()" ng-show="heroBans[1] != null && allowBanning"><img ng-src="{{ heroBans[1].heroImageURL }}" class="img-responsive" max-width="500"></td>
-                    <td ng-show="heroBans[1] == null && allowBanning"><img ng-src="assets/images/hero_unselected.jpg" class="img-responsive" max-width="500"></td>
+                    <td ng-click="open('ban')" ng-show="heroBans[1] == null && allowBanning"><img ng-src="assets/images/hero_unselected.jpg" class="img-responsive" max-width="500"></td>
                 </tr>
                 <tr>
                     <td ng-click="heroBans[2]=null; updateAdvantages()" ng-show="heroBans[2] != null && allowBanning"><img ng-src="{{ heroBans[2].heroImageURL }}" class="img-responsive" max-width="500"></td>
-                    <td ng-show="heroBans[2] == null && allowBanning"><img ng-src="assets/images/hero_unselected.jpg" class="img-responsive" max-width="500"></td>
+                    <td ng-click="open('ban')" ng-show="heroBans[2] == null && allowBanning"><img ng-src="assets/images/hero_unselected.jpg" class="img-responsive" max-width="500"></td>
 
                     <td ng-click="heroBans[3]=null; updateAdvantages()" ng-show="heroBans[3] != null && allowBanning"><img ng-src="{{ heroBans[3].heroImageURL }}" class="img-responsive" max-width="500"></td>
-                    <td ng-show="heroBans[3] == null && allowBanning"><img ng-src="assets/images/hero_unselected.jpg" class="img-responsive" max-width="500"></td>
+                    <td ng-click="open('ban')" ng-show="heroBans[3] == null && allowBanning"><img ng-src="assets/images/hero_unselected.jpg" class="img-responsive" max-width="500"></td>
                 </tr>
                 <tr>
                     <td ng-click="heroBans[4]=null; updateAdvantages()" ng-show="heroBans[4] != null && allowBanning"><img ng-src="{{ heroBans[4].heroImageURL }}" class="img-responsive" max-width="500"></td>
-                    <td ng-show="heroBans[4] == null && allowBanning"><img ng-src="assets/images/hero_unselected.jpg" class="img-responsive" max-width="500"></td>
+                    <td ng-click="open('ban')" ng-show="heroBans[4] == null && allowBanning"><img ng-src="assets/images/hero_unselected.jpg" class="img-responsive" max-width="500"></td>
 
                     <td ng-click="heroBans[5]=null; updateAdvantages()" ng-show="heroBans[5] != null && allowBanning"><img ng-src="{{ heroBans[5].heroImageURL }}" class="img-responsive" max-width="500"></td>
-                    <td ng-show="heroBans[5] == null && allowBanning"><img ng-src="assets/images/hero_unselected.jpg" class="img-responsive" max-width="500"></td>
+                    <td ng-click="open('ban')" ng-show="heroBans[5] == null && allowBanning"><img ng-src="assets/images/hero_unselected.jpg" class="img-responsive" max-width="500"></td>
                 </tr>
                 <tr>
                     <td ng-click="heroBans[6]=null; updateAdvantages()" ng-show="heroBans[6] != null && allowBanning"><img ng-src="{{ heroBans[6].heroImageURL }}" class="img-responsive" max-width="500"></td>
-                    <td ng-show="heroBans[6] == null && allowBanning"><img ng-src="assets/images/hero_unselected.jpg" class="img-responsive" max-width="500"></td>
+                    <td ng-click="open('ban')" ng-show="heroBans[6] == null && allowBanning"><img ng-src="assets/images/hero_unselected.jpg" class="img-responsive" max-width="500"></td>
 
                     <td ng-click="heroBans[7]=null; updateAdvantages()" ng-show="heroBans[7] != null && allowBanning"><img ng-src="{{ heroBans[7].heroImageURL }}" class="img-responsive" max-width="500"></td>
-                    <td ng-show="heroBans[7] == null && allowBanning"><img ng-src="assets/images/hero_unselected.jpg" class="img-responsive" max-width="500"></td>
+                    <td ng-click="open('ban')" ng-show="heroBans[7] == null && allowBanning"><img ng-src="assets/images/hero_unselected.jpg" class="img-responsive" max-width="500"></td>
                 </tr>
                 <tr>
                     <td ng-click="heroBans[8]=null; updateAdvantages()" ng-show="heroBans[8] != null && allowBanning"><img ng-src="{{ heroBans[8].heroImageURL }}" class="img-responsive" max-width="500"></td>
-                    <td ng-show="heroBans[8] == null && allowBanning"><img ng-src="assets/images/hero_unselected.jpg" class="img-responsive" max-width="500"></td>
+                    <td ng-click="open('ban')" ng-show="heroBans[8] == null && allowBanning"><img ng-src="assets/images/hero_unselected.jpg" class="img-responsive" max-width="500"></td>
 
                     <td ng-click="heroBans[9]=null; updateAdvantages()" ng-show="heroBans[9] != null && allowBanning"><img ng-src="{{ heroBans[9].heroImageURL }}" class="img-responsive" max-width="500"></td>
-                    <td ng-show="heroBans[9] == null && allowBanning"><img ng-src="assets/images/hero_unselected.jpg" class="img-responsive" max-width="500"></td>
+                    <td ng-click="open('ban')" ng-show="heroBans[9] == null && allowBanning"><img ng-src="assets/images/hero_unselected.jpg" class="img-responsive" max-width="500"></td>
                 </tr>
             </table>
 

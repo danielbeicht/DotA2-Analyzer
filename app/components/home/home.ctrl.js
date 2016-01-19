@@ -49,6 +49,13 @@
               break;
             }
           }
+        } else if (pick === 'ban') {
+          for (var i=0; i < $scope.heroesSortedByIndex.length; i++){
+            if ($scope.heroesSortedByIndex[i].heroName.trim() === selectedHero){
+              banHero($scope.heroesSortedByIndex[i].heroIndex);
+              break;
+            }
+          }
         }
       }, function () {
         //$log.info('Modal dismissed at: ' + new Date());
