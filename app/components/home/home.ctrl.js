@@ -183,24 +183,23 @@
         for (var i = 0; i < 5; i++) {
           if ($scope.yourTeamPicks[i] != null && $scope.yourTeamPicks[i].heroIndex == index) {
             exists = true;
+            break;
           }
 
           if ($scope.enemyTeamPicks[i] != null && $scope.enemyTeamPicks[i].heroIndex == index) {
             exists = true;
+            break;
           }
         }
         for (var i = 0; i < 10; i++) {
+
           if ($scope.heroBans[i] != null && $scope.heroBans[i].heroIndex == index) {
             exists = true;
+            break;
           }
         }
+
         return !exists;
-        /*
-         if (exists == false){
-         return true;
-         } else {
-         return false;
-         }*/
       };
 
       $scope.realh = [
@@ -275,12 +274,14 @@
         for (var i = 0; i < 5; i++) {
           if (($scope.yourTeamPicks[i] != null && $scope.yourTeamPicks[i].heroIndex === selectedHero.heroIndex) || ($scope.enemyTeamPicks[i] != null && $scope.enemyTeamPicks[i].heroIndex === selectedHero.heroIndex)) {
             heroAlreadyPicked = true;
+            break;
             // TODO: POPUP Held wurde bereits gewählt
           }
         }
         for (var i = 0; i < 10; i++) {
           if ($scope.heroBans[i] != null && $scope.heroBans[i].heroIndex === selectedHero.heroIndex) {
             heroAlreadyPicked = true;
+            break;
           }
         }
 
@@ -310,12 +311,14 @@
         for (var i = 0; i < 5; i++) {
           if (($scope.yourTeamPicks[i] != null && $scope.yourTeamPicks[i].heroIndex === selectedHero.heroIndex) || ($scope.enemyTeamPicks[i] != null && $scope.enemyTeamPicks[i].heroIndex === selectedHero.heroIndex)) {
             heroAlreadyPicked = true;
+            break;
             // TODO: POPUP Held wurde bereits gewählt
           }
         }
         for (var i = 0; i < 10; i++) {
           if ($scope.heroBans[i] != null && $scope.heroBans[i].heroIndex === selectedHero.heroIndex) {
             heroAlreadyPicked = true;
+            break;
           }
         }
 

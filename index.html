@@ -40,20 +40,20 @@
 <div ui-view></div>
 
 
-<!-- Piwik -->
+<!-- Analytics -->
 <script type="text/javascript">
     var _paq = _paq || [];
     _paq.push(['trackPageView']);
     _paq.push(['enableLinkTracking']);
     (function() {
         var u="//dotademo.mz-host.de/";
-        _paq.push(["setTrackerUrl", u+"piwik.php"]);
+        _paq.push(["setTrackerUrl", u+"status.php"]);
         _paq.push(["setSiteId", "1"]);
         var d=document, g=d.createElement("script"), s=d.getElementsByTagName("script")[0];
-        g.type="text/javascript"; g.async=true; g.defer=true; g.src=u+"piwik.php"; s.parentNode.insertBefore(g,s);
+        g.type="text/javascript"; g.async=true; g.defer=true; g.src=u+"status.php"; s.parentNode.insertBefore(g,s);
     })();
 </script>
-<!-- End Piwik Code -->
+<!-- Analyzics end -->
 
 <script src="assets/libs/angular.js"></script>
 <script src="assets/libs/angular-ui-router.js"></script>
