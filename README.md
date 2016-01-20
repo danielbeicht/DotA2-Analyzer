@@ -1,5 +1,5 @@
 # DotA2-Analyzer
-<h1>Online: <a href="http://dotademo.mz-host.de">link textdotademo.mz-host.de</a></h1>
+<h1>Online: <a href="http://dotademo.mz-host.de">dotademo.mz-host.de</a></h1>
 DotA 2 Analyzer is the best tool to analyze hero picks / counter picks
 
 <h2>What is DotA 2 Analyzer?</h2>
