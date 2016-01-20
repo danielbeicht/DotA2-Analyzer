@@ -4,7 +4,8 @@
 // general app js - route to url and render the template
 (function () {
     'use strict';
-    angular
+    //noinspection JSUnresolvedFunction
+  angular
         .module('DotAAnalyzerApp')
         .config(uiRouterConfig);
 

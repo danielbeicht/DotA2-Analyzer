@@ -30,6 +30,7 @@ console.log("AUSGEFÜHRT");
 
 })();*/
 
+//noinspection JSUnresolvedFunction
 angular.module('DotAAnalyzerApp').controller('ModalInstanceCtrl', function ($scope, $uibModalInstance, pickSetting) {
 
 
@@ -37,7 +38,7 @@ angular.module('DotAAnalyzerApp').controller('ModalInstanceCtrl', function ($sco
 
   $scope.ok = function (heroname) {
     console.log("OK fired");
-    var tempArray = new Array(heroname, pickSetting);
+    var tempArray = [heroname, pickSetting];
     $uibModalInstance.close(tempArray);
   };
 

@@ -4,6 +4,7 @@
 (function () {
   'use strict';
 
+  //noinspection JSUnresolvedFunction
   angular
     .module('DotAAnalyzerApp')
     .controller('homeCtrl', homeCtrl);
@@ -35,22 +36,23 @@
       modalInstance.result.then(function (result) {
         var selectedHero = result[0];
         var pick = result[1];
+        var i;
         if (pick === 'yourTeamPick'){
-          for (var i=0; i < $scope.heroesSortedByIndex.length; i++){
+          for (i=0; i < $scope.heroesSortedByIndex.length; i++){
             if ($scope.heroesSortedByIndex[i].heroName.trim() === selectedHero){
               yourTeamHeroPick($scope.heroesSortedByIndex[i].heroIndex);
               break;
             }
           }
         } else if (pick === 'enemyTeamPick'){
-          for (var i=0; i < $scope.heroesSortedByIndex.length; i++){
+          for (i=0; i < $scope.heroesSortedByIndex.length; i++){
             if ($scope.heroesSortedByIndex[i].heroName.trim() === selectedHero){
               enemyTeamHeroPick($scope.heroesSortedByIndex[i].heroIndex);
               break;
             }
           }
         } else if (pick === 'ban') {
-          for (var i=0; i < $scope.heroesSortedByIndex.length; i++){
+          for (i=0; i < $scope.heroesSortedByIndex.length; i++){
             if ($scope.heroesSortedByIndex[i].heroName.trim() === selectedHero){
               banHero($scope.heroesSortedByIndex[i].heroIndex);
               break;
@@ -121,9 +123,10 @@
         url: 'http://rest.mz-host.de:5016/DotAREST/webresources/heroes'
       }).then(function successCallback(response) {
         var heroesTemp = response.data.hero;
-
+        var i;
         $scope.heroes = new Array(heroesTemp.length);
-        for (var i = 0; i < $scope.heroes.length; i++) {
+        for (i = 0; i < $scope.heroes.length; i++) {
+          //noinspection JSUnresolvedVariable
           $scope.heroes[i] = {
             heroIndex: heroesTemp[i].heldIndex,
             heroID: heroesTemp[i].heldID,
@@ -139,7 +142,7 @@
 
         // Create Array to select heroes by Index in O(1) (references)
         $scope.heroesSortedByIndex = new Array($scope.heroes.length);
-        for (var i = 0; i < $scope.heroes.length; i++) {
+        for (i = 0; i < $scope.heroes.length; i++) {
           $scope.heroesSortedByIndex[i] = $scope.heroes[i];
         }
         $scope.heroesSortedByIndex.sort(compare);
@@ -156,15 +159,16 @@
         url: 'http://rest.mz-host.de:5016/DotAREST/webresources/matchups'
       }).then(function successCallback(response) {
         //$scope.matchupsTemp = response.data.matchup;
-
+        var i, j;
         // Create 2 dim. Array
         $scope.matchups = new Array($scope.heroes.length);
-        for (var i = 0; i < $scope.heroes.length; i++) {
+        for (i = 0; i < $scope.heroes.length; i++) {
           $scope.matchups[i] = new Array($scope.heroes.length);
         }
 
-        for (var i = 0; i < $scope.heroes.length; i++) {
-          for (var j = 0; j < $scope.heroes.length; j++) {
+        for (i = 0; i < $scope.heroes.length; i++) {
+          for (j = 0; j < $scope.heroes.length; j++) {
+            //noinspection JSUnresolvedVariable
             $scope.matchups[$scope.heroes[i].heroIndex][$scope.heroes[j].heroIndex] = response.data.matchup[i * $scope.heroes.length + j];
           }
         }
@@ -179,8 +183,8 @@
 
       $scope.picked = function (index) {
         var exists = false;
-
-        for (var i = 0; i < 5; i++) {
+        var i;
+        for (i = 0; i < 5; i++) {
           if ($scope.yourTeamPicks[i] != null && $scope.yourTeamPicks[i].heroIndex == index) {
             exists = true;
             break;
@@ -191,7 +195,7 @@
             break;
           }
         }
-        for (var i = 0; i < 10; i++) {
+        for (i = 0; i < 10; i++) {
 
           if ($scope.heroBans[i] != null && $scope.heroBans[i].heroIndex == index) {
             exists = true;
@@ -212,20 +216,21 @@
 
     // return image URL (gray when picked; with color when unpicked)
     $scope.pickedHeroName = function (heroIndex){
-      for (var i=0; i<5; i++) {
+      var i;
+      for (i=0; i<5; i++) {
         if ($scope.heroesSortedByIndex[heroIndex] == $scope.yourTeamPicks[i]){
           return "assets/images/heroes_gray/" + $scope.heroesSortedByIndex[heroIndex].heroFullName.trim().replace(/\s/gi, "_") + '.jpg';
         } else if ($scope.heroesSortedByIndex[heroIndex] == $scope.enemyTeamPicks[i]){
           return "assets/images/heroes_gray/" + $scope.heroesSortedByIndex[heroIndex].heroFullName.trim().replace(/\s/gi, "_") + '.jpg';
         }
       }
-      for (var i=0; i<10; i++) {
+      for (i=0; i<10; i++) {
         if ($scope.heroesSortedByIndex[heroIndex] == $scope.heroBans[i]) {
           return "assets/images/heroes_gray/" + $scope.heroesSortedByIndex[heroIndex].heroFullName.trim().replace(/\s/gi, "_") + '.jpg';
         }
       }
       return "assets/images/heroes/" + $scope.heroesSortedByIndex[heroIndex].heroFullName.trim().replace(/\s/gi, "_") + '.jpg';
-    }
+    };
 
     // call on 1st load + reload
     initHome();
@@ -235,14 +240,14 @@
       if (heroIndexParameter != null) {
         var selectedHero = $scope.heroesSortedByIndex[heroIndexParameter];
         var heroAlreadyPicked = false;
-
-        for (var i = 0; i < 5; i++) {
+        var i;
+        for (i = 0; i < 5; i++) {
           if (($scope.yourTeamPicks[i] != null && $scope.yourTeamPicks[i].heroIndex === selectedHero.heroIndex) || ($scope.enemyTeamPicks[i] != null && $scope.enemyTeamPicks[i].heroIndex === selectedHero.heroIndex)) {
             heroAlreadyPicked = true;
             // TODO: POPUP Held wurde bereits gewählt
           }
         }
-        for (var i = 0; i < 10; i++) {
+        for (i = 0; i < 10; i++) {
           if ($scope.heroBans[i] != null && $scope.heroBans[i].heroIndex === selectedHero.heroIndex) {
             heroAlreadyPicked = true;
           }
@@ -250,7 +255,7 @@
 
         if (!heroAlreadyPicked) {
           var heroPicked = false;
-          for (var i = 0; i < 5; i++) {
+          for (i = 0; i < 5; i++) {
             if ($scope.yourTeamPicks[i] == null) {
               $scope.yourTeamPicks[i] = $scope.heroesSortedByIndex[heroIndexParameter];
               heroPicked = true;
@@ -271,14 +276,15 @@
       if (heroIndexParameter != null) {
         var selectedHero = $scope.heroesSortedByIndex[heroIndexParameter];
         var heroAlreadyPicked = false;
-        for (var i = 0; i < 5; i++) {
+        var i;
+        for (i = 0; i < 5; i++) {
           if (($scope.yourTeamPicks[i] != null && $scope.yourTeamPicks[i].heroIndex === selectedHero.heroIndex) || ($scope.enemyTeamPicks[i] != null && $scope.enemyTeamPicks[i].heroIndex === selectedHero.heroIndex)) {
             heroAlreadyPicked = true;
             break;
             // TODO: POPUP Held wurde bereits gewählt
           }
         }
-        for (var i = 0; i < 10; i++) {
+        for (i = 0; i < 10; i++) {
           if ($scope.heroBans[i] != null && $scope.heroBans[i].heroIndex === selectedHero.heroIndex) {
             heroAlreadyPicked = true;
             break;
@@ -287,11 +293,11 @@
 
         if (!heroAlreadyPicked) {
           var heroPicked = false;
-          for (var i = 0; i < 5; i++) {
+          for (i = 0; i < 5; i++) {
             if ($scope.enemyTeamPicks[i] == null) {
               $scope.enemyTeamPicks[i] = $scope.heroesSortedByIndex[heroIndexParameter];
               heroPicked = true;
-              $scope.enemyTeamOverallAdvantage += $scope.heroesSortedByIndex[heroIndexParameter].enemyTeamAdvantage;;
+              $scope.enemyTeamOverallAdvantage += $scope.heroesSortedByIndex[heroIndexParameter].enemyTeamAdvantage;
               break;
             }
           }
@@ -308,14 +314,15 @@
       if (heroIndexParameter != null && $scope.allowBanning) {
         var selectedHero = $scope.heroesSortedByIndex[heroIndexParameter];
         var heroAlreadyPicked = false;
-        for (var i = 0; i < 5; i++) {
+        var i;
+        for (i = 0; i < 5; i++) {
           if (($scope.yourTeamPicks[i] != null && $scope.yourTeamPicks[i].heroIndex === selectedHero.heroIndex) || ($scope.enemyTeamPicks[i] != null && $scope.enemyTeamPicks[i].heroIndex === selectedHero.heroIndex)) {
             heroAlreadyPicked = true;
             break;
             // TODO: POPUP Held wurde bereits gewählt
           }
         }
-        for (var i = 0; i < 10; i++) {
+        for (i = 0; i < 10; i++) {
           if ($scope.heroBans[i] != null && $scope.heroBans[i].heroIndex === selectedHero.heroIndex) {
             heroAlreadyPicked = true;
             break;
@@ -324,7 +331,7 @@
 
         if (!heroAlreadyPicked) {
           var heroBanned = false;
-          for (var i = 0; i < 10; i++) {
+          for (i = 0; i < 10; i++) {
             if ($scope.heroBans[i] == null) {
               $scope.heroBans[i] = $scope.heroesSortedByIndex[heroIndexParameter];
               heroBanned = true;
@@ -336,16 +343,16 @@
           }
         }
       }
-    };
+    }
 
     // Update hero Advantages
     function updateAdvantages() {
       // TODO: Get Info about partaking players
 
-
-      for (var i = 0; i < $scope.heroesSortedByIndex.length; i++) {
+      var i, j;
+      for (i = 0; i < $scope.heroesSortedByIndex.length; i++) {
         var exit = false;
-        for (var j = 0; j < 5; j++) {
+        for (j = 0; j < 5; j++) {
           if ($scope.yourTeamPicks[j] != null && $scope.yourTeamPicks[j].heroIndex == i) {
             exit = true;
             break;
@@ -355,7 +362,7 @@
           }
         }
         if (!exit) {
-          for (var j = 0; j < 10; j++) {
+          for (j = 0; j < 10; j++) {
             if ($scope.heroBans[j] != null && $scope.heroBans[j].heroIndex == i) {
               exit = true;
               break;
@@ -375,14 +382,14 @@
         var teamHeroCount = 0;
         var enemyHeroCount = 0;
 
-        for (var j = 0; j < 5; j++) {
+        for (j = 0; j < 5; j++) {
           if ($scope.enemyTeamPicks[j] != null) {
             teamAdvantage += parseFloat($scope.matchups[i][$scope.enemyTeamPicks[j].heroIndex].advantage);
             teamWinrate += parseFloat($scope.matchups[i][$scope.enemyTeamPicks[j].heroIndex].winrate);
             enemyHeroCount++;
           }
         }
-        for (var j = 0; j < 5; j++) {
+        for (j = 0; j < 5; j++) {
           if ($scope.yourTeamPicks[j] != null) {
             enemyAdvantage += parseFloat($scope.matchups[i][$scope.yourTeamPicks[j].heroIndex].advantage);
             enemyWinrate += parseFloat($scope.matchups[i][$scope.yourTeamPicks[j].heroIndex].winrate);
@@ -404,7 +411,7 @@
 
       $scope.yourTeamOverallAdvantage = 0;
       $scope.enemyTeamOverallAdvantage = 0;
-      for (var i=0; i < 5; i++) {
+      for (i=0; i < 5; i++) {
         if ($scope.yourTeamPicks[i] != null) {
           $scope.yourTeamOverallAdvantage += $scope.yourTeamPicks[i].yourTeamAdvantage;
         }
@@ -421,9 +428,9 @@
       var multiplier = 100/$scope.maxAdvantage;
       var yourTeamValue = $scope.yourTeamOverallAdvantage/$scope.maxAdvantage*50;
       var enemyTeamValue = $scope.enemyTeamOverallAdvantage/$scope.maxAdvantage*50;
-
+      var difference;
       if (yourTeamValue >= enemyTeamValue) {
-        var difference = yourTeamValue - enemyTeamValue;
+        difference = yourTeamValue - enemyTeamValue;
         $scope.stacked.push({
           value: ($scope.maxAdvantage/2 - difference)*multiplier.toFixed(2),
           adv: '',
@@ -435,7 +442,7 @@
           isPlaceholder: false
         });
       } else {
-        var difference = enemyTeamValue - yourTeamValue;
+        difference = enemyTeamValue - yourTeamValue;
         $scope.stacked.push({
           value: (50),
           adv: '',
@@ -447,9 +454,9 @@
           adv: (difference).toFixed(2),
           isPlaceholder: false,
           isValue: true
-        });;
+        });
       }
-    };
+    }
 
 
     // Checks if element is Placeholder or Value; Return is color
@@ -472,10 +479,12 @@
 
 })();
 
+//noinspection JSUnresolvedFunction
 angular
   .module('DotAAnalyzerApp')
   .directive('ngRightClick', function ($parse) {
     return function (scope, element, attrs) {
+      //noinspection JSUnresolvedVariable
       var fn = $parse(attrs.ngRightClick);
       element.bind('contextmenu', function (event) {
         scope.$apply(function () {
