@@ -44,3 +44,8 @@
     width: 1920px;
 }
 
+.img-responsive {
+    /* other definitions */
+    width:100%;
+}
+
