@@ -43,13 +43,11 @@ div.m-app-loading p {
     margin: 0px 0px 0px 0px ;
 }
 
-div.website.ng-enter {
-    opacity: 1;
-    transition: all linear 100ms ;
-    -webkit-transition: all linear 100ms ;
+.website {
+    transition: 200ms linear all;
+    -webkit-transition: 200ms linear all;
 }
 
-div.website.ng-enter.active {
+.website.ng-enter {
     opacity: 0;
 }
-
