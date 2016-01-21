@@ -42,7 +42,7 @@ div.m-app-loading p {
     line-height: 14px ;
     margin: 0px 0px 0px 0px ;
 }
-
+/*
 .website {
     transition: 200ms linear all;
     -webkit-transition: 200ms linear all;
@@ -50,4 +50,26 @@ div.m-app-loading p {
 
 .website.ng-enter {
     opacity: 0;
+}*/
+/*
+.website {
+    transition: 500ms linear all;
+    -webkit-transition: 500ms linear all;
+    opacity: 1;
+}
+.website.ng-hide {
+    opacity: 0;
+}*/
+
+.website.ng-hide {
+    opacity: 0;
+}
+
+.website.ng-hide-remove,
+.website.ng-hide-add {
+    display: block !important;
+}
+
+.website.ng-hide-remove {
+    transition: all linear 200ms;
 }

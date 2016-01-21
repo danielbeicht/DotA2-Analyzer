@@ -9,10 +9,10 @@
     .module('DotAAnalyzerApp')
     .controller('homeCtrl', homeCtrl);
 
-  homeCtrl.$inject = ['$scope', '$http', '$log', '$uibModal'];
+  homeCtrl.$inject = ['$scope', '$http', '$log', '$uibModal', '$timeout'];
 
 
-  function homeCtrl($scope, $http, $log, $uibModal) {
+  function homeCtrl($scope, $http, $log, $uibModal, $timeout) {
   $scope.debugFunction = function (){
     for (var i=0; i<$scope.heroes.length; i++){
     }
@@ -85,8 +85,21 @@
       }
     });
 
+    // Wait until 200 ms are over (ng-if/Loading screen complete disappear)
+    $scope.$watch('dataLoaded', function (newValue) {
+      if ($scope.dataLoaded == true) {
+        $timeout(function(){
+          $scope.loadingScreenDisappeared = true;
+        }, 200);
+      }
+    });
+
+
+
+
     function initHome() {
       $scope.dataLoaded = false;
+      $scope.loadingScreenDisappeared = false;
       $scope.yourTeamPicks = new Array(5);
       $scope.enemyTeamPicks = new Array(5);
       $scope.heroBans = new Array(10);
@@ -114,7 +127,6 @@
         value: 0,
         type: 'alert'
       });
-
 
 
       // Get all heroes
@@ -174,6 +186,8 @@
         }
         $log.info("Matchups Initialized");
         $scope.dataLoaded = true;
+
+
         // this callback will be called asynchronously
         // when the response is available
       }, function errorCallback(response) {
@@ -308,6 +322,8 @@
       }
       $scope.updateAdvantages();
     }
+
+
 
     // Function called when a hero is banned
     function banHero(heroIndexParameter) {
