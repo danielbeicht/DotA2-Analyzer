@@ -1,0 +1,55 @@
+div.m-app-loading {
+    position: fixed ;
+}
+
+div.m-app-loading div.animated-container {
+    background-color: #333333 ;
+    bottom: 0px ;
+    left: 0px ;
+    opacity: 1.0 ;
+    position: fixed ;
+    right: 0px ;
+    top: 0px ;
+    z-index: 999999 ;
+}
+/* Used to initialize the ng-leave animation state. */
+div.m-app-loading div.animated-container.ng-leave {
+    opacity: 1.0 ;
+    transition: all linear 200ms ;
+    -webkit-transition: all linear 200ms ;
+}
+/* Used to set the end properties of the ng-leave animation state. */
+div.m-app-loading div.animated-container.ng-leave-active {
+    opacity: 0 ;
+}
+div.m-app-loading div.messaging {
+    color: #FFFFFF ;
+    font-family: monospace ;
+    left: 0px ;
+    margin-top: -37px ;
+    position: absolute ;
+    right: 0px ;
+    text-align: center ;
+    top: 30% ;
+}
+div.m-app-loading h1 {
+    font-size: 26px ;
+    line-height: 35px ;
+    margin: 0px 0px 20px 0px ;
+}
+div.m-app-loading p {
+    font-size: 18px ;
+    line-height: 14px ;
+    margin: 0px 0px 0px 0px ;
+}
+
+div.website.ng-enter {
+    opacity: 1;
+    transition: all linear 100ms ;
+    -webkit-transition: all linear 100ms ;
+}
+
+div.website.ng-enter.active {
+    opacity: 0;
+}
+

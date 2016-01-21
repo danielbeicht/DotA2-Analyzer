@@ -1,3 +1,22 @@
+<div class="m-app-loading">
+    <div class="animated-container" ng-if="!dataLoaded">
+        <div class="messaging">
+            <h1>
+                DotA Analyzer is loading
+            </h1>
+            <div id="loader-wrapper"><div id="loader"></div>
+            </div>
+            <p>
+                Please stand by while we are fetching data
+            </p>
+        </div>
+    </div>
+    <!-- END: Actual animated container. -->
+</div>
+<!-- END: App-Loading Screen. -->
+
+
+
 <script type="text/ng-template" id="myModalContent.html">
     <div class="modal-header">
         <button type="button" class="close" ng-click="cancel()" aria-label="Close"><span aria-hidden="true">&times;</span></button>
@@ -195,7 +214,7 @@
     </div>
 </script>
 
-
+<div class="website" ng-if="dataLoaded">
 <div class="gridMainPage">
     <div class="wrapperMainPages">
         <div class="spanMainPageLeft">
@@ -498,6 +517,7 @@
             </div>
         </div>
     </div>
+</div>
 </div>
 
 

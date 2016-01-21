@@ -8,7 +8,8 @@
         .module('DotAAnalyzerApp', [
             'ui.router',
             'ngResource',
-            'ui.bootstrap'
+            'ui.bootstrap',
+            'ngAnimate'
         ]);
 
 })();
