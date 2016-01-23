@@ -117,6 +117,11 @@
       $scope.yourTeamOverallAdvantage = 0.0;
       $scope.enemyTeamOverallAdvantage = 0.0;
 
+      $scope.swapTables = false;
+
+      $scope.yourTeamTableInfo = "Counter picks to enemy heroes. (Maybe pick them?)";
+      $scope.enemyTeamTableInfo = "Counter picks to your heroes. (Maybe ban them?)";
+
 
       $scope.overallAdvantages = [];
       $scope.overallAdvantages.push({
@@ -481,7 +486,15 @@
       var greenValue = ((255/(1.5*($scope.maxAdvantage/2)))*vari.value).toFixed(0);
       cols.style.background = 'rgba(' + (255-greenValue) + ', 255, 0, 1)';
     };
-
+/*
+    $scope.swapTables = function() {
+      if ($scope.tableStatus == 'Left') {
+        console.log($scope.tableStatus);
+      } else {
+        console.log($scope.tableStatus);
+      }
+    };
+*/
 
 
     // Sort heroes by Index
