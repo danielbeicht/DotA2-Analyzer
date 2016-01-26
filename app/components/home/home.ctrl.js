@@ -486,6 +486,18 @@
       var greenValue = ((255/(1.5*($scope.maxAdvantage/2)))*vari.value).toFixed(0);
       cols.style.background = 'rgba(' + (255-greenValue) + ', 255, 0, 1)';
     };
+
+    $scope.resetData = function() {
+      var i;
+      for (i=0; i<5; i++){
+        $scope.yourTeamPicks[i] = null;
+        $scope.enemyTeamPicks[i] = null;
+      }
+      for (i=0; i<10; i++){
+        $scope.heroBans[i] = null;
+      }
+      $scope.updateAdvantages();
+    };
 /*
     $scope.swapTables = function() {
       if ($scope.tableStatus == 'Left') {
