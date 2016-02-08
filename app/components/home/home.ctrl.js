@@ -201,28 +201,27 @@
       });
 
       $scope.picked = function (index) {
-        var exists = false;
+        var alreadyPicked = false;
         var i;
         for (i = 0; i < 5; i++) {
           if ($scope.yourTeamPicks[i] != null && $scope.yourTeamPicks[i].heroIndex == index) {
-            exists = true;
+            alreadyPicked = true;
             break;
           }
 
           if ($scope.enemyTeamPicks[i] != null && $scope.enemyTeamPicks[i].heroIndex == index) {
-            exists = true;
+            alreadyPicked = true;
             break;
           }
         }
         for (i = 0; i < 10; i++) {
 
           if ($scope.heroBans[i] != null && $scope.heroBans[i].heroIndex == index) {
-            exists = true;
+            alreadyPicked = true;
             break;
           }
         }
-
-        return !exists;
+        return alreadyPicked;
       };
 
       $scope.realh = [
