@@ -383,7 +383,7 @@
                               ng-click="yourTeamHeroPick(hero.heroIndex)" ng-right-click="banHero(hero.heroIndex)" ng-src="{{ hero.heroImageURL }}"
                               style="width: 96px; height: 58px"></td>
                             <td ng-class='{blackTable : picked(hero.heroIndex)}' ng-show="([hero.heroFullName] | filter:searchHeroYourTeam).length > 0">{{ $index + 1 }}</td>
-                            <td ng-class='{blackTable : picked(hero.heroIndex)}' ng-show="([hero.heroFullName] | filter:searchHeroYourTeam).length > 0">{{ hero.heroFullName }} aa</td>
+                            <td ng-class='{blackTable : picked(hero.heroIndex)}' ng-show="([hero.heroFullName] | filter:searchHeroYourTeam).length > 0">{{ hero.heroFullName }}</td>
                             <td ng-class='{blackTable : picked(hero.heroIndex)}' ng-show="([hero.heroFullName] | filter:searchHeroYourTeam).length > 0">{{ hero.yourTeamWinrate }}%</td>
                             <td ng-class='{blackTable : picked(hero.heroIndex)}' ng-show="([hero.heroFullName] | filter:searchHeroYourTeam).length > 0">{{ hero.yourTeamAdvantage }}</td>
                         </tr>
