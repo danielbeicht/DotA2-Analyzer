@@ -137,19 +137,20 @@
       // Get all heroes
       $http({
         method: 'GET',
-        url: 'http://rest.mz-host.de:5016/DotAREST/webresources/heroes'
+        url: 'api/heroes'
       }).then(function successCallback(response) {
-        var heroesTemp = response.data.hero;
+
+        var heroesTemp = response.data;
         var i;
         $scope.heroes = new Array(heroesTemp.length);
         for (i = 0; i < $scope.heroes.length; i++) {
           //noinspection JSUnresolvedVariable
           $scope.heroes[i] = {
-            heroIndex: heroesTemp[i].heldIndex,
-            heroID: heroesTemp[i].heldID,
-            heroFullName: heroesTemp[i].heldFullName,
-            heroName: heroesTemp[i].heldName,
-            heroImageURL: 'assets/images/heroes/' + heroesTemp[i].heldFullName.trim().replace(/\s/gi, "_") + '.jpg',
+            heroIndex: heroesTemp[i].HeldIndex,
+            heroID: heroesTemp[i].HeldID,
+            heroFullName: heroesTemp[i].HeldFullName,
+            heroName: heroesTemp[i].HeldName,
+            heroImageURL: 'assets/images/heroes/' + heroesTemp[i].HeldFullName.trim().replace(/\s/gi, "_") + '.jpg',
             yourTeamAdvantage: 0,
             enemyTeamAdvantage: 0,
             yourTeamWinrate: '0.00',
@@ -173,9 +174,10 @@
       // Get all Matchup-data
       $http({
         method: 'GET',
-        url: 'http://rest.mz-host.de:5016/DotAREST/webresources/matchups'
+        url: 'api/matchups'
       }).then(function successCallback(response) {
         //$scope.matchupsTemp = response.data.matchup;
+        console.log (response.data[0]);
         var i, j;
         // Create 2 dim. Array
         $scope.matchups = new Array($scope.heroes.length);
@@ -186,7 +188,7 @@
         for (i = 0; i < $scope.heroes.length; i++) {
           for (j = 0; j < $scope.heroes.length; j++) {
             //noinspection JSUnresolvedVariable
-            $scope.matchups[$scope.heroes[i].heroIndex][$scope.heroes[j].heroIndex] = response.data.matchup[i * $scope.heroes.length + j];
+            $scope.matchups[$scope.heroes[i].heroIndex][$scope.heroes[j].heroIndex] = response.data[i * $scope.heroes.length + j];
           }
         }
         $log.info("Matchups Initialized");
@@ -404,15 +406,15 @@
 
         for (j = 0; j < 5; j++) {
           if ($scope.enemyTeamPicks[j] != null) {
-            teamAdvantage += parseFloat($scope.matchups[i][$scope.enemyTeamPicks[j].heroIndex].advantage);
-            teamWinrate += parseFloat($scope.matchups[i][$scope.enemyTeamPicks[j].heroIndex].winrate);
+            teamAdvantage += parseFloat($scope.matchups[i][$scope.enemyTeamPicks[j].heroIndex].Advantage);
+            teamWinrate += parseFloat($scope.matchups[i][$scope.enemyTeamPicks[j].heroIndex].Winrate);
             enemyHeroCount++;
           }
         }
         for (j = 0; j < 5; j++) {
           if ($scope.yourTeamPicks[j] != null) {
-            enemyAdvantage += parseFloat($scope.matchups[i][$scope.yourTeamPicks[j].heroIndex].advantage);
-            enemyWinrate += parseFloat($scope.matchups[i][$scope.yourTeamPicks[j].heroIndex].winrate);
+            enemyAdvantage += parseFloat($scope.matchups[i][$scope.yourTeamPicks[j].heroIndex].Advantage);
+            enemyWinrate += parseFloat($scope.matchups[i][$scope.yourTeamPicks[j].heroIndex].Winrate);
             teamHeroCount++;
           }
         }
