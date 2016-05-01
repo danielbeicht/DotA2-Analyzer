@@ -293,6 +293,7 @@
     <div class="row"></div>
     <div class="row">
         <br><br>
+        <center>Overall Advantage</center>
                 <uib-progress>
                     <uib-bar style="background:rgba(245, 245, 245, 1)" ng-repeat="bar in stacked track by $index" ng-if="bar.isPlaceholder" value="bar.value"><span>{{bar.adv}}</span></uib-bar>
                     <uib-bar id="progressValue" style="background:black" ng-repeat="bar in stacked track by $index" ng-if="!bar.isPlaceholder" value="bar.value" type="{{changeProgressbarColor(bar)}}"><span style="color: black">{{bar.adv}}</span></uib-bar>
@@ -308,36 +309,38 @@
     <div class="wrapperMainPages">
         <div class="spanMainPageLeft">
 
-            <br>
-            <div class="col-md-6">
-                <form>
-                    <div class="form-group">
-                        <div class="input-group">
-                            <div class="input-group-addon"><i class="fa fa-search"></i></div>
-                            <input type="text" class="form-control" placeholder="Search Hero"
-                                   ng-model="searchHeroYourTeam">
+
+
+            <!-- Table (YourTeam) if not Swapped -->
+            <div ng-if="!swapTables">
+                <br>
+                <div class="col-md-6">
+                    <form>
+                        <div class="form-group">
+                            <div class="input-group">
+                                <div class="input-group-addon"><i class="fa fa-search"></i></div>
+                                <input type="text" class="form-control" placeholder="Search Hero"
+                                       ng-model="searchHeroYourTeam">
+                            </div>
                         </div>
-                    </div>
-                </form>
-            </div>
-            <div class="col-md-6">
-                <div class="input-group">
-                    <select id="dropDownPickYourTeam" class="form-control" ng-model="selectedHeroYourTeam"
-                            ng-options="obj.heroIndex as obj.heroFullName for obj in heroes | orderBy:'heroFullName'" style="display: inline;">
-                        <option value="">Select hero</option>
-                    </select>
+                    </form>
+                </div>
+                <div class="col-md-6">
+                    <div class="input-group">
+                        <select id="dropDownPickYourTeam" class="form-control" ng-model="selectedHeroYourTeam"
+                                ng-options="obj.heroIndex as obj.heroFullName for obj in heroes | orderBy:'heroFullName'" style="display: inline;">
+                            <option value="">Select hero</option>
+                        </select>
                    <span class="input-group-btn">
                        <button class="btn btn-success" ng-click="yourTeamHeroPick(selectedHeroYourTeam); selectedHeroYourTeam=''">
                            Pick
                        </button>
                    </span>
+                    </div>
                 </div>
-            </div>
 
-            <br><br><br>
+                <br><br><br>
 
-            <!-- Table (YourTeam) if not Swapped -->
-            <div ng-if="!swapTables">
                 <div class="table-responsive">
                     <table class="table table-striped">
                         <caption>{{yourTeamTableInfo}}</caption>
@@ -380,7 +383,7 @@
                         <tbody>
                         <tr ng-repeat="hero in heroes | orderBy:sortTypeYourTeam:sortReverseYourTeam">
                             <td ng-class='{blackTable : picked(hero.heroIndex)}' ng-show="([hero.heroFullName] | filter:searchHeroYourTeam).length > 0"><img
-                              ng-click="yourTeamHeroPick(hero.heroIndex)" ng-right-click="banHero(hero.heroIndex)" ng-src="{{ hero.heroImageURL }}"
+                              ng-click="yourTeamHeroClickImage(hero.heroIndex)" ng-right-click="banHero(hero.heroIndex)" ng-src="{{ hero.heroImageURL }}"
                               style="width: 96px; height: 58px"></td>
                             <td ng-class='{blackTable : picked(hero.heroIndex)}' ng-show="([hero.heroFullName] | filter:searchHeroYourTeam).length > 0">{{ $index + 1 }}</td>
                             <td ng-class='{blackTable : picked(hero.heroIndex)}' ng-show="([hero.heroFullName] | filter:searchHeroYourTeam).length > 0">{{ hero.heroFullName }}</td>
@@ -395,6 +398,33 @@
 
             <!-- Tables if swapped -->
             <div ng-if="swapTables">
+                <br>
+                <div class="col-md-6">
+                    <form>
+                        <div class="form-group">
+                            <div class="input-group">
+                                <div class="input-group-addon"><i class="fa fa-search"></i></div>
+                                <input type="text" class="form-control" placeholder="Search Hero"
+                                       ng-model="searchHeroEnemyTeam">
+                            </div>
+                        </div>
+                    </form>
+                </div>
+                <div class="col-md-6">
+                    <div class="input-group">
+                        <select id="dropDownPickYourTeam" class="form-control" ng-model="selectedHeroYourTeam"
+                                ng-options="obj.heroIndex as obj.heroFullName for obj in heroes | orderBy:'heroFullName'" style="display: inline;">
+                            <option value="">Select hero</option>
+                        </select>
+                   <span class="input-group-btn">
+                       <button class="btn btn-success" ng-click="yourTeamHeroPick(selectedHeroYourTeam); selectedHeroYourTeam=''">
+                           Pick
+                       </button>
+                   </span>
+                    </div>
+                </div>
+
+                <br><br><br>
                 <div class="table-responsive">
                     <table class="table table-striped">
                         <caption>{{enemyTeamTableInfo}}</caption>
@@ -446,7 +476,7 @@
                         <tbody>
                         <tr ng-repeat="hero in heroes | orderBy:sortTypeEnemyTeam:sortReverseEnemyTeam">
                             <td ng-class='{blackTable : picked(hero.heroIndex)}' ng-show="([hero.heroFullName] | filter:searchHeroEnemyTeam).length > 0"><img
-                              ng-click="enemyTeamHeroPick(hero.heroIndex)" ng-right-click="banHero(hero.heroIndex)" ng-src="{{ hero.heroImageURL }}"
+                              ng-click="enemyTeamHeroClickImage(hero.heroIndex)" ng-right-click="banHero(hero.heroIndex)" ng-src="{{ hero.heroImageURL }}"
                               style="width: 96px; height: 58px"></td>
                             <td ng-class='{blackTable : picked(hero.heroIndex)}' ng-show="([hero.heroFullName] | filter:searchHeroEnemyTeam).length > 0">{{ $index + 1 }}</td>
                             <td ng-class='{blackTable : picked(hero.heroIndex)}' ng-show="([hero.heroFullName] | filter:searchHeroEnemyTeam).length > 0">{{ hero.heroFullName }}</td>
@@ -528,36 +558,37 @@
         </div>
         <div class="spanMainPageRight">
 
-            <br>
-            <div class="col-md-6">
-                <form>
-                    <div class="form-group">
-                        <div class="input-group">
-                            <div class="input-group-addon"><i class="fa fa-search"></i></div>
-                            <input type="text" class="form-control" placeholder="Search Hero"
-                                   ng-model="searchHeroEnemyTeam">
+
+
+            <!-- Tables if not swapped -->
+            <div ng-if="!swapTables">
+                <br>
+                <div class="col-md-6">
+                    <form>
+                        <div class="form-group">
+                            <div class="input-group">
+                                <div class="input-group-addon"><i class="fa fa-search"></i></div>
+                                <input type="text" class="form-control" placeholder="Search Hero"
+                                       ng-model="searchHeroEnemyTeam">
+                            </div>
                         </div>
-                    </div>
-                </form>
-            </div>
-            <div class="col-md-6">
-                <div class="input-group">
-                    <select id="dropDownPickEnemyTeam" class="form-control" ng-model="selectedHeroEnemyTeam"
-                            ng-options="obj.heroIndex as obj.heroFullName for obj in heroes | orderBy:'heroFullName'">
-                        <option value="">Select hero</option>
-                    </select>
+                    </form>
+                </div>
+                <div class="col-md-6">
+                    <div class="input-group">
+                        <select id="dropDownPickEnemyTeam" class="form-control" ng-model="selectedHeroEnemyTeam"
+                                ng-options="obj.heroIndex as obj.heroFullName for obj in heroes | orderBy:'heroFullName'">
+                            <option value="">Select hero</option>
+                        </select>
                    <span class="input-group-btn">
                        <button class="btn btn-success" ng-click="enemyTeamHeroPick(selectedHeroEnemyTeam); selectedHeroEnemyTeam=''">
                            Pick
                        </button>
                    </span>
+                    </div>
                 </div>
-            </div>
 
-            <br><br><br>
-
-            <!-- Tables if not swapped -->
-            <div ng-if="!swapTables">
+                <br><br><br>
                 <div class="table-responsive">
                     <table class="table table-striped">
                         <caption>{{enemyTeamTableInfo}}</caption>
@@ -609,7 +640,7 @@
                         <tbody>
                         <tr ng-repeat="hero in heroes | orderBy:sortTypeEnemyTeam:sortReverseEnemyTeam">
                             <td ng-class='{blackTable : picked(hero.heroIndex)}' ng-show="([hero.heroFullName] | filter:searchHeroEnemyTeam).length > 0"><img
-                                    ng-click="enemyTeamHeroPick(hero.heroIndex)" ng-right-click="banHero(hero.heroIndex)" ng-src="{{ hero.heroImageURL }}"
+                                    ng-click="enemyTeamHeroClickImage(hero.heroIndex)" ng-right-click="banHero(hero.heroIndex)" ng-src="{{ hero.heroImageURL }}"
                                     style="width: 96px; height: 58px"></td>
                             <td ng-class='{blackTable : picked(hero.heroIndex)}' ng-show="([hero.heroFullName] | filter:searchHeroEnemyTeam).length > 0 ">{{ $index + 1 }}</td>
                             <td ng-class='{blackTable : picked(hero.heroIndex)}' ng-show="([hero.heroFullName] | filter:searchHeroEnemyTeam).length > 0 ">{{ hero.heroFullName }}</td>
@@ -627,6 +658,33 @@
 
             <!-- Table if Swapped -->
             <div ng-if="swapTables">
+                <br>
+                <div class="col-md-6">
+                    <form>
+                        <div class="form-group">
+                            <div class="input-group">
+                                <div class="input-group-addon"><i class="fa fa-search"></i></div>
+                                <input type="text" class="form-control" placeholder="Search Hero"
+                                       ng-model="searchHeroYourTeam">
+                            </div>
+                        </div>
+                    </form>
+                </div>
+                <div class="col-md-6">
+                    <div class="input-group">
+                        <select id="dropDownPickEnemyTeam" class="form-control" ng-model="selectedHeroEnemyTeam"
+                                ng-options="obj.heroIndex as obj.heroFullName for obj in heroes | orderBy:'heroFullName'">
+                            <option value="">Select hero</option>
+                        </select>
+                   <span class="input-group-btn">
+                       <button class="btn btn-success" ng-click="enemyTeamHeroPick(selectedHeroEnemyTeam); selectedHeroEnemyTeam=''">
+                           Pick
+                       </button>
+                   </span>
+                    </div>
+                </div>
+
+                <br><br><br>
                 <div class="table-responsive">
                     <table class="table table-striped">
                         <caption>{{yourTeamTableInfo}}</caption>
@@ -669,7 +727,7 @@
                         <tbody>
                         <tr ng-repeat="hero in heroes | orderBy:sortTypeYourTeam:sortReverseYourTeam">
                             <td ng-class='{blackTable : picked(hero.heroIndex)}' ng-show="([hero.heroFullName] | filter:searchHeroYourTeam).length > 0"><img
-                              ng-click="yourTeamHeroPick(hero.heroIndex)" ng-right-click="banHero(hero.heroIndex)" ng-src="{{ hero.heroImageURL }}"
+                              ng-click="yourTeamHeroClickImage(hero.heroIndex)" ng-right-click="banHero(hero.heroIndex)" ng-src="{{ hero.heroImageURL }}"
                               style="width: 96px; height: 58px"></td>
                             <td ng-class='{blackTable : picked(hero.heroIndex)}' ng-show="([hero.heroFullName] | filter:searchHeroYourTeam).length > 0">{{ $index + 1 }}</td>
                             <td ng-class='{blackTable : picked(hero.heroIndex)}' ng-show="([hero.heroFullName] | filter:searchHeroYourTeam).length > 0">{{ hero.heroFullName }}</td>

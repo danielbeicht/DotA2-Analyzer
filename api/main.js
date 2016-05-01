@@ -8,11 +8,7 @@ var sql = require('mssql');
 var fs = require("fs");
 
 var dbConfig = {
-  server: "192.168.2.202",
-  database: "",
-  user: "",
-  password: "",
-  port: 1433
+  
 };
 
 
@@ -66,7 +62,7 @@ app.get('/api/heroes', function (req, res){
   })
 });
 
-var server = app.listen(1339, function () {
+var server = app.listen(80, function () {
 
   var host = server.address().address
   var port = server.address().port

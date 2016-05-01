@@ -9,15 +9,15 @@
     .module('DotAAnalyzerApp')
     .controller('homeCtrl', homeCtrl);
 
-  homeCtrl.$inject = ['$scope', '$http', '$log', '$uibModal', '$timeout'];
+  homeCtrl.$inject = ['$scope', '$http', '$log', '$uibModal', '$timeout', 'greeting'];
 
 
-  function homeCtrl($scope, $http, $log, $uibModal, $timeout) {
+  function homeCtrl($scope, $http, $log, $uibModal, $timeout, greeting) {
   $scope.debugFunction = function (){
     for (var i=0; i<$scope.heroes.length; i++){
     }
   };
-
+  $scope.testvar = greeting.message;
     // Initialize Heropicker Modal
     $scope.animationsEnabled = true;
     $scope.open = function (pickSetting) {
@@ -73,6 +73,8 @@
     // APIs
     $scope.yourTeamHeroPick = yourTeamHeroPick;
     $scope.enemyTeamHeroPick = enemyTeamHeroPick;
+    $scope.yourTeamHeroClickImage = yourTeamHeroClickImage;
+    $scope.enemyTeamHeroClickImage = enemyTeamHeroClickImage;
     $scope.banHero = banHero;
     $scope.updateAdvantages = updateAdvantages;
 
@@ -193,6 +195,7 @@
         }
         $log.info("Matchups Initialized");
         $scope.dataLoaded = true;
+        $scope.updateAdvantages();
 
 
         // this callback will be called asynchronously
@@ -232,6 +235,9 @@
         {text: 'Alert Message!', type: "alert"},
         {text: 'secondary message...', type: 'secondary'}
       ];
+
+
+
     }
 
     // return image URL (gray when picked; with color when unpicked)
@@ -258,28 +264,13 @@
     // Function called when a hero is picked for you team; Adds hero to yourTeamPicks-Array
     function yourTeamHeroPick(heroIndexParameter) {
       if (heroIndexParameter != null) {
-        var selectedHero = $scope.heroesSortedByIndex[heroIndexParameter];
-        var heroAlreadyPicked = false;
         var i;
-        for (i = 0; i < 5; i++) {
-          if (($scope.yourTeamPicks[i] != null && $scope.yourTeamPicks[i].heroIndex === selectedHero.heroIndex) || ($scope.enemyTeamPicks[i] != null && $scope.enemyTeamPicks[i].heroIndex === selectedHero.heroIndex)) {
-            heroAlreadyPicked = true;
-            // TODO: POPUP Held wurde bereits gewählt
-          }
-        }
-        for (i = 0; i < 10; i++) {
-          if ($scope.heroBans[i] != null && $scope.heroBans[i].heroIndex === selectedHero.heroIndex) {
-            heroAlreadyPicked = true;
-          }
-        }
-
-        if (!heroAlreadyPicked) {
+        if (!heroAlreadyPickedOrBanned(heroIndexParameter)) {
           var heroPicked = false;
           for (i = 0; i < 5; i++) {
             if ($scope.yourTeamPicks[i] == null) {
               $scope.yourTeamPicks[i] = $scope.heroesSortedByIndex[heroIndexParameter];
               heroPicked = true;
-
               break;
             }
           }
@@ -291,27 +282,49 @@
       $scope.updateAdvantages();
     }
 
+    // Return if Hero Already Picked or Banned
+    function heroAlreadyPickedOrBanned(heroIndexParameter){
+      var i;
+      var selectedHero = $scope.heroesSortedByIndex[heroIndexParameter];
+      for (i = 0; i < 5; i++) {
+        if (($scope.yourTeamPicks[i] != null && $scope.yourTeamPicks[i].heroIndex === selectedHero.heroIndex) || ($scope.enemyTeamPicks[i] != null && $scope.enemyTeamPicks[i].heroIndex === selectedHero.heroIndex)) {
+          return true;
+        }
+      }
+      for (i = 0; i < 10; i++) {
+        if ($scope.heroBans[i] != null && $scope.heroBans[i].heroIndex === selectedHero.heroIndex) {
+          return true;
+        }
+      }
+      return false;
+    }
+
+
+
+    function yourTeamHeroClickImage(heroIndexParameter){
+      var i;
+      var selectedHero = $scope.heroesSortedByIndex[heroIndexParameter];
+      for (i = 0; i < 5; i++){
+        if ($scope.yourTeamPicks[i] != null && $scope.yourTeamPicks[i].heroIndex === selectedHero.heroIndex){
+          $scope.yourTeamPicks[i] = null;
+          $scope.updateAdvantages();
+          return;
+        } else if ($scope.enemyTeamPicks[i] != null && $scope.enemyTeamPicks[i].heroIndex === selectedHero.heroIndex){
+          $scope.enemyTeamPicks[i] = null;
+          $scope.updateAdvantages();
+          return;
+        }
+
+      }
+      yourTeamHeroPick(heroIndexParameter);
+    }
+
     // Function called when a hero is picked for enemy team; Adds hero to enemyTeamPicks-Array
     function enemyTeamHeroPick(heroIndexParameter) {
       if (heroIndexParameter != null) {
-        var selectedHero = $scope.heroesSortedByIndex[heroIndexParameter];
-        var heroAlreadyPicked = false;
         var i;
-        for (i = 0; i < 5; i++) {
-          if (($scope.yourTeamPicks[i] != null && $scope.yourTeamPicks[i].heroIndex === selectedHero.heroIndex) || ($scope.enemyTeamPicks[i] != null && $scope.enemyTeamPicks[i].heroIndex === selectedHero.heroIndex)) {
-            heroAlreadyPicked = true;
-            break;
-            // TODO: POPUP Held wurde bereits gewählt
-          }
-        }
-        for (i = 0; i < 10; i++) {
-          if ($scope.heroBans[i] != null && $scope.heroBans[i].heroIndex === selectedHero.heroIndex) {
-            heroAlreadyPicked = true;
-            break;
-          }
-        }
 
-        if (!heroAlreadyPicked) {
+        if (!heroAlreadyPickedOrBanned(heroIndexParameter)) {
           var heroPicked = false;
           for (i = 0; i < 5; i++) {
             if ($scope.enemyTeamPicks[i] == null) {
@@ -327,6 +340,23 @@
         }
       }
       $scope.updateAdvantages();
+    }
+
+    function enemyTeamHeroClickImage(heroIndexParameter){
+      var i;
+      var selectedHero = $scope.heroesSortedByIndex[heroIndexParameter];
+      for (i = 0; i < 5; i++){
+        if ($scope.enemyTeamPicks[i] != null && $scope.enemyTeamPicks[i].heroIndex === selectedHero.heroIndex){
+          $scope.enemyTeamPicks[i] = null;
+          $scope.updateAdvantages();
+          return;
+        } else if ($scope.yourTeamPicks[i] != null && $scope.yourTeamPicks[i].heroIndex === selectedHero.heroIndex){
+          $scope.yourTeamPicks[i] = null;
+          $scope.updateAdvantages();
+          return;
+        }
+      }
+      enemyTeamHeroPick(heroIndexParameter);
     }
 
 

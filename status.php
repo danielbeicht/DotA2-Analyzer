@@ -26,7 +26,7 @@ if (! isset($PIWIK_URL)) {
 // Edit the line below, and replace xyz by the token_auth for the user "UserTrackingAPI"
 // which you created when you followed instructions above.
 if (! isset($TOKEN_AUTH)) {
-    $TOKEN_AUTH = '691f04407975629ec60e8126226feb32';
+    $TOKEN_AUTH = '94a01d97a9c5230ed4b2b34dc2b59ce0';
 }
 
 // Maximum time, in seconds, to wait for the Piwik server to return the 1*1 GIF

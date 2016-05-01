@@ -1,3 +1,8 @@
+.textcenter {
+    align-items: center;
+    background-color:yellow;
+}
+
 .bodyMainPage {
     margin:0;
 }

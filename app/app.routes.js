@@ -7,7 +7,11 @@
     //noinspection JSUnresolvedFunction
   angular
         .module('DotAAnalyzerApp')
-        .config(uiRouterConfig);
+        .config(uiRouterConfig)
+      .service("greeting", function Greeting(){
+          var greeting = this;
+          greeting.message = "Default";
+      });
 
     uiRouterConfig.$inject = ['$stateProvider', '$urlRouterProvider', '$httpProvider'];
 
