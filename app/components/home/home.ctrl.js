@@ -9,15 +9,19 @@
     .module('DotAAnalyzerApp')
     .controller('homeCtrl', homeCtrl);
 
-  homeCtrl.$inject = ['$scope', '$http', '$log', '$uibModal', '$timeout', 'greeting'];
+  homeCtrl.$inject = ['$scope', '$http', '$log', '$uibModal', '$timeout', '$location', 'datastorage'];
 
 
-  function homeCtrl($scope, $http, $log, $uibModal, $timeout, greeting) {
+  function homeCtrl($scope, $http, $log, $uibModal, $timeout, $location, datastorage) {
+    if (typeof datastorage.heroes === "undefined"){   // if page home directly called redirect to loading page
+      $location.path( "/" );
+    }
+
+
   $scope.debugFunction = function (){
     for (var i=0; i<$scope.heroes.length; i++){
     }
   };
-  $scope.testvar = greeting.message;
     // Initialize Heropicker Modal
     $scope.animationsEnabled = true;
     $scope.open = function (pickSetting) {
@@ -88,8 +92,9 @@
     });
 
     // Wait until 200 ms are over (ng-if/Loading screen complete disappear)
+
     $scope.$watch('dataLoaded', function (newValue) {
-      if ($scope.dataLoaded == true) {
+      if ($scope.dataLoaded == false) {
         $timeout(function(){
           $scope.loadingScreenDisappeared = true;
         }, 200);
@@ -100,8 +105,20 @@
 
 
     function initHome() {
-      $scope.dataLoaded = false;
+
+
+      /*
+      $scope.dataLoaded = datastorage.loaded;
       $scope.loadingScreenDisappeared = false;
+      if (datastorage.loaded){
+        $scope.dataLoaded = false;
+        datastorage.loaded = false;
+        //$scope.loadingScreenDisappeared = true;
+      } else {
+        $scope.loadingScreenDisappeared = true;
+      }*/
+
+
       $scope.yourTeamPicks = new Array(5);
       $scope.enemyTeamPicks = new Array(5);
       $scope.heroBans = new Array(10);
@@ -135,75 +152,22 @@
         type: 'alert'
       });
 
+      var i;
+      console.log("davor");
+      // NEU
+      $scope.heroes = datastorage.heroes;
+      // Create Array to select heroes by Index in O(1) (references)
+      $scope.heroesSortedByIndex = new Array($scope.heroes.length);
+      for (i = 0; i < $scope.heroes.length; i++) {
+        $scope.heroesSortedByIndex[i] = $scope.heroes[i];
+      }
+      $scope.heroesSortedByIndex.sort(compare);
 
-      // Get all heroes
-      $http({
-        method: 'GET',
-        url: 'api/heroes'
-      }).then(function successCallback(response) {
+      $scope.matchups = datastorage.matchups;
+      $scope.updateAdvantages();
+      // BIS HIER
+      console.log("danach");
 
-        var heroesTemp = response.data;
-        var i;
-        $scope.heroes = new Array(heroesTemp.length);
-        for (i = 0; i < $scope.heroes.length; i++) {
-          //noinspection JSUnresolvedVariable
-          $scope.heroes[i] = {
-            heroIndex: heroesTemp[i].HeldIndex,
-            heroID: heroesTemp[i].HeldID,
-            heroFullName: heroesTemp[i].HeldFullName,
-            heroName: heroesTemp[i].HeldName,
-            heroImageURL: 'assets/images/heroes/' + heroesTemp[i].HeldFullName.trim().replace(/\s/gi, "_") + '.jpg',
-            yourTeamAdvantage: 0,
-            enemyTeamAdvantage: 0,
-            yourTeamWinrate: '0.00',
-            enemyTeamWinrate: '0.00'
-          };
-        }
-
-        // Create Array to select heroes by Index in O(1) (references)
-        $scope.heroesSortedByIndex = new Array($scope.heroes.length);
-        for (i = 0; i < $scope.heroes.length; i++) {
-          $scope.heroesSortedByIndex[i] = $scope.heroes[i];
-        }
-        $scope.heroesSortedByIndex.sort(compare);
-        // this callback will be called asynchronously
-        // when the response is available
-      }, function errorCallback(response) {
-        // called asynchronously if an error occurs
-        // or server returns response with an error status.
-      });
-
-      // Get all Matchup-data
-      $http({
-        method: 'GET',
-        url: 'api/matchups'
-      }).then(function successCallback(response) {
-        //$scope.matchupsTemp = response.data.matchup;
-        console.log (response.data[0]);
-        var i, j;
-        // Create 2 dim. Array
-        $scope.matchups = new Array($scope.heroes.length);
-        for (i = 0; i < $scope.heroes.length; i++) {
-          $scope.matchups[i] = new Array($scope.heroes.length);
-        }
-
-        for (i = 0; i < $scope.heroes.length; i++) {
-          for (j = 0; j < $scope.heroes.length; j++) {
-            //noinspection JSUnresolvedVariable
-            $scope.matchups[$scope.heroes[i].heroIndex][$scope.heroes[j].heroIndex] = response.data[i * $scope.heroes.length + j];
-          }
-        }
-        $log.info("Matchups Initialized");
-        $scope.dataLoaded = true;
-        $scope.updateAdvantages();
-
-
-        // this callback will be called asynchronously
-        // when the response is available
-      }, function errorCallback(response) {
-        // called asynchronously if an error occurs
-        // or server returns response with an error status.
-      });
 
       $scope.picked = function (index) {
         var alreadyPicked = false;
@@ -314,7 +278,12 @@
           $scope.updateAdvantages();
           return;
         }
-
+      }
+      for (i = 0; i < 10; i++) {
+        if ($scope.heroBans[i] != null && $scope.heroBans[i].heroIndex === selectedHero.heroIndex) {
+          $scope.heroBans[i] = null;
+          return;
+        }
       }
       yourTeamHeroPick(heroIndexParameter);
     }
@@ -353,6 +322,12 @@
         } else if ($scope.yourTeamPicks[i] != null && $scope.yourTeamPicks[i].heroIndex === selectedHero.heroIndex){
           $scope.yourTeamPicks[i] = null;
           $scope.updateAdvantages();
+          return;
+        }
+      }
+      for (i = 0; i < 10; i++) {
+        if ($scope.heroBans[i] != null && $scope.heroBans[i].heroIndex === selectedHero.heroIndex) {
+          $scope.heroBans[i] = null;
           return;
         }
       }
@@ -529,6 +504,11 @@
       }
       $scope.updateAdvantages();
     };
+
+
+    $scope.reloadData = function() {
+      $location.path( "/" );
+    }
 /*
     $scope.swapTables = function() {
       if ($scope.tableStatus == 'Left') {

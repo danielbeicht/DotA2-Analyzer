@@ -8,7 +8,7 @@
   angular
         .module('DotAAnalyzerApp')
         .config(uiRouterConfig)
-      .service("greeting", function Greeting(){
+      .service("datastorage", function Greeting(){
           var greeting = this;
           greeting.message = "Default";
       });
@@ -19,7 +19,7 @@
         $urlRouterProvider.otherwise('/');
         $stateProvider
             .state('home', {
-                url: '/',
+                url: '/home',
                 templateUrl: 'app/components/home/home.tpl.html',
                 controller: 'homeCtrl'
             })
@@ -28,10 +28,10 @@
                 templateUrl: 'app/components/about/about.html',
                 controller: 'aboutCtrl'
             })
-          .state('cards', {
-              url: '/cards',
-              templateUrl: 'app/components/cards/cards.html',
-              controller: 'cardsCtrl'
+          .state('loading', {
+              url: '/',
+              templateUrl: 'app/components/loading/loading.html',
+              controller: 'loadingCtrl'
           })
         ;
 
