@@ -283,11 +283,10 @@
                     <uib-bar style="background:rgba(245, 245, 245, 1)" ng-repeat="bar in stacked track by $index" ng-if="bar.isPlaceholder" value="bar.value"><span>{{bar.adv}}</span></uib-bar>
                     <uib-bar id="progressValue" style="background:black" ng-repeat="bar in stacked track by $index" ng-if="!bar.isPlaceholder" value="bar.value" type="{{changeProgressbarColor(bar)}}"><span style="color: black">{{bar.adv}}</span></uib-bar>
         </uib-progress>
+        <uib-alert ng-show="showAPIError" class="alert" type="danger" close="showAPIError=false">The DotA 2 API is temporarily unavailable.</uib-alert>
     </div>
     <div class="row"></div>
 </div>
-
-
 
 
 <div class="gridMainPage">
@@ -493,11 +492,32 @@
             <div class="btn-group">
                 <label class="btn btn-primary" ng-model="swapTables" uib-btn-radio="false" >Left</label>
                 <label class="btn btn-primary" ng-model="swapTables" uib-btn-radio="true" >Right</label>
-            </div><br>
+            </div><br><br>
+
+                <div class="input-group">
+                    <input type="text" class="form-control" ng-model="inputMatchID" placeholder="Match ID">
+                  <span class="input-group-btn">
+                      <button class="btn btn-info" ng-click="parseMatchID(inputMatchID)">Parse</button>
+                  </span>
+                </div><br>
 
 
+
+
+
+
+
+
+
+
+
+
+
+                <div ng-show="parsingMatch"><img src="/assets/images/loadingGif.gif" /></div>
                 <label>Allow Banning:
                     <input type="checkbox" ng-model="allowBanning"></label>
+
+
             </div>
 
             <table>
@@ -730,6 +750,7 @@
     </div>
 </div>
 </div>
+
 
 
 <!-- MODAL OVER -->

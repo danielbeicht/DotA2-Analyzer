@@ -81,6 +81,7 @@
     $scope.enemyTeamHeroClickImage = enemyTeamHeroClickImage;
     $scope.banHero = banHero;
     $scope.updateAdvantages = updateAdvantages;
+    $scope.parseMatchID = parseMatchID;
 
 
     $scope.$watch('allowBanning', function (newValue) {
@@ -137,6 +138,8 @@
       $scope.enemyTeamOverallAdvantage = 0.0;
 
       $scope.swapTables = false;
+      $scope.parsingMatch = false;
+      $scope.showAPIError = false;
 
       $scope.yourTeamTableInfo = "Counter picks to enemy heroes. (Maybe pick them?)";
       $scope.enemyTeamTableInfo = "Counter picks to your heroes. (Maybe ban them?)";
@@ -241,6 +244,8 @@
           if (heroPicked == false) {
             // TODO: POPUP Alle 5 Helden bereits gewählt
           }
+        } else {
+          window.alert("WAAA");
         }
       }
       $scope.updateAdvantages();
@@ -370,6 +375,48 @@
           }
         }
       }
+    }
+
+    function parseMatchID (matchID) {
+
+      $scope.resetData();
+      $scope.parsingMatch = true;
+      var dataObj = {
+        matchID : matchID
+      };
+        $http({
+          method: 'POST',
+          url: 'api/matchid',
+          data: dataObj
+        }).then(function successCallback(response) {
+          if (response.data == "notfound"){
+
+          } else if (response.data == "false") {
+            $scope.showAPIError = true;
+          } else {
+            for (var i=0; i<5; i++){
+              for (var j=0; j<$scope.heroes.length; j++){
+                if ($scope.heroes[j].heroValveIndex == response.data[i]){
+                  //alert($scope.heroes[j].heroValveIndex + " is " + $scope.heroes[j].heroIndex);
+                  yourTeamHeroPick($scope.heroes[j].heroIndex);
+                }
+              }
+            }
+            for (var i=5; i<10; i++){
+              for (var j=0; j<$scope.heroes.length; j++){
+                if ($scope.heroes[j].heroValveIndex == response.data[i]){
+                  //alert($scope.heroes[j].heroValveIndex + " is " + $scope.heroes[j].heroIndex);
+                  enemyTeamHeroPick($scope.heroes[j].heroIndex);
+                }
+              }
+            }
+          }
+        }, function errorCallback(response) {
+          // called asynchronously if an error occurs
+          // or server returns response with an error status.
+        }).finally(function() {
+           $scope.parsingMatch = false;
+        });
     }
 
     // Update hero Advantages
@@ -509,6 +556,10 @@
     $scope.reloadData = function() {
       $location.path( "/" );
     }
+/*
+    $scope.parseMatchID = function(matchID) {
+      alert("HI");
+    }*/
 /*
     $scope.swapTables = function() {
       if ($scope.tableStatus == 'Left') {

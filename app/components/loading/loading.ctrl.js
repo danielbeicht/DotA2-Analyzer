@@ -76,6 +76,7 @@
                     heroIndex: heroesTemp[i].HeldIndex,
                     heroID: heroesTemp[i].HeldID,
                     heroFullName: heroesTemp[i].HeldFullName,
+                    heroValveIndex: heroesTemp[i].HeldValveIndex,
                     heroName: heroesTemp[i].HeldName,
                     heroImageURL: 'assets/images/heroes/' + heroesTemp[i].HeldFullName.trim().replace(/\s/gi, "_") + '.jpg',
                     yourTeamAdvantage: 0,
