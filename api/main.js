@@ -70,7 +70,7 @@ app.post('/api/matchid', function (req, res){
   var counter = 0;
   var options = {
     host: 'api.steampowered.com',
-    path: "/IDOTA2Match_570/GetMatchDetails/V001/?match_id=" + req.body.matchID + "&key=A24667A333B3C275113B6FB6B3401403"
+    path: "/IDOTA2Match_570/GetMatchDetails/V001/?match_id=" + req.body.matchID + "&key="
   };
 
   callback = function(response) {
@@ -112,7 +112,7 @@ app.post('/api/matchid', function (req, res){
 
 
 
-var server = app.listen(80, function () {
+var server = app.listen(81, function () {
 
   var host = server.address().address
   var port = server.address().port

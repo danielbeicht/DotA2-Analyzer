@@ -1,41 +1,50 @@
-.textcenter {
-    align-items: center;
-    background-color:yellow;
+.staticBox {
+    position: fixed;
+    z-index: 1020;
+    top: 52px;
+    background: #f2f2f2;
+
+
 }
 
-.bodyMainPage {
-    margin:0;
+.textcenter {
+    align-items: center;
 }
-.wrapperMainPage {
-    height:100%;
+
+
+
+body {
+    min-height: 200px;
+    padding-top: 52px;
 }
+
 
 /* grid */
 
 .gridMainPage {
     width:100%;
 }
+
+
 .gridMainPage .spanMainPageLeft {
     /*background:#FFB2B2;*/
-    border-right:1em solid #FFFFFF;
+    border-right:0em solid #FFFFFF;
     float:left;
-    position: relative;
     width:43.0%; /* 3 columns */
 }
 
 .gridMainPage .spanMainPageRight {
     /*background:#FFB2B2;*/
-    border-right:1em solid #FFFFFF;
+    border-right:0em solid #FFFFFF;
+
     float:right;
-    position: relative;
     width:43.0%; /* 3 columns */
 }
 
 .gridMainPage .spanMainPageMid {
     /*background:#FFB2B2;*/
-    border-right:1em solid #FFFFFF;
+    border-right:0em solid #FFFFFF;
     float:left;
-    position: relative;
     width:14.0%; /* 3 columns */
 }
 
@@ -45,9 +54,7 @@
     cursor: pointer;
 }
 
-.app-modal-window .modal-dialog {
-    width: 98%;
-}
+
 
 .img-responsive {
     /* other definitions */

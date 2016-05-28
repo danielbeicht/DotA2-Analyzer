@@ -27,10 +27,11 @@
     $scope.open = function (pickSetting) {
       var modalInstance = $uibModal.open({
         animation: $scope.animationsEnabled,
-        templateUrl: 'myModalContent.html',
+        templateUrl: 'myModalContent',
         controller: 'ModalInstanceCtrl',
         windowClass: 'app-modal-window',
         scope: $scope,
+        size: 'lg',
         resolve: {
           pickSetting: function() {
             return pickSetting;
@@ -67,6 +68,35 @@
         //$log.info('Modal dismissed at: ' + new Date());
       });
     };
+
+
+
+    $scope.parseMatch = function (pickSetting) {
+      var modalInstance = $uibModal.open({
+        animation: $scope.animationsEnabled,
+        templateUrl: 'myModalContentt.html',
+        controller: 'ParseMatchModalCtrl',
+        windowClass: 'app-modal-window',
+        size: 'sm',
+        scope: $scope
+      });
+      modalInstance.result.then(function (result) {
+        if (result != null){
+          for (var i=0; i<5; i++){
+            yourTeamHeroPick(result[i]);
+          }
+          for (var i=5; i<10; i++){
+            enemyTeamHeroPick(result[i]);
+          }
+        }
+      }, function () {
+        //$log.info('Modal dismissed at: ' + new Date());
+      });
+    };
+
+
+
+
 
 
 
@@ -141,8 +171,8 @@
       $scope.parsingMatch = false;
       $scope.showAPIError = false;
 
-      $scope.yourTeamTableInfo = "Counter picks to enemy heroes. (Maybe pick them?)";
-      $scope.enemyTeamTableInfo = "Counter picks to your heroes. (Maybe ban them?)";
+      $scope.yourTeamTableInfo = "Counter picks to dire heroes.";
+      $scope.enemyTeamTableInfo = "Counter picks to radiant heroes.";
 
 
       $scope.overallAdvantages = [];
