@@ -10,7 +10,8 @@
             'ngResource',
             'ui.bootstrap',
             'ngAnimate',
-            'angular-loading-bar'
+            'angular-loading-bar',
+            'ngCookies'
         ]);
 
 })();

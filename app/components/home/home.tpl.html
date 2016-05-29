@@ -242,6 +242,16 @@
                     <a ui-sref="about">About</a>
                 </li>
             </ul>
+            <ul class="nav navbar-nav navbar-right">
+                <li ui-sref-active="active" ng-hide="loggedIn">
+                    <a href="auth/steam">
+                        <img src="/assets/images/sits_small.png" ></a>
+                </li>
+                <li ui-sref-active="passive" ng-show="loggedIn">
+                    <a href="#">
+                        Logged in as {{username}}</a>
+                </li>
+            </ul>
         </div>
     </div>
 </nav>
@@ -298,7 +308,7 @@
         <div style="clear: both;">&nbsp;</div>
     </div>
 </div>
-<br><br><br><br><br><br>
+<br><br><br><br><br><br><br>
 
 
 <div class="web">

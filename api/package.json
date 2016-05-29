@@ -3,7 +3,10 @@
   "version": "0.0.1",
   "dependencies": {
     "body-parser": "^1.15.1",
+    "cookie-parser": "^1.4.3",
     "express": "^4.13.4",
-    "mssql": "^3.0.1"
+    "mssql": "^3.0.1",
+    "passport": "^0.3.2",
+    "passport-steam": "^1.0.2"
   }
 }

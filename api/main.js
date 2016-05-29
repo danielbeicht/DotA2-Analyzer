@@ -8,6 +8,9 @@ var sql = require('mssql');
 var fs = require("fs");
 var http = require("http");
 var bodyParser = require('body-parser');
+var passport = require('passport');
+var SteamStrategy = require('passport-steam').Strategy;
+var cookie = require('cookie-parser');
 
 var dbConfig = {
 
@@ -17,6 +20,107 @@ app.use( bodyParser.json() );       // to support JSON-encoded bodies
 app.use('/assets', express.static(path.join(process.cwd(), '..', 'assets')));
 app.use('/app', express.static(path.join(process.cwd(), '..', 'app')));
 app.use('/api', express.static(path.join(process.cwd(), '..', 'api')));
+
+// Initialize Passport!  Also use passport.session() middleware, to support
+// persistent login sessions (recommended).
+app.use(passport.initialize());
+app.use(passport.session());
+app.use(express.static(__dirname + '/../../public'));
+
+
+
+// Passport session setup.
+//   To support persistent login sessions, Passport needs to be able to
+//   serialize users into and deserialize users out of the session.  Typically,
+//   this will be as simple as storing the user ID when serializing, and finding
+//   the user by ID when deserializing.  However, since this example does not
+//   have a database of user records, the complete Steam profile is serialized
+//   and deserialized.
+passport.serializeUser(function(user, done) {
+  done(null, user);
+});
+
+passport.deserializeUser(function(obj, done) {
+  done(null, obj);
+});
+
+// Use the SteamStrategy within Passport.
+//   Strategies in passport require a `validate` function, which accept
+//   credentials (in this case, an OpenID identifier and profile), and invoke a
+//   callback with a user object.
+passport.use(new SteamStrategy({
+      returnURL: 'http://127.0.0.1:81/auth/steam/return',
+      realm: 'http://127.0.0.1:81/',
+      apiKey: ''
+    },
+    function(identifier, profile, done) {
+      // asynchronous verification, for effect...
+      process.nextTick(function () {
+
+        // To keep the example simple, the user's Steam profile is returned to
+        // represent the logged-in user.  In a typical application, you would want
+        // to associate the Steam account with a user record in your database,
+        // and return that user instead.
+        profile.identifier = identifier;
+        return done(null, profile);
+      });
+    }
+));
+
+
+
+// GET /auth/steam
+//   Use passport.authenticate() as route middleware to authenticate the
+//   request.  The first step in Steam authentication will involve redirecting
+//   the user to steamcommunity.com.  After authenticating, Steam will redirect the
+//   user back to this application at /auth/steam/return
+app.get('/auth/steam',
+    passport.authenticate('steam', { failureRedirect: '/' }),
+    function(req, res) {
+      res.redirect('/');
+    });
+
+// GET /auth/steam/return
+//   Use passport.authenticate() as route middleware to authenticate the
+//   request.  If authentication fails, the user will be redirected back to the
+//   login page.  Otherwise, the primary route function function will be called,
+//   which, in this example, will redirect the user to the home page.
+app.get('/auth/steam/return',
+    passport.authenticate('steam', { failureRedirect: '/' }),
+    function(req, res) {
+      //console.log(req.user);
+      res.cookie('user', JSON.stringify(req.user)).redirect('/#/about');
+      //res.json(req.user).redirect('/#/home')
+      //res.redirect('/#/home');
+    });
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 app.get('/', function (req, res) {
   res.sendFile(path.join(process.cwd(), '..', 'index.html'));
@@ -120,3 +224,8 @@ var server = app.listen(81, function () {
   console.log("Server is running at http://", host, port)
 
 })
+
+
+
+
+

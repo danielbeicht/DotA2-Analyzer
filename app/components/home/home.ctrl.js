@@ -9,10 +9,22 @@
     .module('DotAAnalyzerApp')
     .controller('homeCtrl', homeCtrl);
 
-  homeCtrl.$inject = ['$scope', '$http', '$log', '$uibModal', '$timeout', '$location', 'datastorage'];
+  homeCtrl.$inject = ['$scope', '$http', '$log', '$uibModal', '$timeout', '$location', 'datastorage', '$cookies'];
 
 
-  function homeCtrl($scope, $http, $log, $uibModal, $timeout, $location, datastorage) {
+  function homeCtrl($scope, $http, $log, $uibModal, $timeout, $location, datastorage, $cookies) {
+    //Login Stuff
+    if ($cookies.get('user')){
+      var obj = JSON.parse($cookies.get('user'));
+      $scope.username = obj.displayName;
+      $scope.loggedIn = true;
+    } else {
+      $scope.loggedIn = false;
+    }
+
+
+
+
     if (typeof datastorage.heroes === "undefined"){   // if page home directly called redirect to loading page
       $location.path( "/" );
     }
@@ -581,6 +593,8 @@
       }
       $scope.updateAdvantages();
     };
+
+
 
 
     $scope.reloadData = function() {
