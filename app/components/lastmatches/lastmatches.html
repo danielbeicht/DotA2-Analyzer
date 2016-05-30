@@ -40,6 +40,16 @@
 <div class="container">
     <div class="row">
         <div class="col-md-12">
+
+            <table>
+                <tr ng-repeat="match in matches">
+                    <td>{{ match.match_id }}</td>
+                    <td>{{ testee() }}</td>
+                </tr>
+            </table>
+
+
+
             todo
         </div>
     </div>
