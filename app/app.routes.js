@@ -33,6 +33,11 @@
               templateUrl: 'app/components/loading/loading.html',
               controller: 'loadingCtrl'
           })
+          .state('lastmatches', {
+            url: '/lastmatches',
+            templateUrl: 'app/components/lastmatches/lastmatches.html',
+            controller: 'lastmatchesCtrl'
+          })
         ;
 
         $httpProvider.defaults.useXDomain = true;

@@ -21,13 +21,17 @@
                 </li>
             </ul>
             <ul class="nav navbar-nav navbar-right">
+                <li ui-sref-active="active" ng-show="loggedIn">
+                    <a ui-sref="lastmatches">Last matches</a>
+                </li>
                 <li ui-sref-active="active" ng-hide="loggedIn">
                     <a href="auth/steam">
                         <img src="/assets/images/sits_small.png" ></a>
                 </li>
-                <li ui-sref-active="passive" ng-show="loggedIn">
-                    <a href="#">
-                        Logged in as {{username}}</a>
+                <li class="dropdown" ng-show="loggedIn"><a class="dropdown-toggle" data-toggle="dropdown" href="#"><span class="glyphicon glyphicon-user" aria-hidden="true"></span> Logged in as {{username}} <span class="caret"></span></a>
+                    <ul class="dropdown-menu">
+                        <li ng-click="logout()"><a href="#" >Logout</a></li>
+                    </ul>
                 </li>
             </ul>
         </div>

@@ -11,6 +11,9 @@ var bodyParser = require('body-parser');
 var passport = require('passport');
 var SteamStrategy = require('passport-steam').Strategy;
 var cookie = require('cookie-parser');
+var SteamID = require('steamid');
+
+var steamAPIKey = "";
 
 var dbConfig = {
 
@@ -49,22 +52,22 @@ passport.deserializeUser(function(obj, done) {
 //   credentials (in this case, an OpenID identifier and profile), and invoke a
 //   callback with a user object.
 passport.use(new SteamStrategy({
-      returnURL: 'http://127.0.0.1:81/auth/steam/return',
-      realm: 'http://127.0.0.1:81/',
-      apiKey: ''
-    },
-    function(identifier, profile, done) {
-      // asynchronous verification, for effect...
-      process.nextTick(function () {
+    returnURL: 'http://www.dota-analyzer.com/auth/steam/return',
+    realm: 'http://www.dota-analyzer.com/',
+    apiKey: steamAPIKey
+  },
+  function(identifier, profile, done) {
+    // asynchronous verification, for effect...
+    process.nextTick(function () {
 
-        // To keep the example simple, the user's Steam profile is returned to
-        // represent the logged-in user.  In a typical application, you would want
-        // to associate the Steam account with a user record in your database,
-        // and return that user instead.
-        profile.identifier = identifier;
-        return done(null, profile);
-      });
-    }
+      // To keep the example simple, the user's Steam profile is returned to
+      // represent the logged-in user.  In a typical application, you would want
+      // to associate the Steam account with a user record in your database,
+      // and return that user instead.
+      profile.identifier = identifier;
+      return done(null, profile);
+    });
+  }
 ));
 
 
@@ -75,10 +78,10 @@ passport.use(new SteamStrategy({
 //   the user to steamcommunity.com.  After authenticating, Steam will redirect the
 //   user back to this application at /auth/steam/return
 app.get('/auth/steam',
-    passport.authenticate('steam', { failureRedirect: '/' }),
-    function(req, res) {
-      res.redirect('/');
-    });
+  passport.authenticate('steam', { failureRedirect: '/' }),
+  function(req, res) {
+    res.redirect('/');
+  });
 
 // GET /auth/steam/return
 //   Use passport.authenticate() as route middleware to authenticate the
@@ -86,13 +89,13 @@ app.get('/auth/steam',
 //   login page.  Otherwise, the primary route function function will be called,
 //   which, in this example, will redirect the user to the home page.
 app.get('/auth/steam/return',
-    passport.authenticate('steam', { failureRedirect: '/' }),
-    function(req, res) {
-      //console.log(req.user);
-      res.cookie('user', JSON.stringify(req.user)).redirect('/#/about');
-      //res.json(req.user).redirect('/#/home')
-      //res.redirect('/#/home');
-    });
+  passport.authenticate('steam', { failureRedirect: '/' }),
+  function(req, res) {
+    //console.log(req.user);
+    res.cookie('user', JSON.stringify(req.user)).redirect('/');
+    //res.json(req.user).redirect('/#/home')
+    //res.redirect('/#/home');
+  });
 
 
 
@@ -174,7 +177,59 @@ app.post('/api/matchid', function (req, res){
   var counter = 0;
   var options = {
     host: 'api.steampowered.com',
-    path: "/IDOTA2Match_570/GetMatchDetails/V001/?match_id=" + req.body.matchID + "&key="
+    path: "/IDOTA2Match_570/GetMatchDetails/V001/?match_id=" + req.body.matchID + "&key=" + steamAPIKey
+  };
+
+  callback = function(response) {
+    var str = '';
+
+      //another chunk of data has been recieved, so append it to `str`
+      response.on('data', function (chunk) {
+        str += chunk;
+      });
+
+      //the whole response has been recieved, so we just print it out here
+      response.on('end', function () {
+        if (response.statusCode == 200) {
+          var obj = JSON.parse(str);
+          //console.log(obj.result.players.length);
+          if (obj && obj.result && obj.result.players) {
+            var array = [];
+            for (var i = 0; i < 10; i++) {
+              array.push(obj.result.players[i].hero_id);
+            }
+            res.send(array);
+          } else {
+            res.send("notfound");
+          }
+        } else {
+          console.log("DotA API has problems " + response.statusCode);
+          if (counter < 10) {
+            counter++;
+            http.request(options, callback).end();
+          } else {
+            res.send("false");
+          }
+
+        }
+      });
+    }
+    http.request(options, callback).end();
+
+});
+
+app.post('/api/getPlayerMatches', function (req, res){
+  var sid = new SteamID(req.body.matchID);
+  var playerID = sid.getSteam3RenderedID();
+  playerID = playerID.substring(playerID.indexOf(':')+1);
+  playerID = playerID.substring(playerID.indexOf(':')+1);
+  playerID = playerID.substring(0, playerID.length - 1);
+
+
+  var counter = 0;
+  var options = {
+    host: 'api.steampowered.com',
+    path: "/IDOTA2Match_570/GetMatchHistory/V001/?matches_requested=1&account_id=" + playerID + "&key=" + steamAPIKey
   };
 
   callback = function(response) {
@@ -187,21 +242,11 @@ app.post('/api/matchid', function (req, res){
 
     //the whole response has been recieved, so we just print it out here
     response.on('end', function () {
-      if (response.statusCode == 200){
-        var obj = JSON.parse(str);
-        //console.log(obj.result.players.length);
-        if (obj && obj.result && obj.result.players){
-          var array = [];
-          for (var i=0; i<10; i++){
-            array.push(obj.result.players[i].hero_id);
-          }
-          res.send(array);
-        } else {
-          res.send("notfound");
-        }
+      if (response.statusCode == 200) {
+        console.log(str);
       } else {
-        console.log ("DotA API has problems");
-        if (counter < 10){
+        console.log("API has problems " + response.statusCode);
+        if (counter < 10000) {
           counter++;
           http.request(options, callback).end();
         } else {
@@ -215,8 +260,48 @@ app.post('/api/matchid', function (req, res){
 });
 
 
+function test(){
+  var sid = new SteamID('76561198026188411');
+  var playerID = sid.getSteam3RenderedID();
+  playerID = playerID.substring(playerID.indexOf(':')+1);
+  playerID = playerID.substring(playerID.indexOf(':')+1);
+  playerID = playerID.substring(0, playerID.length - 1);
+console.log(playerID);
 
-var server = app.listen(81, function () {
+  var counter = 0;
+  var options = {
+    host: 'api.steampowered.com',
+    path: "/IDOTA2Match_570/GetMatchHistory/V001/?matches_requested=1&account_id=" + playerID + "&key=" + steamAPIKey
+  };
+
+  callback = function(response) {
+    var str = '';
+
+    //another chunk of data has been recieved, so append it to `str`
+    response.on('data', function (chunk) {
+      str += chunk;
+    });
+
+    //the whole response has been recieved, so we just print it out here
+    response.on('end', function () {
+      if (response.statusCode == 200) {
+        console.log(str);
+      } else {
+        console.log("API has problems " + response.statusCode);
+        if (counter < 10000) {
+          counter++;
+          http.request(options, callback).end();
+        } else {
+          res.send("false");
+        }
+
+      }
+    });
+  }
+  http.request(options, callback).end();
+  }
+
+var server = app.listen(80, function () {
 
   var host = server.address().address
   var port = server.address().port
@@ -224,6 +309,8 @@ var server = app.listen(81, function () {
   console.log("Server is running at http://", host, port)
 
 })
+
+
 
 
 

@@ -7,6 +7,7 @@
     "express": "^4.13.4",
     "mssql": "^3.0.1",
     "passport": "^0.3.2",
-    "passport-steam": "^1.0.2"
+    "passport-steam": "^1.0.2",
+    "steamid": "^1.0.1"
   }
 }

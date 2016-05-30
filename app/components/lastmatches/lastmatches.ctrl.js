@@ -6,13 +6,16 @@
 
     angular
         .module('DotAAnalyzerApp')
-        .controller('aboutCtrl', aboutCtrl);
+        .controller('lastmatchesCtrl', lastmatchesCtrl);
 
-    aboutCtrl.$inject = ['$scope', '$log', '$http', '$cookies'];
+    lastmatchesCtrl.$inject = ['$scope', '$log', '$http', '$cookies'];
 
 
-    function aboutCtrl($scope, $log, $http, $cookies) {
-
+    function lastmatchesCtrl($scope, $log, $http, $cookies) {
+        $scope.logout = function() {
+            $cookies.remove('user');
+            $scope.loginFunction();
+        }
 
         $scope.loginFunction = function(){
             if ($cookies.get('user')){
@@ -28,10 +31,7 @@
         }
         $scope.loginFunction();
 
-        $scope.logout = function() {
-            $cookies.remove('user');
-            $scope.loginFunction();
-        }
+
     }
     })();
 

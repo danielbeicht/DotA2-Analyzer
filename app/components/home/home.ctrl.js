@@ -14,13 +14,7 @@
 
   function homeCtrl($scope, $http, $log, $uibModal, $timeout, $location, datastorage, $cookies) {
     //Login Stuff
-    if ($cookies.get('user')){
-      var obj = JSON.parse($cookies.get('user'));
-      $scope.username = obj.displayName;
-      $scope.loggedIn = true;
-    } else {
-      $scope.loggedIn = false;
-    }
+
 
 
 
@@ -600,6 +594,25 @@
     $scope.reloadData = function() {
       $location.path( "/" );
     }
+
+    $scope.logout = function() {
+      $cookies.remove('user');
+      $scope.loginFunction();
+    }
+
+    $scope.loginFunction = function(){
+      if ($cookies.get('user')){
+        console.log($cookies.get('user'));
+        var obj = JSON.parse($cookies.get('user'));
+        console.log(obj);
+        $scope.username = obj.displayName;
+        $scope.loggedIn = true;
+      } else {
+        $scope.message = "Not logged in";
+        $scope.loggedIn = false;
+      }
+    }
+    $scope.loginFunction();
 /*
     $scope.parseMatchID = function(matchID) {
       alert("HI");
