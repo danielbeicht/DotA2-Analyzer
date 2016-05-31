@@ -121,6 +121,18 @@
 
                 datastorage.matchups = $scope.matchups;
 
+
+                // Create valve api hash table
+                var h = new Object();
+                for (var i=0; i<$scope.heroes.length; i++){
+                    h[$scope.heroes[i].heroValveIndex] = $scope.heroes[i];
+
+                }
+                console.log("test " + h[34].heroValveIndex);
+                datastorage.heroesValve = h;
+
+
+
                 $scope.dataLoaded = true;
                 //$scope.updateAdvantages();
                 $location.path( "/home" );

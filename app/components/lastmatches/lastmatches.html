@@ -30,7 +30,7 @@
                 </li>
                 <li class="dropdown" ng-show="loggedIn"><a class="dropdown-toggle" data-toggle="dropdown" href="#"><span class="glyphicon glyphicon-user" aria-hidden="true"></span> Logged in as {{username}} <span class="caret"></span></a>
                     <ul class="dropdown-menu">
-                        <li ng-click="logout()"><a href="#" >Logout</a></li>
+                        <li ng-click="logout()"><a href="#" ><span class="glyphicon glyphicon-log-out" aria-hidden="true"></span> Logout</a></li>
                     </ul>
                 </li>
             </ul>
@@ -40,17 +40,22 @@
 <div class="container">
     <div class="row">
         <div class="col-md-12">
-
-            <table>
-                <tr ng-repeat="match in matches">
-                    <td>{{ match.match_id }}</td>
-                    <td>{{ testee() }}</td>
+            <table class="table table-striped">
+                <thead>
+                <tr>
+                    <th>Hero</th>
+                    <th>Result</th>
+                    <th>Analyzer Advantage</th>
+                    <th><span class="glyphicon glyphicon-new-window" aria-hidden="true"></span> Dotabuff/Yasp Link</th>
+                </tr>
+                </thead>
+                <tr ng-repeat="x in tableMatches track by $index">
+                    <td>{{ x.firstPlayerHero }}</td>
+                    <td>{{ getWinString(x.firstPlayerWin); }}</td>
+                    <td>To be calculated</td>
+                    <td><a ng-href="http://www.dotabuff.com/matches/{{x.matchID}}" target="_blank">DB</a> / <a ng-href="https://www.yasp.co/matches/{{x.matchID}}" target="_blank">Yasp</a></td>
                 </tr>
             </table>
-
-
-
-            todo
         </div>
     </div>
 </div>

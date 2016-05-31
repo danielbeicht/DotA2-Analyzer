@@ -236,7 +236,7 @@
                     <a ui-sref="home">Home</a>
                 </li>
                 <li ui-sref-active="active">
-                    <a ng-click="parseMatch()">Parse Match</a>
+                    <a ng-click="parseMatch()">Parse Match ID</a>
                 </li>
                 <li ui-sref-active="active">
                     <a ui-sref="about">About</a>
@@ -252,7 +252,7 @@
                 </li>
                 <li class="dropdown" ng-show="loggedIn"><a class="dropdown-toggle" data-toggle="dropdown" href="#"><span class="glyphicon glyphicon-user" aria-hidden="true"></span> Logged in as {{username}} <span class="caret"></span></a>
                     <ul class="dropdown-menu">
-                        <li ng-click="logout()"><a href="#" >Logout</a></li>
+                        <li ng-click="logout()"><a href="#" ><span class="glyphicon glyphicon-log-out" aria-hidden="true"></span> Logout</a></li>
                     </ul>
                 </li>
             </ul>
