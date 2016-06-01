@@ -21,16 +21,16 @@
                 </li>
             </ul>
             <ul class="nav navbar-nav navbar-right">
-                <li ui-sref-active="active" ng-show="loggedIn">
+                <li ui-sref-active="active" ng-show="loginService.loggedIn">
                     <a ui-sref="lastmatches">Last matches</a>
                 </li>
-                <li ui-sref-active="active" ng-hide="loggedIn">
+                <li ui-sref-active="active" ng-hide="loginService.loggedIn">
                     <a href="auth/steam">
                         <img src="/assets/images/sits_small.png" ></a>
                 </li>
-                <li class="dropdown" ng-show="loggedIn"><a class="dropdown-toggle" data-toggle="dropdown" href="#"><span class="glyphicon glyphicon-user" aria-hidden="true"></span> Logged in as {{username}} <span class="caret"></span></a>
+                <li class="dropdown" ng-if="loginService.loggedIn"><a class="dropdown-toggle" data-toggle="dropdown" href="#"><span class="glyphicon glyphicon-user" aria-hidden="true"></span> Logged in as {{ loginService.getLoggedUsername() }} <span class="caret"></span></a>
                     <ul class="dropdown-menu">
-                        <li ng-click="logout()"><a href="#" ><span class="glyphicon glyphicon-log-out" aria-hidden="true"></span> Logout</a></li>
+                        <li ng-click="loginService.logout()"><a href="#" ><span class="glyphicon glyphicon-log-out" aria-hidden="true"></span> Logout</a></li>
                     </ul>
                 </li>
             </ul>
@@ -43,16 +43,27 @@
             <table class="table table-striped">
                 <thead>
                 <tr>
+                    <th>Date</th>
                     <th>Hero</th>
                     <th>Result</th>
                     <th>Analyzer Advantage</th>
                     <th><span class="glyphicon glyphicon-new-window" aria-hidden="true"></span> Dotabuff/Yasp Link</th>
                 </tr>
                 </thead>
-                <tr ng-repeat="x in tableMatches track by $index">
-                    <td>{{ x.firstPlayerHero }}</td>
-                    <td>{{ getWinString(x.firstPlayerWin); }}</td>
-                    <td>To be calculated</td>
+                <tr ng-repeat="x in tableMatches | orderBy:'-date'">
+                    <td>{{ x.date }}</td>
+                    <td><img ng-src="{{ x.heroImageURL }}" style="width: 48px; height: 29px"> {{ x.firstPlayerHero }}</td>
+                    <!--<td>{{ getWinString(x.firstPlayerWin); }}</td>-->
+                    <td>
+                        <span ng-if="x.firstPlayerWin" class="label label-success">Won Match</span>
+                        <span ng-if="!x.firstPlayerWin" class="label label-danger">Lost Match</span>
+                    </td>
+                    <td>
+                        <uib-progress>
+                            <uib-bar style="background:rgba(245, 245, 245, 1)" ng-repeat="bar in x.stacked track by $index" ng-if="bar.isPlaceholder" value="bar.value"><span></span></uib-bar>
+                            <uib-bar ng-attr-id="{{ 'progressValue' + x.matchID }}" ng-repeat="bar in x.stacked track by $index" ng-if="!bar.isPlaceholder" value="bar.value" type="{{ analyzerService.changeProgressbarColor(bar, x.matchID, bar.isYourTeam) }}"><span ng-show="analyzerService.isPositive(bar)" style="color: black">{{bar.adv}}</span><span ng-show="!analyzerService.isPositive(bar)" style="color: black">-{{bar.adv}}</span></uib-bar>
+                        </uib-progress>
+                    </td>
                     <td><a ng-href="http://www.dotabuff.com/matches/{{x.matchID}}" target="_blank">DB</a> / <a ng-href="https://www.yasp.co/matches/{{x.matchID}}" target="_blank">Yasp</a></td>
                 </tr>
             </table>

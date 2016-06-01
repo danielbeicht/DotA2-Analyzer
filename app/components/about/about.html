@@ -21,16 +21,16 @@
                 </li>
             </ul>
             <ul class="nav navbar-nav navbar-right">
-                <li ui-sref-active="active" ng-show="loggedIn">
+                <li ui-sref-active="active" ng-show="loginService.loggedIn">
                     <a ui-sref="lastmatches">Last matches</a>
                 </li>
-                <li ui-sref-active="active" ng-hide="loggedIn">
+                <li ui-sref-active="active" ng-hide="loginService.loggedIn">
                     <a href="auth/steam">
                         <img src="/assets/images/sits_small.png" ></a>
                 </li>
-                <li class="dropdown" ng-show="loggedIn"><a class="dropdown-toggle" data-toggle="dropdown" href="#"><span class="glyphicon glyphicon-user" aria-hidden="true"></span> Logged in as {{username}} <span class="caret"></span></a>
+                <li class="dropdown" ng-if="loginService.loggedIn"><a class="dropdown-toggle" data-toggle="dropdown" href="#"><span class="glyphicon glyphicon-user" aria-hidden="true"></span> Logged in as {{ loginService.getLoggedUsername() }} <span class="caret"></span></a>
                     <ul class="dropdown-menu">
-                        <li ng-click="logout()"><a href="#" ><span class="glyphicon glyphicon-log-out" aria-hidden="true"></span> Logout</a></li>
+                        <li ng-click="loginService.logout()"><a href="#" ><span class="glyphicon glyphicon-log-out" aria-hidden="true"></span> Logout</a></li>
                     </ul>
                 </li>
             </ul>

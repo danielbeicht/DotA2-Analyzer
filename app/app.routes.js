@@ -8,10 +8,12 @@
   angular
         .module('DotAAnalyzerApp')
         .config(uiRouterConfig)
-      .service("datastorage", function Greeting(){
+        .service("datastorage", function Greeting(){
           var greeting = this;
           greeting.message = "Default";
       });
+
+  
 
     uiRouterConfig.$inject = ['$stateProvider', '$urlRouterProvider', '$httpProvider'];
 

@@ -9,15 +9,14 @@
     .module('DotAAnalyzerApp')
     .controller('homeCtrl', homeCtrl);
 
-  homeCtrl.$inject = ['$scope', '$http', '$log', '$uibModal', '$timeout', '$location', 'datastorage', '$cookies'];
+  homeCtrl.$inject = ['$scope', '$http', '$log', '$uibModal', '$timeout', '$location', 'datastorage', '$cookies', 'DAAnalyzer', 'DALogin'];
 
 
-  function homeCtrl($scope, $http, $log, $uibModal, $timeout, $location, datastorage, $cookies) {
-    //Login Stuff
+  function homeCtrl($scope, $http, $log, $uibModal, $timeout, $location, datastorage, $cookies, DAAnalyzer, DALogin) {
+    $scope.loginService = DALogin;
+    $scope.datastorage = datastorage;
 
-
-
-
+    $scope.loginService.loginFunction();
 
     if (typeof datastorage.heroes === "undefined"){   // if page home directly called redirect to loading page
       $location.path( "/" );
@@ -192,7 +191,7 @@
       });
 
       var i;
-      console.log("davor");
+
       // NEU
       $scope.heroes = datastorage.heroes;
       // Create Array to select heroes by Index in O(1) (references)
@@ -340,7 +339,7 @@
             if ($scope.enemyTeamPicks[i] == null) {
               $scope.enemyTeamPicks[i] = $scope.heroesSortedByIndex[heroIndexParameter];
               heroPicked = true;
-              $scope.enemyTeamOverallAdvantage += $scope.heroesSortedByIndex[heroIndexParameter].enemyTeamAdvantage;
+              //$scope.enemyTeamOverallAdvantage += $scope.heroesSortedByIndex[heroIndexParameter].enemyTeamAdvantage;
               break;
             }
           }
@@ -588,13 +587,13 @@
       $scope.updateAdvantages();
     };
 
-
-
-
     $scope.reloadData = function() {
       $location.path( "/" );
     }
 
+
+
+/*
     $scope.logout = function() {
       $cookies.remove('user');
       $scope.loginFunction();
@@ -602,9 +601,7 @@
 
     $scope.loginFunction = function(){
       if ($cookies.get('user')){
-        console.log($cookies.get('user'));
         var obj = JSON.parse($cookies.get('user'));
-        console.log(obj);
         $scope.username = obj.displayName;
         $scope.loggedIn = true;
       } else {
@@ -613,6 +610,8 @@
       }
     }
     $scope.loginFunction();
+    */
+
 /*
     $scope.parseMatchID = function(matchID) {
       alert("HI");

@@ -8,30 +8,14 @@
         .module('DotAAnalyzerApp')
         .controller('aboutCtrl', aboutCtrl);
 
-    aboutCtrl.$inject = ['$scope', '$log', '$http', '$cookies'];
+    aboutCtrl.$inject = ['$scope', 'DALogin'];
 
 
-    function aboutCtrl($scope, $log, $http, $cookies) {
+    function aboutCtrl($scope, DALogin) {
+        $scope.loginService = DALogin;
+        $scope.loginService.loginFunction();
 
 
-        $scope.loginFunction = function(){
-            if ($cookies.get('user')){
-                console.log($cookies.get('user'));
-                var obj = JSON.parse($cookies.get('user'));
-                console.log(obj);
-                $scope.username = obj.displayName;
-                $scope.loggedIn = true;
-            } else {
-                $scope.message = "Not logged in";
-                $scope.loggedIn = false;
-            }
-        }
-        $scope.loginFunction();
-
-        $scope.logout = function() {
-            $cookies.remove('user');
-            $scope.loginFunction();
-        }
     }
     })();
 

@@ -8,11 +8,11 @@
         .module('DotAAnalyzerApp')
         .controller('loadingCtrl', loadingCtrl);
 
-    loadingCtrl.$inject = ['$scope', '$q', '$log', '$http', '$location', 'datastorage'];
+    loadingCtrl.$inject = ['$scope', '$q', '$log', '$http', '$location', 'datastorage', 'DAAnalyzer'];
 
 
 
-    function loadingCtrl($scope, $q, $log, $http, $location, datastorage) {
+    function loadingCtrl($scope, $q, $log, $http, $location, datastorage, DAAnalyzer) {
         $scope.dataLoaded = false;
         datastorage.loaded = true;
 /*
@@ -128,9 +128,8 @@
                     h[$scope.heroes[i].heroValveIndex] = $scope.heroes[i];
 
                 }
-                console.log("test " + h[34].heroValveIndex);
                 datastorage.heroesValve = h;
-
+                DAAnalyzer.init();
 
 
                 $scope.dataLoaded = true;
@@ -174,7 +173,7 @@
                     enemyTeamWinrate: '0.00'
                 };
             }
-
+            $log.info("Heroes Initialized");
             datastorage.heroes = $scope.heroes;
             matchupRequest();
 
