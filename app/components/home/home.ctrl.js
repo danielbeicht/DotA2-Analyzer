@@ -16,6 +16,8 @@
     $scope.loginService = DALogin;
     $scope.datastorage = datastorage;
 
+    console.log(DALogin.getUserImageURL());
+
     $scope.loginService.loginFunction();
 
     if (typeof datastorage.heroes === "undefined"){   // if page home directly called redirect to loading page

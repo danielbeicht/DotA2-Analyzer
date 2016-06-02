@@ -250,7 +250,7 @@
                     <a href="auth/steam">
                         <img src="/assets/images/sits_small.png" ></a>
                 </li>
-                <li class="dropdown" ng-if="loginService.loggedIn"><a class="dropdown-toggle" data-toggle="dropdown" href="#"><span class="glyphicon glyphicon-user" aria-hidden="true"></span> Logged in as {{ loginService.getLoggedUsername() }} <span class="caret"></span></a>
+                <li class="dropdown" ng-if="loginService.loggedIn"><a class="dropdown-toggle" data-toggle="dropdown" href="#"><img width="20" ng-src="{{ loginService.getUserImageURL() }}"> {{ loginService.getLoggedUsername() }} <span class="caret"></span></a>
                     <ul class="dropdown-menu">
                         <li ng-click="loginService.logout()"><a href="#" ><span class="glyphicon glyphicon-log-out" aria-hidden="true"></span> Logout</a></li>
                     </ul>

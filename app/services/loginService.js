@@ -23,6 +23,10 @@
         return JSON.parse($cookies.get('user')).id;
       }
 
+      this.getUserImageURL = function() {
+        return JSON.parse($cookies.get('user'))._json.avatar;
+      }
+
       this.logout = function() {
         this.loggedIn = false;
         $cookies.remove('user');
