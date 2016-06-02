@@ -1,6 +1,3 @@
-/**
- * Created by Daniel on 19.01.2016.
- */
 (function () {
     'use strict';
 
@@ -8,69 +5,38 @@
         .module('DotAAnalyzerApp')
         .controller('lastmatchesCtrl', lastmatchesCtrl);
 
-    lastmatchesCtrl.$inject = ['$scope', '$http', 'datastorage', '$q', 'DALogin', 'DAAnalyzer'];
+    lastmatchesCtrl.$inject = ['$scope', '$http', 'datastorage', '$q', 'DALogin', 'DAAnalyzer', '$log'];
 
 
-    function lastmatchesCtrl($scope, $http, datastorage, $q, DALogin, DAAnalyzer) {
-        $scope.testfunc = function() {
-            //DAAnalyzer.yourTeamHeroPick(10);
-            //DAAnalyzer.enemyTeamHeroPick(50);
-
-            $scope.stacked = DAAnalyzer.getBarValues();
-
-
-
-            alert(DAAnalyzer.yourTeamOverallAdvantage);
-        }
-
-
-
+    function lastmatchesCtrl($scope, $http, datastorage, $q, DALogin, DAAnalyzer, $log) {
+        // Import services to use them in HTML-File
         $scope.loginService = DALogin;
-        $scope.loginService.loginFunction();
-
         $scope.analyzerService = DAAnalyzer;
+
+        // Check if user is logged in (to edit navbar)
+        $scope.loginService.loginFunction();
 
         $scope.tableMatches = [];
         $scope.heroesValve = datastorage.heroesValve;
-        $scope.getWinString = function (playerWin){
-            if (playerWin){
-                return "Won Match";
-            } else {
-                return "Lost Match";
-            }
-        }
-
-
 
         // Get Account ID
-        var dataObj = {
-            steamID : DALogin.getSteamID()
-        };
 
         $q.all([
             $http({
                 method: 'POST',
                 url: 'api/getAccountID',
-                data: dataObj
+                data: {steamID: DALogin.getSteamID()}
             }).then(function successCallback(response) {
                 $scope.accountID = response.data;
-                console.log("ACID is" + $scope.accountID);
-
+                $log.info("Account ID is: " + $scope.accountID);
             }, function errorCallback(response) {
-                console.log("Get AccountID failed.")
+                $log.error("Error getting Account ID in lastmatches");
             }),
-
-
-
           ]).then(function(){
-            dataObj = {
-                accountID : $scope.accountID
-            };
-
             $http({
                 method: 'POST',
                 url: 'api/getPlayerMatches',
-                data: dataObj
+                data: {accountID: $scope.accountID}
             }).then(function successCallback(response) {
                 if (response.data == "notfound"){
 
@@ -110,7 +76,6 @@
                                 } else {
                                     DAAnalyzer.enemyTeamHeroPick(datastorage.heroesValve[response.data.result.players[j].hero_id].heroIndex);
                                 }
-
                                 if (response.data.result.players[j].account_id == $scope.accountID){
                                     singleMatch.firstPlayerHero = $scope.heroesValve[response.data.result.players[j].hero_id].heroFullName;
                                     singleMatch.heroImageURL = $scope.heroesValve[response.data.result.players[j].hero_id].heroImageURL;
@@ -130,22 +95,16 @@
                                         singleMatch.isRadiant = false;
                                     }
                                 }
-
                                 if (j == response.data.result.players.length-1){
                                     singleMatch.stacked = DAAnalyzer.getBarValues(singleMatch.isRadiant);
                                     $scope.tableMatches.push(singleMatch);
                                 }
-
                             }
-
-
                         }, function errorCallback(response) {
                             console.log(response);
                         })
                     ]).then(function(){
 
-                        //console.log($scope.tableMatches);
-                        //console.log("Länge ist " + $scope.tableMatches.length);
                     })
                 }
             }

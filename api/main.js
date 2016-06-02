@@ -1,11 +1,8 @@
-/**
- * Created by Daniel on 13.02.2016.
- */
 var express = require('express');
 var app = express();
 var path = require('path');
 var sql = require('mssql');
-var fs = require("fs");
+//var fs = require("fs");
 var http = require("http");
 var bodyParser = require('body-parser');
 var passport = require('passport');
@@ -116,7 +113,7 @@ app.get('/auth/steam/return',
 
 app.get('/', function (req, res) {
   res.sendFile(path.join(process.cwd(), '..', 'index.html'));
-})
+});
 
 app.get('/api/matchups', function (req, res){
   var conn = new sql.Connection(dbConfig);
@@ -135,8 +132,8 @@ app.get('/api/matchups', function (req, res){
       conn.close();
 
       res.send(recordset);null;
-    })
-  })
+    });
+  });
 });
 
 app.get('/api/heroes', function (req, res){
@@ -156,8 +153,8 @@ app.get('/api/heroes', function (req, res){
       conn.close();
 
       res.send(recordset);
-    })
-  })
+    });
+  });
 });
 
 app.post('/api/matchid', function (req, res){
@@ -204,7 +201,6 @@ app.post('/api/matchid', function (req, res){
       });
     }
     http.request(options, callback).end();
-
 });
 
 app.post('/api/getAccountID', function (req, res){
@@ -218,19 +214,10 @@ app.post('/api/getAccountID', function (req, res){
 });
 
 app.post('/api/getPlayerMatches', function (req, res){
-  var sid = new SteamID('76561198026188411');
-  var playerID = sid.getSteam3RenderedID();
-  playerID = playerID.substring(playerID.indexOf(':')+1);
-  playerID = playerID.substring(playerID.indexOf(':')+1);
-  playerID = playerID.substring(0, playerID.length - 1);
-  console.log ("ID IS " + req.body.accountID);
-
-  var options = {
-    host: "https://api.steampowered.com/IDOTA2Match_570/GetMatchHistory/V001/?matches_requested=10&account_id=" + req.body.accountID + "&key=" + steamAPIKey
-  };
+  var host = "https://api.steampowered.com/IDOTA2Match_570/GetMatchHistory/V001/?matches_requested=10&account_id=" + req.body.accountID + "&key=" + steamAPIKey;
   startRequest();
   function startRequest() {
-    request(options.host, function(err, apiRes, body)  {
+    request(host, function(err, apiRes, body)  {
       if (!err && apiRes.statusCode == 200) {
         console.log("Success getPlayerMatches");
         return res.send(body);
@@ -245,12 +232,10 @@ app.post('/api/getPlayerMatches', function (req, res){
 });
 
 app.post('/api/getPlayerMatch', function (req, res){
-  var options = {
-    host: "https://api.steampowered.com/IDOTA2Match_570/GetMatchDetails/V001/?match_id=" + req.body.matchID + "&key=" + steamAPIKey
-  };
+  var host = "https://api.steampowered.com/IDOTA2Match_570/GetMatchDetails/V001/?match_id=" + req.body.matchID + "&key=" + steamAPIKey;
   startRequest();
   function startRequest() {
-    request(options.host, function(err, apiRes, body)  {
+    request(host, function(err, apiRes, body)  {
       if (!err && apiRes.statusCode == 200) {
         console.log("Match successfully");
         return res.send(body);
@@ -264,94 +249,8 @@ app.post('/api/getPlayerMatch', function (req, res){
   }
 });
 
-/*
-function test(){
-  var sid = new SteamID('76561198026188411');
-  var playerID = sid.getSteam3RenderedID();
-  playerID = playerID.substring(playerID.indexOf(':')+1);
-  playerID = playerID.substring(playerID.indexOf(':')+1);
-  playerID = playerID.substring(0, playerID.length - 1);
-console.log(playerID);
-
-  var counter = 0;
-  var options = {
-    host: 'api.steampowered.com',
-    path: "/IDOTA2Match_570/GetMatchHistory/V001/?matches_requested=5&account_id=" + playerID + "&key=" + steamAPIKey
-  };
-
-  callback = function(response) {
-    var str = '';
-
-    //another chunk of data has been recieved, so append it to `str`
-    response.on('data', function (chunk) {
-      str += chunk;
-    });
-
-    //the whole response has been recieved, so we just print it out here
-    response.on('end', function () {
-      if (response.statusCode == 200) {
-        console.log(str);
-      } else {
-        console.log("API has problems " + response.statusCode);
-        if (counter < 10000) {
-          counter++;
-          http.request(options, callback).end();
-        } else {
-          res.send("false");
-        }
-
-      }
-    });
-  }
-  http.request(options, callback).end();
-  }
-
-
-function test1(){
-  var sid = new SteamID('76561198026188411');
-  var playerID = sid.getSteam3RenderedID();
-  playerID = playerID.substring(playerID.indexOf(':')+1);
-  playerID = playerID.substring(playerID.indexOf(':')+1);
-  playerID = playerID.substring(0, playerID.length - 1);
-
-  var options = {
-    //host: "api.steampowered.com/IDOTA2Match_570/GetMatchHistory/V001/?matches_requested=5&account_id=${playerID}&key=${steamAPIKey}"
-    host: "https://api.steampowered.com/IDOTA2Match_570/GetMatchHistory/V001/?matches_requested=5&account_id=" + playerID + "&key=" + steamAPIKey
-  };
-
-  startRequest();
-
-  function startRequest() {
-    console.log("called");
-    request(options.host, function(err, apiRes, body)  {
-      if (!err && apiRes.statusCode == 200) {
-      return res.send(body);
-    } else {
-      console.log ("API has error " + apiRes.statusCode);
-    }
-
-
-    setTimeout(function () {
-      startRequest();
-  }, 1000);
-  });
-  }
-
-}*/
-//test();
-
 var server = app.listen(80, function () {
-
-  var host = server.address().address
-  var port = server.address().port
-
-  console.log("Server is running at http://", host, port)
-
-})
-
-
-
-
-
-
-
+  var host = server.address().address;
+  var port = server.address().port;
+  console.log("Server is running at http://", host, port);
+});
