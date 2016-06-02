@@ -214,7 +214,7 @@ app.post('/api/getAccountID', function (req, res){
 });
 
 app.post('/api/getPlayerMatches', function (req, res){
-  var host = "https://api.steampowered.com/IDOTA2Match_570/GetMatchHistory/V001/?matches_requested=10&account_id=" + req.body.accountID + "&key=" + steamAPIKey;
+  var host = "https://api.steampowered.com/IDOTA2Match_570/GetMatchHistory/V001/?matches_requested=25&account_id=" + req.body.accountID + "&key=" + steamAPIKey;
   startRequest();
   function startRequest() {
     request(host, function(err, apiRes, body)  {
