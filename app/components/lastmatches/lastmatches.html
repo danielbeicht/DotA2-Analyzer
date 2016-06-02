@@ -50,7 +50,7 @@
                     <th><span class="glyphicon glyphicon-new-window" aria-hidden="true"></span> Dotabuff/Yasp Link</th>
                 </tr>
                 </thead>
-                <tr ng-repeat="x in tableMatches | orderBy:'-date'">
+                <tr ng-repeat="x in tableMatches | orderBy:'-starttime'">
                     <td>{{ x.date }}</td>
                     <td><img ng-src="{{ x.heroImageURL }}" style="width: 48px; height: 29px"> {{ x.firstPlayerHero }}</td>
                     <!--<td>{{ getWinString(x.firstPlayerWin); }}</td>-->

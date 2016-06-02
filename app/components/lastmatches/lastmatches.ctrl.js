@@ -81,6 +81,7 @@
                                     singleMatch.heroImageURL = $scope.heroesValve[response.data.result.players[j].hero_id].heroImageURL;
                                     singleMatch.matchID = response.data.result.match_id;
                                     singleMatch.date = new Date(response.data.result.start_time*1000).toLocaleString();
+                                    singleMatch.starttime = response.data.result.start_time;
                                     if (response.data.result.radiant_win && response.data.result.players[j].player_slot < 5){
                                         singleMatch.firstPlayerWin = true;
                                     } else if (!response.data.result.radiant_win && response.data.result.players[j].player_slot > 5) {
