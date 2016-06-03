@@ -267,20 +267,20 @@
                 <p style="font-weight: bold;">Radiant Team Picks</p>
                 <table>
                     <tr>
-                        <td ng-click="yourTeamPicks[0]=null; updateAdvantages()" ng-show="yourTeamPicks[0] != null"><img ng-src="{{ yourTeamPicks[0].heroImageURL }}" class="img-responsive" max-width="500"></td>
-                        <td ng-click="open('yourTeamPick')" ng-show="yourTeamPicks[0] == null"><img ng-src="assets/images/hero_unselected.jpg" class="img-responsive" max-width="500"></td>
+                        <td ng-click="analyzerService.yourTeamPicks[0]=null; analyzerService.updateAdvantages()" ng-show="analyzerService.yourTeamPicks[0] != null"><img ng-src="{{ analyzerService.yourTeamPicks[0].heroImageURL }}" class="img-responsive" max-width="500"></td>
+                        <td ng-click="open('yourTeamPick')" ng-show="analyzerService.yourTeamPicks[0] == null"><img ng-src="assets/images/hero_unselected.jpg" class="img-responsive" max-width="500"></td>
 
-                        <td ng-click="yourTeamPicks[1]=null; updateAdvantages()" ng-show="yourTeamPicks[1] != null"><img ng-src="{{ yourTeamPicks[1].heroImageURL }}" class="img-responsive" max-width="500"></td>
-                        <td ng-click="open('yourTeamPick')" ng-show="yourTeamPicks[1] == null"><img ng-src="assets/images/hero_unselected.jpg" class="img-responsive" max-width="500"></td>
+                        <td ng-click="analyzerService.yourTeamPicks[1]=null; analyzerService.updateAdvantages()" ng-show="analyzerService.yourTeamPicks[1] != null"><img ng-src="{{ analyzerService.yourTeamPicks[1].heroImageURL }}" class="img-responsive" max-width="500"></td>
+                        <td ng-click="open('yourTeamPick')" ng-show="analyzerService.yourTeamPicks[1] == null"><img ng-src="assets/images/hero_unselected.jpg" class="img-responsive" max-width="500"></td>
 
-                        <td ng-click="yourTeamPicks[2]=null; updateAdvantages()" ng-show="yourTeamPicks[2] != null"><img ng-src="{{ yourTeamPicks[2].heroImageURL }}" class="img-responsive" max-width="500"></td>
-                        <td ng-click="open('yourTeamPick')" ng-show="yourTeamPicks[2] == null"><img ng-src="assets/images/hero_unselected.jpg" class="img-responsive" max-width="500"></td>
+                        <td ng-click="analyzerService.yourTeamPicks[2]=null; analyzerService.updateAdvantages()" ng-show="analyzerService.yourTeamPicks[2] != null"><img ng-src="{{ analyzerService.yourTeamPicks[2].heroImageURL }}" class="img-responsive" max-width="500"></td>
+                        <td ng-click="open('yourTeamPick')" ng-show="analyzerService.yourTeamPicks[2] == null"><img ng-src="assets/images/hero_unselected.jpg" class="img-responsive" max-width="500"></td>
 
-                        <td ng-click="yourTeamPicks[3]=null; updateAdvantages()" ng-show="yourTeamPicks[3] != null"><img ng-src="{{ yourTeamPicks[3].heroImageURL }}" class="img-responsive" max-width="500"></td>
-                        <td ng-click="open('yourTeamPick')" ng-show="yourTeamPicks[3] == null"><img ng-src="assets/images/hero_unselected.jpg" class="img-responsive" max-width="500"></td>
+                        <td ng-click="analyzerService.yourTeamPicks[3]=null; analyzerService.updateAdvantages()" ng-show="analyzerService.yourTeamPicks[3] != null"><img ng-src="{{ analyzerService.yourTeamPicks[3].heroImageURL }}" class="img-responsive" max-width="500"></td>
+                        <td ng-click="open('yourTeamPick')" ng-show="analyzerService.yourTeamPicks[3] == null"><img ng-src="assets/images/hero_unselected.jpg" class="img-responsive" max-width="500"></td>
 
-                        <td ng-click="yourTeamPicks[4]=null; updateAdvantages()" ng-show="yourTeamPicks[4] != null"><img ng-src="{{ yourTeamPicks[4].heroImageURL }}" class="img-responsive" max-width="500"></td>
-                        <td ng-click="open('yourTeamPick')" ng-show="yourTeamPicks[4] == null"><img ng-src="assets/images/hero_unselected.jpg" class="img-responsive" max-width="500"></td>
+                        <td ng-click="analyzerService.yourTeamPicks[4]=null; analyzerService.updateAdvantages()" ng-show="analyzerService.yourTeamPicks[4] != null"><img ng-src="{{ analyzerService.yourTeamPicks[4].heroImageURL }}" class="img-responsive" max-width="500"></td>
+                        <td ng-click="open('yourTeamPick')" ng-show="analyzerService.yourTeamPicks[4] == null"><img ng-src="assets/images/hero_unselected.jpg" class="img-responsive" max-width="500"></td>
                     </tr>
                 </table>
             </div>
@@ -291,20 +291,20 @@
                 <p style="font-weight: bold;">Dire Team Picks</p>
                 <table>
                     <tr>
-                        <td ng-click="enemyTeamPicks[0]=null; updateAdvantages()" ng-show="enemyTeamPicks[0] != null"><img ng-src="{{ enemyTeamPicks[0].heroImageURL }}" class="img-responsive" max-width="500"></td>
-                        <td ng-click="open('enemyTeamPick')" ng-show="enemyTeamPicks[0] == null"><img ng-src="assets/images/hero_unselected.jpg" class="img-responsive" max-width="500"></td>
+                        <td ng-click="analyzerService.enemyTeamPicks[0]=null; analyzerService.updateAdvantages()" ng-show="analyzerService.enemyTeamPicks[0] != null"><img ng-src="{{ analyzerService.enemyTeamPicks[0].heroImageURL }}" class="img-responsive" max-width="500"></td>
+                        <td ng-click="open('enemyTeamPick')" ng-show="analyzerService.enemyTeamPicks[0] == null"><img ng-src="assets/images/hero_unselected.jpg" class="img-responsive" max-width="500"></td>
 
-                        <td ng-click="enemyTeamPicks[1]=null; updateAdvantages()" ng-show="enemyTeamPicks[1] != null"><img ng-src="{{ enemyTeamPicks[1].heroImageURL }}" class="img-responsive" max-width="500"></td>
-                        <td ng-click="open('enemyTeamPick')" ng-show="enemyTeamPicks[1] == null"><img ng-src="assets/images/hero_unselected.jpg" class="img-responsive" max-width="500"></td>
+                        <td ng-click="analyzerService.enemyTeamPicks[1]=null; analyzerService.updateAdvantages()" ng-show="analyzerService.enemyTeamPicks[1] != null"><img ng-src="{{ analyzerService.enemyTeamPicks[1].heroImageURL }}" class="img-responsive" max-width="500"></td>
+                        <td ng-click="open('enemyTeamPick')" ng-show="analyzerService.enemyTeamPicks[1] == null"><img ng-src="assets/images/hero_unselected.jpg" class="img-responsive" max-width="500"></td>
 
-                        <td ng-click="enemyTeamPicks[2]=null; updateAdvantages()" ng-show="enemyTeamPicks[2] != null"><img ng-src="{{ enemyTeamPicks[2].heroImageURL }}" class="img-responsive" max-width="500"></td>
-                        <td ng-click="open('enemyTeamPick')" ng-show="enemyTeamPicks[2] == null"><img ng-src="assets/images/hero_unselected.jpg" class="img-responsive" max-width="500"></td>
+                        <td ng-click="analyzerService.enemyTeamPicks[2]=null; analyzerService.updateAdvantages()" ng-show="analyzerService.enemyTeamPicks[2] != null"><img ng-src="{{ analyzerService.enemyTeamPicks[2].heroImageURL }}" class="img-responsive" max-width="500"></td>
+                        <td ng-click="open('enemyTeamPick')" ng-show="analyzerService.enemyTeamPicks[2] == null"><img ng-src="assets/images/hero_unselected.jpg" class="img-responsive" max-width="500"></td>
 
-                        <td ng-click="enemyTeamPicks[3]=null; updateAdvantages()" ng-show="enemyTeamPicks[3] != null"><img ng-src="{{ enemyTeamPicks[3].heroImageURL }}" class="img-responsive" max-width="500"></td>
-                        <td ng-click="open('enemyTeamPick')" ng-show="enemyTeamPicks[3] == null"><img ng-src="assets/images/hero_unselected.jpg" class="img-responsive" max-width="500"></td>
+                        <td ng-click="analyzerService.enemyTeamPicks[3]=null; analyzerService.updateAdvantages()" ng-show="analyzerService.enemyTeamPicks[3] != null"><img ng-src="{{ analyzerService.enemyTeamPicks[3].heroImageURL }}" class="img-responsive" max-width="500"></td>
+                        <td ng-click="open('enemyTeamPick')" ng-show="analyzerService.enemyTeamPicks[3] == null"><img ng-src="assets/images/hero_unselected.jpg" class="img-responsive" max-width="500"></td>
 
-                        <td ng-click="enemyTeamPicks[4]=null; updateAdvantages()" ng-show="enemyTeamPicks[4] != null"><img ng-src="{{ enemyTeamPicks[4].heroImageURL }}" class="img-responsive" max-width="500"></td>
-                        <td ng-click="open('enemyTeamPick')" ng-show="enemyTeamPicks[4] == null"><img ng-src="assets/images/hero_unselected.jpg" class="img-responsive" max-width="500"></td>
+                        <td ng-click="analyzerService.enemyTeamPicks[4]=null; analyzerService.updateAdvantages()" ng-show="analyzerService.enemyTeamPicks[4] != null"><img ng-src="{{ analyzerService.enemyTeamPicks[4].heroImageURL }}" class="img-responsive" max-width="500"></td>
+                        <td ng-click="open('enemyTeamPick')" ng-show="analyzerService.enemyTeamPicks[4] == null"><img ng-src="assets/images/hero_unselected.jpg" class="img-responsive" max-width="500"></td>
                     </tr>
                 </table>
             </div>
@@ -322,8 +322,8 @@
             <br><br>
             <center>Overall Advantage</center>
             <uib-progress>
-                <uib-bar style="background:rgba(245, 245, 245, 1)" ng-repeat="bar in stacked track by $index" ng-if="bar.isPlaceholder" value="bar.value"><span>{{bar.adv}}</span></uib-bar>
-                <uib-bar id="progressValue" style="background:black" ng-repeat="bar in stacked track by $index" ng-if="!bar.isPlaceholder" value="bar.value" type="{{changeProgressbarColor(bar)}}"><span style="color: black">{{bar.adv}}</span></uib-bar>
+                <uib-bar style="background:rgba(245, 245, 245, 1)" ng-repeat="bar in analyzerService.stacked track by $index" ng-if="bar.isPlaceholder" value="bar.value"><span>{{bar.adv}}</span></uib-bar>
+                <uib-bar id="progressValue" ng-repeat="bar in analyzerService.stacked track by $index" ng-if="!bar.isPlaceholder" value="bar.value" type="{{changeProgressbarColor(bar)}}"><span style="color: black">{{bar.adv}}</span></uib-bar>
             </uib-progress>
             <uib-alert ng-show="showAPIError" class="alert" type="danger" close="showAPIError=false">The DotA 2 API is temporarily unavailable.</uib-alert>
         </div>
@@ -355,11 +355,11 @@
                         <div class="input-group">
 
                             <select id="dropDownPickYourTeam" class="form-control" ng-model="selectedHeroYourTeam"
-                                    ng-options="obj.heroIndex as obj.heroFullName for obj in heroes | orderBy:'heroFullName'" style="display: inline;">
+                                    ng-options="obj.heroIndex as obj.heroFullName for obj in analyzerService.heroes | orderBy:'heroFullName'" style="display: inline;">
                                 <option value="">Select hero</option>
                             </select>
                            <span class="input-group-btn">
-                               <button class="btn btn-success" ng-click="yourTeamHeroPick(selectedHeroYourTeam); selectedHeroYourTeam=''">
+                               <button class="btn btn-success" ng-click="analyzerService.yourTeamHeroPick(selectedHeroYourTeam); selectedHeroYourTeam=''">
                                    Pick
                                </button>
                            </span>
@@ -408,14 +408,14 @@
                             </thead>
 
                             <tbody>
-                            <tr ng-repeat="hero in heroes | orderBy:sortTypeYourTeam:sortReverseYourTeam">
-                                <td ng-class='{blackTable : picked(hero.heroIndex)}' ng-show="([hero.heroFullName] | filter:searchHeroYourTeam).length > 0"><img
+                            <tr ng-repeat="hero in analyzerService.heroes | orderBy:sortTypeYourTeam:sortReverseYourTeam">
+                                <td ng-class='{blackTable : analyzerService.heroAlreadyPickedOrBanned(hero.heroIndex)}' ng-show="([hero.heroFullName] | filter:searchHeroYourTeam).length > 0"><img
                                         ng-click="yourTeamHeroClickImage(hero.heroIndex)" ng-right-click="banHero(hero.heroIndex)" ng-src="{{ hero.heroImageURL }}"
                                         style="width: 96px; height: 58px"></td>
-                                <td ng-class='{blackTable : picked(hero.heroIndex)}' ng-show="([hero.heroFullName] | filter:searchHeroYourTeam).length > 0">{{ $index + 1 }}</td>
-                                <td ng-class='{blackTable : picked(hero.heroIndex)}' ng-show="([hero.heroFullName] | filter:searchHeroYourTeam).length > 0">{{ hero.heroFullName }}</td>
-                                <td ng-class='{blackTable : picked(hero.heroIndex)}' ng-show="([hero.heroFullName] | filter:searchHeroYourTeam).length > 0">{{ hero.yourTeamWinrate }}%</td>
-                                <td ng-class='{blackTable : picked(hero.heroIndex)}' ng-show="([hero.heroFullName] | filter:searchHeroYourTeam).length > 0">{{ hero.yourTeamAdvantage }}</td>
+                                <td ng-class='{blackTable : analyzerService.heroAlreadyPickedOrBanned(hero.heroIndex)}' ng-show="([hero.heroFullName] | filter:searchHeroYourTeam).length > 0">{{ $index + 1 }}</td>
+                                <td ng-class='{blackTable : analyzerService.heroAlreadyPickedOrBanned(hero.heroIndex)}' ng-show="([hero.heroFullName] | filter:searchHeroYourTeam).length > 0">{{ hero.heroFullName }}</td>
+                                <td ng-class='{blackTable : analyzerService.heroAlreadyPickedOrBanned(hero.heroIndex)}' ng-show="([hero.heroFullName] | filter:searchHeroYourTeam).length > 0">{{ hero.yourTeamWinrate }}%</td>
+                                <td ng-class='{blackTable : analyzerService.heroAlreadyPickedOrBanned(hero.heroIndex)}' ng-show="([hero.heroFullName] | filter:searchHeroYourTeam).length > 0">{{ hero.yourTeamAdvantage }}</td>
                             </tr>
                             </tbody>
                         </table>
@@ -440,11 +440,11 @@
                     <div class="col-md-6">
                         <div class="input-group">
                             <select id="dropDownPickYourTeam" class="form-control" ng-model="selectedHeroYourTeam"
-                                    ng-options="obj.heroIndex as obj.heroFullName for obj in heroes | orderBy:'heroFullName'" style="display: inline;">
+                                    ng-options="obj.heroIndex as obj.heroFullName for obj in analyzerService.heroes | orderBy:'heroFullName'" style="display: inline;">
                                 <option value="">Select hero</option>
                             </select>
                    <span class="input-group-btn">
-                       <button class="btn btn-success" ng-click="yourTeamHeroPick(selectedHeroYourTeam); selectedHeroYourTeam=''">
+                       <button class="btn btn-success" ng-click="analyzerService.yourTeamHeroPick(selectedHeroYourTeam); selectedHeroYourTeam=''">
                            Pick
                        </button>
                    </span>
@@ -501,15 +501,15 @@
                             </thead>
 
                             <tbody>
-                            <tr ng-repeat="hero in heroes | orderBy:sortTypeEnemyTeam:sortReverseEnemyTeam">
-                                <td ng-class='{blackTable : picked(hero.heroIndex)}' ng-show="([hero.heroFullName] | filter:searchHeroEnemyTeam).length > 0"><img
+                            <tr ng-repeat="hero in analyzerService.heroes | orderBy:sortTypeEnemyTeam:sortReverseEnemyTeam">
+                                <td ng-class='{blackTable : analyzerService.heroAlreadyPickedOrBanned(hero.heroIndex)}' ng-show="([hero.heroFullName] | filter:searchHeroEnemyTeam).length > 0"><img
                                         ng-click="enemyTeamHeroClickImage(hero.heroIndex)" ng-right-click="banHero(hero.heroIndex)" ng-src="{{ hero.heroImageURL }}"
                                         style="width: 96px; height: 58px"></td>
-                                <td ng-class='{blackTable : picked(hero.heroIndex)}' ng-show="([hero.heroFullName] | filter:searchHeroEnemyTeam).length > 0">{{ $index + 1 }}</td>
-                                <td ng-class='{blackTable : picked(hero.heroIndex)}' ng-show="([hero.heroFullName] | filter:searchHeroEnemyTeam).length > 0">{{ hero.heroFullName }}</td>
-                                <td ng-class='{blackTable : picked(hero.heroIndex)}' ng-show="([hero.heroFullName] | filter:searchHeroEnemyTeam).length > 0">{{ hero.enemyTeamWinrate }}%
+                                <td ng-class='{blackTable : analyzerService.heroAlreadyPickedOrBanned(hero.heroIndex)}' ng-show="([hero.heroFullName] | filter:searchHeroEnemyTeam).length > 0">{{ $index + 1 }}</td>
+                                <td ng-class='{blackTable : analyzerService.heroAlreadyPickedOrBanned(hero.heroIndex)}' ng-show="([hero.heroFullName] | filter:searchHeroEnemyTeam).length > 0">{{ hero.heroFullName }}</td>
+                                <td ng-class='{blackTable : analyzerService.heroAlreadyPickedOrBanned(hero.heroIndex)}' ng-show="([hero.heroFullName] | filter:searchHeroEnemyTeam).length > 0">{{ hero.enemyTeamWinrate }}%
                                 </td>
-                                <td ng-class='{blackTable : picked(hero.heroIndex)}' ng-show="([hero.heroFullName] | filter:searchHeroEnemyTeam).length > 0">{{ hero.enemyTeamAdvantage
+                                <td ng-class='{blackTable : analyzerService.heroAlreadyPickedOrBanned(hero.heroIndex)}' ng-show="([hero.heroFullName] | filter:searchHeroEnemyTeam).length > 0">{{ hero.enemyTeamAdvantage
                                     }}
                                 </td>
                             </tr>
@@ -529,7 +529,7 @@
                 </button>-->
 
                 <div style="text-align: center;">
-                    <button class="btn btn-danger" ng-click="resetData()">Reset picks</button><br><br>
+                    <button class="btn btn-danger" ng-click="analyzerService.resetData()">Reset picks</button><br><br>
                     <button class="btn btn-info" ng-click="reloadData()")>Reload data</button><br><br>
 
                     <label>Swap Tables: <input type="checkbox" ng-model="swapTables"></label>
@@ -547,39 +547,39 @@
 
                 <table>
                     <tr>
-                        <td ng-click="heroBans[0]=null; updateAdvantages()" ng-show="heroBans[0] != null && allowBanning"><img ng-src="{{ heroBans[0].heroImageURL }}" class="img-responsive" max-width="500"></td>
-                        <td ng-click="open('ban')" ng-show="heroBans[0] == null && allowBanning"><img ng-src="assets/images/hero_unselected.jpg" class="img-responsive" max-width="500"></td>
+                        <td ng-click="analyzerService.heroBans[0]=null; analyzerService.updateAdvantages()" ng-show="analyzerService.heroBans[0] != null && allowBanning"><img ng-src="{{ analyzerService.heroBans[0].heroImageURL }}" class="img-responsive" max-width="500"></td>
+                        <td ng-click="open('ban')" ng-show="analyzerService.heroBans[0] == null && allowBanning"><img ng-src="assets/images/hero_unselected.jpg" class="img-responsive" max-width="500"></td>
 
-                        <td ng-click="heroBans[1]=null; updateAdvantages()" ng-show="heroBans[1] != null && allowBanning"><img ng-src="{{ heroBans[1].heroImageURL }}" class="img-responsive" max-width="500"></td>
-                        <td ng-click="open('ban')" ng-show="heroBans[1] == null && allowBanning"><img ng-src="assets/images/hero_unselected.jpg" class="img-responsive" max-width="500"></td>
+                        <td ng-click="analyzerService.heroBans[1]=null; analyzerService.updateAdvantages()" ng-show="analyzerService.heroBans[1] != null && allowBanning"><img ng-src="{{ analyzerService.heroBans[1].heroImageURL }}" class="img-responsive" max-width="500"></td>
+                        <td ng-click="open('ban')" ng-show="analyzerService.heroBans[1] == null && allowBanning"><img ng-src="assets/images/hero_unselected.jpg" class="img-responsive" max-width="500"></td>
                     </tr>
                     <tr>
-                        <td ng-click="heroBans[2]=null; updateAdvantages()" ng-show="heroBans[2] != null && allowBanning"><img ng-src="{{ heroBans[2].heroImageURL }}" class="img-responsive" max-width="500"></td>
-                        <td ng-click="open('ban')" ng-show="heroBans[2] == null && allowBanning"><img ng-src="assets/images/hero_unselected.jpg" class="img-responsive" max-width="500"></td>
+                        <td ng-click="analyzerService.heroBans[2]=null; analyzerService.updateAdvantages()" ng-show="analyzerService.heroBans[2] != null && allowBanning"><img ng-src="{{ analyzerService.heroBans[2].heroImageURL }}" class="img-responsive" max-width="500"></td>
+                        <td ng-click="open('ban')" ng-show="analyzerService.heroBans[2] == null && allowBanning"><img ng-src="assets/images/hero_unselected.jpg" class="img-responsive" max-width="500"></td>
 
-                        <td ng-click="heroBans[3]=null; updateAdvantages()" ng-show="heroBans[3] != null && allowBanning"><img ng-src="{{ heroBans[3].heroImageURL }}" class="img-responsive" max-width="500"></td>
-                        <td ng-click="open('ban')" ng-show="heroBans[3] == null && allowBanning"><img ng-src="assets/images/hero_unselected.jpg" class="img-responsive" max-width="500"></td>
+                        <td ng-click="analyzerService.heroBans[3]=null; analyzerService.updateAdvantages()" ng-show="analyzerService.heroBans[3] != null && allowBanning"><img ng-src="{{ analyzerService.heroBans[3].heroImageURL }}" class="img-responsive" max-width="500"></td>
+                        <td ng-click="open('ban')" ng-show="analyzerService.heroBans[3] == null && allowBanning"><img ng-src="assets/images/hero_unselected.jpg" class="img-responsive" max-width="500"></td>
                     </tr>
                     <tr>
-                        <td ng-click="heroBans[4]=null; updateAdvantages()" ng-show="heroBans[4] != null && allowBanning"><img ng-src="{{ heroBans[4].heroImageURL }}" class="img-responsive" max-width="500"></td>
-                        <td ng-click="open('ban')" ng-show="heroBans[4] == null && allowBanning"><img ng-src="assets/images/hero_unselected.jpg" class="img-responsive" max-width="500"></td>
+                        <td ng-click="analyzerService.heroBans[4]=null; analyzerService.updateAdvantages()" ng-show="analyzerService.heroBans[4] != null && allowBanning"><img ng-src="{{ analyzerService.heroBans[4].heroImageURL }}" class="img-responsive" max-width="500"></td>
+                        <td ng-click="open('ban')" ng-show="analyzerService.heroBans[4] == null && allowBanning"><img ng-src="assets/images/hero_unselected.jpg" class="img-responsive" max-width="500"></td>
 
-                        <td ng-click="heroBans[5]=null; updateAdvantages()" ng-show="heroBans[5] != null && allowBanning"><img ng-src="{{ heroBans[5].heroImageURL }}" class="img-responsive" max-width="500"></td>
-                        <td ng-click="open('ban')" ng-show="heroBans[5] == null && allowBanning"><img ng-src="assets/images/hero_unselected.jpg" class="img-responsive" max-width="500"></td>
+                        <td ng-click="analyzerService.heroBans[5]=null; analyzerService.updateAdvantages()" ng-show="analyzerService.heroBans[5] != null && allowBanning"><img ng-src="{{ analyzerService.heroBans[5].heroImageURL }}" class="img-responsive" max-width="500"></td>
+                        <td ng-click="open('ban')" ng-show="analyzerService.heroBans[5] == null && allowBanning"><img ng-src="assets/images/hero_unselected.jpg" class="img-responsive" max-width="500"></td>
                     </tr>
                     <tr>
-                        <td ng-click="heroBans[6]=null; updateAdvantages()" ng-show="heroBans[6] != null && allowBanning"><img ng-src="{{ heroBans[6].heroImageURL }}" class="img-responsive" max-width="500"></td>
-                        <td ng-click="open('ban')" ng-show="heroBans[6] == null && allowBanning"><img ng-src="assets/images/hero_unselected.jpg" class="img-responsive" max-width="500"></td>
+                        <td ng-click="analyzerService.heroBans[6]=null; analyzerService.updateAdvantages()" ng-show="analyzerService.heroBans[6] != null && allowBanning"><img ng-src="{{ analyzerService.heroBans[6].heroImageURL }}" class="img-responsive" max-width="500"></td>
+                        <td ng-click="open('ban')" ng-show="analyzerService.heroBans[6] == null && allowBanning"><img ng-src="assets/images/hero_unselected.jpg" class="img-responsive" max-width="500"></td>
 
-                        <td ng-click="heroBans[7]=null; updateAdvantages()" ng-show="heroBans[7] != null && allowBanning"><img ng-src="{{ heroBans[7].heroImageURL }}" class="img-responsive" max-width="500"></td>
-                        <td ng-click="open('ban')" ng-show="heroBans[7] == null && allowBanning"><img ng-src="assets/images/hero_unselected.jpg" class="img-responsive" max-width="500"></td>
+                        <td ng-click="analyzerService.heroBans[7]=null; analyzerService.updateAdvantages()" ng-show="analyzerService.heroBans[7] != null && allowBanning"><img ng-src="{{ analyzerService.heroBans[7].heroImageURL }}" class="img-responsive" max-width="500"></td>
+                        <td ng-click="open('ban')" ng-show="analyzerService.heroBans[7] == null && allowBanning"><img ng-src="assets/images/hero_unselected.jpg" class="img-responsive" max-width="500"></td>
                     </tr>
                     <tr>
-                        <td ng-click="heroBans[8]=null; updateAdvantages()" ng-show="heroBans[8] != null && allowBanning"><img ng-src="{{ heroBans[8].heroImageURL }}" class="img-responsive" max-width="500"></td>
-                        <td ng-click="open('ban')" ng-show="heroBans[8] == null && allowBanning"><img ng-src="assets/images/hero_unselected.jpg" class="img-responsive" max-width="500"></td>
+                        <td ng-click="analyzerService.heroBans[8]=null; analyzerService.updateAdvantages()" ng-show="analyzerService.heroBans[8] != null && allowBanning"><img ng-src="{{ analyzerService.heroBans[8].heroImageURL }}" class="img-responsive" max-width="500"></td>
+                        <td ng-click="open('ban')" ng-show="analyzerService.heroBans[8] == null && allowBanning"><img ng-src="assets/images/hero_unselected.jpg" class="img-responsive" max-width="500"></td>
 
-                        <td ng-click="heroBans[9]=null; updateAdvantages()" ng-show="heroBans[9] != null && allowBanning"><img ng-src="{{ heroBans[9].heroImageURL }}" class="img-responsive" max-width="500"></td>
-                        <td ng-click="open('ban')" ng-show="heroBans[9] == null && allowBanning"><img ng-src="assets/images/hero_unselected.jpg" class="img-responsive" max-width="500"></td>
+                        <td ng-click="analyzerService.heroBans[9]=null; analyzerService.updateAdvantages()" ng-show="analyzerService.heroBans[9] != null && allowBanning"><img ng-src="{{ analyzerService.heroBans[9].heroImageURL }}" class="img-responsive" max-width="500"></td>
+                        <td ng-click="open('ban')" ng-show="analyzerService.heroBans[9] == null && allowBanning"><img ng-src="assets/images/hero_unselected.jpg" class="img-responsive" max-width="500"></td>
                     </tr>
                 </table>
 
@@ -608,11 +608,11 @@
                     <div class="col-md-6">
                         <div class="input-group">
                             <select id="dropDownPickEnemyTeam" class="form-control" ng-model="selectedHeroEnemyTeam"
-                                    ng-options="obj.heroIndex as obj.heroFullName for obj in heroes | orderBy:'heroFullName'">
+                                    ng-options="obj.heroIndex as obj.heroFullName for obj in analyzerService.heroes | orderBy:'heroFullName'">
                                 <option value="">Select hero</option>
                             </select>
                    <span class="input-group-btn">
-                       <button class="btn btn-success" ng-click="enemyTeamHeroPick(selectedHeroEnemyTeam); selectedHeroEnemyTeam=''">
+                       <button class="btn btn-success" ng-click="analyzerService.enemyTeamHeroPick(selectedHeroEnemyTeam); selectedHeroEnemyTeam=''">
                            Pick
                        </button>
                    </span>
@@ -669,15 +669,15 @@
                             </thead>
 
                             <tbody>
-                            <tr ng-repeat="hero in heroes | orderBy:sortTypeEnemyTeam:sortReverseEnemyTeam">
-                                <td ng-class='{blackTable : picked(hero.heroIndex)}' ng-show="([hero.heroFullName] | filter:searchHeroEnemyTeam).length > 0"><img
+                            <tr ng-repeat="hero in analyzerService.heroes | orderBy:sortTypeEnemyTeam:sortReverseEnemyTeam">
+                                <td ng-class='{blackTable : analyzerService.heroAlreadyPickedOrBanned(hero.heroIndex)}' ng-show="([hero.heroFullName] | filter:searchHeroEnemyTeam).length > 0"><img
                                         ng-click="enemyTeamHeroClickImage(hero.heroIndex)" ng-right-click="banHero(hero.heroIndex)" ng-src="{{ hero.heroImageURL }}"
                                         style="width: 96px; height: 58px"></td>
-                                <td ng-class='{blackTable : picked(hero.heroIndex)}' ng-show="([hero.heroFullName] | filter:searchHeroEnemyTeam).length > 0 ">{{ $index + 1 }}</td>
-                                <td ng-class='{blackTable : picked(hero.heroIndex)}' ng-show="([hero.heroFullName] | filter:searchHeroEnemyTeam).length > 0 ">{{ hero.heroFullName }}</td>
-                                <td ng-class='{blackTable : picked(hero.heroIndex)}' ng-show="([hero.heroFullName] | filter:searchHeroEnemyTeam).length > 0 ">{{ hero.enemyTeamWinrate }}%
+                                <td ng-class='{blackTable : analyzerService.heroAlreadyPickedOrBanned(hero.heroIndex)}' ng-show="([hero.heroFullName] | filter:searchHeroEnemyTeam).length > 0 ">{{ $index + 1 }}</td>
+                                <td ng-class='{blackTable : analyzerService.heroAlreadyPickedOrBanned(hero.heroIndex)}' ng-show="([hero.heroFullName] | filter:searchHeroEnemyTeam).length > 0 ">{{ hero.heroFullName }}</td>
+                                <td ng-class='{blackTable : analyzerService.heroAlreadyPickedOrBanned(hero.heroIndex)}' ng-show="([hero.heroFullName] | filter:searchHeroEnemyTeam).length > 0 ">{{ hero.enemyTeamWinrate }}%
                                 </td>
-                                <td ng-class='{blackTable : picked(hero.heroIndex)}' ng-show="([hero.heroFullName] | filter:searchHeroEnemyTeam).length > 0 ">{{ hero.enemyTeamAdvantage
+                                <td ng-class='{blackTable : analyzerService.heroAlreadyPickedOrBanned(hero.heroIndex)}' ng-show="([hero.heroFullName] | filter:searchHeroEnemyTeam).length > 0 ">{{ hero.enemyTeamAdvantage
                                     }}
                                 </td>
                             </tr>
@@ -704,11 +704,11 @@
                     <div class="col-md-6">
                         <div class="input-group">
                             <select id="dropDownPickEnemyTeam" class="form-control" ng-model="selectedHeroEnemyTeam"
-                                    ng-options="obj.heroIndex as obj.heroFullName for obj in heroes | orderBy:'heroFullName'">
+                                    ng-options="obj.heroIndex as obj.heroFullName for obj in analyzerService.heroes | orderBy:'heroFullName'">
                                 <option value="">Select hero</option>
                             </select>
                    <span class="input-group-btn">
-                       <button class="btn btn-success" ng-click="enemyTeamHeroPick(selectedHeroEnemyTeam); selectedHeroEnemyTeam=''">
+                       <button class="btn btn-success" ng-click="analyzerService.enemyTeamHeroPick(selectedHeroEnemyTeam); selectedHeroEnemyTeam=''">
                            Pick
                        </button>
                    </span>
@@ -756,14 +756,14 @@
                             </thead>
 
                             <tbody>
-                            <tr ng-repeat="hero in heroes | orderBy:sortTypeYourTeam:sortReverseYourTeam">
-                                <td ng-class='{blackTable : picked(hero.heroIndex)}' ng-show="([hero.heroFullName] | filter:searchHeroYourTeam).length > 0"><img
+                            <tr ng-repeat="hero in analyzerService.heroes | orderBy:sortTypeYourTeam:sortReverseYourTeam">
+                                <td ng-class='{blackTable : analyzerService.heroAlreadyPickedOrBanned(hero.heroIndex)}' ng-show="([hero.heroFullName] | filter:searchHeroYourTeam).length > 0"><img
                                         ng-click="yourTeamHeroClickImage(hero.heroIndex)" ng-right-click="banHero(hero.heroIndex)" ng-src="{{ hero.heroImageURL }}"
                                         style="width: 96px; height: 58px"></td>
-                                <td ng-class='{blackTable : picked(hero.heroIndex)}' ng-show="([hero.heroFullName] | filter:searchHeroYourTeam).length > 0">{{ $index + 1 }}</td>
-                                <td ng-class='{blackTable : picked(hero.heroIndex)}' ng-show="([hero.heroFullName] | filter:searchHeroYourTeam).length > 0">{{ hero.heroFullName }}</td>
-                                <td ng-class='{blackTable : picked(hero.heroIndex)}' ng-show="([hero.heroFullName] | filter:searchHeroYourTeam).length > 0">{{ hero.yourTeamWinrate }}%</td>
-                                <td ng-class='{blackTable : picked(hero.heroIndex)}' ng-show="([hero.heroFullName] | filter:searchHeroYourTeam).length > 0">{{ hero.yourTeamAdvantage }}</td>
+                                <td ng-class='{blackTable : analyzerService.heroAlreadyPickedOrBanned(hero.heroIndex)}' ng-show="([hero.heroFullName] | filter:searchHeroYourTeam).length > 0">{{ $index + 1 }}</td>
+                                <td ng-class='{blackTable : analyzerService.heroAlreadyPickedOrBanned(hero.heroIndex)}' ng-show="([hero.heroFullName] | filter:searchHeroYourTeam).length > 0">{{ hero.heroFullName }}</td>
+                                <td ng-class='{blackTable : analyzerService.heroAlreadyPickedOrBanned(hero.heroIndex)}' ng-show="([hero.heroFullName] | filter:searchHeroYourTeam).length > 0">{{ hero.yourTeamWinrate }}%</td>
+                                <td ng-class='{blackTable : analyzerService.heroAlreadyPickedOrBanned(hero.heroIndex)}' ng-show="([hero.heroFullName] | filter:searchHeroYourTeam).length > 0">{{ hero.yourTeamAdvantage }}</td>
                             </tr>
                             </tbody>
                         </table>

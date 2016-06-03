@@ -44,7 +44,6 @@
                     $scope.showAPIError = true;
                 } else {
                     $scope.matches = response.data.result.matches;
-                    console.log(response.data.result.matches);
                     parseMatch();
                 }
             }, function errorCallback(response) {
@@ -71,6 +70,7 @@
                             DAAnalyzer.resetData();
                             var singleMatch = new Object();
                             for (var j=0; j<(response.data.result.players.length); j++){
+
                                 if (response.data.result.players[j].player_slot < 5){
                                     DAAnalyzer.yourTeamHeroPick(datastorage.heroesValve[response.data.result.players[j].hero_id].heroIndex);
                                 } else {

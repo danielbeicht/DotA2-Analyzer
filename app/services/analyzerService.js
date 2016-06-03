@@ -12,6 +12,7 @@
         this.yourTeamPicks = new Array (5);
         this.enemyTeamPicks = new Array (5);
         this.heroBans = new Array (10);
+        this.stacked = [];
 
         this.yourTeamOverallAdvantage = 0;
         this.enemyTeamOverallAdvantage = 0;
@@ -48,6 +49,7 @@
           }
         }
         this.updateAdvantages();
+        this.getBarValues();
       }
 
 
@@ -72,6 +74,7 @@
           }
         }
         this.updateAdvantages();
+        this.getBarValues();
       }
 
 

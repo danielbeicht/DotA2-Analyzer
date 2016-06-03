@@ -1,5 +1,5 @@
 
-angular.module('DotAAnalyzerApp').controller('ParseMatchModalCtrl', function ($scope, $uibModalInstance, $http) {
+angular.module('DotAAnalyzerApp').controller('ParseMatchModalCtrl', function ($scope, $uibModalInstance, $http, DAAnalyzer) {
 
 
 
@@ -8,14 +8,10 @@ angular.module('DotAAnalyzerApp').controller('ParseMatchModalCtrl', function ($s
   }
 
 
-
-
-
   $scope.ok = function (matchID) {
-    $scope.resetData();
+    DAAnalyzer.resetData();
     $scope.parsingMatch = true;
     var heroArray = [];
-    console.log("DRIN1");
     var dataObj = {
       matchID : matchID
     };
@@ -24,21 +20,22 @@ angular.module('DotAAnalyzerApp').controller('ParseMatchModalCtrl', function ($s
       url: 'api/matchid',
       data: dataObj
     }).then(function successCallback(response) {
+      console.log(response);
       if (response.data == "notfound"){
       } else if (response.data == "false") {
         $scope.showAPIError = true;
       } else {
         for (var i=0; i<5; i++){
-          for (var j=0; j<$scope.heroes.length; j++){
-            if ($scope.heroes[j].heroValveIndex == response.data[i]){
-              heroArray[i] = $scope.heroes[j].heroIndex;
+          for (var j=0; j<DAAnalyzer.heroes.length; j++){
+            if (DAAnalyzer.heroes[j].heroValveIndex == response.data[i]){
+              heroArray[i] = DAAnalyzer.heroes[j].heroIndex;
             }
           }
         }
         for (var i=5; i<10; i++){
-          for (var j=0; j<$scope.heroes.length; j++){
-            if ($scope.heroes[j].heroValveIndex == response.data[i]){
-              heroArray[i] = $scope.heroes[j].heroIndex;
+          for (var j=0; j<DAAnalyzer.heroes.length; j++){
+            if (DAAnalyzer.heroes[j].heroValveIndex == response.data[i]){
+              heroArray[i] = DAAnalyzer.heroes[j].heroIndex;
             }
           }
         }
