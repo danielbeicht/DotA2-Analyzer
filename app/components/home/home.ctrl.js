@@ -47,23 +47,23 @@
           var pick = result[1];
           var i;
           if (pick === 'yourTeamPick'){
-            for (i=0; i < $scope.heroesSortedByIndex.length; i++){
-              if ($scope.heroesSortedByIndex[i].heroName.trim() === selectedHero){
-                $scope.analyzerService.yourTeamHeroPick($scope.heroesSortedByIndex[i].heroIndex);
+            for (i=0; i < $scope.analyzerService.heroesSortedByIndex.length; i++){
+              if ($scope.analyzerService.heroesSortedByIndex[i].heroName.trim() === selectedHero){
+                $scope.analyzerService.yourTeamHeroPick($scope.analyzerService.heroesSortedByIndex[i].heroIndex);
                 break;
               }
             }
           } else if (pick === 'enemyTeamPick'){
-            for (i=0; i < $scope.heroesSortedByIndex.length; i++){
-              if ($scope.heroesSortedByIndex[i].heroName.trim() === selectedHero){
-                $scope.analyzerService.enemyTeamHeroPick($scope.heroesSortedByIndex[i].heroIndex);
+            for (i=0; i < $scope.analyzerService.heroesSortedByIndex.length; i++){
+              if ($scope.analyzerService.heroesSortedByIndex[i].heroName.trim() === selectedHero){
+                $scope.analyzerService.enemyTeamHeroPick($scope.analyzerService.heroesSortedByIndex[i].heroIndex);
                 break;
               }
             }
           } else if (pick === 'ban') {
-            for (i=0; i < $scope.heroesSortedByIndex.length; i++){
-              if ($scope.heroesSortedByIndex[i].heroName.trim() === selectedHero){
-                banHero($scope.heroesSortedByIndex[i].heroIndex);
+            for (i=0; i < $scope.analyzerService.heroesSortedByIndex.length; i++){
+              if ($scope.analyzerService.heroesSortedByIndex[i].heroName.trim() === selectedHero){
+                banHero($scope.analyzerService.heroesSortedByIndex[i].heroIndex);
                 break;
               }
             }
@@ -222,19 +222,19 @@
         var alreadyPicked = false;
         var i;
         for (i = 0; i < 5; i++) {
-          if ($scope.yourTeamPicks[i] != null && $scope.yourTeamPicks[i].heroIndex == index) {
+          if ($scope.analyzerService.yourTeamPicks[i] != null && $scope.analyzerService.yourTeamPicks[i].heroIndex == index) {
             alreadyPicked = true;
             break;
           }
 
-          if ($scope.enemyTeamPicks[i] != null && $scope.enemyTeamPicks[i].heroIndex == index) {
+          if ($scope.analyzerService.enemyTeamPicks[i] != null && $scope.analyzerService.enemyTeamPicks[i].heroIndex == index) {
             alreadyPicked = true;
             break;
           }
         }
         for (i = 0; i < 10; i++) {
 
-          if ($scope.heroBans[i] != null && $scope.heroBans[i].heroIndex == index) {
+          if ($scope.analyzerService.heroBans[i] != null && $scope.analyzerService.heroBans[i].heroIndex == index) {
             alreadyPicked = true;
             break;
           }
@@ -257,18 +257,18 @@
     $scope.pickedHeroName = function (heroIndex){
       var i;
       for (i=0; i<5; i++) {
-        if ($scope.heroesSortedByIndex[heroIndex] == $scope.yourTeamPicks[i]){
-          return "assets/images/heroes_gray/" + $scope.heroesSortedByIndex[heroIndex].heroFullName.trim().replace(/\s/gi, "_") + '.jpg';
-        } else if ($scope.heroesSortedByIndex[heroIndex] == $scope.enemyTeamPicks[i]){
-          return "assets/images/heroes_gray/" + $scope.heroesSortedByIndex[heroIndex].heroFullName.trim().replace(/\s/gi, "_") + '.jpg';
+        if ($scope.analyzerService.heroesSortedByIndex[heroIndex] == $scope.analyzerService.yourTeamPicks[i]){
+          return "assets/images/heroes_gray/" + $scope.analyzerService.heroesSortedByIndex[heroIndex].heroFullName.trim().replace(/\s/gi, "_") + '.jpg';
+        } else if ($scope.analyzerService.heroesSortedByIndex[heroIndex] == $scope.analyzerService.enemyTeamPicks[i]){
+          return "assets/images/heroes_gray/" + $scope.analyzerService.heroesSortedByIndex[heroIndex].heroFullName.trim().replace(/\s/gi, "_") + '.jpg';
         }
       }
       for (i=0; i<10; i++) {
-        if ($scope.heroesSortedByIndex[heroIndex] == $scope.heroBans[i]) {
-          return "assets/images/heroes_gray/" + $scope.heroesSortedByIndex[heroIndex].heroFullName.trim().replace(/\s/gi, "_") + '.jpg';
+        if ($scope.analyzerService.heroesSortedByIndex[heroIndex] == $scope.analyzerService.heroBans[i]) {
+          return "assets/images/heroes_gray/" + $scope.analyzerService.heroesSortedByIndex[heroIndex].heroFullName.trim().replace(/\s/gi, "_") + '.jpg';
         }
       }
-      return "assets/images/heroes/" + $scope.heroesSortedByIndex[heroIndex].heroFullName.trim().replace(/\s/gi, "_") + '.jpg';
+      return "assets/images/heroes/" + $scope.analyzerService.heroesSortedByIndex[heroIndex].heroFullName.trim().replace(/\s/gi, "_") + '.jpg';
     };
 
     // call on 1st load + reload

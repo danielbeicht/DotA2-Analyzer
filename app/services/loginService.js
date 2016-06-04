@@ -20,12 +20,18 @@
 
       // Read SteamID from Cookie (needs to be parsed)
       this.getSteamID = function() {
-        return JSON.parse($cookies.get('user')).id;
+          if ($cookies.get('user')){
+              return JSON.parse($cookies.get('user')).id;
+          }
+        return;
       }
 
       // Read User Avatar URL from Cookie
       this.getUserImageURL = function() {
-        return JSON.parse($cookies.get('user'))._json.avatar;
+          if ($cookies.get('user')){
+              return JSON.parse($cookies.get('user'))._json.avatar;
+          }
+          return;
       }
 
       // Delete Cookie to logout

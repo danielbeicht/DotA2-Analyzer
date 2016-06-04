@@ -159,6 +159,7 @@ app.get('/api/heroes', function (req, res){
 });
 
 app.post('/api/matchid', function (req, res){
+
   var host = "https://api.steampowered.com/IDOTA2Match_570/GetMatchDetails/V001/?match_id=" + req.body.matchID + "&key=" + steamAPIKey;
   startRequest();
   function startRequest() {
