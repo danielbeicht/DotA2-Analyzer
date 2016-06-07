@@ -49,7 +49,6 @@
           }
         }
         this.updateAdvantages();
-        this.getBarValues();
       }
 
 
@@ -74,7 +73,6 @@
           }
         }
         this.updateAdvantages();
-        this.getBarValues();
       }
 
 
@@ -168,6 +166,7 @@
         /* Array stacked stores all ui-bar objects
          yourTeamValue and enemyTeamValue are the calculated values which are needed to display them on a 0-100 ui-bar
          */
+        this.getBarValues();
       }
 
       this.isPositive = function(bar){
