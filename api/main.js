@@ -199,7 +199,7 @@ app.post('/api/getAccountID', function (req, res){
 
 
 app.post('/api/getPlayerMatches', function (req, res){
-  var host = "https://api.steampowered.com/IDOTA2Match_570/GetMatchHistory/V001/?matches_requested=25&account_id=" + req.body.accountID + "&key=" + steamAPIKey;
+  var host = "https://api.steampowered.com/IDOTA2Match_570/GetMatchHistory/V001/?matches_requested=100&account_id=" + req.body.accountID + "&key=" + steamAPIKey;
   startRequest();
   function startRequest() {
     request(host, function(err, apiRes, body)  {
@@ -222,7 +222,7 @@ app.post('/api/getPlayerMatch', function (req, res){
   function startRequest() {
     request(host, function(err, apiRes, body)  {
       if (!err && apiRes.statusCode == 200) {
-        console.log("Match successfully");
+        console.log("Match " + req.body.matchID + " successfully");
         return res.send(body);
       } else {
         console.log ("Steam API is busy - " + apiRes.statusCode + " - getPlayerMatch");

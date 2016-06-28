@@ -9,6 +9,8 @@
 
 
     function lastmatchesCtrl($scope, $http, datastorage, $q, DALogin, DAAnalyzer, $log) {
+        $scope.matchesWon = 0;
+        $scope.matchesLost = 0;
         // Import services to use them in HTML-File
         $scope.loginService = DALogin;
         $scope.analyzerService = DAAnalyzer;
@@ -84,10 +86,13 @@
                                     singleMatch.starttime = response.data.result.start_time;
                                     if (response.data.result.radiant_win && response.data.result.players[j].player_slot < 5){
                                         singleMatch.firstPlayerWin = true;
+                                        $scope.matchesWon++;
                                     } else if (!response.data.result.radiant_win && response.data.result.players[j].player_slot > 5) {
                                         singleMatch.firstPlayerWin = true;
+                                        $scope.matchesWon++;
                                     } else {
                                         singleMatch.firstPlayerWin = false;
+                                        $scope.matchesLost++;
                                     }
 
                                     if (response.data.result.players[j].player_slot < 5){

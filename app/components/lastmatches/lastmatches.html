@@ -40,6 +40,7 @@
 <div class="container">
     <div class="row">
         <div class="col-md-12">
+            <center><b>The last {{ matchesWon + matchesLost }} matches DotA-Analyzer was correct <span style="color: #00A000">{{ matchesWon }}</span> times. This corresponds to an unanimity of approximately {{ ((matchesWon / (matchesWon+matchesLost)) * 100).toFixed(2)}}%.</b></center><br>
             <table class="table table-striped">
                 <thead>
                 <tr>
