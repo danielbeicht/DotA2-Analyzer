@@ -255,6 +255,8 @@
 
     // return image URL (gray when picked; with color when unpicked)
     $scope.pickedHeroName = function (heroIndex){
+      console.log(heroIndex);
+      console.log($scope.analyzerService.heroesSortedByIndex[heroIndex]);
       var i;
       for (i=0; i<5; i++) {
         if ($scope.analyzerService.heroesSortedByIndex[heroIndex] == $scope.analyzerService.yourTeamPicks[i]){
