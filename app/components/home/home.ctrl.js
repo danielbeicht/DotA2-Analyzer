@@ -17,11 +17,10 @@
 
     // // Check if user is logged in (to edit navbar)
     $scope.loginService.loginFunction();
-
-    //console.log(DAAnalyzer.yourTeamPicks);
-
+    
     if (typeof datastorage.heroes === "undefined"){   // if page home directly called redirect to loading page
       $location.path( "/" );
+      return;
     }
 
     initHeroPickerModal();
@@ -255,8 +254,6 @@
 
     // return image URL (gray when picked; with color when unpicked)
     $scope.pickedHeroName = function (heroIndex){
-      console.log(heroIndex);
-      console.log($scope.analyzerService.heroesSortedByIndex[heroIndex]);
       var i;
       for (i=0; i<5; i++) {
         if ($scope.analyzerService.heroesSortedByIndex[heroIndex] == $scope.analyzerService.yourTeamPicks[i]){
