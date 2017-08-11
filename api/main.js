@@ -72,16 +72,19 @@ passport.use(new SteamStrategy({
 
 
 
+
 // GET /auth/steam
 //   Use passport.authenticate() as route middleware to authenticate the
 //   request.  The first step in Steam authentication will involve redirecting
 //   the user to steamcommunity.com.  After authenticating, Steam will redirect the
 //   user back to this application at /auth/steam/return
-app.get('/auth/steam',
+app.get('/auth/steams',
   passport.authenticate('steam', { failureRedirect: '/' }),
   function(req, res) {
-    res.redirect('/');
+    res.redirect('/about');
   });
+
+
 
 // GET /auth/steam/return
 //   Use passport.authenticate() as route middleware to authenticate the
@@ -99,8 +102,11 @@ app.get('/auth/steam/return',
 
 
 
-
-
+app.get('/auth/testlogin',
+  passport.authenticate('steam', { failureRedirect: '/about' }),
+  function(req, res) {
+    res.redirect('/about');
+  });
 
 
 
@@ -233,6 +239,45 @@ app.post('/api/getPlayerMatch', function (req, res){
     });
   }
 });
+
+
+
+
+
+// New logic for automatic match calculations
+var accountMatches = {};
+
+app.post('api/autosync/newMatch', function (req, res) {
+  accountMatches[req.body.accountID] = { pickPhase: true, heroesRadiant: [], heroesDire: [] }
+  res.send("OK");
+});
+
+app.post('api/autosync/matchStart', function (req, res) {
+  accountMatches[req.body.accountID].pickPhase = false;
+  res.send("OK");
+});
+
+app.post('api/autosync/finishMatch', function (req, res) {
+  delete accountMatches[req.body.accountID];
+  res.send("OK");
+});
+
+app.post('api/autosync/addHeroToMatch', function (req, res) {
+  if (req.body.isRadiant) {
+    accountMatches[req.body.accountID].heroesRadiant.push(req.body.heroID)
+  } else {
+    accountMatches[req.body.accountID].heroesDire.push(req.body.heroID)
+  }
+  res.send("OK");
+});
+
+app.get('api/autosync/getMatch', function (req, res) {
+  res.send(accountMatches[req.body.accountID]);
+});
+
+
+
+
 
 var server = app.listen(80, function () {
   var host = server.address().address;
