@@ -246,6 +246,9 @@
             </ul>
             <ul class="nav navbar-nav navbar-right">
                 <li ui-sref-active="active" ng-show="loginService.loggedIn">
+                    <a ui-sref="autosync">Autosync</a>
+                </li>
+                <li ui-sref-active="active" ng-show="loginService.loggedIn">
                     <a ui-sref="lastmatches">Last matches</a>
                 </li>
                 <li ui-sref-active="active" ng-hide="loginService.loggedIn">

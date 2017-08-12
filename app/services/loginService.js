@@ -2,7 +2,7 @@
   'use strict';
   angular
     .module('DotAAnalyzerApp')
-    .service('DALogin', function($cookies) {
+    .service('DALogin', function($cookies, $location) {
 
       // Check if cookie exists
       this.loginFunction = function(){
@@ -23,7 +23,7 @@
           if ($cookies.get('user')){
               return JSON.parse($cookies.get('user')).id;
           }
-        return;
+        return null;
       }
 
       // Read User Avatar URL from Cookie
@@ -38,6 +38,7 @@
       this.logout = function() {
         this.loggedIn = false;
         $cookies.remove('user');
+        $location.path( "/" );
       }
     });
 })();

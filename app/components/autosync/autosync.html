@@ -1,0 +1,296 @@
+<nav class="navbar navbar-inverse navbar-fixed-top">
+    <div class="container">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand">DotA 2 Analyzer.com</a>
+            <img src="/assets/images/dotalogo.png" width="50">
+        </div>
+        <div class="collapse navbar-collapse" id="myNavbar">
+            <ul class="nav navbar-nav">
+                <li>
+                    <a></a>
+                </li>
+                <li ui-sref-active="active">
+                    <a ui-sref="home">Home</a>
+                </li>
+                <li ui-sref-active="active">
+                    <a ng-click="parseMatch()">Parse Match ID</a>
+                </li>
+                <li ui-sref-active="active">
+                    <a ui-sref="about">About</a>
+                </li>
+            </ul>
+            <ul class="nav navbar-nav navbar-right">
+                <li ui-sref-active="active" ng-show="loginService.loggedIn">
+                    <a ui-sref="autosync">Autosync</a>
+                </li>
+                <li ui-sref-active="active" ng-show="loginService.loggedIn">
+                    <a ui-sref="lastmatches">Last matches</a>
+                </li>
+                <li ui-sref-active="active" ng-hide="loginService.loggedIn">
+                    <a href="auth/steam">
+                        <img src="/assets/images/sits_small.png" ></a>
+                </li>
+                <li class="dropdown" ng-if="loginService.loggedIn"><a class="dropdown-toggle" data-toggle="dropdown" href="#"><img width="20" ng-src="{{ loginService.getUserImageURL() }}"> {{ loginService.getLoggedUsername() }} <span class="caret"></span></a>
+                    <ul class="dropdown-menu">
+                        <li ng-click="loginService.logout()"><a href="#" ><span class="glyphicon glyphicon-log-out" aria-hidden="true"></span> Logout</a></li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
+
+
+<div class="staticBox">
+    <div class="gridMainPage">
+        <div class="wrapperMainPages">
+            <div class="spanMainPageLeft">
+                <p style="font-weight: bold;">Radiant Team Picks</p>
+                <table>
+                    <tr>
+                        <td ng-show="analyzerService.yourTeamPicks[0] != null"><img ng-src="{{ analyzerService.yourTeamPicks[0].heroImageURL }}" class="img-responsive" max-width="500"></td>
+                        <td ng-show="analyzerService.yourTeamPicks[0] == null"><img ng-src="assets/images/hero_unselected.jpg" class="img-responsive" max-width="500"></td>
+
+                        <td ng-show="analyzerService.yourTeamPicks[1] != null"><img ng-src="{{ analyzerService.yourTeamPicks[1].heroImageURL }}" class="img-responsive" max-width="500"></td>
+                        <td ng-show="analyzerService.yourTeamPicks[1] == null"><img ng-src="assets/images/hero_unselected.jpg" class="img-responsive" max-width="500"></td>
+
+                        <td ng-show="analyzerService.yourTeamPicks[2] != null"><img ng-src="{{ analyzerService.yourTeamPicks[2].heroImageURL }}" class="img-responsive" max-width="500"></td>
+                        <td ng-show="analyzerService.yourTeamPicks[2] == null"><img ng-src="assets/images/hero_unselected.jpg" class="img-responsive" max-width="500"></td>
+
+                        <td ng-show="analyzerService.yourTeamPicks[3] != null"><img ng-src="{{ analyzerService.yourTeamPicks[3].heroImageURL }}" class="img-responsive" max-width="500"></td>
+                        <td ng-show="analyzerService.yourTeamPicks[3] == null"><img ng-src="assets/images/hero_unselected.jpg" class="img-responsive" max-width="500"></td>
+
+                        <td ng-show="analyzerService.yourTeamPicks[4] != null"><img ng-src="{{ analyzerService.yourTeamPicks[4].heroImageURL }}" class="img-responsive" max-width="500"></td>
+                        <td ng-show="analyzerService.yourTeamPicks[4] == null"><img ng-src="assets/images/hero_unselected.jpg" class="img-responsive" max-width="500"></td>
+                    </tr>
+                </table>
+            </div>
+            <div class="spanMainPageMid">
+
+
+            </div>
+            <div class="spanMainPageRight">
+                <p style="font-weight: bold;">Dire Team Picks</p>
+                <table>
+                    <tr>
+                        <td ng-show="analyzerService.enemyTeamPicks[0] != null"><img ng-src="{{ analyzerService.enemyTeamPicks[0].heroImageURL }}" class="img-responsive" max-width="500"></td>
+                        <td ng-show="analyzerService.enemyTeamPicks[0] == null"><img ng-src="assets/images/hero_unselected.jpg" class="img-responsive" max-width="500"></td>
+
+                        <td ng-show="analyzerService.enemyTeamPicks[1] != null"><img ng-src="{{ analyzerService.enemyTeamPicks[1].heroImageURL }}" class="img-responsive" max-width="500"></td>
+                        <td ng-show="analyzerService.enemyTeamPicks[1] == null"><img ng-src="assets/images/hero_unselected.jpg" class="img-responsive" max-width="500"></td>
+
+                        <td ng-show="analyzerService.enemyTeamPicks[2] != null"><img ng-src="{{ analyzerService.enemyTeamPicks[2].heroImageURL }}" class="img-responsive" max-width="500"></td>
+                        <td ng-show="analyzerService.enemyTeamPicks[2] == null"><img ng-src="assets/images/hero_unselected.jpg" class="img-responsive" max-width="500"></td>
+
+                        <td ng-show="analyzerService.enemyTeamPicks[3] != null"><img ng-src="{{ analyzerService.enemyTeamPicks[3].heroImageURL }}" class="img-responsive" max-width="500"></td>
+                        <td ng-show="analyzerService.enemyTeamPicks[3] == null"><img ng-src="assets/images/hero_unselected.jpg" class="img-responsive" max-width="500"></td>
+
+                        <td ng-show="analyzerService.enemyTeamPicks[4] != null"><img ng-src="{{ analyzerService.enemyTeamPicks[4].heroImageURL }}" class="img-responsive" max-width="500"></td>
+                        <td ng-show="analyzerService.enemyTeamPicks[4] == null"><img ng-src="assets/images/hero_unselected.jpg" class="img-responsive" max-width="500"></td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+        <div style="clear: both;">&nbsp;</div>
+    </div>
+</div>
+
+<br><br><br><br><br><br><br>
+
+
+<div class="web">
+    <div class="container">
+        <div class="row"></div>
+        <div class="row">
+            <br><br>
+            <center>Overall Advantage</center>
+            <uib-progress>
+                <uib-bar style="background:rgba(245, 245, 245, 1)" ng-repeat="bar in analyzerService.stacked track by $index" ng-if="bar.isPlaceholder" value="bar.value"><span>{{bar.adv}}</span></uib-bar>
+                <uib-bar id="progressValue" ng-repeat="bar in analyzerService.stacked track by $index" ng-if="!bar.isPlaceholder" value="bar.value" type="{{changeProgressbarColor(bar)}}"><span style="color: black">{{bar.adv}}</span></uib-bar>
+            </uib-progress>
+            <uib-alert ng-show="showAPIError" class="alert" type="danger" close="showAPIError=false">The DotA 2 API is temporarily unavailable.</uib-alert>
+        </div>
+        <div class="row"></div>
+    </div>
+
+
+    <div class="gridMainPage">
+        <div class="wrapperMainPages">
+            <div class="spanMainPageLeft">
+
+                    <br><br><br>
+                    <div class="col-md-12">
+                        <form>
+                            <div class="form-group">
+                                <div class="input-group">
+                                    <div class="input-group-addon"><i class="fa fa-search"></i></div>
+                                    <input type="text" class="form-control" placeholder="Search Hero"
+                                           ng-model="searchHeroYourTeam">
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+
+                    <br><br><br>
+
+                    <div class="table-responsive">
+                        <table class="table table-striped">
+                            <caption>{{yourTeamTableInfo}}</caption>
+                            <thead>
+                            <tr>
+                                <td><a></a></td>
+                                <td><a>Rank</a></td>
+                                <td>
+                                    <a href="#"
+                                       ng-click="sortTypeYourTeam = 'heroFullName'; sortReverseYourTeam = !sortReverseYourTeam">
+                                        Hero Name
+                                        <span ng-show="sortTypeYourTeam == 'heroFullName' && !sortReverseYourTeam"
+                                              class="fa fa-caret-down"></span>
+                                        <span ng-show="sortTypeYourTeam == 'heroFullName' && sortReverseYourTeam"
+                                              class="fa fa-caret-up"></span>
+                                    </a>
+                                </td>
+                                <td>
+                                    <a href="#" ng-click="sortTypeYourTeam = 'yourTeamWinrate'; sortReverseYourTeam = !sortReverseYourTeam">
+                                        Winrate
+                                        <span ng-show="sortTypeYourTeam == 'yourTeamWinrate' && !sortReverseYourTeam"
+                                              class="fa fa-caret-down"></span>
+                                        <span ng-show="sortTypeYourTeam == 'yourTeamWinrate' && sortReverseYourTeam"
+                                              class="fa fa-caret-up"></span>
+                                    </a>
+                                </td>
+                                <td>
+                                    <a href="#"
+                                       ng-click="sortTypeYourTeam = 'yourTeamAdvantage'; sortReverseYourTeam = !sortReverseYourTeam">
+                                        Advantage
+                                        <span ng-show="sortTypeYourTeam == 'yourTeamAdvantage' && !sortReverseYourTeam"
+                                              class="fa fa-caret-down"></span>
+                                        <span ng-show="sortTypeYourTeam == 'yourTeamAdvantage' && sortReverseYourTeam"
+                                              class="fa fa-caret-up"></span>
+                                    </a>
+                                </td>
+                            </tr>
+                            </thead>
+
+                            <tbody>
+                            <tr ng-repeat="hero in analyzerService.heroes | orderBy:sortTypeYourTeam:sortReverseYourTeam">
+                                <td ng-class='{blackTable : analyzerService.heroAlreadyPickedOrBanned(hero.heroIndex)}' ng-show="([hero.heroFullName] | filter:searchHeroYourTeam).length > 0"><img ng-src="{{ hero.heroImageURL }}"
+                                        style="width: 96px; height: 58px"></td>
+                                <td ng-class='{blackTable : analyzerService.heroAlreadyPickedOrBanned(hero.heroIndex)}' ng-show="([hero.heroFullName] | filter:searchHeroYourTeam).length > 0">{{ $index + 1 }}</td>
+                                <td ng-class='{blackTable : analyzerService.heroAlreadyPickedOrBanned(hero.heroIndex)}' ng-show="([hero.heroFullName] | filter:searchHeroYourTeam).length > 0">{{ hero.heroFullName }}</td>
+                                <td ng-class='{blackTable : analyzerService.heroAlreadyPickedOrBanned(hero.heroIndex)}' ng-show="([hero.heroFullName] | filter:searchHeroYourTeam).length > 0">{{ hero.yourTeamWinrate }}%</td>
+                                <td ng-class='{blackTable : analyzerService.heroAlreadyPickedOrBanned(hero.heroIndex)}' ng-show="([hero.heroFullName] | filter:searchHeroYourTeam).length > 0">{{ hero.yourTeamAdvantage }}</td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </div>
+            </div>
+
+            <div class="spanMainPageMid">
+                Links will be automatically available after the match.<br><br>
+                <center>
+                <button type="button" class="btn btn-primary disabled">Opendota <i class="fa fa-refresh fa-spin fa-fw"></i></button><br><br>
+                <button type="button" class="btn btn-primary disabled">Dotabuff <i class="fa fa-refresh fa-spin fa-fw"></i></button>
+                </center>
+            </div>
+
+
+
+
+
+            <div class="spanMainPageRight">
+                    <br><br><br>
+                    <div class="col-md-12">
+                        <form>
+                            <div class="form-group">
+                                <div class="input-group">
+                                    <div class="input-group-addon"><i class="fa fa-search"></i></div>
+                                    <input type="text" class="form-control" placeholder="Search Hero"
+                                           ng-model="searchHeroEnemyTeam">
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                    <br><br><br>
+                    <div class="table-responsive">
+                        <table class="table table-striped">
+                            <caption>{{enemyTeamTableInfo}}</caption>
+                            <thead>
+                            <tr>
+                                <td><a></a></td>
+                                <td>
+                                    <a>
+                                        Rank
+                                        <span ng-show="sortTypeEnemyTeam == 'ranking' && !sortReverseEnemyTeam"
+                                              class="fa fa-caret-down"></span>
+                                        <span ng-show="sortTypeEnemyTeam == 'ranking' && sortReverseEnemyTeam"
+                                              class="fa fa-caret-up"></span>
+                                    </a>
+                                </td>
+                                <td>
+                                    <a href="#"
+                                       ng-click="sortTypeEnemyTeam = 'heroFullName'; sortReverseEnemyTeam = !sortReverseEnemyTeam">
+                                        Hero Name
+                                        <span ng-show="sortTypeEnemyTeam == 'heroFullName' && !sortReverseEnemyTeam"
+                                              class="fa fa-caret-down"></span>
+                                        <span ng-show="sortTypeEnemyTeam == 'heroFullName' && sortReverseEnemyTeam"
+                                              class="fa fa-caret-up"></span>
+                                    </a>
+                                </td>
+                                <td>
+                                    <a href="#"
+                                       ng-click="sortTypeEnemyTeam = 'enemyTeamWinrate'; sortReverseEnemyTeam = !sortReverseEnemyTeam">
+                                        Winrate
+                                        <span ng-show="sortTypeEnemyTeam == 'enemyTeamWinrate' && !sortReverseEnemyTeam"
+                                              class="fa fa-caret-down"></span>
+                                        <span ng-show="sortTypeEnemyTeam == 'enemyTeamWinrate' && sortReverseEnemyTeam"
+                                              class="fa fa-caret-up"></span>
+                                    </a>
+                                </td>
+                                <td>
+                                    <a href="#"
+                                       ng-click="sortTypeEnemyTeam = 'enemyTeamAdvantage'; sortReverseEnemyTeam = !sortReverseEnemyTeam">
+                                        Advantage
+                                        <span ng-show="sortTypeEnemyTeam == 'enemyTeamAdvantage' && !sortReverseEnemyTeam"
+                                              class="fa fa-caret-down"></span>
+                                        <span ng-show="sortTypeEnemyTeam == 'enemyTeamAdvantage' && sortReverseEnemyTeam"
+                                              class="fa fa-caret-up"></span>
+                                    </a>
+                                </td>
+                            </tr>
+                            </thead>
+
+                            <tbody>
+                            <tr ng-repeat="hero in analyzerService.heroes | orderBy:sortTypeEnemyTeam:sortReverseEnemyTeam">
+                                <td ng-class='{blackTable : analyzerService.heroAlreadyPickedOrBanned(hero.heroIndex)}' ng-show="([hero.heroFullName] | filter:searchHeroEnemyTeam).length > 0"><img
+                                        ng-src="{{ hero.heroImageURL }}"
+                                        style="width: 96px; height: 58px"></td>
+                                <td ng-class='{blackTable : analyzerService.heroAlreadyPickedOrBanned(hero.heroIndex)}' ng-show="([hero.heroFullName] | filter:searchHeroEnemyTeam).length > 0 ">{{ $index + 1 }}</td>
+                                <td ng-class='{blackTable : analyzerService.heroAlreadyPickedOrBanned(hero.heroIndex)}' ng-show="([hero.heroFullName] | filter:searchHeroEnemyTeam).length > 0 ">{{ hero.heroFullName }}</td>
+                                <td ng-class='{blackTable : analyzerService.heroAlreadyPickedOrBanned(hero.heroIndex)}' ng-show="([hero.heroFullName] | filter:searchHeroEnemyTeam).length > 0 ">{{ hero.enemyTeamWinrate }}%
+                                </td>
+                                <td ng-class='{blackTable : analyzerService.heroAlreadyPickedOrBanned(hero.heroIndex)}' ng-show="([hero.heroFullName] | filter:searchHeroEnemyTeam).length > 0 ">{{ hero.enemyTeamAdvantage
+                                    }}
+                                </td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </div>
+            </div>
+
+
+
+
+
+
+
+
+
+
+        </div>
+    </div>
+</div>
