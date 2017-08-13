@@ -1,11 +1,44 @@
-
+/*
 .staticBox {
     position: fixed;
-    z-index: 1020;
-    top: 52px;
+    top: 64px;
     background: #f2f2f2;
+    z-index: 10;
+}*/
 
+#sticky {
+    background: #f2f2f2;
+    z-index: 10;
+}
 
+#sticky.stick {
+    margin-top: 0 !important;
+    position: fixed;
+    top: 0;
+    z-index: 10;
+    border-radius: 0 0 0.5em 0.5em;
+}
+
+/*
+.content {
+    margin-top: 230px;
+}*/
+
+/*
+.fixed-header {
+    position: fixed;
+    top: 0
+}*/
+
+.spacer
+{
+    width: 100%;
+    height: 70px;
+}
+
+.spacer2
+{
+    width: 100%;
 }
 
 .textcenter {
@@ -31,15 +64,16 @@ body {
     /*background:#FFB2B2;*/
     border-right:0em solid #FFFFFF;
     float:left;
-    width:43.0%; /* 3 columns */
+    width:42.0%; /* 3 columns */
 }
 
 .gridMainPage .spanMainPageRight {
     /*background:#FFB2B2;*/
     border-right:0em solid #FFFFFF;
 
-    float:right;
-    width:43.0%; /* 3 columns */
+    float:left;
+    width:42.0%; /* 3 columns */
+
 }
 
 .gridMainPage .spanMainPageMid {

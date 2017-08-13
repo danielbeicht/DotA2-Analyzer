@@ -2,18 +2,19 @@
 <html ng-app="DotAAnalyzerApp">
 <head>
     <meta charset="UTF-8">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous"><!-- anschauen für glyph -->
+
     <link rel="icon" type="image/vnd.microsoft.icon" href="assets/icon/dota2.ico">
-    <link rel="stylesheet" href="assets/styles/bootstrap.min.css">
+
     <link rel="stylesheet" href="assets/styles/core.css">
     <link rel="stylesheet" href="assets/styles/heroes.css">
     <link rel="stylesheet" href="assets/styles/mainPage.css">
     <link rel="stylesheet" href="assets/styles/cssLoadingElement.css">
     <link rel="stylesheet" href="assets/styles/loadingScreen.css">
     <link rel="stylesheet" href="assets/styles/heroTables.css">
+    <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/angular_material/1.1.0/angular-material.min.css">
 
     <link rel='stylesheet' href='http://cdnjs.cloudflare.com/ajax/libs/angular-loading-bar/0.9.0/loading-bar.min.css' type='text/css' media='all' />
-
+    <link rel="stylesheet" href="assets/styles/bootstrap.min.css">
 
     <title>DotA 2 Analyzer</title>
 </head>
@@ -21,7 +22,39 @@
 <script src="https://use.fontawesome.com/047501882c.js"></script>
 
 
+
+
+<div ng-controller="menuCtrl" ng-cloak="" >
+    <md-toolbar layout="row" layout-align="space-between center" class="md-hue-2 fixed-header" ng-hide="$state.includes('loading')">
+        <!--The left side-->
+        <span>
+        <a class="navbar-brand" ui-sref="home" style="text-decoration: none; color: #FFFFFF"><md-button style="background:transparent" aria-label="Home">DotA - Analyzer.com </md-button></a>
+        <a ui-sref="home"><md-button style="background:transparent" aria-label="ImageHome"><img src="/assets/images/dotalogo.png" width="50"></md-button></a>
+            <a class="navbar-brand" ui-sref="autosync" style="text-decoration: none; color: #FFFFFF" ng-show="loginService.loggedIn"><md-button aria-label="Autosync">  Autosync </md-button></a>
+            <a class="navbar-brand" ui-sref="lastmatches" style="text-decoration: none; color: #FFFFFF" ng-show="loginService.loggedIn"><md-button aria-label="Last Matches">  Last Matches </md-button></a>
+    </span>
+        <!--The right side-->
+        <span>
+        <a class="navbar-brand" ui-sref="about" style="text-decoration: none; color: #FFFFFF"><md-button aria-label="About">  About </md-button></a>
+        <a href="auth/steam" ng-hide="loginService.loggedIn"><md-button aria-label="sign_in" style="background:transparent"> <img src="/assets/images/sits_small.png"> </md-button></a>
+
+
+    <md-menu ng-if="loginService.loggedIn" style="margin-right: 20px">
+        <a class="dropdown-toggle" data-toggle="dropdown" href="#" ng-click="$mdOpenMenu()" style="text-decoration: none; color: #FFFFFF"><img width="20" ng-src="{{ loginService.getUserImageURL() }}"> {{ loginService.getLoggedUsername() }} <span class="caret"></span></a>
+        <md-menu-content>
+            <md-menu-item><md-button ng-click="loginService.logout()">Logout</md-button></md-menu-item>
+        </md-menu-content>
+    </md-menu>
+    </span>
+    </md-toolbar>
+
+
+</div>
+
+
 <div ui-view></div>
+
+
 
 
 
@@ -42,12 +75,18 @@
 </script>
 <!-- Analyzics end -->
 
-
+<!-- AngularJS -->
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js"></script>
 <script src="assets/libs/angular.js"></script>
-<script src="assets/libs/angular-ui-router.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/angular-ui-router/1.0.3/angular-ui-router.js"></script>
 <script src="assets/libs/angular-resource.js"></script>
 <script src="assets/libs/angular-animate.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular-aria.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular-messages.min.js"></script>
+<!-- Angular Material Library -->
+<script src="https://ajax.googleapis.com/ajax/libs/angular_material/1.1.0/angular-material.min.js"></script>
+
+<!-- Bootstrap -->
 <script src="assets/libs/ui-bootstrap-tpls-1.0.3.min.js"></script>
 <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
 
@@ -62,11 +101,12 @@
 <script src='app/services/loginService.js'></script>
 <script src="app/app.routes.js"></script>
 
-
 <script src="app/components/home/home.service.js"></script>
 <script src="app/components/home/home.ctrl.js"></script>
 
 <script src="app/components/about/about.ctrl.js"></script>
+
+<script src="app/components/menu/menu.ctrl.js"></script>
 
 <script src="app/components/loading/loading.ctrl.js"></script>
 <script src="app/components/lastmatches/lastmatches.ctrl.js"></script>
@@ -75,6 +115,29 @@
 <script src="app/components/home/ModalInstanceCtrl.js"></script>
 <script src="app/components/home/ParseMatchModalCtrl.js"></script>
 
+
+<script>
+  function sticky_relocate() {
+    var window_top = $(window).scrollTop();
+    if (window_top > 64) {
+      console.log("CALLED");
+      $('#spacer2').height(64);
+      $('.spacer2').height(160);
+      $('#sticky').addClass('stick');
+      $('#sticky-anchor').height($('#sticky').outerHeight());
+    } else {
+      $('#spacer2').height(0);
+      $('.spacer2').height(0);
+      $('#sticky').removeClass('stick');
+      $('#sticky-anchor').height(0);
+    }
+  }
+
+  $(function() {
+    $(window).scroll(sticky_relocate);
+    sticky_relocate();
+  });
+</script>
 
 
 </body>

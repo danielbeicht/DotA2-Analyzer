@@ -1,4 +1,7 @@
 (function () {
+
+
+
   'use strict';
 
   //noinspection JSUnresolvedFunction
@@ -6,14 +9,24 @@
     .module('DotAAnalyzerApp')
     .controller('homeCtrl', homeCtrl);
 
-  homeCtrl.$inject = ['$scope', '$http', '$uibModal', '$timeout', '$location', 'datastorage', 'DAAnalyzer', 'DALogin'];
+  homeCtrl.$inject = ['$scope', '$http', '$uibModal', '$timeout', '$location', '$mdDialog', '$mdToast', 'datastorage', 'DAAnalyzer', 'DALogin'];
 
 
-  function homeCtrl($scope, $http, $uibModal, $timeout, $location, datastorage, DAAnalyzer, DALogin) {
+
+  function homeCtrl($scope, $http, $uibModal, $timeout, $location, $mdDialog, $mdToast, datastorage, DAAnalyzer, DALogin) {
     // Import services to use them in HTML-File
     $scope.loginService = DALogin;
     $scope.datastorage = datastorage;
     $scope.analyzerService = DAAnalyzer;
+    console.log("INIT");
+
+
+    $scope.currNavItem = 'page1';
+    $scope.goto = function(page){
+      $scope.currNavItem = page;
+    };
+
+
 
     // // Check if user is logged in (to edit navbar)
     $scope.loginService.loginFunction();
@@ -23,27 +36,114 @@
       return;
     }
 
-    initHeroPickerModal();
+    $scope.wtftest = function() {
+      alert('BLA');
+    }
+
+
     // Initialize Heropicker Modal
-    function initHeroPickerModal () {
-      $scope.animationsEnabled = true;
-      $scope.open = function (pickSetting) {
-        var modalInstance = $uibModal.open({
-          animation: $scope.animationsEnabled,
-          templateUrl: 'myModalContent',
-          controller: 'ModalInstanceCtrl',
-          windowClass: 'app-modal-window',
-          scope: $scope,
-          size: 'lg',
-          resolve: {
-            pickSetting: function() {
-              return pickSetting;
+    $scope.ok = function(answer) {
+      var result = [];
+      result[0] = answer;
+      result[1] = 'yourTeamPick';
+      $mdDialog.hide(result);
+    };
+
+    // Toast Reset Heroes
+    $scope.showToastResetHeroes = function() {
+
+
+      $mdToast.show(
+        $mdToast.simple()
+          .textContent('Picks/Bans resetted.')
+          .position('bottom right')
+          .hideDelay(3000)
+      );
+    };
+
+
+    function DialogController($scope, $mdDialog, data) {
+      $scope.passeddata = data;
+
+      $scope.hide = function() {
+        $mdDialog.hide();
+      };
+
+      $scope.cancel = function() {
+        $mdDialog.cancel();
+      };
+
+      $scope.answer = function(answer) {
+        $mdDialog.hide(answer);
+      };
+
+      $scope.ok = function(answer) { // Funktion für neuen HeroPick
+        var result = [];
+        result[0] = answer;
+        $mdDialog.hide(result);
+      };
+
+      $scope.parseMatchID = function () {
+        console.log("Match ID: " + $scope.inputMatchID);
+
+        DAAnalyzer.resetData();
+        $scope.parsingMatch = true;
+        var heroArray = [];
+        var dataObj = {
+          matchID : $scope.inputMatchID
+        };
+        $http({
+          method: 'POST',
+          url: 'api/matchid',
+          data: dataObj
+        }).then(function successCallback(response) {
+          console.log(response);
+          if (response.data == "notfound"){
+          } else if (response.data == "false") {
+            $scope.showAPIError = true;
+          } else {
+            for (var i=0; i<5; i++){
+              for (var j=0; j<DAAnalyzer.heroes.length; j++){
+                if (DAAnalyzer.heroes[j].heroValveIndex == response.data[i]){
+                  heroArray[i] = DAAnalyzer.heroes[j].heroIndex;
+                }
+              }
+            }
+            for (var i=5; i<10; i++){
+              for (var j=0; j<DAAnalyzer.heroes.length; j++){
+                if (DAAnalyzer.heroes[j].heroValveIndex == response.data[i]){
+                  heroArray[i] = DAAnalyzer.heroes[j].heroIndex;
+                }
+              }
             }
           }
+          $mdDialog.hide(heroArray);
+        }, function errorCallback(response) {
+          $mdDialog.hide(null);
+          // called asynchronously if an error occurs
+          // or server returns response with an error status.
+        }).finally(function() {
+          $scope.parsingMatch = false;
         });
-        modalInstance.result.then(function (result) {
+        $mdDialog.hide(heroArray);
+      }
+    }
+
+    function initHeroPickerModal () {
+      $scope.animationsEnabled = true;
+      $scope.openHeroPickerDialog = function (ev, pickSetting) {
+        $mdDialog.show({
+          controller: DialogController,
+          templateUrl: "heroPickerDialog",
+          parent: angular.element(document.body),
+          disableAnimation: true,
+          targetEvent: ev,
+          locals:{data: $scope},
+          clickOutsideToClose:true,
+          fullscreen: true // Only for -xs, -sm breakpoints.
+        }).then(function(result) {
           var selectedHero = result[0];
-          var pick = result[1];
+          var pick = pickSetting;
           var i;
           if (pick === 'yourTeamPick'){
             for (i=0; i < $scope.analyzerService.heroesSortedByIndex.length; i++){
@@ -60,18 +160,50 @@
               }
             }
           } else if (pick === 'ban') {
-            for (i=0; i < $scope.analyzerService.heroesSortedByIndex.length; i++){
-              if ($scope.analyzerService.heroesSortedByIndex[i].heroName.trim() === selectedHero){
+            for (i = 0; i < $scope.analyzerService.heroesSortedByIndex.length; i++) {
+              if ($scope.analyzerService.heroesSortedByIndex[i].heroName.trim() === selectedHero) {
                 banHero($scope.analyzerService.heroesSortedByIndex[i].heroIndex);
                 break;
               }
             }
           }
-        }, function () {
-          //$log.info('Modal dismissed at: ' + new Date());
+          }, function() {
+            $scope.status = 'You cancelled the dialog.';
+          });
+      };
+    }
+    initHeroPickerModal();
+
+
+    function initParseIDModal () {
+      $scope.animationsEnabled = true;
+      $scope.openParseIDDialog = function (ev, pickSetting) {
+        $mdDialog.show({
+          controller: DialogController,
+          templateUrl: "parseIDDialog",
+          parent: angular.element(document.body),
+          disableAnimation: true,
+          targetEvent: ev,
+          locals:{data: $scope},
+          clickOutsideToClose:true,
+          fullscreen: true // Only for -xs, -sm breakpoints.
+        }).then(function(result) {
+          if (result != null){
+            for (var i=0; i<5; i++){
+              $scope.analyzerService.yourTeamHeroPick(result[i]);
+            }
+            for (var i=5; i<10; i++){
+              $scope.analyzerService.enemyTeamHeroPick(result[i]);
+            }
+          }
+        }, function() {
+          $scope.status = 'You cancelled the dialog.';
         });
       };
     }
+    initParseIDModal();
+
+
 
 
 
@@ -180,6 +312,8 @@
 
 
 
+
+
     function initHome() {
       $scope.allowBanning = false;
 
@@ -218,6 +352,7 @@
       $scope.analyzerService.updateAdvantages();
 
       $scope.picked = function (index) {
+
         var alreadyPicked = false;
         var i;
         for (i = 0; i < 5; i++) {
@@ -247,10 +382,13 @@
         {text: 'Alert Message!', type: "alert"},
         {text: 'secondary message...', type: 'secondary'}
       ];
-
-
-
     }
+
+    $scope.resetPicks = function() {
+      $scope.analyzerService.resetData()
+      $scope.showToastResetHeroes();
+    }
+
 
     // return image URL (gray when picked; with color when unpicked)
     $scope.pickedHeroName = function (heroIndex){
@@ -363,6 +501,7 @@
     $scope.reloadData = function() {
       $location.path( "/" );
     }
+
   }
 
 })();

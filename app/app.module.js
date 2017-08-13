@@ -1,6 +1,3 @@
-/**
- * Created by s86370 on 27.10.2015.
- */
 (function () {
     'use strict';
     //modules/services that the app uses/depends on
@@ -11,7 +8,18 @@
             'ui.bootstrap',
             'ngAnimate',
             'angular-loading-bar',
-            'ngCookies'
-        ]);
+            'ngCookies',
+            'ngMaterial',
+            'ngMessages'
+        ]).config(function($mdThemingProvider) {
+      $mdThemingProvider.theme('default')
+        .primaryPalette('blue-grey')
+        .accentPalette('pink');
+    });
+
+
+
+
 
 })();
+

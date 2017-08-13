@@ -5,10 +5,10 @@
         .module('DotAAnalyzerApp')
         .controller('lastmatchesCtrl', lastmatchesCtrl);
 
-    lastmatchesCtrl.$inject = ['$scope', '$http', 'datastorage', '$q', 'DALogin', 'DAAnalyzer', '$log'];
+    lastmatchesCtrl.$inject = ['$scope', '$http', '$location', 'datastorage', '$q', 'DALogin', 'DAAnalyzer', '$log'];
 
 
-    function lastmatchesCtrl($scope, $http, datastorage, $q, DALogin, DAAnalyzer, $log) {
+    function lastmatchesCtrl($scope, $http, $location, datastorage, $q, DALogin, DAAnalyzer, $log) {
         $scope.matchesWon = 0;
         $scope.matchesLost = 0;
         // Import services to use them in HTML-File
@@ -20,6 +20,11 @@
 
         $scope.tableMatches = [];
         $scope.heroesValve = datastorage.heroesValve;
+
+      if (typeof datastorage.heroes === "undefined"){   // if page home directly called redirect to loading page
+        $location.path( "/" );
+        return;
+      }
 
         // Get Account ID
 

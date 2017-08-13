@@ -14,6 +14,7 @@
 
   function uiRouterConfig($stateProvider, $urlRouterProvider, $httpProvider) {
     $urlRouterProvider.otherwise('/');
+
     $stateProvider
       .state('home', {
         url: '/home',

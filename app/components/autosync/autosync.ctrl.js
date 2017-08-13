@@ -5,12 +5,23 @@
     .module('DotAAnalyzerApp')
     .controller('autosyncCtrl', autosyncCtrl);
 
-  autosyncCtrl.$inject = ['$scope', '$http', '$timeout', '$state', 'DALogin', 'DAAnalyzer'];
+  autosyncCtrl.$inject = ['$scope', '$http', '$timeout', '$state', '$location', 'DALogin', 'DAAnalyzer', 'datastorage'];
 
 
-  function autosyncCtrl($scope, $http, $timeout, $state, DALogin, DAAnalyzer) {
+  function autosyncCtrl($scope, $http, $timeout, $state, $location, DALogin, DAAnalyzer, datastorage) {
     $scope.loginService = DALogin;
     $scope.analyzerService = DAAnalyzer;
+
+    $scope.sortTypeYourTeam = 'yourTeamAdvantage'; // set the default sort type
+    $scope.sortReverseYourTeam = true;  // set the default sort order
+
+    $scope.sortTypeEnemyTeam = 'enemyTeamAdvantage'; // set the default sort type
+    $scope.sortReverseEnemyTeam = true;  // set the default sort order
+
+    if (typeof datastorage.heroes === "undefined"){   // if page home directly called redirect to loading page
+      $location.path( "/" );
+      return;
+    }
 
     var radiantAutosyncCounter = 0;
     var direAutosyncCounter = 0;

@@ -1,42 +1,79 @@
-<nav class="navbar navbar-inverse navbar-fixed-top">
-    <div class="container">
-        <div class="navbar-header">
-            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-            </button>
-            <a class="navbar-brand">DotA 2 Analyzer.com</a>
-            <img src="/assets/images/dotalogo.png" width="50">
-        </div>
-        <div class="collapse navbar-collapse" id="myNavbar">
-            <ul class="nav navbar-nav">
-                <li>
-                    <a></a>
-                </li>
-                <li ui-sref-active="active">
-                    <a ui-sref="home">Home</a>
-                </li>
-                <li ui-sref-active="active">
-                    <a ui-sref="about">About</a>
-                </li>
-            </ul>
-            <ul class="nav navbar-nav navbar-right">
-                <li ui-sref-active="active" ng-show="loginService.loggedIn">
-                    <a ui-sref="lastmatches">Last matches</a>
-                </li>
-                <li ui-sref-active="active" ng-hide="loginService.loggedIn">
-                    <a href="auth/steam">
-                        <img src="/assets/images/sits_small.png" ></a>
-                </li>
-                <li class="dropdown" ng-if="loginService.loggedIn"><a class="dropdown-toggle" data-toggle="dropdown" href="#"><img width="20" ng-src="{{ loginService.getUserImageURL() }}"> {{ loginService.getLoggedUsername() }} <span class="caret"></span></a>
-                    <ul class="dropdown-menu">
-                        <li ng-click="loginService.logout()"><a href="#" ><span class="glyphicon glyphicon-log-out" aria-hidden="true"></span> Logout</a></li>
-                    </ul>
-                </li>
-            </ul>
-        </div>
-    </div>
-</nav>
+<md-content flex layout-padding>
+    <h1>DotA 2 Analyzer</h1>
+    <h2>What is DotA 2 Analyzer?</h2>
+    <p>DotA 2 Analyzer calculates, which hero picks might be good choice against the enemy picks. The tool also calculates the best choices for the enemy team, so that you can react by banning those heroes in Captains Mode.</p>
+    <h2>Calculations</h2>
+    <p>The calculations are based on Dotabuff advantage data. They does neither include hero synergies nor the distribution of the hero roles. It only examines the enemy picks. To mark heroes, that you or your friends might want to play, you can create an account and add players to this account. You can choose a hero pool for each player within your account, which will be saved in our database. Whenever you login, you can select the players you are playing with and heroes will be marked with different colors to give you an easy overview. The DotA 2 Analyzer also calculates an overall advantage of both teams concerning the current picks of both teams.</p>
+    <h2>Implementation</h2>
+    <h3>Frontend</h3>
+    <p>The old DotA 2 Analyzer was designed with ASP.Net C#. It was created within 2 weeks during semester break. The performance wasn't really great, also it didn't support any kind of asynchronous data transfer.</p>
+    <p>The new Frontend uses modern technology:</p>
+    <md-chips>
+        <md-chip>HTML5</md-chip>
+        <md-chip>JavaScript (Framework: AngularJS)</md-chip>
+        <md-chip>CSS (Material)</md-chip>
+    </md-chips>
+    <h3>Backend</h3>
+    <p>The Backend is structed as follows:</p>
+    <h5>DotA 2 Updater:</h5>
+    <p>The DotA 2 Updater is fetchting data from dotabuff.com and updates the SQL-database. The DotA 2 Updater is written in C#.</p>
+    <h5>DotA 2 Analyzer REST API</h5>
+    <p>DotA 2 Analyzer REST API is written in Java and uses the JAX-RS specification and Jersey framework. For simplicity, the API only supports JSON format.</p>
+
+    <br><br>
+
+    <p>You can find the DotA 2 Analyzer Frontend on github:</p>
+    <a href="https://github.com/danielbeicht/DotA2-Analyzer" target="_blank">
+
+        <img src="assets/images/GitHub_Logo.png" alt="Github" width="300"><br>
+    </a>
+    <a href="https://github.com/danielbeicht/DotA2-Analyzer" target="_blank">https://github.com/danielbeicht/DotA2-Analyzer</a>
+
+    <h2>Changelog</h2>
+
+    <h3>Version: 0.22 Alpha (28.07.2017)</h3>
+    - Bugfix at initial loading<br>
+    - improved code
+    <h3>Version: 0.21 Alpha (28.06.2016)</h3>
+    - increased parsed match count to 100<br>
+    - implemented Last matches-stats
+    <h3>Version: 0.20 Alpha (02.06.2016)</h3>
+    - Steam-Login<br>
+    - Lookup last 25 matches
+    <h3>Version: 0.19 Alpha (29.05.2016)</h3>
+    - navbar + picked heroes fixed at top<br>
+    - outsourced parse match
+    <h3>Version: 0.18 Alpha (25.05.2016)</h3>
+    - you can now parse previous matches by entering the Match-ID
+    <h3>Version: 0.17 Alpha (31.04.2016)</h3>
+    - outsourced loading screen<br>
+    - implemented "Reload data"-button
+    <h3>Version: 0.16 Alpha (30.04.2016)</h3>
+    - you can now unpick heroes by clicking the hero in the hero-table<br>
+    - UI improvements
+    <h3>Version: 0.15 Alpha (08.02.2016)</h3>
+    - already picked heroes are now shown in the hero-tables<br>
+    - the table row of already picked heroes is now colored black
+    <h3>Versio: 0.14 Alpha (26.01.2016)</h3>
+    - implemented 'Reset data' button
+    <h3>Version: 0.13 Alpha (23.01.2016)</h3>
+    - implemented option to swap tables
+    <h3>Version: 0.12 Alpha (21.01.2016)</h3>
+    - implemented loading screen while fetching data from REST-API<br>
+    - code improvements
+    <h3>Version: 0.11 Alpha (20.01.2016)</h3>
+    - the website now uses Piwik, a web analytics open source software
+    <h3>Version: 0.10 Alpha (19.01.2016)</h3>
+    - removed debug-function button<br>
+    - implemented graphic hero ban by clicking on unselected hero ban images
+    <h3>Version: 0.09 Alpha (18.01.2016)</h3>
+    - implemented "About" Page <br>
+    - fixed wrong ui-bar calculations <br>
+    - performance improvements <br>
+</md-content>
+
+<!--
+
 <div class="container">
     <div class="row">
         <div class="col-md-12">
@@ -67,7 +104,7 @@
             <h3>Open source</h3>
             You can find the DotA 2 Analyzer Frontend on github:<br>
             <a href="https://github.com/danielbeicht/DotA2-Analyzer" target="_blank">
-                <!--suppress CheckImageSize -->
+
                 <img src="assets/images/GitHub_Logo.png" alt="Github" width="300"><br>
             </a>
             <a href="https://github.com/danielbeicht/DotA2-Analyzer" target="_blank">https://github.com/danielbeicht/DotA2-Analyzer</a>
@@ -117,3 +154,4 @@
         </div>
     </div>
 </div>
+-->
