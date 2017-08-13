@@ -41,6 +41,11 @@
         templateUrl: 'app/components/lastmatches/lastmatches.html',
         controller: 'lastmatchesCtrl'
       })
+      .state('managefriends', {
+        url: '/managefriends',
+        templateUrl: 'app/components/managefriends/managefriends.html',
+        controller: 'managefriendsCtrl'
+      })
     ;
 
     $httpProvider.defaults.useXDomain = true;
