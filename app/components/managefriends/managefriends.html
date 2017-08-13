@@ -1,1 +1,26 @@
-aaa
+<div class="col-sm-4">
+
+    <form layout layout-align="center" layout-padding>
+        <div layout="row" flex>
+            <md-input-container flex class="md-icon-float md-block md-title">
+                <label>Friend Player Name</label>
+                <input type="text" ng-model="friendName">
+            </md-input-container>
+            <div>
+                <md-button md-no-ink class="md-raised md-primary" ng-click="saveFriend()">Save</md-button>
+            </div>
+        </div>
+    </form>
+
+
+    <md-list ng-cloak>
+        <md-subheader class="md-no-sticky">Friendlist</md-subheader>
+        <md-list-item ng-repeat="friend in friendList" ng-click="friendSelected($event)" class="noright">
+            <p>{{ friend.FriendName }}</p>
+            <md-button aria-label="sf" ng-click="deleteFriend(friend.FriendName)"><i class="fa fa-trash"></i></md-button>
+        </md-list-item>
+    </md-list>
+</div>
+<div class="col-sm-4">.col-sm-4</div>
+<div class="col-sm-4">fdg</div>
+

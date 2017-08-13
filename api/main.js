@@ -200,6 +200,10 @@ app.post('/api/getAccountID', function (req, res){
   playerID = playerID.substring(playerID.indexOf(':')+1);
   playerID = playerID.substring(0, playerID.length - 1);
   console.log ("Success getAccountID");
+
+
+
+
   res.send(playerID);
 });
 
@@ -281,6 +285,83 @@ app.post('/api/autosync/getMatch', function (req, res) {
 // Fill test data
 accountMatches["76561198026188411"] = { pickPhase: true, heroesRadiant: [], heroesDire: [] }
 //accountMatches["76561198026188411"].heroesRadiant.push(5);
+
+
+
+
+// New logic for saving friends
+app.post('/api/friends/addFriend', function (req, res) {
+  var steamID = calcSteamID(req.body.accountID);
+  // create player in database
+  var conn = new sql.Connection(dbConfig);
+  var requ = new sql.Request(conn);
+  conn.connect(function(err) {
+    if (err) {
+      console.log(err);
+    }
+
+    requ.query("INSERT INTO account (AccountID) VALUES (" + calcSteamID(req.body.accountID) + ")").then(function(recordset) {
+      console.log('Recordset: ' + recordset);
+      console.log('Affected: ' + request.rowsAffected);
+    }).catch(function(err) {
+      console.log('Request error: ' + err);
+    });
+
+    requ.query("INSERT INTO AccountFriend VALUES (" + steamID +", '" + req.body.name + "')").then(function(recordset) {
+      console.log('Recordset: ' + recordset);
+      console.log('Affected: ' + request.rowsAffected);
+      res.send("OK");
+    }).catch(function(err) {
+      console.log('Request error: ' + err);
+      res.send("Error");
+    });
+  });
+});
+
+app.post('/api/friends/friendlist', function (req, res) {
+  var conn = new sql.Connection(dbConfig);
+  var requ = new sql.Request(conn);
+  conn.connect(function(err) {
+    if (err) {
+      console.log(err);
+    }
+
+    requ.query("SELECT FriendName FROM AccountFriend WHERE AccountID=(" + calcSteamID(req.body.accountID) + ")").then(function (recordset) {
+      res.send(JSON.stringify(recordset));
+    }).catch(function (err) {
+      console.log('Request error: ' + err);
+      res.send("ERROR");
+    });
+  });
+});
+
+app.post('/api/friends/deleteFriend', function (req, res) {
+  var conn = new sql.Connection(dbConfig);
+  var requ = new sql.Request(conn);
+  conn.connect(function(err) {
+    if (err) {
+      console.log(err);
+    }
+
+    requ.query("DELETE FROM AccountFriend WHERE AccountID=" + calcSteamID(req.body.accountID) + " AND FriendName='" + req.body.name + "'").then(function (recordset) {
+      res.send("Deleted");
+    }).catch(function (err) {
+      console.log('Request error: ' + err);
+      res.send("ERROR");
+    });
+  });
+});
+
+
+
+function calcSteamID(id){
+  var sid = new SteamID(id);
+  var playerID = sid.getSteam3RenderedID();
+  playerID = playerID.substring(playerID.indexOf(':')+1);
+  playerID = playerID.substring(playerID.indexOf(':')+1);
+  playerID = playerID.substring(0, playerID.length - 1);
+  return playerID;
+}
 
 
 
