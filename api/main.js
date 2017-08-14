@@ -343,6 +343,13 @@ app.post('/api/friends/deleteFriend', function (req, res) {
       console.log(err);
     }
 
+    requ.query("DELETE FROM AccountFriendHero WHERE AccountID=" + calcSteamID(req.body.accountID) + " AND FriendName='" + req.body.name + "'").then(function (recordset) {
+      res.send("Deleted");
+    }).catch(function (err) {
+      console.log('Request error: ' + err);
+      res.send("ERROR");
+    });
+
     requ.query("DELETE FROM AccountFriend WHERE AccountID=" + calcSteamID(req.body.accountID) + " AND FriendName='" + req.body.name + "'").then(function (recordset) {
       res.send("Deleted");
     }).catch(function (err) {
@@ -375,6 +382,7 @@ app.post('/api/friends/addHeroToFriend', function (req, res) {
 });
 
 app.post('/api/friends/deleteFriendHero', function (req, res) {
+  console.log(req.body.name)
   var conn = new sql.Connection(dbConfig);
   var requ = new sql.Request(conn);
   conn.connect(function(err) {
@@ -384,6 +392,23 @@ app.post('/api/friends/deleteFriendHero', function (req, res) {
 
     requ.query("DELETE FROM AccountFriendHero WHERE AccountID=" + calcSteamID(req.body.accountID) + " AND FriendName='" + req.body.name + "' AND HeroID=" + req.body.heroID).then(function (recordset) {
       res.send("Deleted");
+    }).catch(function (err) {
+      console.log('Request error: ' + err);
+      res.send("ERROR");
+    });
+  });
+});
+
+app.post('/api/friends/friendHeroList', function (req, res) {
+  var conn = new sql.Connection(dbConfig);
+  var requ = new sql.Request(conn);
+  conn.connect(function(err) {
+    if (err) {
+      console.log(err);
+    }
+
+    requ.query("SELECT * FROM AccountFriendHero WHERE AccountID=(" + calcSteamID(req.body.accountID) + ") AND FriendName='" + req.body.name + "'").then(function (recordset) {
+      res.send(JSON.stringify(recordset));
     }).catch(function (err) {
       console.log('Request error: ' + err);
       res.send("ERROR");

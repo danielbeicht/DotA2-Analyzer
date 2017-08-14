@@ -15,6 +15,8 @@
     function loadingCtrl($scope, $q, $log, $http, $location, datastorage, DAAnalyzer) {
         $scope.dataLoaded = false;
         datastorage.loaded = true;
+
+        datastorage.selectedFriends = [];
 /*
         $q.all([
             $http({

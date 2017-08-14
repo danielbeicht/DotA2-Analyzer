@@ -6,3 +6,29 @@
     color: white;
     background-color: black;
 }
+
+td.green {
+    background-color: #388E3C;
+}
+
+td.blue {
+    background-color: #0288D1;
+}
+
+td.purple {
+    background-color: #512DA8;
+}
+
+td.red {
+    background-color: #D32F2F;
+}
+
+td.orange {
+    background-color: #F57C00;
+}
+
+td.multiple {
+    background-color: #4E342E;
+}
+
+
