@@ -25,12 +25,6 @@
         console.log(response);
         $scope.friendList = [];
         $scope.friendList = response.data;
-        $mdToast.show(
-          $mdToast.simple()
-            .textContent('Friends loaded.')
-            .position('bottom right')
-            .hideDelay(3000)
-        );
       }, function errorCallback(response) {
 
       });
@@ -50,13 +44,24 @@
         url: 'api/friends/addFriend',
         data: dataObj
       }).then(function successCallback(response) {
-        $scope.loadFriends();
-        $mdToast.show(
-          $mdToast.simple()
-            .textContent('Friend successfully created.')
-            .position('bottom right')
-            .hideDelay(3000)
-        );
+        if (response.data == "OK"){
+          $mdToast.show(
+            $mdToast.simple()
+              .textContent('Friend successfully created.')
+              .position('bottom right')
+              .hideDelay(3000)
+          );
+          $scope.loadFriends();
+        } else {
+          $mdToast.show(
+            $mdToast.simple()
+              .textContent('Error creating new friend. Please check your input.')
+              .position('bottom right')
+              .hideDelay(3000)
+          );
+        }
+        console.log(response);
+
       }, function errorCallback(response) {
 
       });
@@ -80,7 +85,7 @@
         $scope.loadFriends();
         $mdToast.show(
           $mdToast.simple()
-            .textContent('Friend successfully deleted.')
+            .textContent("Friend '" + dataObj.name + "' successfully deleted.")
             .position('bottom right')
             .hideDelay(3000)
         );
