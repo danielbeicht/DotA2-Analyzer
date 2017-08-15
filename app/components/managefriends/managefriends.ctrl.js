@@ -5,16 +5,24 @@
     .module('DotAAnalyzerApp')
     .controller('managefriendsCtrl', managefriendsCtrl);
 
-  managefriendsCtrl.$inject = ['$scope', '$http', '$mdToast', 'DALogin', 'DAAnalyzer'];
+  managefriendsCtrl.$inject = ['$scope', '$http', '$mdToast', '$location', 'DALogin', 'DAAnalyzer', 'datastorage'];
 
 
-  function managefriendsCtrl($scope, $http, $mdToast, DALogin, DAAnalyzer) {
+  function managefriendsCtrl($scope, $http, $mdToast, $location, DALogin, DAAnalyzer, datastorage) {
     $scope.loginService = DALogin;
     $scope.analyzerService = DAAnalyzer;
     $scope.loginService.loginFunction();
     $scope.friendList = [];
     $scope.selectedFriend = null;
     $scope.heroList = [];
+
+    $scope.spinnerFriendsLoaded = false;
+    $scope.spinnerHeroListLoaded = false;
+
+    if (typeof datastorage.heroes === "undefined"){   // if page home directly called redirect to loading page
+      $location.path( "/" );
+      return;
+    }
 
 
 
@@ -27,6 +35,7 @@
         url: 'api/friends/friendlist',
         data: dataObj
       }).then(function successCallback(response) {
+        $scope.spinnerFriendsLoaded = true;
         $scope.friendList = response.data;
         if ($scope.friendList.length > 0) {
           console.log($scope.friendList[0].FriendName)
@@ -77,6 +86,7 @@
 
     $scope.friendSelected = function (friend) {
       $scope.selectedFriend = friend.FriendName;
+      $scope.spinnerHeroListLoaded = false;
       $scope.getHeroList();
     }
 
@@ -90,6 +100,7 @@
         url: 'api/friends/friendHeroList',
         data: dataObj
       }).then(function successCallback(response) {
+        $scope.spinnerHeroListLoaded = true;
         $scope.heroList = response.data;
       }, function errorCallback(response) {
       });

@@ -44,6 +44,7 @@
             </table>
         </div>
         <div class="spanMainPageMid">
+
             &nbsp;
         </div>
         <div class="spanMainPageRight">
@@ -168,13 +169,13 @@
 
                             <tbody>
                             <tr ng-repeat="hero in analyzerService.heroes | orderBy:sortTypeYourTeam:sortReverseYourTeam">
-                                <td ng-class='{blackTable : analyzerService.heroAlreadyPickedOrBanned(hero.heroIndex)}' ng-show="([hero.heroFullName] | filter:searchHeroYourTeam).length > 0"><img
+                                <td ng-class='testngclass(hero)' ng-show="([hero.heroFullName] | filter:searchHeroYourTeam).length > 0"><img
                                          ng-right-click="banHero(hero.heroIndex)" ng-src="{{ hero.heroImageURL }}"
                                         style="width: 96px; height: 58px"></td>
-                                <td ng-class='{blackTable : analyzerService.heroAlreadyPickedOrBanned(hero.heroIndex)}' ng-show="([hero.heroFullName] | filter:searchHeroYourTeam).length > 0">{{ $index + 1 }}</td>
-                                <td ng-class='{blackTable : analyzerService.heroAlreadyPickedOrBanned(hero.heroIndex)}' ng-show="([hero.heroFullName] | filter:searchHeroYourTeam).length > 0">{{ hero.heroFullName }}</td>
-                                <td ng-class='{blackTable : analyzerService.heroAlreadyPickedOrBanned(hero.heroIndex)}' ng-show="([hero.heroFullName] | filter:searchHeroYourTeam).length > 0">{{ hero.yourTeamWinrate }}%</td>
-                                <td ng-class='{blackTable : analyzerService.heroAlreadyPickedOrBanned(hero.heroIndex)}' ng-show="([hero.heroFullName] | filter:searchHeroYourTeam).length > 0">{{ hero.yourTeamAdvantage }}</td>
+                                <td ng-class='testngclass(hero)' ng-show="([hero.heroFullName] | filter:searchHeroYourTeam).length > 0">{{ $index + 1 }}</td>
+                                <td ng-class='testngclass(hero)' ng-show="([hero.heroFullName] | filter:searchHeroYourTeam).length > 0">{{ hero.heroFullName }}</td>
+                                <td ng-class='testngclass(hero)' ng-show="([hero.heroFullName] | filter:searchHeroYourTeam).length > 0">{{ hero.yourTeamWinrate }}%</td>
+                                <td ng-class='testngclass(hero)' ng-show="([hero.heroFullName] | filter:searchHeroYourTeam).length > 0">{{ hero.yourTeamAdvantage }}</td>
                             </tr>
                             </tbody>
                         </table>
@@ -184,6 +185,42 @@
 
 
             <div class="spanMainPageMid">
+                <br><br><br><br><br><br><br>
+                <md-input-container class="md-block" ng-show="loginService.loggedIn" style="margin-right: 10px; margin-left: 10px">
+                    <label>Select Friend Slot #1</label>
+                    <md-select class="green" ng-model="datastorage.selectedFriends[0]" ng-change="selectHeroAdd=''">
+                        <md-option ng-value="" ><i>Empty</i></md-option>
+                        <md-option ng-value="friend" ng-repeat="friend in friendList" ng-selected="preselect(friend, 0)">{{friend.FriendName}}</md-option>
+                    </md-select>
+                </md-input-container>
+                <md-input-container class="md-block" ng-show="loginService.loggedIn" style="margin-right: 10px; margin-left: 10px">
+                    <label>Select Friend Slot #2</label>
+                    <md-select class="blue" ng-model="datastorage.selectedFriends[1]" ng-change="selectHeroAdd=''">
+                        <md-option ng-value="" ><i>Empty</i></md-option>
+                        <md-option ng-value="friend" ng-repeat="friend in friendList" ng-selected="preselect(friend, 1)">{{friend.FriendName}}</md-option>
+                    </md-select>
+                </md-input-container>
+                <md-input-container class="md-block" ng-show="loginService.loggedIn" style="margin-right: 10px; margin-left: 10px">
+                    <label>Select Friend Slot #3</label>
+                    <md-select class="purple" ng-model="datastorage.selectedFriends[2]" ng-change="selectHeroAdd=''">
+                        <md-option ng-value="" ><i>Empty</i></md-option>
+                        <md-option ng-value="friend" ng-repeat="friend in friendList" ng-selected="preselect(friend, 2)">{{friend.FriendName}}</md-option>
+                    </md-select>
+                </md-input-container>
+                <md-input-container class="md-block" ng-show="loginService.loggedIn" style="margin-right: 10px; margin-left: 10px">
+                    <label>Select Friend Slot #4</label>
+                    <md-select class="red" ng-model="datastorage.selectedFriends[3]" ng-change="selectHeroAdd=''">
+                        <md-option ng-value="" ><i>Empty</i></md-option>
+                        <md-option ng-value="friend" ng-repeat="friend in friendList" ng-selected="preselect(friend, 3)">{{friend.FriendName}}</md-option>
+                    </md-select>
+                </md-input-container>
+                <md-input-container class="md-block" ng-show="loginService.loggedIn" style="margin-right: 10px; margin-left: 10px">
+                    <label>Select Friend Slot #5</label>
+                    <md-select class="orange" ng-model="datastorage.selectedFriends[4]" ng-change="selectHeroAdd=''">
+                        <md-option ng-value="" ><i>Empty</i></md-option>
+                        <md-option ng-value="friend" ng-repeat="friend in friendList" ng-selected="preselect(friend, 4)">{{friend.FriendName}}</md-option>
+                    </md-select>
+                </md-input-container>
 
                 &nbsp;
 

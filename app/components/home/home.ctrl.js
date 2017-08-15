@@ -57,21 +57,15 @@
           });
           }
       }, function errorCallback(response) {
-
       });
-      
     }
     
     $scope.preselect = function (friend, index) {
-
-
-
       if (typeof datastorage.selectedFriends[index] !== 'undefined'){
         if (datastorage.selectedFriends[index].FriendName == friend.FriendName){
           return true;
         }
       }
-
       return false;
     }
 
@@ -82,7 +76,6 @@
       // -1 no color
       // -2 multiple -> gold
       // 0-4 Player colors
-
       var color = -1;
 
       for (let i=0; i<5; i++){
@@ -100,7 +93,6 @@
               }
             }
           }
-
         }
       }
 
@@ -127,8 +119,7 @@
           return 'orange';
           break;
       }
-
-      return 'blackTable';
+      return;
     }
 
 

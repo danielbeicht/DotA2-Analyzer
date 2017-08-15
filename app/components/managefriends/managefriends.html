@@ -14,8 +14,11 @@
 
 
     <md-list ng-cloak>
-        <md-subheader class="md-no-sticky">Friendlist</md-subheader>
-        <md-list-item ng-repeat="friend in friendList" ng-click="friendSelected(friend)" class="noright">
+        <md-subheader class="md-no-sticky"><h2>Friendlist</h2></md-subheader>
+        <div layout="row" layout-sm="column" layout-align="space-around" style="margin-top: 20px" ng-show="!spinnerFriendsLoaded">
+            <md-progress-circular md-mode="indeterminate"></md-progress-circular>
+        </div>
+        <md-list-item ng-repeat="friend in friendList" ng-click="friendSelected(friend)" class="noright" ng-show="spinnerFriendsLoaded">
             <p>{{ friend.FriendName }}</p>
             <md-button aria-label="sf" ng-click="deleteFriend(friend.FriendName)"><i class="fa fa-trash"></i></md-button>
         </md-list-item>
@@ -23,8 +26,11 @@
 </div>
 <div class="col-sm-4">
     <md-list>
-        <md-subheader class="md-no-sticky">Heroes from {{ selectedFriend }}</md-subheader>
-        <md-list-item ng-repeat="hero in heroList" ng-click="goToPerson(person.name, $event)" class="noright">
+        <md-subheader class="md-no-sticky"><h2>Heroes from {{ selectedFriend }}</h2></md-subheader>
+        <div layout="row" layout-sm="column" layout-align="space-around" style="margin-top: 20px" ng-show="!spinnerHeroListLoaded">
+            <md-progress-circular md-mode="indeterminate"></md-progress-circular>
+        </div>
+        <md-list-item ng-repeat="hero in heroList" ng-click="goToPerson(person.name, $event)" class="noright" ng-show="spinnerHeroListLoaded">
             <img alt="{{ hero.heroFullName }}" ng-src="{{ analyzerService.heroesValve[hero.HeroID].heroImageURL }}" class="md-avatar" />
             <p>{{ analyzerService.heroesValve[hero.HeroID].heroFullName }}</p>
             <md-button aria-label="sf" ng-click="deleteFriendHero(hero)"><i class="fa fa-trash"></i></md-button>
@@ -32,6 +38,7 @@
     </md-list>
 </div>
 <div class="col-sm-4">
+    <h2>Hero Selection</h2>
     <md-input-container class="md-block">
         <label>Select hero</label>
         <md-select ng-model="selectHeroAdd" ng-change="addHeroToFriend(selectHeroAdd); selectHeroAdd=''">
