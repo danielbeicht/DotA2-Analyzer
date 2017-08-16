@@ -15,7 +15,7 @@
     $scope.loginService = DALogin;
     $scope.loginService.loginFunction();
 
-    $scope.currNavItem = 'page1';
+    $scope.currentNavItem = 'home';
     $scope.goto = function(page){
       $scope.currNavItem = page;
     };

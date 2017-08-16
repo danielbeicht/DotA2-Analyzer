@@ -23,12 +23,52 @@
 <body>
 <script src="https://use.fontawesome.com/047501882c.js"></script>
 
+<div ng-controller="menuCtrl" ng-cloak>
+
+    <md-nav-bar
+            md-selected-nav-item="currentNavItem"
+            nav-bar-aria-label="navigation links">
+        <a class="navbar-brand" ui-sref="home" style="text-decoration: none; color: #FFFFFF"><md-button style="background:transparent" aria-label="Home">DotA - Analyzer.com </md-button></a>
+        <a ui-sref="home"><md-button style="background:transparent" aria-label="ImageHome"><img src="/assets/images/dotalogo.png" width="30"></md-button></a>
+        <md-nav-item md-nav-sref="home" name="home">
+            <span style="color: white">Analyzer</span>
+        </md-nav-item>
+        <md-nav-item md-nav-sref="autosync" name="autosync" ng-show="loginService.loggedIn">
+            <span style="color: white">Autosync</span>
+        </md-nav-item>
+        <md-nav-item md-nav-sref="lastmatches" name="lastmatches" ng-show="loginService.loggedIn">
+            <span style="color: white">Last Matches</span>
+        </md-nav-item>
+        <md-nav-item md-nav-sref="managefriends" name="managefriends" ng-show="loginService.loggedIn">
+            <span style="color: white">Manage Friends</span>
+        </md-nav-item>
+
+        <span flex></span>
+        <md-nav-item md-nav-sref="about" name="about">
+            <span style="color: white">About</span>
+        </md-nav-item>
+
+        <a href="auth/steam" ng-hide="loginService.loggedIn"><md-button aria-label="sign_in" style="background:transparent"> <img src="/assets/images/sits_small.png"> </md-button></a>
+
+        <md-menu ng-if="loginService.loggedIn" style="margin-right: 20px; margin-top: 12px">
+            <a class="dropdown-toggle" data-toggle="dropdown" href="#" ng-click="$mdOpenMenu()" style="text-decoration: none; color: #FFFFFF"><img width="25" ng-src="{{ loginService.getUserImageURL() }}"> {{ loginService.getLoggedUsername() }} <span class="caret"></span></a>
+            <md-menu-content>
+                <md-menu-item><md-button ng-click="loginService.logout()">Logout</md-button></md-menu-item>
+            </md-menu-content>
+        </md-menu>
+
+    </md-nav-bar>
 
 
+</div>
 
+<!--
 <div ng-controller="menuCtrl" ng-cloak="" >
     <md-toolbar layout="row" layout-align="space-between center" class="md-hue-2 fixed-header" ng-hide="$state.includes('loading')">
-        <!--The left side-->
+
+
+
+
         <span>
         <a class="navbar-brand" ui-sref="home" style="text-decoration: none; color: #FFFFFF"><md-button style="background:transparent" aria-label="Home">DotA - Analyzer.com </md-button></a>
         <a ui-sref="home"><md-button style="background:transparent" aria-label="ImageHome"><img src="/assets/images/dotalogo.png" width="50"></md-button></a>
@@ -36,7 +76,10 @@
             <a class="navbar-brand" ui-sref="lastmatches" style="text-decoration: none; color: #FFFFFF" ng-show="loginService.loggedIn"><md-button aria-label="Last Matches">  Last Matches </md-button></a>
             <a class="navbar-brand" ui-sref="managefriends" style="text-decoration: none; color: #FFFFFF" ng-show="loginService.loggedIn"><md-button aria-label="Last Matches">  Manage Friends </md-button></a>
     </span>
-        <!--The right side-->
+
+
+
+
         <span>
         <a class="navbar-brand" ui-sref="about" style="text-decoration: none; color: #FFFFFF"><md-button aria-label="About">  About </md-button></a>
         <a href="auth/steam" ng-hide="loginService.loggedIn"><md-button aria-label="sign_in" style="background:transparent"> <img src="/assets/images/sits_small.png"> </md-button></a>
@@ -53,6 +96,7 @@
 
 
 </div>
+-->
 
 
 <div ui-view></div>

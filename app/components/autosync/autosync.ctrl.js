@@ -131,7 +131,6 @@
     var direAutosyncCounter = 0;
 
     (function tick() {
-      console.log("Call");
       var dataObj = {
         accountID : $scope.loginService.getSteamID()
       };
@@ -141,7 +140,6 @@
           url: 'api/autosync/getMatch',
           data: dataObj
         }).then(function successCallback(response) {
-          console.log(response);
           if (response.data != ""){
             if (response.data.heroesRadiant.length == 0 && response.data.heroesDire.length == 0){
               $scope.analyzerService.resetData();
@@ -162,7 +160,6 @@
 
         });
       }
-      console.log($state.current.name)
       if ($state.current.name == "autosync"){
         $timeout(tick, 1000);
       }

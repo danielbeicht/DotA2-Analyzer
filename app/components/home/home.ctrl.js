@@ -18,7 +18,6 @@
     $scope.loginService = DALogin;
     $scope.datastorage = datastorage;
     $scope.analyzerService = DAAnalyzer;
-    console.log("INIT");
 
     if (typeof datastorage.heroes === "undefined"){   // if page home directly called redirect to loading page
       $location.path( "/" );
@@ -138,8 +137,6 @@
 
     // Toast Reset Heroes
     $scope.showToastResetHeroes = function() {
-
-
       $mdToast.show(
         $mdToast.simple()
           .textContent('Picks/Bans resetted.')
@@ -184,7 +181,6 @@
           url: 'api/matchid',
           data: dataObj
         }).then(function successCallback(response) {
-          console.log(response);
           if (response.data == "notfound"){
           } else if (response.data == "false") {
             $scope.showAPIError = true;
@@ -463,12 +459,6 @@
         return alreadyPicked;
       };
 
-      $scope.realh = [
-        {text: 'Standard Message'},
-        {text: 'Success Message!', type: "success"},
-        {text: 'Alert Message!', type: "alert"},
-        {text: 'secondary message...', type: 'secondary'}
-      ];
     }
 
     $scope.resetPicks = function() {
@@ -476,8 +466,7 @@
       $scope.showToastResetHeroes();
     }
 
-
-    // return image URL (gray when picked; with color when unpicked)
+    
     $scope.pickedHeroName = function (heroIndex){
       var i;
       for (i=0; i<5; i++) {

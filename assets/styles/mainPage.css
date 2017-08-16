@@ -26,10 +26,19 @@ md-select.orange {
     background-color: #E6EE9C;
 }
 
+/*
+md-nav-bar md-nav-ink-bar {
+    background: green;
+}*/
 
 
-
-
+md-nav-bar .md-nav-bar {
+    background: #546E7A;
+    color: white;
+}
+md-nav-item {
+    color: white;
+}
 
 
 #sticky {
