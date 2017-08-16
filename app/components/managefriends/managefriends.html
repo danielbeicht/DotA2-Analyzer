@@ -25,14 +25,17 @@
         </md-list-item>
     </md-list>
 </div>
+
 <div class="col-sm-4" ng-show="selectedFriend">
     <md-list>
         <md-subheader class="md-no-sticky"><h2>Heroes from {{ selectedFriend }}</h2></md-subheader>
         <div layout="row" layout-sm="column" layout-align="space-around" style="margin-top: 20px" ng-show="!spinnerHeroListLoaded">
             <md-progress-circular md-mode="indeterminate"></md-progress-circular>
         </div>
+
         <md-list-item ng-repeat="hero in heroList" ng-click="goToPerson(person.name, $event)" class="noright" ng-show="spinnerHeroListLoaded">
-            <img alt="{{ hero.heroFullName }}" ng-src="{{ analyzerService.heroesValve[hero.HeroID].heroImageURL }}" class="md-avatar" />
+            <img alt="{{ hero.heroFullName }}" ng-src="assets/images/heroes_cut/{{ analyzerService.heroesValve[hero.HeroID].heroImageURL.substring(21)
+}}" class="md-avatar" />
             <p>{{ analyzerService.heroesValve[hero.HeroID].heroFullName }}</p>
             <md-button aria-label="sf" ng-click="deleteFriendHero(hero)"><i class="fa fa-trash"></i></md-button>
         </md-list-item>

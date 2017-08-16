@@ -106,7 +106,6 @@
     }
 
     $scope.deleteFriend = function (name) {
-      console.log("DELETE FRIEND CALLED ")
       var dataObj = {
         accountID: DALogin.getSteamID(),
         name : name
@@ -142,13 +141,16 @@
         url: 'api/friends/addHeroToFriend',
         data: dataObj
       }).then(function successCallback(response) {
+        console.log(response);
         $scope.getHeroList();
         $mdToast.show(
           $mdToast.simple()
-            .textContent("Hero successfully added.")
+            .textContent(response.data.text)
             .position('bottom right')
             .hideDelay(3000)
         );
+
+
       }, function errorCallback(response) {
       });
     }
