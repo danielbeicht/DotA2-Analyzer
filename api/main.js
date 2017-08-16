@@ -30,7 +30,9 @@ app.use(passport.initialize());
 app.use(passport.session());
 app.use(express.static(__dirname + '/../../public'));
 
-
+var restResponse = new Object();
+restResponse.status = 0;
+restResponse.text = "Success";
 
 // Passport session setup.
 //   To support persistent login sessions, Passport needs to be able to
@@ -371,18 +373,19 @@ app.post('/api/friends/addHeroToFriend', function (req, res) {
     }
 
     requ.query("INSERT INTO AccountFriendHero VALUES (" + steamID +", '" + req.body.name + "', " + req.body.heroID + ")").then(function(recordset) {
-      console.log('Recordset: ' + recordset);
-      console.log('Affected: ' + request.rowsAffected);
-      res.send("OK");
+      restResponse.status = 200;
+      restResponse.text = "Hero successfully added.";
+      res.send(JSON.stringify(restResponse));
     }).catch(function(err) {
+      restResponse.status = 400;
+      restResponse.text = "Hero already selected.";
       console.log('Request error: ' + err);
-      res.send("Error");
+      res.send(JSON.stringify(restResponse));
     });
   });
 });
 
 app.post('/api/friends/deleteFriendHero', function (req, res) {
-  console.log(req.body.name)
   var conn = new sql.Connection(dbConfig);
   var requ = new sql.Request(conn);
   conn.connect(function(err) {
