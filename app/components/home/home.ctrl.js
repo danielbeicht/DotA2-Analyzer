@@ -77,6 +77,11 @@
       // 0-4 Player colors
       var color = -1;
 
+      // Check if already picked
+      if ($scope.analyzerService.heroAlreadyPickedOrBanned(hero.heroIndex)){
+        return 'blackTable'
+      }
+
       for (let i=0; i<5; i++){
         if (typeof datastorage.selectedFriends[i] !== 'undefined'){
           if (typeof datastorage.selectedFriends[i].heroes !== 'undefined'){
@@ -118,7 +123,7 @@
           return 'orange';
           break;
       }
-      return;
+      return 'blackTable';
     }
 
 
