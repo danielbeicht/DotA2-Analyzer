@@ -38,7 +38,6 @@
         $scope.spinnerFriendsLoaded = true;
         $scope.friendList = response.data;
         if ($scope.friendList.length > 0) {
-          console.log($scope.friendList[0].FriendName)
           $scope.selectedFriend = $scope.friendList[0].FriendName;
           $scope.getHeroList();
         }

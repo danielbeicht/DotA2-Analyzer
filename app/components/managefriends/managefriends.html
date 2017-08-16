@@ -24,7 +24,7 @@
         </md-list-item>
     </md-list>
 </div>
-<div class="col-sm-4">
+<div class="col-sm-4" ng-show="selectedFriend">
     <md-list>
         <md-subheader class="md-no-sticky"><h2>Heroes from {{ selectedFriend }}</h2></md-subheader>
         <div layout="row" layout-sm="column" layout-align="space-around" style="margin-top: 20px" ng-show="!spinnerHeroListLoaded">
@@ -37,7 +37,7 @@
         </md-list-item>
     </md-list>
 </div>
-<div class="col-sm-4">
+<div class="col-sm-4" ng-show="selectedFriend">
     <h2>Hero Selection</h2>
     <md-input-container class="md-block">
         <label>Select hero</label>
