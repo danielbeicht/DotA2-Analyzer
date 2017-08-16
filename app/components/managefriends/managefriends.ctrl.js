@@ -76,7 +76,7 @@
               .hideDelay(3000)
           );
         }
-        console.log(response);
+        $scope.friendName = "";
 
       }, function errorCallback(response) {
 
