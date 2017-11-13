@@ -18,6 +18,13 @@
     $scope.loginService = DALogin;
     $scope.datastorage = datastorage;
     $scope.analyzerService = DAAnalyzer;
+    $scope.heroesArray = []
+
+    for (var hero in datastorage.heroes) {
+      $scope.heroesArray.push(datastorage.heroes[hero.toString()])
+
+    }
+    console.log($scope.heroesArray)
 
     if (typeof datastorage.heroes === "undefined"){   // if page home directly called redirect to loading page
       $location.path( "/" );
@@ -78,7 +85,7 @@
       var color = -1;
 
       // Check if already picked
-      if ($scope.analyzerService.heroAlreadyPickedOrBanned(hero.heroIndex)){
+      if ($scope.analyzerService.heroAlreadyPickedOrBanned(hero.heroID)){
         return 'blackTable'
       }
 
@@ -153,6 +160,7 @@
 
     function DialogController($scope, $mdDialog, data) {
       $scope.passeddata = data;
+      console.log($scope.passeddata.pickedHeroName)
 
       $scope.hide = function() {
         $mdDialog.hide();
@@ -331,20 +339,20 @@
 
     $scope.yourTeamHeroClickImage = function(heroIndexParameter) {
         var i;
-        var selectedHero = $scope.analyzerService.heroesSortedByIndex[heroIndexParameter];
+        var selectedHero = $scope.analyzerService.heroes[heroIndexParameter.toString()];
         for (i = 0; i < 5; i++){
-          if ($scope.analyzerService.yourTeamPicks[i] != null && $scope.analyzerService.yourTeamPicks[i].heroIndex === selectedHero.heroIndex){
+          if ($scope.analyzerService.yourTeamPicks[i] != null && $scope.analyzerService.yourTeamPicks[i].heroID === selectedHero.heroID){
             $scope.analyzerService.yourTeamPicks[i] = null;
             $scope.analyzerService.updateAdvantages();
             return;
-          } else if ($scope.analyzerService.enemyTeamPicks[i] != null && $scope.analyzerService.enemyTeamPicks[i].heroIndex === selectedHero.heroIndex){
+          } else if ($scope.analyzerService.enemyTeamPicks[i] != null && $scope.analyzerService.enemyTeamPicks[i].heroID === selectedHero.heroID){
             $scope.analyzerService.enemyTeamPicks[i] = null;
             $scope.analyzerService.updateAdvantages();
             return;
           }
         }
         for (i = 0; i < 10; i++) {
-          if ($scope.analyzerService.heroBans[i] != null && $scope.analyzerService.heroBans[i].heroIndex === selectedHero.heroIndex) {
+          if ($scope.analyzerService.heroBans[i] != null && $scope.analyzerService.heroBans[i].heroID === selectedHero.heroID) {
             $scope.analyzerService.heroBans[i] = null;
             return;
           }
@@ -355,21 +363,21 @@
     };
 
     $scope.enemyTeamHeroClickImage = function (heroIndexParameter) {
-        var i;
-        var selectedHero = $scope.analyzerService.heroesSortedByIndex[heroIndexParameter];
+      var i;
+      var selectedHero = $scope.analyzerService.heroes[heroIndexParameter.toString()];
         for (i = 0; i < 5; i++){
-          if ($scope.analyzerService.enemyTeamPicks[i] != null && $scope.analyzerService.enemyTeamPicks[i].heroIndex === selectedHero.heroIndex){
+          if ($scope.analyzerService.enemyTeamPicks[i] != null && $scope.analyzerService.enemyTeamPicks[i].heroID === selectedHero.heroID){
             $scope.analyzerService.enemyTeamPicks[i] = null;
             $scope.analyzerService.updateAdvantages();
             return;
-          } else if ($scope.analyzerService.yourTeamPicks[i] != null && $scope.analyzerService.yourTeamPicks[i].heroIndex === selectedHero.heroIndex){
+          } else if ($scope.analyzerService.yourTeamPicks[i] != null && $scope.analyzerService.yourTeamPicks[i].heroID === selectedHero.heroID){
             $scope.analyzerService.yourTeamPicks[i] = null;
             $scope.analyzerService.updateAdvantages();
             return;
           }
         }
         for (i = 0; i < 10; i++) {
-          if ($scope.analyzerService.heroBans[i] != null && $scope.analyzerService.heroBans[i].heroIndex === selectedHero.heroIndex) {
+          if ($scope.analyzerService.heroBans[i] != null && $scope.analyzerService.heroBans[i].heroID === selectedHero.heroID) {
             $scope.analyzerService.heroBans[i] = null;
             return;
           }
@@ -496,18 +504,18 @@
     // Function called when a hero is banned
     function banHero(heroIndexParameter) {
       if (heroIndexParameter != null && $scope.allowBanning) {
-        var selectedHero = $scope.analyzerService.heroesSortedByIndex[heroIndexParameter];
+        var selectedHero = $scope.analyzerService.heroes[heroIndexParameter.toString()];
         var heroAlreadyPicked = false;
         var i;
         for (i = 0; i < 5; i++) {
-          if (($scope.analyzerService.yourTeamPicks[i] != null && $scope.analyzerService.yourTeamPicks[i].heroIndex === selectedHero.heroIndex) || ($scope.analyzerService.enemyTeamPicks[i] != null && $scope.analyzerService.enemyTeamPicks[i].heroIndex === selectedHero.heroIndex)) {
+          if (($scope.analyzerService.yourTeamPicks[i] != null && $scope.analyzerService.yourTeamPicks[i].heroID === selectedHero.heroID) || ($scope.analyzerService.enemyTeamPicks[i] != null && $scope.analyzerService.enemyTeamPicks[i].heroID === selectedHero.heroID)) {
             heroAlreadyPicked = true;
             break;
             // TODO: POPUP Held wurde bereits gewählt
           }
         }
         for (i = 0; i < 10; i++) {
-          if ($scope.analyzerService.heroBans[i] != null && $scope.analyzerService.heroBans[i].heroIndex === selectedHero.heroIndex) {
+          if ($scope.analyzerService.heroBans[i] != null && $scope.analyzerService.heroBans[i].heroID === selectedHero.heroID) {
             heroAlreadyPicked = true;
             break;
           }
@@ -517,7 +525,7 @@
           var heroBanned = false;
           for (i = 0; i < 10; i++) {
             if ($scope.analyzerService.heroBans[i] == null) {
-              $scope.analyzerService.heroBans[i] = $scope.analyzerService.heroesSortedByIndex[heroIndexParameter];
+              $scope.analyzerService.heroBans[i] = $scope.analyzerService.heroes[heroIndexParameter.toString()];
               heroBanned = true;
               break;
             }

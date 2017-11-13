@@ -4,6 +4,8 @@
   "dependencies": {
     "body-parser": "^1.15.1",
     "cookie-parser": "^1.4.3",
+    "dota2-gsi": "^1.0.1",
+    "events": "^1.1.1",
     "express": "^4.13.4",
     "mssql": "^3.0.1",
     "passport": "^0.3.2",

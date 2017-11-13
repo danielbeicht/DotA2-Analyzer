@@ -19,6 +19,8 @@
     $scope.spinnerFriendsLoaded = false;
     $scope.spinnerHeroListLoaded = false;
 
+    console.log(DALogin.getSteamID())
+
     if (typeof datastorage.heroes === "undefined"){   // if page home directly called redirect to loading page
       $location.path( "/" );
       return;

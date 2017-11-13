@@ -23,22 +23,25 @@
         }
         this.heroesSortedByIndex.sort(compare);
         function compare(a, b) {
-          if (parseInt(a.heroIndex) < parseInt(b.heroIndex))
+          if (parseInt(a.heroID) < parseInt(b.heroID))
             return -1;
-          if (parseInt(a.heroIndex) > parseInt(b.heroIndex))
+          if (parseInt(a.heroID) > parseInt(b.heroID))
             return 1;
         }
       }
 
 
       this.yourTeamHeroPick = function(heroIndexParameter) {
+        console.log(this.heroes)
+        console.log("index")
+        console.log(heroIndexParameter)
         if (heroIndexParameter != null) {
           var i;
           if (!this.heroAlreadyPickedOrBanned(heroIndexParameter)) {
             var heroPicked = false;
             for (i = 0; i < 5; i++) {
               if (this.yourTeamPicks[i] == null) {
-                this.yourTeamPicks[i] = this.heroesSortedByIndex[heroIndexParameter];
+                this.yourTeamPicks[i] = this.heroes[heroIndexParameter.toString()];
                 heroPicked = true;
                 break;
               }
@@ -61,7 +64,7 @@
             var heroPicked = false;
             for (i = 0; i < 5; i++) {
               if (this.enemyTeamPicks[i] == null) {
-                this.enemyTeamPicks[i] = this.heroesSortedByIndex[heroIndexParameter];
+                this.enemyTeamPicks[i] = this.heroes[heroIndexParameter.toString()];
                 heroPicked = true;
                 //this.enemyTeamOverallAdvantage += this.heroesSortedByIndex[heroIndexParameter].enemyTeamAdvantage; ???
                 break;
@@ -92,21 +95,26 @@
       this.updateAdvantages = function() {
         // TODO: Get Info about partaking players
 
-        var i, j;
-        for (i = 0; i < this.heroesSortedByIndex.length; i++) {
+
+
+
+        for (var heroID in this.heroes) {
+
+
           var exit = false;
-          for (j = 0; j < 5; j++) {
-            if (this.yourTeamPicks[j] != null && this.yourTeamPicks[j].heroIndex == i) {
+          for (var j = 0; j < 5; j++) {
+            if (this.yourTeamPicks[j] != null && this.yourTeamPicks[j].heroIndex == heroID) {
               exit = true;
               break;
-            } else if (this.enemyTeamPicks[j] != null && this.enemyTeamPicks[j].heroIndex == i) {
+            } else if (this.enemyTeamPicks[j] != null && this.enemyTeamPicks[j].heroIndex == heroID) {
               exit = true;
               break;
             }
           }
+
           if (!exit) {
-            for (j = 0; j < 10; j++) {
-              if (this.heroBans[j] != null && this.heroBans[j].heroIndex == i) {
+            for (var j = 0; j < 10; j++) {
+              if (this.heroBans[j] != null && this.heroBans[j].heroIndex == heroID) {
                 exit = true;
                 break;
               }
@@ -114,10 +122,11 @@
           }
 
           if (exit) {
-            this.heroesSortedByIndex[i].yourTeamWinrate = '0.00';
-            this.heroesSortedByIndex[i].enemyTeamWinrate = '0.00';
+            this.heroes[heroID.toString()].yourTeamWinrate = '0.00';
+            this.heroes[heroID.toString()].enemyTeamWinrate = '0.00';
             //continue;
           }
+
           var teamAdvantage = 0.0;
           var enemyAdvantage = 0.0;
           var teamWinrate = 0.0;
@@ -127,18 +136,19 @@
 
           for (j = 0; j < 5; j++) {
             if (this.enemyTeamPicks[j] != null) {
-              teamAdvantage += parseFloat(this.matchups[i][this.enemyTeamPicks[j].heroIndex].Advantage);
-              teamWinrate += parseFloat(this.matchups[i][this.enemyTeamPicks[j].heroIndex].Winrate);
+              teamAdvantage += parseFloat(this.matchups[heroID.toString()][this.enemyTeamPicks[j].heroID.toString()].Advantage);
+              teamWinrate += parseFloat(this.matchups[heroID.toString()][this.enemyTeamPicks[j].heroID.toString()].Winrate);
               enemyHeroCount++;
             }
           }
           for (j = 0; j < 5; j++) {
             if (this.yourTeamPicks[j] != null) {
-              enemyAdvantage += parseFloat(this.matchups[i][this.yourTeamPicks[j].heroIndex].Advantage);
-              enemyWinrate += parseFloat(this.matchups[i][this.yourTeamPicks[j].heroIndex].Winrate);
+              enemyAdvantage += parseFloat(this.matchups[heroID.toString()][this.yourTeamPicks[j].heroID.toString()].Advantage);
+              enemyWinrate += parseFloat(this.matchups[heroID.toString()][this.yourTeamPicks[j].heroID.toString()].Winrate);
               teamHeroCount++;
             }
           }
+
           if (teamHeroCount == 0) {
             teamHeroCount = 1;
           }
@@ -146,15 +156,17 @@
             enemyHeroCount = 1;
           }
 
-          this.heroesSortedByIndex[i].yourTeamAdvantage = parseFloat(teamAdvantage.toFixed(2));
-          this.heroesSortedByIndex[i].enemyTeamAdvantage = parseFloat(enemyAdvantage.toFixed(2));
-          this.heroesSortedByIndex[i].yourTeamWinrate = (parseFloat(teamWinrate) / parseFloat(enemyHeroCount)).toFixed(2);
-          this.heroesSortedByIndex[i].enemyTeamWinrate = (parseFloat(enemyWinrate) / parseFloat(teamHeroCount)).toFixed(2);
+          this.heroes[heroID.toString()].yourTeamAdvantage = parseFloat(teamAdvantage.toFixed(2));
+          this.heroes[heroID.toString()].enemyTeamAdvantage = parseFloat(enemyAdvantage.toFixed(2));
+          this.heroes[heroID.toString()].yourTeamWinrate = (parseFloat(teamWinrate) / parseFloat(enemyHeroCount)).toFixed(2);
+          this.heroes[heroID.toString()].enemyTeamWinrate = (parseFloat(enemyWinrate) / parseFloat(teamHeroCount)).toFixed(2);
+
+
         }
 
         this.yourTeamOverallAdvantage = 0;
         this.enemyTeamOverallAdvantage = 0;
-        for (i=0; i < 5; i++) {
+        for (var i=0; i < 5; i++) {
           if (this.yourTeamPicks[i] != null) {
             this.yourTeamOverallAdvantage += this.yourTeamPicks[i].yourTeamAdvantage;
           }
@@ -162,6 +174,7 @@
             this.enemyTeamOverallAdvantage += this.enemyTeamPicks[i].enemyTeamAdvantage;
           }
         }
+
 
         /* Array stacked stores all ui-bar objects
          yourTeamValue and enemyTeamValue are the calculated values which are needed to display them on a 0-100 ui-bar
@@ -241,14 +254,14 @@
 
       this.heroAlreadyPickedOrBanned = function(heroIndexParameter){
         var i;
-        var selectedHero = this.heroesSortedByIndex[heroIndexParameter];
+        var selectedHero = this.heroes[heroIndexParameter.toString()];
         for (i = 0; i < 5; i++) {
-          if ((this.yourTeamPicks[i] != null && this.yourTeamPicks[i].heroIndex === selectedHero.heroIndex) || (this.enemyTeamPicks[i] != null && this.enemyTeamPicks[i].heroIndex === selectedHero.heroIndex)) {
+          if ((this.yourTeamPicks[i] != null && this.yourTeamPicks[i].heroID === selectedHero.heroID) || (this.enemyTeamPicks[i] != null && this.enemyTeamPicks[i].heroID === selectedHero.heroID)) {
             return true;
           }
         }
         for (i = 0; i < 10; i++) {
-          if (this.heroBans[i] != null && this.heroBans[i].heroIndex === selectedHero.heroIndex) {
+          if (this.heroBans[i] != null && this.heroBans[i].heroID === selectedHero.heroID) {
             return true;
           }
         }

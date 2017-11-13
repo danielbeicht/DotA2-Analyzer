@@ -19,7 +19,7 @@
       }
 
       // Read SteamID from Cookie (needs to be parsed)
-      this.getSteamID = function() {
+        this.getSteamID = function() {
           if ($cookies.get('user')){
               return JSON.parse($cookies.get('user')).id;
           }
