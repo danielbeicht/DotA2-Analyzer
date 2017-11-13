@@ -18,6 +18,8 @@
 
     $scope.spinnerFriendsLoaded = false;
     $scope.spinnerHeroListLoaded = false;
+    $scope.heroesArray = datastorage.heroesArray;
+    console.log($scope.heroesArray)
 
     console.log(DALogin.getSteamID())
 
@@ -130,8 +132,7 @@
     }
 
     $scope.addHeroToFriend = function(){
-      var heroID = $scope.analyzerService.heroesSortedByIndex[$scope.selectHeroAdd-1].heroValveIndex;
-      console.log($scope.analyzerService.heroesValve[114].heroImageURL)
+      var heroID = $scope.analyzerService.heroes[($scope.selectHeroAdd).toString()].heroID;
       var dataObj = {
         accountID: DALogin.getSteamID(),
         name : $scope.selectedFriend,

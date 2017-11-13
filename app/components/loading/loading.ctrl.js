@@ -88,6 +88,11 @@
 
             $log.info("Heroes Initialized");
             datastorage.heroes = $scope.heroes;
+            datastorage.heroesArray = [];
+
+            for (var heroID in $scope.heroes) {
+              datastorage.heroesArray.push($scope.heroes[heroID.toString()]);
+            }
 
             matchupRequest();
 

@@ -24,7 +24,6 @@
       $scope.heroesArray.push(datastorage.heroes[hero.toString()])
 
     }
-    console.log($scope.heroesArray)
 
     if (typeof datastorage.heroes === "undefined"){   // if page home directly called redirect to loading page
       $location.path( "/" );
@@ -93,8 +92,7 @@
         if (typeof datastorage.selectedFriends[i] !== 'undefined'){
           if (typeof datastorage.selectedFriends[i].heroes !== 'undefined'){
             for (let j=0; j<datastorage.selectedFriends[i].heroes.length; j++){
-              //console.log("Compare " + hero.heroValveIndex + " with " + datastorage.selectedFriends[i].heroes[j].HeroID)
-              if (hero.heroValveIndex == datastorage.selectedFriends[i].heroes[j].HeroID){
+              if (hero.heroID == datastorage.selectedFriends[i].heroes[j].HeroID){
                 if (color == -1){
                   color = i;
                 } else {

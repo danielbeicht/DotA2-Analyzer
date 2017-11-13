@@ -34,9 +34,9 @@
         </div>
 
         <md-list-item ng-repeat="hero in heroList" ng-click="goToPerson(person.name, $event)" class="noright" ng-show="spinnerHeroListLoaded">
-            <img alt="{{ hero.heroFullName }}" ng-src="assets/images/heroes_cut/{{ analyzerService.heroesValve[hero.HeroID].heroImageURL.substring(21)
+            <img alt="{{ hero.heroFullName }}" ng-src="assets/images/heroes_cut/{{ analyzerService.heroes[hero.HeroID].heroImageURL.substring(21)
 }}" class="md-avatar" />
-            <p>{{ analyzerService.heroesValve[hero.HeroID].heroFullName }}</p>
+            <p>{{ analyzerService.heroes[hero.HeroID].heroFullName }}</p>
             <md-button aria-label="sf" ng-click="deleteFriendHero(hero)"><i class="fa fa-trash"></i></md-button>
         </md-list-item>
     </md-list>
@@ -46,7 +46,7 @@
     <md-input-container class="md-block">
         <label>Select hero</label>
         <md-select ng-model="selectHeroAdd" ng-change="addHeroToFriend(selectHeroAdd); selectHeroAdd=''">
-            <md-option ng-value="hero.heroID" ng-repeat="hero in analyzerService.heroes">{{hero.heroFullName}}</md-option>
+            <md-option ng-value="hero.heroID" ng-repeat="hero in heroesArray | orderBy:'heroFullName'">{{hero.heroFullName}}</md-option>
         </md-select>
     </md-input-container>
 </div>
