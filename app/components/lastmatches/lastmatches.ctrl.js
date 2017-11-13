@@ -19,7 +19,7 @@
         $scope.loginService.loginFunction();
 
         $scope.tableMatches = [];
-        $scope.heroesValve = datastorage.heroesValve;
+        $scope.heroes = datastorage.heroes;
 
       if (typeof datastorage.heroes === "undefined"){   // if page home directly called redirect to loading page
         $location.path( "/" );
@@ -79,13 +79,15 @@
                             for (var j=0; j<(response.data.result.players.length); j++){
 
                                 if (response.data.result.players[j].player_slot < 5){
-                                    DAAnalyzer.yourTeamHeroPick(datastorage.heroesValve[response.data.result.players[j].hero_id].heroIndex);
+                                    //DAAnalyzer.yourTeamHeroPick(datastorage.heroesValve[response.data.result.players[j].hero_id].heroIndex);
+                                    DAAnalyzer.yourTeamHeroPick(datastorage.heroes[(response.data.result.players[j].hero_id).toString()].heroID);
                                 } else {
-                                    DAAnalyzer.enemyTeamHeroPick(datastorage.heroesValve[response.data.result.players[j].hero_id].heroIndex);
+                                    //DAAnalyzer.enemyTeamHeroPick(datastorage.heroesValve[response.data.result.players[j].hero_id].heroIndex);
+                                  DAAnalyzer.enemyTeamHeroPick(datastorage.heroes[(response.data.result.players[j].hero_id).toString()].heroID);
                                 }
                                 if (response.data.result.players[j].account_id == $scope.accountID){
-                                    singleMatch.firstPlayerHero = $scope.heroesValve[response.data.result.players[j].hero_id].heroFullName;
-                                    singleMatch.heroImageURL = $scope.heroesValve[response.data.result.players[j].hero_id].heroImageURL;
+                                    singleMatch.firstPlayerHero = $scope.heroes[(response.data.result.players[j].hero_id).toString()].heroFullName;
+                                    singleMatch.heroImageURL = $scope.heroes[(response.data.result.players[j].hero_id).toString()].heroImageURL;
                                     singleMatch.matchID = response.data.result.match_id;
                                     singleMatch.date = new Date(response.data.result.start_time*1000).toLocaleString();
                                     singleMatch.starttime = response.data.result.start_time;
