@@ -26,7 +26,7 @@
                             <uib-bar ng-attr-id="{{ 'progressValue' + x.matchID }}" ng-repeat="bar in x.stacked track by $index" ng-if="!bar.isPlaceholder" value="bar.value" type="{{ analyzerService.changeProgressbarColor(bar, x.matchID, bar.isYourTeam) }}"><span ng-show="analyzerService.isPositive(bar)" style="color: black">{{bar.adv}}</span><span ng-show="!analyzerService.isPositive(bar)" style="color: black">-{{bar.adv}}</span></uib-bar>
                         </uib-progress>
                     </td>
-                    <td><a ng-href="http://www.dotabuff.com/matches/{{x.matchID}}" target="_blank">DB</a> / <a ng-href="https://www.opendota.com/matches/{{x.matchID}}" target="_blank">Opendota</a></td>
+                    <td><a ng-href="https://www.dotabuff.com/matches/{{x.matchID}}" target="_blank">DB</a> / <a ng-href="https://www.opendota.com/matches/{{x.matchID}}" target="_blank">Opendota</a></td>
                 </tr>
             </table>
         </div>
