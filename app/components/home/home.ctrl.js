@@ -582,6 +582,7 @@
 
     $scope.reloadData = function() {
         localStorage.setItem("offline", false);
+        localStorage.removeItem("offline");
       $location.path( "/" );
     }
 
