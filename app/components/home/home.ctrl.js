@@ -198,19 +198,21 @@
           } else {
             for (var i=0; i<5; i++){
               for (var j=0; j<DAAnalyzer.heroes.length; j++){
-                if (DAAnalyzer.heroes[j].heroValveIndex == response.data[i]){
-                  heroArray[i] = DAAnalyzer.heroes[j].heroIndex;
+                if (DAAnalyzer.heroes[j].heroID == response.data[i]){
+                  heroArray[i] = DAAnalyzer.heroes[j].heroID;
                 }
               }
             }
             for (var i=5; i<10; i++){
               for (var j=0; j<DAAnalyzer.heroes.length; j++){
-                if (DAAnalyzer.heroes[j].heroValveIndex == response.data[i]){
-                  heroArray[i] = DAAnalyzer.heroes[j].heroIndex;
+                if (DAAnalyzer.heroes[j].heroID == response.data[i]){
+                  heroArray[i] = DAAnalyzer.heroes[j].heroID;
                 }
               }
             }
           }
+          console.log("hero array is")
+            console.log(heroArray)
           $mdDialog.hide(heroArray);
         }, function errorCallback(response) {
           $mdDialog.hide(null);
@@ -586,6 +588,7 @@
 
 
     $scope.reloadData = function() {
+        localStorage.setItem("offline", false);
       $location.path( "/" );
     }
 
