@@ -32,9 +32,6 @@
 
 
       this.yourTeamHeroPick = function(heroIndexParameter) {
-        console.log(this.heroes)
-        console.log("index")
-        console.log(heroIndexParameter)
         if (heroIndexParameter != null) {
           var i;
           if (!this.heroAlreadyPickedOrBanned(heroIndexParameter)) {

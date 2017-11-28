@@ -20,7 +20,6 @@ angular.module('DotAAnalyzerApp').controller('ParseMatchModalCtrl', function ($s
       url: 'api/matchid',
       data: dataObj
     }).then(function successCallback(response) {
-      console.log(response);
       if (response.data == "notfound"){
       } else if (response.data == "false") {
         $scope.showAPIError = true;

@@ -22,14 +22,12 @@
 
     for (var hero in datastorage.heroes) {
       $scope.heroesArray.push(datastorage.heroes[hero.toString()])
-
     }
 
     if (typeof datastorage.heroes === "undefined"){   // if page home directly called redirect to loading page
       $location.path( "/" );
       return;
     }
-
 
 
     if ($scope.loginService.loggedIn){
@@ -158,7 +156,6 @@
 
     function DialogController($scope, $mdDialog, data) {
       $scope.passeddata = data;
-      console.log($scope.passeddata.pickedHeroName)
 
       $scope.hide = function() {
         $mdDialog.hide();
@@ -179,8 +176,6 @@
       };
 
       $scope.parseMatchID = function () {
-        console.log("Match ID: " + $scope.inputMatchID);
-
         DAAnalyzer.resetData();
         $scope.parsingMatch = true;
         var heroArray = [];
@@ -211,8 +206,6 @@
               }
             }
           }
-          console.log("hero array is")
-            console.log(heroArray)
           $mdDialog.hide(heroArray);
         }, function errorCallback(response) {
           $mdDialog.hide(null);

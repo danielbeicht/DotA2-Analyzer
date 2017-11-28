@@ -19,9 +19,6 @@
     $scope.spinnerFriendsLoaded = false;
     $scope.spinnerHeroListLoaded = false;
     $scope.heroesArray = datastorage.heroesArray;
-    console.log($scope.heroesArray)
-
-    console.log(DALogin.getSteamID())
 
     if (typeof datastorage.heroes === "undefined"){   // if page home directly called redirect to loading page
       $location.path( "/" );
@@ -144,7 +141,6 @@
         url: 'api/friends/addHeroToFriend',
         data: dataObj
       }).then(function successCallback(response) {
-        console.log(response);
         $scope.getHeroList();
         $mdToast.show(
           $mdToast.simple()
