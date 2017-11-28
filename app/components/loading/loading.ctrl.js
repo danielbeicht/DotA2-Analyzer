@@ -8,11 +8,11 @@
         .module('DotAAnalyzerApp')
         .controller('loadingCtrl', loadingCtrl);
 
-    loadingCtrl.$inject = ['$scope', '$q', '$log', '$http', '$location', 'datastorage', 'DAAnalyzer'];
+    loadingCtrl.$inject = ['$scope', '$log', '$http', '$location', 'datastorage', 'DAAnalyzer'];
 
 
 
-    function loadingCtrl($scope, $q, $log, $http, $location, datastorage, DAAnalyzer) {
+    function loadingCtrl($scope, $log, $http, $location, datastorage, DAAnalyzer) {
         $scope.dataLoaded = false;
         datastorage.loaded = true;
 
@@ -90,19 +90,6 @@
                 method: 'GET',
                 url: 'api/heroes'
             }).then(function successCallback(response) {
-                /*
-                $scope.heroes = new Array(response.data.length);
-                for (let i = 0; i < $scope.heroes.length; i++) {
-                    $scope.heroes[i] = {
-                        heroID: response.data[i].HeldID,
-                        heroFullName: response.data[i].HeldFullName,
-                        heroImageURL: 'assets/images/heroes/' + response.data[i].HeldFullName.trim().replace(/\s/gi, "_") + '.jpg',
-                        yourTeamAdvantage: 0,
-                        enemyTeamAdvantage: 0,
-                        yourTeamWinrate: '0.00',
-                        enemyTeamWinrate: '0.00'
-                    };
-                }*/
                 $scope.heroes = {}
                 for (let i = 0; i < response.data.length; i++) {
                     $scope.heroes[response.data[i].HeldID.toString()] = {
@@ -124,9 +111,7 @@
 
                 for (var heroID in $scope.heroes) {
                     datastorage.heroesArray.push($scope.heroes[heroID.toString()]);
-                    console.log("hi")
                 }
-                console.log("finish")
 
                 storeInWebStorage("heroesArray", datastorage.heroesArray);
 
@@ -138,15 +123,6 @@
         } else {
             datastorage.heroes = retrieveFromWebStorage("heroes");
             datastorage.heroesArray = retrieveFromWebStorage("heroesArray");
-/*
-
-            datastorage.heroesArray = [];
-
-            $scope.heroes= datastorage.heroes;
-            for (var heroID in $scope.heroes) {
-                datastorage.heroesArray.push($scope.heroes[heroID.toString()]);
-            }*/
-
             datastorage.matchups = retrieveFromWebStorage("matchups");
 
             DAAnalyzer.init();
