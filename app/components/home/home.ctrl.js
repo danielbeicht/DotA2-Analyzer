@@ -169,11 +169,18 @@
         $mdDialog.hide(answer);
       };
 
-      $scope.ok = function(answer) { // Funktion für neuen HeroPick
+      $scope.ok = function(answer, id) { // Funktion für neuen HeroPick
         var result = [];
         result[0] = answer;
+        result[1] = id;
         $mdDialog.hide(result);
       };
+
+      $scope.heroPick = function(heroID) {
+          var result = [];
+          result[0] = heroID;
+          $mdDialog.hide(result);
+      }
 
       $scope.parseMatchID = function () {
         DAAnalyzer.resetData();
@@ -231,30 +238,14 @@
           clickOutsideToClose:true,
           fullscreen: true // Only for -xs, -sm breakpoints.
         }).then(function(result) {
-          var selectedHero = result[0];
           var pick = pickSetting;
-          var i;
+          console.log(result)
           if (pick === 'yourTeamPick'){
-            for (i=0; i < $scope.analyzerService.heroesSortedByIndex.length; i++){
-              if ($scope.analyzerService.heroesSortedByIndex[i].heroName.trim() === selectedHero){
-                $scope.analyzerService.yourTeamHeroPick($scope.analyzerService.heroesSortedByIndex[i].heroIndex);
-                break;
-              }
-            }
+              $scope.analyzerService.yourTeamHeroPick(result[0]);
           } else if (pick === 'enemyTeamPick'){
-            for (i=0; i < $scope.analyzerService.heroesSortedByIndex.length; i++){
-              if ($scope.analyzerService.heroesSortedByIndex[i].heroName.trim() === selectedHero){
-                $scope.analyzerService.enemyTeamHeroPick($scope.analyzerService.heroesSortedByIndex[i].heroIndex);
-                break;
-              }
-            }
+              $scope.analyzerService.enemyTeamHeroPick(result[0]);
           } else if (pick === 'ban') {
-            for (i = 0; i < $scope.analyzerService.heroesSortedByIndex.length; i++) {
-              if ($scope.analyzerService.heroesSortedByIndex[i].heroName.trim() === selectedHero) {
-                banHero($scope.analyzerService.heroesSortedByIndex[i].heroIndex);
-                break;
-              }
-            }
+              banHero(result[0]);
           }
           }, function() {
             $scope.status = 'You cancelled the dialog.';
@@ -476,18 +467,18 @@
     $scope.pickedHeroName = function (heroIndex){
       var i;
       for (i=0; i<5; i++) {
-        if ($scope.analyzerService.heroesSortedByIndex[heroIndex] == $scope.analyzerService.yourTeamPicks[i]){
-          return "assets/images/heroes_gray/" + $scope.analyzerService.heroesSortedByIndex[heroIndex].heroFullName.trim().replace(/\s/gi, "_") + '.jpg';
-        } else if ($scope.analyzerService.heroesSortedByIndex[heroIndex] == $scope.analyzerService.enemyTeamPicks[i]){
-          return "assets/images/heroes_gray/" + $scope.analyzerService.heroesSortedByIndex[heroIndex].heroFullName.trim().replace(/\s/gi, "_") + '.jpg';
+        if ($scope.analyzerService.heroes[heroIndex] == $scope.analyzerService.yourTeamPicks[i]){
+          return "assets/images/heroes_gray/" + $scope.analyzerService.heroes[heroIndex].heroFullName.trim().replace(/\s/gi, "_") + '.jpg';
+        } else if ($scope.analyzerService.heroes[heroIndex] == $scope.analyzerService.enemyTeamPicks[i]){
+          return "assets/images/heroes_gray/" + $scope.analyzerService.heroes[heroIndex].heroFullName.trim().replace(/\s/gi, "_") + '.jpg';
         }
       }
       for (i=0; i<10; i++) {
-        if ($scope.analyzerService.heroesSortedByIndex[heroIndex] == $scope.analyzerService.heroBans[i]) {
-          return "assets/images/heroes_gray/" + $scope.analyzerService.heroesSortedByIndex[heroIndex].heroFullName.trim().replace(/\s/gi, "_") + '.jpg';
+        if ($scope.analyzerService.heroes[heroIndex] == $scope.analyzerService.heroBans[i]) {
+          return "assets/images/heroes_gray/" + $scope.analyzerService.heroes[heroIndex].heroFullName.trim().replace(/\s/gi, "_") + '.jpg';
         }
       }
-      return "assets/images/heroes/" + $scope.analyzerService.heroesSortedByIndex[heroIndex].heroFullName.trim().replace(/\s/gi, "_") + '.jpg';
+      return "assets/images/heroes/" + $scope.analyzerService.heroes[heroIndex].heroFullName.trim().replace(/\s/gi, "_") + '.jpg';
     };
 
     // call on 1st load + reload
