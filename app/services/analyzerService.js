@@ -133,14 +133,14 @@
 
           for (j = 0; j < 5; j++) {
             if (this.enemyTeamPicks[j] != null) {
-              teamAdvantage += parseFloat(this.matchups[heroID.toString()][this.enemyTeamPicks[j].heroID.toString()].Advantage);
+              teamAdvantage += parseFloat(this.matchups[heroID.toString()][this.enemyTeamPicks[j].heroID.toString()].NormalizedAdvantage);
               teamWinrate += parseFloat(this.matchups[heroID.toString()][this.enemyTeamPicks[j].heroID.toString()].Winrate);
               enemyHeroCount++;
             }
           }
           for (j = 0; j < 5; j++) {
             if (this.yourTeamPicks[j] != null) {
-              enemyAdvantage += parseFloat(this.matchups[heroID.toString()][this.yourTeamPicks[j].heroID.toString()].Advantage);
+              enemyAdvantage += parseFloat(this.matchups[heroID.toString()][this.yourTeamPicks[j].heroID.toString()].NormalizedAdvantage);
               enemyWinrate += parseFloat(this.matchups[heroID.toString()][this.yourTeamPicks[j].heroID.toString()].Winrate);
               teamHeroCount++;
             }
