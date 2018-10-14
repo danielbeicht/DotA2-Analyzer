@@ -18,7 +18,6 @@ var dbConfig = {
 };
 
 
-
 app.use( bodyParser.json() );       // to support JSON-encoded bodies
 app.use('/assets', express.static(path.join(process.cwd(), '..', 'assets')));
 app.use('/app', express.static(path.join(process.cwd(), '..', 'app')));
