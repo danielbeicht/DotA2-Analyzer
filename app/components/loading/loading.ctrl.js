@@ -13,36 +13,38 @@
 
 
     function loadingCtrl($scope, $log, $http, $location, datastorage, DAAnalyzer) {
+        // Set to true if data is fully loaded
         $scope.dataLoaded = false;
-        datastorage.loaded = true;
 
         datastorage.selectedFriends = [];
 
-
-
+        // Helper function to store data in web storage
         function storeInWebStorage(key, arr) {
             localStorage.setItem(key, JSON.stringify(arr));
         }
 
+        // Helper function to retrieve data from web storage
         function retrieveFromWebStorage(key) {
             return JSON.parse(localStorage.getItem(key));
         }
 
-        var loadData = false;
+        // Check if data is already stored in web storage and if it's too old reload the data
+        if (retrieveFromWebStorage("offline") !== null) {
+            let d = new Date();
+            let actualTime = Math.round(d.getTime() / 1000);  // reload every 3 days
+            let offlineTime = localStorage.getItem("offline");
+            let dif = actualTime - offlineTime;
 
-        if (retrieveFromWebStorage("offline") === null) {
-            loadData = true
-        } else {
-            var d = new Date();
-            var actualTime = Math.round(d.getTime() / 259200);  // reload every 3 days
-            var offlineTime = localStorage.getItem("offline");
-
-            var dif = actualTime - offlineTime;
-
-            if (dif > 50) {
-                loadData = true;
+            if (dif < 4320) {
+                datastorage.heroes = retrieveFromWebStorage("heroes");
+                datastorage.heroesArray = retrieveFromWebStorage("heroesArray");
+                datastorage.matchups = retrieveFromWebStorage("matchups");
+                DAAnalyzer.init();
+                $scope.dataLoaded = true;
+                $location.path( "/home" );
             }
         }
+
 
         // Get all Matchup-data
         function matchupRequest(){
@@ -70,7 +72,9 @@
 
                 storeInWebStorage("matchups", matchups);
                 let d = new Date();
+
                 localStorage.setItem("offline", Math.round(d.getTime() / 1000));
+
 
                 DAAnalyzer.init();
 
@@ -79,12 +83,12 @@
                 $location.path( "/home" );
 
             }, function errorCallback(response) {
-
+                $log.warn("Error loading matchups.");
             });
         }
 
 
-        if (loadData) {
+        if (!$scope.dataLoaded) {
             // Get all heroes
             $http({
                 method: 'GET',
@@ -101,7 +105,6 @@
                         yourTeamWinrate: '0.00',
                         enemyTeamWinrate: '0.00'
                     };
-
                 }
 
                 $log.info("Heroes Initialized");
@@ -118,18 +121,8 @@
                 matchupRequest();
 
             }, function errorCallback(response) {
-
+                $log.warn("Error loading heroes.");
             });
-        } else {
-            datastorage.heroes = retrieveFromWebStorage("heroes");
-            datastorage.heroesArray = retrieveFromWebStorage("heroesArray");
-            datastorage.matchups = retrieveFromWebStorage("matchups");
-
-            DAAnalyzer.init();
-
-            $scope.dataLoaded = true;
-
-            $location.path( "/home" );
         }
     }
 })();
