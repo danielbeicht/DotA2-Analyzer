@@ -44,53 +44,53 @@
             }
         }
 
+        // Get all Matchup-data
+        function matchupRequest(){
+            $http({
+                method: 'GET',
+                url: 'api/matchups'
+            }).then(function successCallback(response) {
+
+                let matchups = [];
+                for (let heroID in $scope.heroes) {
+                    matchups[$scope.heroes[heroID.toString()].heroID.toString()] = {}
+                    for (let heroID1 in $scope.heroes) {
+                        matchups[$scope.heroes[heroID.toString()].heroID.toString()][$scope.heroes[heroID1.toString()].heroID.toString()] = {};
+                    }
+                }
+
+
+                for (let i=0; i<response.data.length; i++) {
+                    matchups[response.data[i].HeldID1.toString()][response.data[i].HeldID2.toString()] = response.data[i]
+                }
+
+                $log.info("Matchups Initialized");
+
+                datastorage.matchups = matchups;
+
+                storeInWebStorage("matchups", matchups);
+                let d = new Date();
+                localStorage.setItem("offline", Math.round(d.getTime() / 1000));
+
+                DAAnalyzer.init();
+
+                $scope.dataLoaded = true;
+
+                $location.path( "/home" );
+
+            }, function errorCallback(response) {
+
+            });
+        }
+
 
         if (loadData) {
-            // Get all Matchup-data
-            function matchupRequest(){
-                $http({
-                    method: 'GET',
-                    url: 'api/matchups'
-                }).then(function successCallback(response) {
-
-                    var matchups = [];
-                    for (var heroID in $scope.heroes) {
-                        matchups[$scope.heroes[heroID.toString()].heroID.toString()] = {}
-                        for (var heroID1 in $scope.heroes) {
-                            matchups[$scope.heroes[heroID.toString()].heroID.toString()][$scope.heroes[heroID1.toString()].heroID.toString()] = {};
-                        }
-                    }
-
-
-                    for (var i=0; i<response.data.length; i++) {
-                        matchups[response.data[i].HeldID1.toString()][response.data[i].HeldID2.toString()] = response.data[i]
-                    }
-
-                    $log.info("Matchups Initialized");
-
-                    datastorage.matchups = matchups;
-
-                    storeInWebStorage("matchups", matchups);
-                    var d = new Date();
-                    localStorage.setItem("offline", Math.round(d.getTime() / 1000));
-
-                    DAAnalyzer.init();
-
-                    $scope.dataLoaded = true;
-
-                    $location.path( "/home" );
-
-                }, function errorCallback(response) {
-
-                });
-            }
-
             // Get all heroes
             $http({
                 method: 'GET',
                 url: 'api/heroes'
             }).then(function successCallback(response) {
-                $scope.heroes = {}
+                $scope.heroes = {};
                 for (let i = 0; i < response.data.length; i++) {
                     $scope.heroes[response.data[i].HeldID.toString()] = {
                         heroID: response.data[i].HeldID,
@@ -109,7 +109,7 @@
                 storeInWebStorage("heroes", datastorage.heroes);
                 datastorage.heroesArray = [];
 
-                for (var heroID in $scope.heroes) {
+                for (let heroID in $scope.heroes) {
                     datastorage.heroesArray.push($scope.heroes[heroID.toString()]);
                 }
 
@@ -130,16 +130,6 @@
             $scope.dataLoaded = true;
 
             $location.path( "/home" );
-
         }
-
-
-
-
     }
-
-
-
-
-
 })();

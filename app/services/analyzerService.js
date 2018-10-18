@@ -28,7 +28,7 @@
           if (parseInt(a.heroID) > parseInt(b.heroID))
             return 1;
         }
-      }
+      };
 
 
       this.yourTeamHeroPick = function(heroIndexParameter) {
@@ -43,13 +43,13 @@
                 break;
               }
             }
-            if (heroPicked == false) {
+            if (heroPicked === false) {
               // TODO: POPUP Alle 5 Helden bereits gewählt
             }
           }
         }
         this.updateAdvantages();
-      }
+      };
 
 
 
@@ -67,13 +67,13 @@
                 break;
               }
             }
-            if (heroPicked == false) {
+            if (heroPicked === false) {
               // TODO: POPUP schon 5 Helden gewählt
             }
           }
         }
         this.updateAdvantages();
-      }
+      };
 
 
       this.resetData = function() {
@@ -86,7 +86,7 @@
           this.heroBans[i] = null;
         }
         this.updateAdvantages();
-      }
+      };
 
 
       this.updateAdvantages = function() {
@@ -98,20 +98,20 @@
         for (var heroID in this.heroes) {
 
 
-          var exit = false;
-          for (var j = 0; j < 5; j++) {
-            if (this.yourTeamPicks[j] != null && this.yourTeamPicks[j].heroIndex == heroID) {
+          let exit = false;
+          for (let j = 0; j < 5; j++) {
+            if (this.yourTeamPicks[j] != null && this.yourTeamPicks[j].heroIndex === heroID) {
               exit = true;
               break;
-            } else if (this.enemyTeamPicks[j] != null && this.enemyTeamPicks[j].heroIndex == heroID) {
+            } else if (this.enemyTeamPicks[j] != null && this.enemyTeamPicks[j].heroIndex === heroID) {
               exit = true;
               break;
             }
           }
 
           if (!exit) {
-            for (var j = 0; j < 10; j++) {
-              if (this.heroBans[j] != null && this.heroBans[j].heroIndex == heroID) {
+            for (let j = 0; j < 10; j++) {
+              if (this.heroBans[j] != null && this.heroBans[j].heroIndex === heroID) {
                 exit = true;
                 break;
               }
@@ -124,21 +124,21 @@
             //continue;
           }
 
-          var teamAdvantage = 0.0;
-          var enemyAdvantage = 0.0;
-          var teamWinrate = 0.0;
-          var enemyWinrate = 0.0;
-          var teamHeroCount = 0;
-          var enemyHeroCount = 0;
+          let teamAdvantage = 0.0;
+          let enemyAdvantage = 0.0;
+          let teamWinrate = 0.0;
+          let enemyWinrate = 0.0;
+          let teamHeroCount = 0;
+          let enemyHeroCount = 0;
 
-          for (j = 0; j < 5; j++) {
+          for (let j = 0; j < 5; j++) {
             if (this.enemyTeamPicks[j] != null) {
               teamAdvantage += parseFloat(this.matchups[heroID.toString()][this.enemyTeamPicks[j].heroID.toString()].NormalizedAdvantage);
               teamWinrate += parseFloat(this.matchups[heroID.toString()][this.enemyTeamPicks[j].heroID.toString()].Winrate);
               enemyHeroCount++;
             }
           }
-          for (j = 0; j < 5; j++) {
+          for (let j = 0; j < 5; j++) {
             if (this.yourTeamPicks[j] != null) {
               enemyAdvantage += parseFloat(this.matchups[heroID.toString()][this.yourTeamPicks[j].heroID.toString()].NormalizedAdvantage);
               enemyWinrate += parseFloat(this.matchups[heroID.toString()][this.yourTeamPicks[j].heroID.toString()].Winrate);
@@ -146,10 +146,10 @@
             }
           }
 
-          if (teamHeroCount == 0) {
+          if (teamHeroCount === 0) {
             teamHeroCount = 1;
           }
-          if (enemyHeroCount == 0) {
+          if (enemyHeroCount === 0) {
             enemyHeroCount = 1;
           }
 
@@ -163,7 +163,7 @@
 
         this.yourTeamOverallAdvantage = 0;
         this.enemyTeamOverallAdvantage = 0;
-        for (var i=0; i < 5; i++) {
+        for (let i=0; i < 5; i++) {
           if (this.yourTeamPicks[i] != null) {
             this.yourTeamOverallAdvantage += this.yourTeamPicks[i].yourTeamAdvantage;
           }
@@ -177,29 +177,24 @@
          yourTeamValue and enemyTeamValue are the calculated values which are needed to display them on a 0-100 ui-bar
          */
         this.getBarValues();
-      }
+      };
 
       this.isPositive = function(bar){
-        if (bar.isYourTeam)
-        {
-          return false;
-        }else {
-          return true;
-        }
-      }
+          return !bar.isYourTeam
+      };
 
       this.getBarValues = function(isRadiant) {
         this.stacked = [];
         this.maxAdvantage = 100;
-        var multiplier = 100/this.maxAdvantage;
-        var radiantTeamValue = this.yourTeamOverallAdvantage/this.maxAdvantage*50;
-        var direTeamValue = this.enemyTeamOverallAdvantage/this.maxAdvantage*50;
+        let multiplier = 100/this.maxAdvantage;
+        let radiantTeamValue = this.yourTeamOverallAdvantage/this.maxAdvantage*50;
+        let direTeamValue = this.enemyTeamOverallAdvantage/this.maxAdvantage*50;
         if (isRadiant){
           var temp = radiantTeamValue;
           radiantTeamValue = direTeamValue;
           direTeamValue = temp;
         }
-        var difference;
+        let difference;
         if (radiantTeamValue >= direTeamValue) {
           difference = radiantTeamValue - direTeamValue;
           this.stacked.push({
@@ -232,7 +227,7 @@
           });
         }
         return this.stacked;
-      }
+      };
 
       this.changeProgressbarColor = function(vari, id, isYourTeam) {
 
@@ -250,14 +245,13 @@
 
 
       this.heroAlreadyPickedOrBanned = function(heroIndexParameter){
-        var i;
-        var selectedHero = this.heroes[heroIndexParameter.toString()];
-        for (i = 0; i < 5; i++) {
+        let selectedHero = this.heroes[heroIndexParameter.toString()];
+        for (let i = 0; i < 5; i++) {
           if ((this.yourTeamPicks[i] != null && this.yourTeamPicks[i].heroID === selectedHero.heroID) || (this.enemyTeamPicks[i] != null && this.enemyTeamPicks[i].heroID === selectedHero.heroID)) {
             return true;
           }
         }
-        for (i = 0; i < 10; i++) {
+        for (let i = 0; i < 10; i++) {
           if (this.heroBans[i] != null && this.heroBans[i].heroID === selectedHero.heroID) {
             return true;
           }

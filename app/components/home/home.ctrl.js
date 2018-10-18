@@ -1,7 +1,5 @@
 (function () {
 
-
-
   'use strict';
 
   //noinspection JSUnresolvedFunction
@@ -9,22 +7,25 @@
     .module('DotAAnalyzerApp')
     .controller('homeCtrl', homeCtrl);
 
-  homeCtrl.$inject = ['$scope', '$http', '$uibModal', '$timeout', '$location', '$mdDialog', '$mdToast', 'datastorage', 'DAAnalyzer', 'DALogin'];
+  homeCtrl.$inject = ['$scope','$http', '$uibModal', '$timeout', '$location', '$mdDialog', '$mdToast', 'datastorage',
+      'DAAnalyzer', 'DALogin'];
 
 
 
-  function homeCtrl($scope, $http, $uibModal, $timeout, $location, $mdDialog, $mdToast, datastorage, DAAnalyzer, DALogin) {
+  function homeCtrl($scope, $http, $uibModal, $timeout, $location, $mdDialog, $mdToast, dataStorage, DAAnalyzer,
+                    DALogin) {
     // Import services to use them in HTML-File
     $scope.loginService = DALogin;
-    $scope.datastorage = datastorage;
+    $scope.datastorage = dataStorage;
     $scope.analyzerService = DAAnalyzer;
-    $scope.heroesArray = []
+    $scope.heroesArray = [];
 
-    for (var hero in datastorage.heroes) {
-      $scope.heroesArray.push(datastorage.heroes[hero.toString()])
+    for (let hero in dataStorage.heroes) {
+      $scope.heroesArray.push(dataStorage.heroes[hero.toString()])
     }
 
-    if (typeof datastorage.heroes === "undefined"){   // if page home directly called redirect to loading page
+      // if page home directly called redirect to loading page
+    if (typeof dataStorage.heroes === "undefined") {
       $location.path( "/" );
       return;
     }
@@ -64,8 +65,8 @@
     }
     
     $scope.preselect = function (friend, index) {
-      if (typeof datastorage.selectedFriends[index] !== 'undefined'){
-        if (datastorage.selectedFriends[index].FriendName == friend.FriendName){
+      if (typeof dataStorage.selectedFriends[index] !== 'undefined'){
+        if (dataStorage.selectedFriends[index].FriendName === friend.FriendName){
           return true;
         }
       }
@@ -87,11 +88,11 @@
       }
 
       for (let i=0; i<5; i++){
-        if (typeof datastorage.selectedFriends[i] !== 'undefined'){
-          if (typeof datastorage.selectedFriends[i].heroes !== 'undefined'){
-            for (let j=0; j<datastorage.selectedFriends[i].heroes.length; j++){
-              if (hero.heroID == datastorage.selectedFriends[i].heroes[j].HeroID){
-                if (color == -1){
+        if (typeof dataStorage.selectedFriends[i] !== 'undefined'){
+          if (typeof dataStorage.selectedFriends[i].heroes !== 'undefined'){
+            for (let j=0; j<dataStorage.selectedFriends[i].heroes.length; j++){
+              if (hero.heroID === dataStorage.selectedFriends[i].heroes[j].HeroID){
+                if (color === -1){
                   color = i;
                 } else {
                   color = -2;
@@ -106,38 +107,26 @@
       switch (color){
         case -1:
           return '';
-          break;
         case -2:
           return 'multiple'
-          break;
         case 0:
           return 'green';
-          break;
         case 1:
           return 'blue';
-          break;
         case 2:
           return 'purple';
-          break;
         case 3:
           return 'red';
-          break;
         case 4:
           return 'orange';
-          break;
       }
       return 'blackTable';
-    }
+    };
 
 
-
-    
-
-
-
-    // Initialize Heropicker Modal
+    // Initialize Hero Picker Modal
     $scope.ok = function(answer) {
-      var result = [];
+      let result = [];
       result[0] = answer;
       result[1] = 'yourTeamPick';
       $mdDialog.hide(result);
@@ -169,7 +158,8 @@
         $mdDialog.hide(answer);
       };
 
-      $scope.ok = function(answer, id) { // Funktion für neuen HeroPick
+      // Function for new modal picker
+      $scope.ok = function(answer, id) {
         var result = [];
         result[0] = answer;
         result[1] = id;
@@ -180,13 +170,13 @@
           var result = [];
           result[0] = heroID;
           $mdDialog.hide(result);
-      }
+      };
 
       $scope.parseMatchID = function () {
         DAAnalyzer.resetData();
         $scope.parsingMatch = true;
-        var heroArray = [];
-        var dataObj = {
+        let heroArray = [];
+        let dataObj = {
           matchID : $scope.inputMatchID
         };
         $http({
@@ -194,27 +184,27 @@
           url: 'api/matchid',
           data: dataObj
         }).then(function successCallback(response) {
-          if (response.data == "notfound"){
-          } else if (response.data == "false") {
+          if (response.data === "notfound"){
+          } else if (response.data === "false") {
             $scope.showAPIError = true;
           } else {
             for (var i=0; i<5; i++){
               for (var j=0; j<DAAnalyzer.heroes.length; j++){
-                if (DAAnalyzer.heroes[j].heroID == response.data[i]){
+                if (DAAnalyzer.heroes[j].heroID === response.data[i]){
                   heroArray[i] = DAAnalyzer.heroes[j].heroID;
                 }
               }
             }
             for (var i=5; i<10; i++){
               for (var j=0; j<DAAnalyzer.heroes.length; j++){
-                if (DAAnalyzer.heroes[j].heroID == response.data[i]){
+                if (DAAnalyzer.heroes[j].heroID === response.data[i]){
                   heroArray[i] = DAAnalyzer.heroes[j].heroID;
                 }
               }
             }
           }
           $mdDialog.hide(heroArray);
-        }, function errorCallback(response) {
+        }, function errorCallback() {
           $mdDialog.hide(null);
           // called asynchronously if an error occurs
           // or server returns response with an error status.
@@ -239,7 +229,7 @@
           fullscreen: true // Only for -xs, -sm breakpoints.
         }).then(function(result) {
           var pick = pickSetting;
-          console.log(result)
+          console.log(result);
           if (pick === 'yourTeamPick'){
               $scope.analyzerService.yourTeamHeroPick(result[0]);
           } else if (pick === 'enemyTeamPick'){
@@ -269,10 +259,10 @@
           fullscreen: true // Only for -xs, -sm breakpoints.
         }).then(function(result) {
           if (result != null){
-            for (var i=0; i<5; i++){
+            for (let i=0; i<5; i++){
               $scope.analyzerService.yourTeamHeroPick(result[i]);
             }
-            for (var i=5; i<10; i++){
+            for (let i=5; i<10; i++){
               $scope.analyzerService.enemyTeamHeroPick(result[i]);
             }
           }
@@ -300,10 +290,10 @@
       });
       modalInstance.result.then(function (result) {
         if (result != null){
-          for (var i=0; i<5; i++){
+          for (let i=0; i<5; i++){
             $scope.analyzerService.yourTeamHeroPick(result[i]);
           }
-          for (var i=5; i<10; i++){
+          for (let i=5; i<10; i++){
             $scope.analyzerService.enemyTeamHeroPick(result[i]);
           }
         }
@@ -322,8 +312,8 @@
     $scope.parseMatchID = parseMatchID;
 
     $scope.yourTeamHeroClickImage = function(heroIndexParameter) {
-        var i;
-        var selectedHero = $scope.analyzerService.heroes[heroIndexParameter.toString()];
+        let i;
+        let selectedHero = $scope.analyzerService.heroes[heroIndexParameter.toString()];
         for (i = 0; i < 5; i++){
           if ($scope.analyzerService.yourTeamPicks[i] != null && $scope.analyzerService.yourTeamPicks[i].heroID === selectedHero.heroID){
             $scope.analyzerService.yourTeamPicks[i] = null;
@@ -347,8 +337,8 @@
     };
 
     $scope.enemyTeamHeroClickImage = function (heroIndexParameter) {
-      var i;
-      var selectedHero = $scope.analyzerService.heroes[heroIndexParameter.toString()];
+      let i;
+      let selectedHero = $scope.analyzerService.heroes[heroIndexParameter.toString()];
         for (i = 0; i < 5; i++){
           if ($scope.analyzerService.enemyTeamPicks[i] != null && $scope.analyzerService.enemyTeamPicks[i].heroID === selectedHero.heroID){
             $scope.analyzerService.enemyTeamPicks[i] = null;
@@ -367,12 +357,11 @@
           }
         }
         $scope.analyzerService.enemyTeamHeroPick(heroIndexParameter);
-
-    }
+    };
 
 
     $scope.$watch('allowBanning', function (newValue) {
-      if (newValue == false) {
+      if (newValue === false) {
         for (var i = 0; i < 10; i++) {
           $scope.analyzerService.heroBans[i] = null;
         }
@@ -382,16 +371,12 @@
     // Wait until 200 ms are over (ng-if/Loading screen complete disappear)
 
     $scope.$watch('dataLoaded', function (newValue) {
-      if ($scope.dataLoaded == false) {
+      if ($scope.dataLoaded === false) {
         $timeout(function(){
           $scope.loadingScreenDisappeared = true;
         }, 200);
       }
     });
-
-
-
-
 
 
     function initHome() {
@@ -433,8 +418,8 @@
 
       $scope.picked = function (index) {
 
-        var alreadyPicked = false;
-        var i;
+        let alreadyPicked = false;
+        let i;
         for (i = 0; i < 5; i++) {
           if ($scope.analyzerService.yourTeamPicks[i] != null && $scope.analyzerService.yourTeamPicks[i].heroIndex == index) {
             alreadyPicked = true;
@@ -459,22 +444,22 @@
     }
 
     $scope.resetPicks = function() {
-      $scope.analyzerService.resetData()
+      $scope.analyzerService.resetData();
       $scope.showToastResetHeroes();
-    }
+    };
 
 
     $scope.pickedHeroName = function (heroIndex){
       var i;
       for (i=0; i<5; i++) {
-        if ($scope.analyzerService.heroes[heroIndex] == $scope.analyzerService.yourTeamPicks[i]){
+        if ($scope.analyzerService.heroes[heroIndex] === $scope.analyzerService.yourTeamPicks[i]){
           return "assets/images/heroes_gray/" + $scope.analyzerService.heroes[heroIndex].heroFullName.trim().replace(/\s/gi, "_") + '.jpg';
-        } else if ($scope.analyzerService.heroes[heroIndex] == $scope.analyzerService.enemyTeamPicks[i]){
+        } else if ($scope.analyzerService.heroes[heroIndex] === $scope.analyzerService.enemyTeamPicks[i]){
           return "assets/images/heroes_gray/" + $scope.analyzerService.heroes[heroIndex].heroFullName.trim().replace(/\s/gi, "_") + '.jpg';
         }
       }
       for (i=0; i<10; i++) {
-        if ($scope.analyzerService.heroes[heroIndex] == $scope.analyzerService.heroBans[i]) {
+        if ($scope.analyzerService.heroes[heroIndex] === $scope.analyzerService.heroBans[i]) {
           return "assets/images/heroes_gray/" + $scope.analyzerService.heroes[heroIndex].heroFullName.trim().replace(/\s/gi, "_") + '.jpg';
         }
       }
@@ -514,7 +499,7 @@
               break;
             }
           }
-          if (heroBanned == false) {
+          if (heroBanned === false) {
             // TODO: POPUP schon 5 Helden gewählt
           }
         }
@@ -533,14 +518,14 @@
           url: 'api/matchid',
           data: dataObj
         }).then(function successCallback(response) {
-          if (response.data == "notfound"){
+          if (response.data === "notfound"){
 
-          } else if (response.data == "false") {
+          } else if (response.data === "false") {
             $scope.showAPIError = true;
           } else {
             for (var i=0; i<5; i++){
               for (var j=0; j<$scope.heroes.length; j++){
-                if ($scope.heroes[j].heroValveIndex == response.data[i]){
+                if ($scope.heroes[j].heroValveIndex === response.data[i]){
                   //alert($scope.heroes[j].heroValveIndex + " is " + $scope.heroes[j].heroIndex);
                   $scope.analyzerService.yourTeamHeroPick($scope.heroes[j].heroIndex);
                 }
@@ -548,7 +533,7 @@
             }
             for (var i=5; i<10; i++){
               for (var j=0; j<$scope.heroes.length; j++){
-                if ($scope.heroes[j].heroValveIndex == response.data[i]){
+                if ($scope.heroes[j].heroValveIndex === response.data[i]){
                   //alert($scope.heroes[j].heroValveIndex + " is " + $scope.heroes[j].heroIndex);
                   $scope.analyzerService.enemyTeamHeroPick($scope.heroes[j].heroIndex);
                 }
@@ -587,7 +572,7 @@ angular
   .directive('ngRightClick', function ($parse) {
     return function (scope, element, attrs) {
       //noinspection JSUnresolvedVariable
-      var fn = $parse(attrs.ngRightClick);
+      let fn = $parse(attrs.ngRightClick);
       element.bind('contextmenu', function (event) {
         scope.$apply(function () {
           event.preventDefault();

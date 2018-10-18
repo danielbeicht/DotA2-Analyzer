@@ -29,7 +29,7 @@ app.use(passport.initialize());
 app.use(passport.session());
 app.use(express.static(__dirname + '/../../public'));
 
-var restResponse = new Object();
+var restResponse = {};
 restResponse.status = 0;
 restResponse.text = "Success";
 
@@ -53,8 +53,8 @@ passport.deserializeUser(function(obj, done) {
 //   credentials (in this case, an OpenID identifier and profile), and invoke a
 //   callback with a user object.
 passport.use(new SteamStrategy({
-    returnURL: 'http://127.0.0.1/auth/steam/return',
-    realm: 'http://127.0.0.1/',
+    returnURL: 'http://dota-analyzer.com/auth/steam/return',
+    realm: 'http://dota-analyzer.com/',
     apiKey: steamAPIKey
   },
   function(identifier, profile, done) {
@@ -116,28 +116,25 @@ app.get('/auth/testlogin',
 
 
 
-
-
-
 app.get('/', function (req, res) {
   res.sendFile(path.join(process.cwd(), '..', 'index.html'));
 });
 
 app.get('/api/matchups', function (req, res){
-  var conn = new sql.Connection(dbConfig);
-  var req = new sql.Request(conn);
-  conn.connect(function(err) {
+  let conSQL = new sql.Connection(dbConfig);
+  let reqSQL = new sql.Request(conSQL);
+  conSQL.connect(function(err) {
     if (err) {
       console.log(err);
     }
-    req.query("SELECT * FROM Matchup", function (err, recordset){
+    reqSQL.query("SELECT * FROM Matchup", function (err, recordset){
       if (err){
         console.log(err);
         return;
       } else {
         console.log("API: Matchups request")
       }
-      conn.close();
+      conSQL.close();
 
       res.send(recordset);
     });
@@ -145,33 +142,31 @@ app.get('/api/matchups', function (req, res){
 });
 
 app.get('/api/heroes', function (req, res){
-  var conn = new sql.Connection(dbConfig);
-  var req = new sql.Request(conn);
-  conn.connect(function(err) {
+  let conSQL = new sql.Connection(dbConfig);
+  let reqSQL = new sql.Request(conSQL);
+  conSQL.connect(function(err) {
     if (err) {
       console.log(err);
     }
-    req.query("SELECT * FROM Held", function (err, recordset){
+    reqSQL.query("SELECT * FROM Held", function (err, recordSet){
       if (err){
         console.log(err);
         return;
       } else {
         console.log("API: Heroes request")
       }
-      conn.close();
-
-      res.send(recordset);
+      conSQL.close();
+      res.send(recordSet);
     });
   });
 });
 
 app.post('/api/matchid', function (req, res){
-
-  var host = "https://api.steampowered.com/IDOTA2Match_570/GetMatchDetails/V001/?match_id=" + req.body.matchID + "&key=" + steamAPIKey;
+  let host = "https://api.steampowered.com/IDOTA2Match_570/GetMatchDetails/V001/?match_id=" + req.body.matchID + "&key=" + steamAPIKey;
   startRequest();
   function startRequest() {
     request(host, function(err, apiRes, body)  {
-      if (!err && apiRes.statusCode == 200) {
+      if (!err && apiRes.statusCode === 200) {
         var obj = JSON.parse(body);
         if (obj && obj.result && obj.result.players) {
           var array = [];
@@ -195,26 +190,23 @@ app.post('/api/matchid', function (req, res){
 
 
 app.post('/api/getAccountID', function (req, res){
-  var sid = new SteamID(req.body.steamID);
-  var playerID = sid.getSteam3RenderedID();
+  let sid = new SteamID(req.body.steamID);
+  let playerID = sid.getSteam3RenderedID();
   playerID = playerID.substring(playerID.indexOf(':')+1);
   playerID = playerID.substring(playerID.indexOf(':')+1);
   playerID = playerID.substring(0, playerID.length - 1);
   console.log ("Success getAccountID");
-
-
-
 
   res.send(playerID);
 });
 
 
 app.post('/api/getPlayerMatches', function (req, res){
-  var host = "https://api.steampowered.com/IDOTA2Match_570/GetMatchHistory/V001/?matches_requested=100&account_id=" + req.body.accountID + "&key=" + steamAPIKey;
+  let host = "https://api.steampowered.com/IDOTA2Match_570/GetMatchHistory/V001/?matches_requested=100&account_id=" + req.body.accountID + "&key=" + steamAPIKey;
   startRequest();
   function startRequest() {
     request(host, function(err, apiRes, body)  {
-      if (!err && apiRes.statusCode == 200) {
+      if (!err && apiRes.statusCode === 200) {
         console.log("Success getPlayerMatches");
         return res.send(body);
       } else {
@@ -228,11 +220,11 @@ app.post('/api/getPlayerMatches', function (req, res){
 });
 
 app.post('/api/getPlayerMatch', function (req, res){
-  var host = "https://api.steampowered.com/IDOTA2Match_570/GetMatchDetails/V001/?match_id=" + req.body.matchID + "&key=" + steamAPIKey;
+  let host = "https://api.steampowered.com/IDOTA2Match_570/GetMatchDetails/V001/?match_id=" + req.body.matchID + "&key=" + steamAPIKey;
   startRequest();
   function startRequest() {
     request(host, function(err, apiRes, body)  {
-      if (!err && apiRes.statusCode == 200) {
+      if (!err && apiRes.statusCode === 200) {
         console.log("Match " + req.body.matchID + " successfully");
         return res.send(body);
       } else {
@@ -253,7 +245,7 @@ app.post('/api/getPlayerMatch', function (req, res){
 var accountMatches = {};
 
 app.post('/api/autosync/newMatch', function (req, res) {
-  accountMatches[req.body.accountID] = { pickPhase: true, heroesRadiant: [], heroesDire: [] }
+  accountMatches[req.body.accountID] = { pickPhase: true, heroesRadiant: [], heroesDire: [] };
   res.send("OK");
 });
 
@@ -292,24 +284,24 @@ accountMatches["76561198026188411"] = { pickPhase: true, heroesRadiant: [], hero
 
 // New logic for saving friends
 app.post('/api/friends/addFriend', function (req, res) {
-  var steamID = calcSteamID(req.body.accountID);
+  let steamID = calcSteamID(req.body.accountID);
   // create player in database
-  var conn = new sql.Connection(dbConfig);
-  var requ = new sql.Request(conn);
-  conn.connect(function(err) {
+  let conSQL = new sql.Connection(dbConfig);
+  let reqSQL = new sql.Request(conSQL);
+  conSQL.connect(function(err) {
     if (err) {
       console.log(err);
     }
 
-    requ.query("INSERT INTO account (AccountID) VALUES (" + calcSteamID(req.body.accountID) + ")").then(function(recordset) {
-      console.log('Recordset: ' + recordset);
+    reqSQL.query("INSERT INTO account (AccountID) VALUES (" + calcSteamID(req.body.accountID) + ")").then(function(recordSet) {
+      console.log('Recordset: ' + recordSet);
       console.log('Affected: ' + request.rowsAffected);
     }).catch(function(err) {
       console.log('Request error: ' + err);
     });
 
-    requ.query("INSERT INTO AccountFriend VALUES (" + steamID +", '" + req.body.name + "')").then(function(recordset) {
-      console.log('Recordset: ' + recordset);
+    reqSQL.query("INSERT INTO AccountFriend VALUES (" + steamID +", '" + req.body.name + "')").then(function(recordSet) {
+      console.log('Recordset: ' + recordSet);
       console.log('Affected: ' + request.rowsAffected);
       res.send("OK");
     }).catch(function(err) {
@@ -320,15 +312,15 @@ app.post('/api/friends/addFriend', function (req, res) {
 });
 
 app.post('/api/friends/friendlist', function (req, res) {
-  var conn = new sql.Connection(dbConfig);
-  var requ = new sql.Request(conn);
-  conn.connect(function(err) {
+  let conSQL = new sql.Connection(dbConfig);
+  let reqSQL = new sql.Request(conSQL);
+  conSQL.connect(function(err) {
     if (err) {
       console.log(err);
     }
 
-    requ.query("SELECT FriendName FROM AccountFriend WHERE AccountID=(" + calcSteamID(req.body.accountID) + ")").then(function (recordset) {
-      res.send(JSON.stringify(recordset));
+    reqSQL.query("SELECT FriendName FROM AccountFriend WHERE AccountID=(" + calcSteamID(req.body.accountID) + ")").then(function (recordSet) {
+      res.send(JSON.stringify(recordSet));
     }).catch(function (err) {
       console.log('Request error: ' + err);
       res.send("ERROR");
@@ -337,21 +329,21 @@ app.post('/api/friends/friendlist', function (req, res) {
 });
 
 app.post('/api/friends/deleteFriend', function (req, res) {
-  var conn = new sql.Connection(dbConfig);
-  var requ = new sql.Request(conn);
-  conn.connect(function(err) {
+  let conSQL = new sql.Connection(dbConfig);
+  let reqSQL = new sql.Request(conSQL);
+  conSQL.connect(function(err) {
     if (err) {
       console.log(err);
     }
 
-    requ.query("DELETE FROM AccountFriendHero WHERE AccountID=" + calcSteamID(req.body.accountID) + " AND FriendName='" + req.body.name + "'").then(function (recordset) {
+    reqSQL.query("DELETE FROM AccountFriendHero WHERE AccountID=" + calcSteamID(req.body.accountID) + " AND FriendName='" + req.body.name + "'").then(function () {
       res.send("Deleted");
     }).catch(function (err) {
       console.log('Request error: ' + err);
       res.send("ERROR");
     });
 
-    requ.query("DELETE FROM AccountFriend WHERE AccountID=" + calcSteamID(req.body.accountID) + " AND FriendName='" + req.body.name + "'").then(function (recordset) {
+    reqSQL.query("DELETE FROM AccountFriend WHERE AccountID=" + calcSteamID(req.body.accountID) + " AND FriendName='" + req.body.name + "'").then(function () {
       res.send("Deleted");
     }).catch(function (err) {
       console.log('Request error: ' + err);
@@ -362,16 +354,16 @@ app.post('/api/friends/deleteFriend', function (req, res) {
 
 
 app.post('/api/friends/addHeroToFriend', function (req, res) {
-  var steamID = calcSteamID(req.body.accountID);
+  let steamID = calcSteamID(req.body.accountID);
   // create player in database
-  var conn = new sql.Connection(dbConfig);
-  var requ = new sql.Request(conn);
-  conn.connect(function(err) {
+  let conSQL = new sql.Connection(dbConfig);
+  let reqSQL = new sql.Request(conSQL);
+  conSQL.connect(function(err) {
     if (err) {
       console.log(err);
     }
 
-    requ.query("INSERT INTO AccountFriendHero VALUES (" + steamID +", '" + req.body.name + "', " + req.body.heroID + ")").then(function(recordset) {
+    reqSQL.query("INSERT INTO AccountFriendHero VALUES (" + steamID +", '" + req.body.name + "', " + req.body.heroID + ")").then(function(recordset) {
       restResponse.status = 200;
       restResponse.text = "Hero successfully added.";
       res.send(JSON.stringify(restResponse));
@@ -385,14 +377,14 @@ app.post('/api/friends/addHeroToFriend', function (req, res) {
 });
 
 app.post('/api/friends/deleteFriendHero', function (req, res) {
-  var conn = new sql.Connection(dbConfig);
-  var requ = new sql.Request(conn);
-  conn.connect(function(err) {
+  let conSQL = new sql.Connection(dbConfig);
+  let reqSQL = new sql.Request(conSQL);
+  conSQL.connect(function(err) {
     if (err) {
       console.log(err);
     }
 
-    requ.query("DELETE FROM AccountFriendHero WHERE AccountID=" + calcSteamID(req.body.accountID) + " AND FriendName='" + req.body.name + "' AND HeroID=" + req.body.heroID).then(function (recordset) {
+    reqSQL.query("DELETE FROM AccountFriendHero WHERE AccountID=" + calcSteamID(req.body.accountID) + " AND FriendName='" + req.body.name + "' AND HeroID=" + req.body.heroID).then(function (recordset) {
       res.send("Deleted");
     }).catch(function (err) {
       console.log('Request error: ' + err);
@@ -402,14 +394,14 @@ app.post('/api/friends/deleteFriendHero', function (req, res) {
 });
 
 app.post('/api/friends/friendHeroList', function (req, res) {
-  var conn = new sql.Connection(dbConfig);
-  var requ = new sql.Request(conn);
-  conn.connect(function(err) {
+  let conSQL = new sql.Connection(dbConfig);
+  let reqSQL = new sql.Request(conSQL);
+  conSQL.connect(function(err) {
     if (err) {
       console.log(err);
     }
 
-    requ.query("SELECT * FROM AccountFriendHero WHERE AccountID=(" + calcSteamID(req.body.accountID) + ") AND FriendName='" + req.body.name + "'").then(function (recordset) {
+    reqSQL.query("SELECT * FROM AccountFriendHero WHERE AccountID=(" + calcSteamID(req.body.accountID) + ") AND FriendName='" + req.body.name + "'").then(function (recordset) {
       res.send(JSON.stringify(recordset));
     }).catch(function (err) {
       console.log('Request error: ' + err);
@@ -422,8 +414,8 @@ app.post('/api/friends/friendHeroList', function (req, res) {
 
 
 function calcSteamID(id){
-  var sid = new SteamID(id);
-  var playerID = sid.getSteam3RenderedID();
+  let sid = new SteamID(id);
+  let playerID = sid.getSteam3RenderedID();
   playerID = playerID.substring(playerID.indexOf(':')+1);
   playerID = playerID.substring(playerID.indexOf(':')+1);
   playerID = playerID.substring(0, playerID.length - 1);
@@ -435,7 +427,7 @@ function calcSteamID(id){
 
 
 var server = app.listen(80, function () {
-  var host = server.address().address;
-  var port = server.address().port;
+  let host = server.address().address;
+  let port = server.address().port;
   console.log("Server is running at http://", host, port);
 });

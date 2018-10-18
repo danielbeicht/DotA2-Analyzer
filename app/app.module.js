@@ -16,10 +16,5 @@
         .primaryPalette('blue-grey')
         .accentPalette('pink');
     });
-
-
-
-
-
 })();
 
