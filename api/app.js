@@ -2,12 +2,9 @@ var express = require('express');
 var app = express();
 var path = require('path');
 var sql = require('mssql');
-//var fs = require("fs");
-var http = require("http");
 var bodyParser = require('body-parser');
 var passport = require('passport');
 var SteamStrategy = require('passport-steam').Strategy;
-var cookie = require('cookie-parser');
 var SteamID = require('steamid');
 var request = require('request');
 
