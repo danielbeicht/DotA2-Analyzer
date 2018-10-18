@@ -15,7 +15,6 @@
                 <tr ng-repeat="x in tableMatches | orderBy:'-starttime'">
                     <td>{{ x.date }}</td>
                     <td><img ng-src="{{ x.heroImageURL }}" style="width: 48px; height: 29px"> {{ x.firstPlayerHero }}</td>
-                    <!--<td>{{ getWinString(x.firstPlayerWin); }}</td>-->
                     <td>
                         <span ng-if="x.firstPlayerWin" class="label label-success">Won Match</span>
                         <span ng-if="!x.firstPlayerWin" class="label label-danger">Lost Match</span>

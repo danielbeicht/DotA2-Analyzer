@@ -62,46 +62,8 @@
 
 </div>
 
-<!--
-<div ng-controller="menuCtrl" ng-cloak="" >
-    <md-toolbar layout="row" layout-align="space-between center" class="md-hue-2 fixed-header" ng-hide="$state.includes('loading')">
-
-
-
-
-        <span>
-        <a class="navbar-brand" ui-sref="home" style="text-decoration: none; color: #FFFFFF"><md-button style="background:transparent" aria-label="Home">DotA - Analyzer.com </md-button></a>
-        <a ui-sref="home"><md-button style="background:transparent" aria-label="ImageHome"><img src="/assets/images/dotalogo.png" width="50"></md-button></a>
-            <a class="navbar-brand" ui-sref="autosync" style="text-decoration: none; color: #FFFFFF" ng-show="loginService.loggedIn"><md-button aria-label="Autosync">  Autosync </md-button></a>
-            <a class="navbar-brand" ui-sref="lastmatches" style="text-decoration: none; color: #FFFFFF" ng-show="loginService.loggedIn"><md-button aria-label="Last Matches">  Last Matches </md-button></a>
-            <a class="navbar-brand" ui-sref="managefriends" style="text-decoration: none; color: #FFFFFF" ng-show="loginService.loggedIn"><md-button aria-label="Last Matches">  Manage Friends </md-button></a>
-    </span>
-
-
-
-
-        <span>
-        <a class="navbar-brand" ui-sref="about" style="text-decoration: none; color: #FFFFFF"><md-button aria-label="About">  About </md-button></a>
-        <a href="auth/steam" ng-hide="loginService.loggedIn"><md-button aria-label="sign_in" style="background:transparent"> <img src="/assets/images/sits_small.png"> </md-button></a>
-
-
-    <md-menu ng-if="loginService.loggedIn" style="margin-right: 20px">
-        <a class="dropdown-toggle" data-toggle="dropdown" href="#" ng-click="$mdOpenMenu()" style="text-decoration: none; color: #FFFFFF"><img width="20" ng-src="{{ loginService.getUserImageURL() }}"> {{ loginService.getLoggedUsername() }} <span class="caret"></span></a>
-        <md-menu-content>
-            <md-menu-item><md-button ng-click="loginService.logout()">Logout</md-button></md-menu-item>
-        </md-menu-content>
-    </md-menu>
-    </span>
-    </md-toolbar>
-
-
-</div>
--->
-
 
 <div ui-view></div>
-
-
 
 
 
@@ -131,7 +93,6 @@
 <script src='app/services/loginService.js'></script>
 <script src="app/app.routes.js"></script>
 
-<script src="app/components/home/home.service.js"></script>
 <script src="app/components/home/home.ctrl.js"></script>
 
 <script src="app/components/about/about.ctrl.js"></script>
@@ -169,7 +130,6 @@
     sticky_relocate();
   });
 </script>
-
 
 </body>
 </html>

@@ -1,5 +1,3 @@
-
-
 (function () {
   'use strict';
 
@@ -8,7 +6,6 @@
     .controller('menuCtrl', menuCtrl);
 
   menuCtrl.$inject = ['$scope', '$mdDialog', '$rootScope', '$state', 'DALogin'];
-
 
   function menuCtrl($scope, $mdDialog, $rootScope, $state, DALogin) {
     $rootScope.$state = $state;
@@ -19,8 +16,6 @@
     $scope.goto = function(page){
       $scope.currNavItem = page;
     };
-
-
   }
 })();
 
