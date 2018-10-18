@@ -1,27 +1,27 @@
-(function() {
+(function () {
   'use strict';
   angular
     .module('DotAAnalyzerApp')
-    .service('DAAnalyzer', function(datastorage, $log) {
+    .service('DAAnalyzer', function (datastorage, $log) {
 
-      this.init = function() {
+      this.init = function () {
         this.heroes = datastorage.heroes;
-        this.heroesValve = datastorage.heroesValve;
         this.matchups = datastorage.matchups;
         this.heroesSortedByIndex = new Array(this.heroes.length);
-        this.yourTeamPicks = new Array (5);
-        this.enemyTeamPicks = new Array (5);
-        this.heroBans = new Array (10);
+        this.yourTeamPicks = new Array(5);
+        this.enemyTeamPicks = new Array(5);
+        this.heroBans = new Array(10);
         this.stacked = [];
 
         this.yourTeamOverallAdvantage = 0;
         this.enemyTeamOverallAdvantage = 0;
 
         // Create heroesSortedByIndex Array
-        for (var i = 0; i < this.heroes.length; i++) {
+        for (let i = 0; i < this.heroes.length; i++) {
           this.heroesSortedByIndex[i] = this.heroes[i];
         }
         this.heroesSortedByIndex.sort(compare);
+
         function compare(a, b) {
           if (parseInt(a.heroID) < parseInt(b.heroID))
             return -1;
@@ -31,12 +31,11 @@
       };
 
 
-      this.yourTeamHeroPick = function(heroIndexParameter) {
+      this.yourTeamHeroPick = function (heroIndexParameter) {
         if (heroIndexParameter != null) {
-          var i;
           if (!this.heroAlreadyPickedOrBanned(heroIndexParameter)) {
-            var heroPicked = false;
-            for (i = 0; i < 5; i++) {
+            let heroPicked = false;
+            for (let i = 0; i < 5; i++) {
               if (this.yourTeamPicks[i] == null) {
                 this.yourTeamPicks[i] = this.heroes[heroIndexParameter.toString()];
                 heroPicked = true;
@@ -52,18 +51,14 @@
       };
 
 
-
-      this.enemyTeamHeroPick = function(heroIndexParameter) {
+      this.enemyTeamHeroPick = function (heroIndexParameter) {
         if (heroIndexParameter != null) {
-          var i;
-
           if (!this.heroAlreadyPickedOrBanned(heroIndexParameter)) {
-            var heroPicked = false;
-            for (i = 0; i < 5; i++) {
+            let heroPicked = false;
+            for (let i = 0; i < 5; i++) {
               if (this.enemyTeamPicks[i] == null) {
                 this.enemyTeamPicks[i] = this.heroes[heroIndexParameter.toString()];
                 heroPicked = true;
-                //this.enemyTeamOverallAdvantage += this.heroesSortedByIndex[heroIndexParameter].enemyTeamAdvantage; ???
                 break;
               }
             }
@@ -76,28 +71,21 @@
       };
 
 
-      this.resetData = function() {
-        var i;
-        for (i=0; i<5; i++){
+      this.resetData = function () {
+        for (let i = 0; i < 5; i++) {
           this.yourTeamPicks[i] = null;
           this.enemyTeamPicks[i] = null;
         }
-        for (i=0; i<10; i++){
+        for (let i = 0; i < 10; i++) {
           this.heroBans[i] = null;
         }
         this.updateAdvantages();
       };
 
 
-      this.updateAdvantages = function() {
+      this.updateAdvantages = function () {
         // TODO: Get Info about partaking players
-
-
-
-
-        for (var heroID in this.heroes) {
-
-
+        for (let heroID in this.heroes) {
           let exit = false;
           for (let j = 0; j < 5; j++) {
             if (this.yourTeamPicks[j] != null && this.yourTeamPicks[j].heroIndex === heroID) {
@@ -163,7 +151,7 @@
 
         this.yourTeamOverallAdvantage = 0;
         this.enemyTeamOverallAdvantage = 0;
-        for (let i=0; i < 5; i++) {
+        for (let i = 0; i < 5; i++) {
           if (this.yourTeamPicks[i] != null) {
             this.yourTeamOverallAdvantage += this.yourTeamPicks[i].yourTeamAdvantage;
           }
@@ -179,17 +167,17 @@
         this.getBarValues();
       };
 
-      this.isPositive = function(bar){
-          return !bar.isYourTeam
+      this.isPositive = function (bar) {
+        return !bar.isYourTeam
       };
 
-      this.getBarValues = function(isRadiant) {
+      this.getBarValues = function (isRadiant) {
         this.stacked = [];
         this.maxAdvantage = 100;
-        let multiplier = 100/this.maxAdvantage;
-        let radiantTeamValue = this.yourTeamOverallAdvantage/this.maxAdvantage*50;
-        let direTeamValue = this.enemyTeamOverallAdvantage/this.maxAdvantage*50;
-        if (isRadiant){
+        let multiplier = 100 / this.maxAdvantage;
+        let radiantTeamValue = this.yourTeamOverallAdvantage / this.maxAdvantage * 50;
+        let direTeamValue = this.enemyTeamOverallAdvantage / this.maxAdvantage * 50;
+        if (isRadiant) {
           var temp = radiantTeamValue;
           radiantTeamValue = direTeamValue;
           direTeamValue = temp;
@@ -198,13 +186,13 @@
         if (radiantTeamValue >= direTeamValue) {
           difference = radiantTeamValue - direTeamValue;
           this.stacked.push({
-            value: (this.maxAdvantage/2 - difference)*multiplier.toFixed(2),
+            value: (this.maxAdvantage / 2 - difference) * multiplier.toFixed(2),
             adv: '',
             isPlaceholder: true,
             isYourTeam: true
           });
           this.stacked.push({
-            value: (difference*multiplier).toFixed(2),
+            value: (difference * multiplier).toFixed(2),
             adv: (difference).toFixed(2),
             isPlaceholder: false,
             isYourTeam: true
@@ -219,7 +207,7 @@
             isYourTeam: false
           });
           this.stacked.push({
-            value: (difference*multiplier).toFixed(2),
+            value: (difference * multiplier).toFixed(2),
             adv: (difference).toFixed(2),
             isPlaceholder: false,
             isValue: true,
@@ -229,22 +217,22 @@
         return this.stacked;
       };
 
-      this.changeProgressbarColor = function(vari, id, isYourTeam) {
+      this.changeProgressbarColor = function (vari, id, isYourTeam) {
 
         var cols = document.getElementById('progressValue' + id);
 
-        if (cols != null && !isYourTeam){    // TODO WHY?
-          var greenValue = ((255/(1.5*(this.maxAdvantage/2)))*vari.value).toFixed(0);
-          cols.style.background = 'rgba(' + (255-greenValue) + ', 255, 0, 1)';
-        } else if (cols != null && isYourTeam){
-          var redValue = ((255/(1.5*(this.maxAdvantage/2)))*vari.value).toFixed(0);
-          cols.style.background = 'rgba(255, ' + (255-redValue) + ', 0, 1)';
+        if (cols != null && !isYourTeam) {    // TODO WHY?
+          var greenValue = ((255 / (1.5 * (this.maxAdvantage / 2))) * vari.value).toFixed(0);
+          cols.style.background = 'rgba(' + (255 - greenValue) + ', 255, 0, 1)';
+        } else if (cols != null && isYourTeam) {
+          var redValue = ((255 / (1.5 * (this.maxAdvantage / 2))) * vari.value).toFixed(0);
+          cols.style.background = 'rgba(255, ' + (255 - redValue) + ', 0, 1)';
         }
 
       };
 
 
-      this.heroAlreadyPickedOrBanned = function(heroIndexParameter){
+      this.heroAlreadyPickedOrBanned = function (heroIndexParameter) {
         let selectedHero = this.heroes[heroIndexParameter.toString()];
         for (let i = 0; i < 5; i++) {
           if ((this.yourTeamPicks[i] != null && this.yourTeamPicks[i].heroID === selectedHero.heroID) || (this.enemyTeamPicks[i] != null && this.enemyTeamPicks[i].heroID === selectedHero.heroID)) {
