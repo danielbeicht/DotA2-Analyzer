@@ -25,10 +25,8 @@
       return;
     }
 
-
-
     $scope.loadFriends = function () {
-      var dataObj = {
+      let dataObj = {
         accountID: DALogin.getSteamID(),
       };
       $http({
@@ -51,7 +49,7 @@
 
 
     $scope.saveFriend = function () {
-      var dataObj = {
+      let dataObj = {
         accountID: DALogin.getSteamID(),
         name : $scope.friendName
       };
@@ -61,7 +59,7 @@
         url: 'api/friends/addFriend',
         data: dataObj
       }).then(function successCallback(response) {
-        if (response.data == "OK"){
+        if (response.data === "OK"){
           $mdToast.show(
             $mdToast.simple()
               .textContent('Friend successfully created.')
@@ -82,16 +80,16 @@
       }, function errorCallback(response) {
 
       });
-    }
+    };
 
     $scope.friendSelected = function (friend) {
       $scope.selectedFriend = friend.FriendName;
       $scope.spinnerHeroListLoaded = false;
       $scope.getHeroList();
-    }
+    };
 
     $scope.getHeroList = function () {
-      var dataObj = {
+      let dataObj = {
         accountID: DALogin.getSteamID(),
         name : $scope.selectedFriend
       };
@@ -104,10 +102,10 @@
         $scope.heroList = response.data;
       }, function errorCallback(response) {
       });
-    }
+    };
 
     $scope.deleteFriend = function (name) {
-      var dataObj = {
+      let dataObj = {
         accountID: DALogin.getSteamID(),
         name : name
       };
@@ -116,7 +114,7 @@
         method: 'POST',
         url: 'api/friends/deleteFriend',
         data: dataObj
-      }).then(function successCallback(response) {
+      }).then(function successCallback() {
         $scope.loadFriends();
         $mdToast.show(
           $mdToast.simple()
@@ -126,11 +124,11 @@
         );
       }, function errorCallback(response) {
       });
-    }
+    };
 
     $scope.addHeroToFriend = function(){
-      var heroID = $scope.analyzerService.heroes[($scope.selectHeroAdd).toString()].heroID;
-      var dataObj = {
+      let heroID = $scope.analyzerService.heroes[($scope.selectHeroAdd).toString()].heroID;
+      let dataObj = {
         accountID: DALogin.getSteamID(),
         name : $scope.selectedFriend,
         heroID : heroID
@@ -152,10 +150,10 @@
 
       }, function errorCallback(response) {
       });
-    }
+    };
     
     $scope.deleteFriendHero = function (hero) {
-      var dataObj = {
+      let dataObj = {
         accountID: DALogin.getSteamID(),
         name : $scope.selectedFriend,
         heroID : hero.HeroID
@@ -165,7 +163,7 @@
         method: 'POST',
         url: 'api/friends/deleteFriendHero',
         data: dataObj
-      }).then(function successCallback(response) {
+      }).then(function successCallback() {
         $scope.getHeroList();
         $mdToast.show(
           $mdToast.simple()
@@ -176,8 +174,6 @@
       }, function errorCallback(response) {
       });
     }
-
-
   }
 })();
 
