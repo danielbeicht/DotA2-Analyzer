@@ -8,7 +8,9 @@ var SteamStrategy = require('passport-steam').Strategy;
 var SteamID = require('steamid');
 var request = require('request');
 
-var steamAPIKey = "";
+const opendotaAPI = "https://api.opendota.com/api/";
+const steamAPI = "https://api.steampowered.com/";
+const hostURL = "http://127.0.0.1";
 
 var dbConfig = {
 
@@ -50,8 +52,8 @@ passport.deserializeUser(function(obj, done) {
 //   credentials (in this case, an OpenID identifier and profile), and invoke a
 //   callback with a user object.
 passport.use(new SteamStrategy({
-    returnURL: 'http://dota-analyzer.com/auth/steam/return',
-    realm: 'http://dota-analyzer.com/',
+    returnURL: hostURL + '/auth/steam/return',
+    realm: hostURL,
     apiKey: steamAPIKey
   },
   function(identifier, profile, done) {
@@ -159,7 +161,7 @@ app.get('/api/heroes', function (req, res){
 });
 
 app.post('/api/matchid', function (req, res){
-  let host = "https://api.steampowered.com/IDOTA2Match_570/GetMatchDetails/V001/?match_id=" + req.body.matchID + "&key=" + steamAPIKey;
+  let host = steamAPI + "IDOTA2Match_570/GetMatchDetails/V001/?match_id=" + req.body.matchID + "&key=" + steamAPIKey;
   startRequest();
   function startRequest() {
     request(host, function(err, apiRes, body)  {
@@ -199,7 +201,7 @@ app.post('/api/getAccountID', function (req, res){
 
 
 app.post('/api/getPlayerMatches', function (req, res){
-  let host = "https://api.steampowered.com/IDOTA2Match_570/GetMatchHistory/V001/?matches_requested=100&account_id=" + req.body.accountID + "&key=" + steamAPIKey;
+  let host = steamAPI + "IDOTA2Match_570/GetMatchHistory/V001/?matches_requested=100&account_id=" + req.body.accountID + "&key=" + steamAPIKey;
   startRequest();
   function startRequest() {
     request(host, function(err, apiRes, body)  {
@@ -217,7 +219,7 @@ app.post('/api/getPlayerMatches', function (req, res){
 });
 
 app.post('/api/getPlayerMatch', function (req, res){
-  let host = "https://api.steampowered.com/IDOTA2Match_570/GetMatchDetails/V001/?match_id=" + req.body.matchID + "&key=" + steamAPIKey;
+  let host = steamAPI + "IDOTA2Match_570/GetMatchDetails/V001/?match_id=" + req.body.matchID + "&key=" + steamAPIKey;
   startRequest();
   function startRequest() {
     request(host, function(err, apiRes, body)  {
@@ -404,6 +406,22 @@ app.post('/api/friends/friendHeroList', function (req, res) {
       console.log('Request error: ' + err);
       res.send("ERROR");
     });
+  });
+});
+
+
+// Opendota most played heroes
+app.get('/api/accountHeroes', function (req, res) {
+  let steamID = req.query.id;
+  let accountID = new SteamID(steamID).accountid;
+  let host = opendotaAPI + "players/" + accountID + "/heroes";
+
+  request(host, function(err, apiRes, body)  {
+    if (!err && apiRes.statusCode === 200) {
+      res.send(body)
+    } else {
+      res.send('ERROR')
+    }
   });
 });
 

@@ -18,6 +18,8 @@
     $scope.datastorage = dataStorage;
     $scope.analyzerService = DAAnalyzer;
     $scope.heroesArray = [];
+    $scope.personalizedHeroes = [];
+    $scope.personalizedOpenDotaTest = "Loading data from Opendota.";
 
     // If page home directly called redirect to loading page
     if (typeof dataStorage.heroes === "undefined") {
@@ -358,6 +360,32 @@
         }
       }
     });
+
+    $scope.$watch('personalization', function (newValue) {
+      if (newValue === true) {
+        if ($scope.personalizedHeroes.length === 0) {
+          $http({
+            method: 'GET',
+            url: 'api/accountHeroes?id=' + DALogin.getSteamID(),
+          }).then(function successCallback(response) {
+            $scope.personalizedHeroes = response.data.slice(0, 10);
+          }, function errorCallback() {
+            $scope.personalizedOpenDotaTest = "Error loading data from Opendota.";
+          });
+        }
+      }
+    });
+
+    $scope.personalizedHeroesContains = function(id) {
+      for (let i=0; i<$scope.personalizedHeroes.length; i++) {
+        let hero = $scope.personalizedHeroes[i];
+        if (parseInt(hero.hero_id) === id) {
+          return true;
+        }
+      }
+      return false;
+    };
+
 
     // Wait until 200 ms are over (ng-if/Loading screen complete disappear)
     $scope.$watch('dataLoaded', function () {
