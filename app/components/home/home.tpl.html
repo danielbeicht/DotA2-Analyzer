@@ -715,15 +715,29 @@
 <div class="content" id="contentdiv" style="margin-top: 20px">
 <div class="container">
     <div layout="row">
-        <div flex="20"></div>
+        <div flex="20">
+
+        </div>
         <div flex="60">
-            <center>Overall Advantage</center>
+            <center>
+                Overall Advantage
+            </center>
+            <center>
+                <i class="fa fa-arrow-left" style="color: rgba(0,255,0,1)" ng-show="analyzerService.stacked[0].value < 45"></i>
+                <i class="fa fa-arrow-left" style="color: rgba(0,255,0,0.6)" ng-show="analyzerService.stacked[0].value < 47"></i>
+                <i class="fa fa-arrow-left" style="color: rgba(0,255,0,0.3)" ng-show="analyzerService.stacked[0].value < 50"></i>
+                <i class="fa fa-arrow-right" style="color: rgba(0,255,0,0.3)" ng-show="analyzerService.stacked[1].value > 0 && analyzerService.stacked[0].value == 50"></i>
+                <i class="fa fa-arrow-right" style="color: rgba(0,255,0,0.6)" ng-show="analyzerService.stacked[1].value > 3 && analyzerService.stacked[0].value == 50"></i>
+                <i class="fa fa-arrow-right" style="color: rgba(0,255,0,1)" ng-show="analyzerService.stacked[1].value > 5 && analyzerService.stacked[0].value == 50"></i>
+            </center>
+
             <uib-progress>
                 <uib-bar style="background:rgba(245, 245, 245, 1)" ng-repeat="bar in analyzerService.stacked track by $index" ng-if="bar.isPlaceholder" value="bar.value"><span>{{bar.adv}}</span></uib-bar>
                 <uib-bar id="progressValue" ng-repeat="bar in analyzerService.stacked track by $index" ng-if="!bar.isPlaceholder" value="bar.value" type="{{changeProgressbarColor(bar)}}"><span style="color: black">{{bar.adv}}</span></uib-bar>
             </uib-progress>
         </div>
-        <div flex="20"></div></div>
+        <div flex="20">
+        </div></div>
 </div>
 
 <div class="gridMainPage">
