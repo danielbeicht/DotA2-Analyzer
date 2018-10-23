@@ -932,12 +932,6 @@
                     </md-select>
                 </md-input-container>
 
-
-                <md-button md-no-ink class="md-raised md-primary" ng-click="openParseIDDialog()">Parse Match-ID</md-button><br><br>
-                <md-button md-no-ink class="md-raised md-primary" ng-click="resetPicks()">Reset picks</md-button><br><br>
-                <md-button md-no-ink class="md-raised md-primary" ng-click="reloadData()">Reload data</md-button><br><br>
-
-
                 <md-switch ng-model="swapTables" aria-label="Swap tables" layout-align="center">
                     Swap tables
                 </md-switch>
@@ -951,7 +945,22 @@
                     Personalization
                     <p ng-show="personalization && personalizedHeroes.length === 0">{{ personalizedOpenDotaTest }}</p>
                     <i class="fa fa-info-circle"><md-tooltip md-direction="bottom">For this feature you need to expose your public match data.</md-tooltip></i>
+
                 </md-switch>
+                <md-slider-container ng-show="personalization">
+                    <md-slider min="5" max="{{heroesArray.length}}" ng-model="personalizedHeroesCount" aria-label="red" id="red-slider"
+                               class="md-warn">
+                    </md-slider>
+                </md-slider-container>
+                <p ng-show="personalization">Showing top {{ personalizedHeroesCount }} heroes</p>
+
+                <md-button md-no-ink class="md-raised md-primary" ng-click="openParseIDDialog()">Parse Match-ID</md-button><br><br>
+                <md-button md-no-ink class="md-raised md-primary" ng-click="resetPicks()">Reset picks</md-button><br><br>
+                <md-button md-no-ink class="md-raised md-primary" ng-click="reloadData()">Reload data</md-button><br><br>
+
+
+
+
 
             </div>
 

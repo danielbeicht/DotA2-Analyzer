@@ -19,6 +19,7 @@
     $scope.analyzerService = DAAnalyzer;
     $scope.heroesArray = [];
     $scope.personalizedHeroes = [];
+    $scope.personalizedHeroesSliced = [];
     $scope.personalizedOpenDotaTest = "Loading data from Opendota.";
 
     // If page home directly called redirect to loading page
@@ -368,7 +369,9 @@
             method: 'GET',
             url: 'api/accountHeroes?id=' + DALogin.getSteamID(),
           }).then(function successCallback(response) {
-            $scope.personalizedHeroes = response.data.slice(0, 10);
+            $scope.personalizedHeroes = response.data;
+            $scope.personalizedHeroesCount = 10
+
           }, function errorCallback() {
             $scope.personalizedOpenDotaTest = "Error loading data from Opendota.";
           });
@@ -376,9 +379,14 @@
       }
     });
 
+    $scope.$watch('personalizedHeroesCount', function (newValue) {
+      console.log(newValue)
+      $scope.personalizedHeroesSliced = $scope.personalizedHeroes.slice(0, newValue);
+    });
+
     $scope.personalizedHeroesContains = function(id) {
-      for (let i=0; i<$scope.personalizedHeroes.length; i++) {
-        let hero = $scope.personalizedHeroes[i];
+      for (let i=0; i<$scope.personalizedHeroesSliced.length; i++) {
+        let hero = $scope.personalizedHeroesSliced[i];
         if (parseInt(hero.hero_id) === id) {
           return true;
         }
