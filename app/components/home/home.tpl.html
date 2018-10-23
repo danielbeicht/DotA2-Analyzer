@@ -725,13 +725,12 @@
         </div>
         <div flex="20"></div></div>
 </div>
-    
+
 <div class="gridMainPage">
     <div class="wrapperMainPages">
         <div class="spanMainPageLeft">
             <!-- Table (YourTeam) if not Swapped -->
             <div ng-if="!swapTables">
-
                 <div class="row">
                     <div class="col-sm-4">
                         <md-input-container class="md-block">
@@ -948,7 +947,7 @@
                     Allow Banning
                 </md-switch>
 
-                <md-switch ng-model="personalization" aria-label="Personalization" layout-align="center">
+                <md-switch ng-model="personalization" aria-label="Personalization" layout-align="center" ng-show="loginService.loggedIn">
                     Personalization
                     <p ng-show="personalization && personalizedHeroes.length === 0">{{ personalizedOpenDotaTest }}</p>
                     <i class="fa fa-info-circle"><md-tooltip md-direction="bottom">For this feature you need to expose your public match data.</md-tooltip></i>
