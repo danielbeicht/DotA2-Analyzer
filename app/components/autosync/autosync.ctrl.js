@@ -19,9 +19,16 @@
     $scope.sortTypeEnemyTeam = 'enemyTeamAdvantage'; // set the default sort type
     $scope.sortReverseEnemyTeam = true;  // set the default sort order
 
+    $scope.heroesArray = [];
+
     if (typeof datastorage.heroes === "undefined"){   // if page home directly called redirect to loading page
       $location.path( "/" );
       return;
+    }
+
+    // TODO: dataStorage.heroes has a bad format; maybe change to array
+    for (let hero in datastorage.heroes) {
+      $scope.heroesArray.push(datastorage.heroes[hero.toString()])
     }
 
     if ($scope.loginService.loggedIn){
@@ -67,7 +74,6 @@
     }
 
 
-
     $scope.testngclass = function (hero) {
       //console.log(datastorage.selectedFriends[1])
       // -1 no color
@@ -75,13 +81,17 @@
       // 0-4 Player colors
       var color = -1;
 
-      for (let i=0; i<5; i++){
-        if (typeof datastorage.selectedFriends[i] !== 'undefined'){
-          if (typeof datastorage.selectedFriends[i].heroes !== 'undefined'){
-            for (let j=0; j<datastorage.selectedFriends[i].heroes.length; j++){
-              //console.log("Compare " + hero.heroValveIndex + " with " + datastorage.selectedFriends[i].heroes[j].HeroID)
-              if (hero.heroValveIndex == datastorage.selectedFriends[i].heroes[j].HeroID){
-                if (color == -1){
+      // Check if already picked
+      if ($scope.analyzerService.heroAlreadyPickedOrBanned(hero.heroID)) {
+        return 'blackTable'
+      }
+
+      for (let i = 0; i < 5; i++) {
+        if (typeof datastorage.selectedFriends[i] !== 'undefined') {
+          if (typeof datastorage.selectedFriends[i].heroes !== 'undefined') {
+            for (let j = 0; j < datastorage.selectedFriends[i].heroes.length; j++) {
+              if (hero.heroID === datastorage.selectedFriends[i].heroes[j].HeroID) {
+                if (color === -1) {
                   color = i;
                 } else {
                   color = -2;
@@ -93,31 +103,29 @@
         }
       }
 
-      switch (color){
+      switch (color) {
         case -1:
           return '';
-          break;
         case -2:
-          return 'multiple'
-          break;
+          return 'multiple';
         case 0:
           return 'green';
-          break;
         case 1:
           return 'blue';
-          break;
         case 2:
           return 'purple';
-          break;
         case 3:
           return 'red';
-          break;
         case 4:
           return 'orange';
-          break;
       }
-      return;
-    }
+      return 'blackTable';
+    };
+
+
+
+
+
 
 
 
@@ -135,20 +143,26 @@
         accountID : $scope.loginService.getSteamID()
       };
       if ($scope.loginService.getSteamID() != null){
+        console.log("Get Match Data");
         $http({
           method: 'POST',
           url: 'api/autosync/getMatch',
           data: dataObj
         }).then(function successCallback(response) {
+          console.log(response.data);
           if (response.data != ""){
             if (response.data.heroesRadiant.length == 0 && response.data.heroesDire.length == 0){
+              radiantAutosyncCounter = 0;
+              direAutosyncCounter = 0;
               $scope.analyzerService.resetData();
             }
             while (response.data.heroesRadiant.length > radiantAutosyncCounter){
+              console.log("Added Rad");
               $scope.analyzerService.yourTeamHeroPick(response.data.heroesRadiant[radiantAutosyncCounter]);
               radiantAutosyncCounter++;
             }
             while (response.data.heroesDire.length > direAutosyncCounter){
+              console.log("Added Dire");
               $scope.analyzerService.enemyTeamHeroPick(response.data.heroesDire[direAutosyncCounter]);
               direAutosyncCounter++;
             }

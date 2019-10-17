@@ -128,7 +128,7 @@
 
                     <div class="table-responsive">
                         <table class="table table-striped">
-                            <caption>{{yourTeamTableInfo}}</caption>
+                            <caption>Counter picks to dire heroes.</caption>
                             <thead>
                             <tr>
                                 <td><a></a></td>
@@ -166,14 +166,14 @@
                             </thead>
 
                             <tbody>
-                            <tr ng-repeat="hero in analyzerService.heroes | orderBy:sortTypeYourTeam:sortReverseYourTeam">
-                                <td ng-class='testngclass(hero)' ng-show="([hero.heroFullName] | filter:searchHeroYourTeam).length > 0"><img
-                                         ng-right-click="banHero(hero.heroIndex)" ng-src="{{ hero.heroImageURL }}"
+                            <tr ng-repeat="hero in heroesArray | orderBy:sortTypeYourTeam:sortReverseYourTeam">
+                                <td ng-class='testngclass(hero)' ng-show="([hero.heroFullName] | filter:searchHeroYourTeam).length > 0" ng-hide="personalization && !personalizedHeroesContains(hero.heroID)"><img
+                                        ng-click="yourTeamHeroClickImage(hero.heroID)" ng-right-click="banHero(hero.heroID)" ng-src="{{ hero.heroImageURL }}"
                                         style="width: 96px; height: 58px"></td>
-                                <td ng-class='testngclass(hero)' ng-show="([hero.heroFullName] | filter:searchHeroYourTeam).length > 0">{{ $index + 1 }}</td>
-                                <td ng-class='testngclass(hero)' ng-show="([hero.heroFullName] | filter:searchHeroYourTeam).length > 0">{{ hero.heroFullName }}</td>
-                                <td ng-class='testngclass(hero)' ng-show="([hero.heroFullName] | filter:searchHeroYourTeam).length > 0">{{ hero.yourTeamWinrate }}%</td>
-                                <td ng-class='testngclass(hero)' ng-show="([hero.heroFullName] | filter:searchHeroYourTeam).length > 0">{{ hero.yourTeamAdvantage }}</td>
+                                <td ng-class='testngclass(hero)' ng-show="([hero.heroFullName] | filter:searchHeroYourTeam).length > 0" ng-hide="personalization && !personalizedHeroesContains(hero.heroID)">{{ $index + 1 }}</td>
+                                <td ng-class='testngclass(hero)' ng-show="([hero.heroFullName] | filter:searchHeroYourTeam).length > 0" ng-hide="personalization && !personalizedHeroesContains(hero.heroID)">{{ hero.heroFullName }}</td>
+                                <td ng-class='testngclass(hero)' ng-show="([hero.heroFullName] | filter:searchHeroYourTeam).length > 0" ng-hide="personalization && !personalizedHeroesContains(hero.heroID)">{{ hero.yourTeamWinrate }}%</td>
+                                <td ng-class='testngclass(hero)' ng-show="([hero.heroFullName] | filter:searchHeroYourTeam).length > 0" ng-hide="personalization && !personalizedHeroesContains(hero.heroID)">{{ hero.yourTeamAdvantage }}</td>
                             </tr>
                             </tbody>
                         </table>
@@ -279,68 +279,90 @@
                     </div>
 
                     <div class="table-responsive">
-                        <table class="table table-striped">
-                            <caption>{{enemyTeamTableInfo}}</caption>
-                            <thead>
-                            <tr>
-                                <td><a></a></td>
-                                <td>
-                                    <a>
-                                        Rank
-                                        <span ng-show="sortTypeEnemyTeam == 'ranking' && !sortReverseEnemyTeam"
-                                              class="fa fa-caret-down"></span>
-                                        <span ng-show="sortTypeEnemyTeam == 'ranking' && sortReverseEnemyTeam"
-                                              class="fa fa-caret-up"></span>
-                                    </a>
-                                </td>
-                                <td>
-                                    <a href="#"
-                                       ng-click="sortTypeEnemyTeam = 'heroFullName'; sortReverseEnemyTeam = !sortReverseEnemyTeam">
-                                        Hero Name
-                                        <span ng-show="sortTypeEnemyTeam == 'heroFullName' && !sortReverseEnemyTeam"
-                                              class="fa fa-caret-down"></span>
-                                        <span ng-show="sortTypeEnemyTeam == 'heroFullName' && sortReverseEnemyTeam"
-                                              class="fa fa-caret-up"></span>
-                                    </a>
-                                </td>
-                                <td>
-                                    <a href="#"
-                                       ng-click="sortTypeEnemyTeam = 'enemyTeamWinrate'; sortReverseEnemyTeam = !sortReverseEnemyTeam">
-                                        Winrate
-                                        <span ng-show="sortTypeEnemyTeam == 'enemyTeamWinrate' && !sortReverseEnemyTeam"
-                                              class="fa fa-caret-down"></span>
-                                        <span ng-show="sortTypeEnemyTeam == 'enemyTeamWinrate' && sortReverseEnemyTeam"
-                                              class="fa fa-caret-up"></span>
-                                    </a>
-                                </td>
-                                <td>
-                                    <a href="#"
-                                       ng-click="sortTypeEnemyTeam = 'enemyTeamAdvantage'; sortReverseEnemyTeam = !sortReverseEnemyTeam">
-                                        Advantage
-                                        <span ng-show="sortTypeEnemyTeam == 'enemyTeamAdvantage' && !sortReverseEnemyTeam"
-                                              class="fa fa-caret-down"></span>
-                                        <span ng-show="sortTypeEnemyTeam == 'enemyTeamAdvantage' && sortReverseEnemyTeam"
-                                              class="fa fa-caret-up"></span>
-                                    </a>
-                                </td>
-                            </tr>
-                            </thead>
+                        <div ng-if="!swapTables">
 
-                            <tbody>
-                            <tr ng-repeat="hero in analyzerService.heroes | orderBy:sortTypeEnemyTeam:sortReverseEnemyTeam">
-                                <td ng-class='testngclass(hero)' ng-show="([hero.heroFullName] | filter:searchHeroEnemyTeam).length > 0"><img
-                                        ng-right-click="banHero(hero.heroIndex)" ng-src="{{ hero.heroImageURL }}"
-                                        style="width: 96px; height: 58px"></td>
-                                <td ng-class='testngclass(hero)' ng-show="([hero.heroFullName] | filter:searchHeroEnemyTeam).length > 0 ">{{ $index + 1 }}</td>
-                                <td ng-class='testngclass(hero)' ng-show="([hero.heroFullName] | filter:searchHeroEnemyTeam).length > 0 ">{{ hero.heroFullName }}</td>
-                                <td ng-class='testngclass(hero)' ng-show="([hero.heroFullName] | filter:searchHeroEnemyTeam).length > 0 ">{{ hero.enemyTeamWinrate }}%
-                                </td>
-                                <td ng-class='testngclass(hero)' ng-show="([hero.heroFullName] | filter:searchHeroEnemyTeam).length > 0 ">{{ hero.enemyTeamAdvantage
-                                    }}
-                                </td>
-                            </tr>
-                            </tbody>
-                        </table>
+                            <div class="row">
+                                <div class="col-sm-4">
+                                    <md-input-container class="md-block">
+                                        <label>Search hero</label>
+                                        <md-icon md-font-icon="fa fa-search"></md-icon>
+                                        <input ng-model="searchHeroEnemyTeam">
+                                    </md-input-container>
+                                </div>
+                                <div class="col-sm-4">
+                                    <md-input-container class="md-block">
+                                        <label>Select hero</label>
+                                        <md-select ng-model="selectedHeroEnemyTeam" ng-change="analyzerService.enemyTeamHeroPick(selectedHeroEnemyTeam); selectedHeroEnemyTeam=''">
+                                            <md-option ng-value="hero.heroID" ng-repeat="hero in heroesArray | orderBy:'heroFullName'">{{hero.heroFullName}}</md-option>
+                                        </md-select>
+                                    </md-input-container>
+                                </div>
+                                <div class="col-sm-4"></div>
+                            </div>
+
+                            <div class="table-responsive">
+                                <table class="table table-striped">
+                                    <caption>Counter picks to radiant heroes.</caption>
+                                    <thead>
+                                    <tr>
+                                        <td><a></a></td>
+                                        <td>
+                                            <a>
+                                                Rank
+                                                <span ng-show="sortTypeEnemyTeam == 'ranking' && !sortReverseEnemyTeam"
+                                                      class="fa fa-caret-down"></span>
+                                                <span ng-show="sortTypeEnemyTeam == 'ranking' && sortReverseEnemyTeam"
+                                                      class="fa fa-caret-up"></span>
+                                            </a>
+                                        </td>
+                                        <td>
+                                            <a href="#"
+                                               ng-click="sortTypeEnemyTeam = 'heroFullName'; sortReverseEnemyTeam = !sortReverseEnemyTeam">
+                                                Hero Name
+                                                <span ng-show="sortTypeEnemyTeam == 'heroFullName' && !sortReverseEnemyTeam"
+                                                      class="fa fa-caret-down"></span>
+                                                <span ng-show="sortTypeEnemyTeam == 'heroFullName' && sortReverseEnemyTeam"
+                                                      class="fa fa-caret-up"></span>
+                                            </a>
+                                        </td>
+                                        <td>
+                                            <a href="#"
+                                               ng-click="sortTypeEnemyTeam = 'enemyTeamWinrate'; sortReverseEnemyTeam = !sortReverseEnemyTeam">
+                                                Winrate
+                                                <span ng-show="sortTypeEnemyTeam == 'enemyTeamWinrate' && !sortReverseEnemyTeam"
+                                                      class="fa fa-caret-down"></span>
+                                                <span ng-show="sortTypeEnemyTeam == 'enemyTeamWinrate' && sortReverseEnemyTeam"
+                                                      class="fa fa-caret-up"></span>
+                                            </a>
+                                        </td>
+                                        <td>
+                                            <a href="#"
+                                               ng-click="sortTypeEnemyTeam = 'enemyTeamAdvantage'; sortReverseEnemyTeam = !sortReverseEnemyTeam">
+                                                Advantage
+                                                <span ng-show="sortTypeEnemyTeam == 'enemyTeamAdvantage' && !sortReverseEnemyTeam"
+                                                      class="fa fa-caret-down"></span>
+                                                <span ng-show="sortTypeEnemyTeam == 'enemyTeamAdvantage' && sortReverseEnemyTeam"
+                                                      class="fa fa-caret-up"></span>
+                                            </a>
+                                        </td>
+                                    </tr>
+                                    </thead>
+
+                                    <tbody>
+                                    <tr ng-repeat="hero in heroesArray | orderBy:sortTypeEnemyTeam:sortReverseEnemyTeam">
+                                        <td ng-class='testngclass(hero)' ng-show="([hero.heroFullName] | filter:searchHeroEnemyTeam).length > 0"><img
+                                                ng-click="enemyTeamHeroClickImage(hero.heroID)" ng-right-click="banHero(hero.heroID)" ng-src="{{ hero.heroImageURL }}"
+                                                style="width: 96px; height: 58px"></td>
+                                        <td ng-class='testngclass(hero)' ng-show="([hero.heroFullName] | filter:searchHeroEnemyTeam).length > 0 ">{{ $index + 1 }}</td>
+                                        <td ng-class='testngclass(hero)' ng-show="([hero.heroFullName] | filter:searchHeroEnemyTeam).length > 0 ">{{ hero.heroFullName }}</td>
+                                        <td ng-class='testngclass(hero)' ng-show="([hero.heroFullName] | filter:searchHeroEnemyTeam).length > 0 ">{{ hero.enemyTeamWinrate }}%
+                                        </td>
+                                        <td ng-class='testngclass(hero)' ng-show="([hero.heroFullName] | filter:searchHeroEnemyTeam).length > 0 ">{{ hero.enemyTeamAdvantage
+                                            }}
+                                        </td>
+                                    </tr>
+                                    </tbody>
+                                </table>
                     </div>
             </div>
         </div>
