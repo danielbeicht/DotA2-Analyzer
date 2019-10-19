@@ -21,6 +21,8 @@
 
     $scope.heroesArray = [];
 
+      $scope.playerIsRadiant = true;
+
       $scope.personalizedHeroes = [];
       $scope.personalizedHeroesSliced = [];
       $scope.personalizedOpenDotaTest = "Loading data from Opendota.";
@@ -223,6 +225,7 @@
         }).then(function successCallback(response) {
           console.log(response.data);
           if (response.data !== ""){
+              $scope.playerIsRadiant = response.data.playerIsRadiant;
             if (response.data.heroesRadiant.length === 0 && response.data.heroesDire.length === 0){
               radiantAutosyncCounter = 0;
               direAutosyncCounter = 0;

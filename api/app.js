@@ -275,7 +275,7 @@ app.post('/api/autosync/addHeroToMatch', function (req, res) {
 
 app.post('/api/autosync/getMatch', function (req, res) {
   if (typeof accountMatches[req.body.accountID] === 'undefined'){
-    res.send( { heroesRadiant: [], heroesDire: [] })
+    res.send( { heroesRadiant: [], heroesDire: [], playerIsRadiant: true })
   }
   else{
     res.send(accountMatches[req.body.accountID]);

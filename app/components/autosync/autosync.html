@@ -34,12 +34,6 @@
 
 
 
-
-
-
-
-
-
 <div class="staticBox" id="sticky">
     <div class="gridMainPage">
         <div class="spanMainPageLeft">
@@ -132,9 +126,8 @@
         <div style="clear: both;">&nbsp;</div>
     </div>
 </div>
-<!--
-<br><br><br><br><br><br><br>
--->
+
+
 <div class="spacer2">&nbsp;</div>
 
 <div class="content" id="contentdiv" style="margin-top: 20px">
@@ -208,13 +201,13 @@
 
                             <tbody>
                             <tr ng-repeat="hero in heroesArray | orderBy:sortTypeYourTeam:sortReverseYourTeam">
-                                <td ng-class='testngclass(hero)' ng-show="([hero.heroFullName] | filter:searchHeroYourTeam).length > 0" ng-hide="personalization && !personalizedHeroesContains(hero.heroID)"><img
+                                <td ng-class='testngclass(hero)' ng-show="([hero.heroFullName] | filter:searchHeroYourTeam).length > 0" ng-hide="personalization && playerIsRadiant && !personalizedHeroesContains(hero.heroID)"><img
                                         ng-click="yourTeamHeroClickImage(hero.heroID)" ng-right-click="banHero(hero.heroID)" ng-src="{{ hero.heroImageURL }}"
                                         style="width: 96px; height: 58px"></td>
-                                <td ng-class='testngclass(hero)' ng-show="([hero.heroFullName] | filter:searchHeroYourTeam).length > 0" ng-hide="personalization && !personalizedHeroesContains(hero.heroID)">{{ $index + 1 }}</td>
-                                <td ng-class='testngclass(hero)' ng-show="([hero.heroFullName] | filter:searchHeroYourTeam).length > 0" ng-hide="personalization && !personalizedHeroesContains(hero.heroID)">{{ hero.heroFullName }}</td>
-                                <td ng-class='testngclass(hero)' ng-show="([hero.heroFullName] | filter:searchHeroYourTeam).length > 0" ng-hide="personalization && !personalizedHeroesContains(hero.heroID)">{{ hero.yourTeamWinrate }}%</td>
-                                <td ng-class='testngclass(hero)' ng-show="([hero.heroFullName] | filter:searchHeroYourTeam).length > 0" ng-hide="personalization && !personalizedHeroesContains(hero.heroID)">{{ hero.yourTeamAdvantage }}</td>
+                                <td ng-class='testngclass(hero)' ng-show="([hero.heroFullName] | filter:searchHeroYourTeam).length > 0" ng-hide="personalization && playerIsRadiant && !personalizedHeroesContains(hero.heroID)">{{ $index + 1 }}</td>
+                                <td ng-class='testngclass(hero)' ng-show="([hero.heroFullName] | filter:searchHeroYourTeam).length > 0" ng-hide="personalization && playerIsRadiant && !personalizedHeroesContains(hero.heroID)">{{ hero.heroFullName }}</td>
+                                <td ng-class='testngclass(hero)' ng-show="([hero.heroFullName] | filter:searchHeroYourTeam).length > 0" ng-hide="personalization && playerIsRadiant && !personalizedHeroesContains(hero.heroID)">{{ hero.yourTeamWinrate }}%</td>
+                                <td ng-class='testngclass(hero)' ng-show="([hero.heroFullName] | filter:searchHeroYourTeam).length > 0" ng-hide="personalization && playerIsRadiant && !personalizedHeroesContains(hero.heroID)">{{ hero.yourTeamAdvantage }}</td>
                             </tr>
                             </tbody>
                         </table>
@@ -277,6 +270,16 @@
                         </md-slider>
                     </md-slider-container>
                     <p ng-show="personalization">Showing top {{ personalizedHeroesCount }} heroes</p>
+
+                    <h3 ng-show="personalization">Your team</h3>
+                    <table style="width:100%" ng-show="personalization">
+                        <tr>
+                            <td ng-style="playerIsRadiant && {'color':'red'} || {'color':'grey'}" style="text-align: center; width: 50%; font-weight: bold">Radiant</td>
+                            <td ng-style="!playerIsRadiant && {'color':'green'} || {'color':'grey'}" style="text-align: center;width: 50%; font-weight: bold">Dire</td>
+                        </tr>
+                    </table>
+
+
 
                     &nbsp;</div>
 <!--
@@ -397,14 +400,14 @@
 
                                     <tbody>
                                     <tr ng-repeat="hero in heroesArray | orderBy:sortTypeEnemyTeam:sortReverseEnemyTeam">
-                                        <td ng-class='testngclass(hero)' ng-show="([hero.heroFullName] | filter:searchHeroEnemyTeam).length > 0"><img
+                                        <td ng-class='testngclass(hero)' ng-show="([hero.heroFullName] | filter:searchHeroEnemyTeam).length > 0" ng-hide="personalization && !playerIsRadiant && !personalizedHeroesContains(hero.heroID)"><img
                                                 ng-click="enemyTeamHeroClickImage(hero.heroID)" ng-right-click="banHero(hero.heroID)" ng-src="{{ hero.heroImageURL }}"
                                                 style="width: 96px; height: 58px"></td>
-                                        <td ng-class='testngclass(hero)' ng-show="([hero.heroFullName] | filter:searchHeroEnemyTeam).length > 0 ">{{ $index + 1 }}</td>
-                                        <td ng-class='testngclass(hero)' ng-show="([hero.heroFullName] | filter:searchHeroEnemyTeam).length > 0 ">{{ hero.heroFullName }}</td>
-                                        <td ng-class='testngclass(hero)' ng-show="([hero.heroFullName] | filter:searchHeroEnemyTeam).length > 0 ">{{ hero.enemyTeamWinrate }}%
+                                        <td ng-class='testngclass(hero)' ng-show="([hero.heroFullName] | filter:searchHeroEnemyTeam).length > 0 " ng-hide="personalization && !playerIsRadiant && !personalizedHeroesContains(hero.heroID)">{{ $index + 1 }}</td>
+                                        <td ng-class='testngclass(hero)' ng-show="([hero.heroFullName] | filter:searchHeroEnemyTeam).length > 0 " ng-hide="personalization && !playerIsRadiant && !personalizedHeroesContains(hero.heroID)">{{ hero.heroFullName }}</td>
+                                        <td ng-class='testngclass(hero)' ng-show="([hero.heroFullName] | filter:searchHeroEnemyTeam).length > 0 " ng-hide="personalization && !playerIsRadiant && !personalizedHeroesContains(hero.heroID)">{{ hero.enemyTeamWinrate }}%
                                         </td>
-                                        <td ng-class='testngclass(hero)' ng-show="([hero.heroFullName] | filter:searchHeroEnemyTeam).length > 0 ">{{ hero.enemyTeamAdvantage
+                                        <td ng-class='testngclass(hero)' ng-show="([hero.heroFullName] | filter:searchHeroEnemyTeam).length > 0 " ng-hide="personalization && !playerIsRadiant && !personalizedHeroesContains(hero.heroID)">{{ hero.enemyTeamAdvantage
                                             }}
                                         </td>
                                     </tr>

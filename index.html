@@ -51,7 +51,7 @@
         <a href="auth/steam" ng-hide="loginService.loggedIn"><md-button aria-label="sign_in" style="background:transparent"> <img src="/assets/images/sits_small.png"> </md-button></a>
 
         <md-menu ng-if="loginService.loggedIn" style="margin-right: 20px; margin-top: 12px">
-            <a class="dropdown-toggle" data-toggle="dropdown" href="#" ng-click="$mdOpenMenu()" style="text-decoration: none; color: #FFFFFF"><img width="25" ng-src="{{ loginService.getUserImageURL() }}"> {{ loginService.getLoggedUsername() }} <span class="caret"></span></a>
+            <a class="dropdown-toggle" data-toggle="dropdown" ng-click="$mdOpenMenu()" style="text-decoration: none; color: #FFFFFF"><img width="25" ng-src="{{ loginService.getUserImageURL() }}"> {{ loginService.getLoggedUsername() }} <span class="caret"></span></a>
             <md-menu-content>
                 <md-menu-item><md-button ng-click="loginService.logout()">Logout</md-button></md-menu-item>
             </md-menu-content>
