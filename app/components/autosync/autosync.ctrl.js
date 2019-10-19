@@ -5,10 +5,10 @@
     .module('DotAAnalyzerApp')
     .controller('autosyncCtrl', autosyncCtrl);
 
-  autosyncCtrl.$inject = ['$scope', '$http', '$timeout', '$state', '$location', 'DALogin', 'DAAnalyzer', 'datastorage'];
+  autosyncCtrl.$inject = ['$scope', '$http', '$timeout', '$state', '$location', 'DALogin', 'DAAnalyzer', 'datastorage', '$mdDialog'];
 
 
-  function autosyncCtrl($scope, $http, $timeout, $state, $location, DALogin, DAAnalyzer, datastorage) {
+  function autosyncCtrl($scope, $http, $timeout, $state, $location, DALogin, DAAnalyzer, datastorage, $mdDialog) {
     $scope.loginService = DALogin;
     $scope.analyzerService = DAAnalyzer;
     $scope.datastorage = datastorage;
@@ -20,6 +20,10 @@
     $scope.sortReverseEnemyTeam = true;  // set the default sort order
 
     $scope.heroesArray = [];
+
+      $scope.personalizedHeroes = [];
+      $scope.personalizedHeroesSliced = [];
+      $scope.personalizedOpenDotaTest = "Loading data from Opendota.";
 
     if (typeof datastorage.heroes === "undefined"){   // if page home directly called redirect to loading page
       $location.path( "/" );
@@ -66,12 +70,12 @@
 
     $scope.preselect = function (friend, index) {
       if (typeof datastorage.selectedFriends[index] !== 'undefined'){
-        if (datastorage.selectedFriends[index].FriendName == friend.FriendName){
+        if (datastorage.selectedFriends[index].FriendName === friend.FriendName){
           return true;
         }
       }
       return false;
-    }
+    };
 
 
     $scope.testngclass = function (hero) {
@@ -124,6 +128,74 @@
 
 
 
+      $scope.openAutosyncIDDialog = function (ev) {
+          $mdDialog.show({
+              controller: DialogController,
+              templateUrl: "setupAutosyncIDDialog",
+              parent: angular.element(document.body),
+              disableAnimation: true,
+              targetEvent: ev,
+              locals: {data: $scope},
+              clickOutsideToClose: true,
+              fullscreen: true // Only for -xs, -sm breakpoints.
+          }).then(function (result) {
+
+          }, function () {
+              $scope.status = 'You cancelled the dialog.';
+          });
+      };
+
+      function DialogController($scope, $mdDialog, data) {
+          $scope.passeddata = data;
+
+          $scope.hide = function () {
+              $mdDialog.hide();
+          };
+
+          $scope.cancel = function () {
+              $mdDialog.cancel();
+          };
+
+          $scope.answer = function (answer) {
+              $mdDialog.hide(answer);
+          };
+      }
+
+
+
+
+
+
+      $scope.$watch('personalization', function (newValue) {
+          if (newValue === true) {
+              if ($scope.personalizedHeroes.length === 0) {
+                  $http({
+                      method: 'GET',
+                      url: 'api/accountHeroes?id=' + DALogin.getSteamID(),
+                  }).then(function successCallback(response) {
+                      $scope.personalizedHeroes = response.data;
+                      $scope.personalizedHeroesCount = 10
+
+                  }, function errorCallback() {
+                      $scope.personalizedOpenDotaTest = "Error loading data from Opendota.";
+                  });
+              }
+          }
+      });
+
+      $scope.$watch('personalizedHeroesCount', function (newValue) {
+          $scope.personalizedHeroesSliced = $scope.personalizedHeroes.slice(0, newValue);
+      });
+
+      $scope.personalizedHeroesContains = function(id) {
+          for (let i=0; i<$scope.personalizedHeroesSliced.length; i++) {
+              let hero = $scope.personalizedHeroesSliced[i];
+              if (parseInt(hero.hero_id) === id) {
+                  return true;
+              }
+          }
+          return false;
+      };
 
 
 
@@ -135,11 +207,11 @@
 
 
 
-    var radiantAutosyncCounter = 0;
-    var direAutosyncCounter = 0;
+    let radiantAutosyncCounter = 0;
+    let direAutosyncCounter = 0;
 
     (function tick() {
-      var dataObj = {
+      let dataObj = {
         accountID : $scope.loginService.getSteamID()
       };
       if ($scope.loginService.getSteamID() != null){
@@ -150,19 +222,17 @@
           data: dataObj
         }).then(function successCallback(response) {
           console.log(response.data);
-          if (response.data != ""){
-            if (response.data.heroesRadiant.length == 0 && response.data.heroesDire.length == 0){
+          if (response.data !== ""){
+            if (response.data.heroesRadiant.length === 0 && response.data.heroesDire.length === 0){
               radiantAutosyncCounter = 0;
               direAutosyncCounter = 0;
               $scope.analyzerService.resetData();
             }
             while (response.data.heroesRadiant.length > radiantAutosyncCounter){
-              console.log("Added Rad");
               $scope.analyzerService.yourTeamHeroPick(response.data.heroesRadiant[radiantAutosyncCounter]);
               radiantAutosyncCounter++;
             }
             while (response.data.heroesDire.length > direAutosyncCounter){
-              console.log("Added Dire");
               $scope.analyzerService.enemyTeamHeroPick(response.data.heroesDire[direAutosyncCounter]);
               direAutosyncCounter++;
             }
@@ -174,7 +244,7 @@
 
         });
       }
-      if ($state.current.name == "autosync"){
+      if ($state.current.name === "autosync"){
         $timeout(tick, 1000);
       }
     })();

@@ -1,3 +1,44 @@
+<script type="text/ng-template" id="setupAutosyncIDDialog">
+    <md-dialog aria-label="Setup Autosync" style="width: 1000px">
+        <form ng-cloak>
+            <md-toolbar>
+                <div class="md-toolbar-tools">
+                    <h2>Setup Autosync</h2>
+                </div>
+            </md-toolbar>
+
+            <md-dialog-content style="width: 1000px">
+                <br><br>
+                <div style="margin-left: 50px">
+                    1. Download <a href="assets/data/gamestate_integration_dotaanalyzer.cfg" download>gamestate_integration_dotaanalyzer.cfg</a><br>
+                    2. Store the downloaded file at "...\steamapps\common\dota 2 beta\game\dota\cfg\gamestate_integration"<br><br>
+
+                    3. Download and run XXX <br>
+                    (You can find the source here: Link)
+                </div>
+
+
+            </md-dialog-content>
+
+            <md-dialog-actions layout="row">
+                <md-button ng-click="answer('cancel')">
+                    Close
+                </md-button>
+            </md-dialog-actions>
+        </form>
+    </md-dialog>
+</script>
+
+
+
+
+
+
+
+
+
+
+
 
 <div class="staticBox" id="sticky">
     <div class="gridMainPage">
@@ -184,6 +225,9 @@
             <div class="spanMainPageMid">
                 <div style="text-align: center;">
                 <br><br><br><br><br><br><br>
+                    <md-button md-no-ink class="md-raised md-primary" ng-click="openAutosyncIDDialog()">Setup Autosync</md-button><br><br>
+
+
                 <md-input-container class="md-block" style="margin-right: 10px; margin-left: 10px">
                     <label>Select Friend Slot #1</label>
                     <md-select class="green" ng-model="datastorage.selectedFriends[0]" ng-change="selectHeroAdd=''">
@@ -219,6 +263,20 @@
                         <md-option ng-value="friend" ng-repeat="friend in friendList" ng-selected="preselect(friend, 4)">{{friend.FriendName}}</md-option>
                     </md-select>
                 </md-input-container>
+
+
+                    <md-switch ng-model="personalization" aria-label="Personalization" layout-align="center" ng-show="loginService.loggedIn">
+                        Personalization
+                        <p ng-show="personalization && personalizedHeroes.length === 0">{{ personalizedOpenDotaTest }}</p>
+                        <i class="fa fa-info-circle"><md-tooltip md-direction="bottom">For this feature you need to expose your public match data.</md-tooltip></i>
+
+                    </md-switch>
+                    <md-slider-container ng-show="personalization">
+                        <md-slider min="5" max="{{heroesArray.length}}" ng-model="personalizedHeroesCount" aria-label="red" id="red-slider"
+                                   class="md-warn">
+                        </md-slider>
+                    </md-slider-container>
+                    <p ng-show="personalization">Showing top {{ personalizedHeroesCount }} heroes</p>
 
                     &nbsp;</div>
 <!--
@@ -265,18 +323,7 @@
 
             </div>
             <div class="spanMainPageRight">
-                    <div class="row">
-                        <div class="col-sm-8">
-                            <md-input-container class="md-block">
-                                <label>Search hero</label>
-                                <md-icon md-font-icon="fa fa-search"></md-icon>
-                                <input ng-model="searchHeroEnemyTeam">
-                            </md-input-container>
-                        </div>
-                        <div class="col-sm-4">
 
-                        </div>
-                    </div>
 
                     <div class="table-responsive">
                         <div ng-if="!swapTables">

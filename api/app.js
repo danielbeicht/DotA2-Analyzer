@@ -21,6 +21,7 @@ app.use( bodyParser.json() );       // to support JSON-encoded bodies
 app.use('/assets', express.static(path.join(process.cwd(), '..', 'assets')));
 app.use('/app', express.static(path.join(process.cwd(), '..', 'app')));
 app.use('/api', express.static(path.join(process.cwd(), '..', 'api')));
+app.use('/data', express.static(path.join(process.cwd(), '..', 'data')));
 
 // Initialize Passport!  Also use passport.session() middleware, to support
 // persistent login sessions (recommended).
@@ -245,12 +246,14 @@ var accountMatches = {};
 
 app.post('/api/autosync/newMatch', function (req, res) {
   delete accountMatches[req.body.accountID];
-  accountMatches[req.body.accountID] = { pickPhase: true, heroesRadiant: [], heroesDire: [] };
+  console.log(req.body);
+  accountMatches[req.body.accountID] = { pickPhase: true, heroesRadiant: [], heroesDire: [], playerIsRadiant: req.body.playerIsRadiant === "True" };
   res.send("OK new match");
 });
 
 // additional feature to reduce server load
 app.post('/api/autosync/matchStart', function (req, res) {
+
   accountMatches[req.body.accountID].pickPhase = false;
   res.send("OK");
 });

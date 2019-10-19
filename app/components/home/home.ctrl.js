@@ -21,6 +21,7 @@
     $scope.personalizedHeroes = [];
     $scope.personalizedHeroesSliced = [];
     $scope.personalizedOpenDotaTest = "Loading data from Opendota.";
+    $scope.playerIsRadiant = true;
 
     // If page home directly called redirect to loading page
     if (typeof dataStorage.heroes === "undefined") {
@@ -380,7 +381,6 @@
     });
 
     $scope.$watch('personalizedHeroesCount', function (newValue) {
-      console.log(newValue)
       $scope.personalizedHeroesSliced = $scope.personalizedHeroes.slice(0, newValue);
     });
 
