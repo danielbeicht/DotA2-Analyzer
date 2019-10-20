@@ -13,6 +13,8 @@
         this.heroBans = new Array(10);
         this.stacked = [];
 
+
+
         this.yourTeamOverallAdvantage = 0;
         this.enemyTeamOverallAdvantage = 0;
 

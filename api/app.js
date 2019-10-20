@@ -4,6 +4,7 @@ var path = require('path');
 var sql = require('mssql');
 var bodyParser = require('body-parser');
 var passport = require('passport');
+var session = require('express-session');
 var SteamStrategy = require('passport-steam').Strategy;
 var SteamID = require('steamid');
 var request = require('request');
@@ -22,6 +23,14 @@ app.use('/assets', express.static(path.join(process.cwd(), '..', 'assets')));
 app.use('/app', express.static(path.join(process.cwd(), '..', 'app')));
 app.use('/api', express.static(path.join(process.cwd(), '..', 'api')));
 app.use('/data', express.static(path.join(process.cwd(), '..', 'data')));
+
+
+
+app.use(session({
+  secret: 'your secret',
+  name: 'name of session id',
+  resave: true,
+  saveUninitialized: true}));
 
 // Initialize Passport!  Also use passport.session() middleware, to support
 // persistent login sessions (recommended).
@@ -95,7 +104,7 @@ app.get('/auth/steam',
 app.get('/auth/steam/return',
   passport.authenticate('steam', { failureRedirect: '/' }),
   function(req, res) {
-    //console.log(req.user);
+    console.log(req.user);
     res.cookie('user', JSON.stringify(req.user)).redirect('/');
     //res.json(req.user).redirect('/#/home')
     //res.redirect('/#/home');
@@ -159,6 +168,51 @@ app.get('/api/heroes', function (req, res){
       res.send(recordSet);
     });
   });
+});
+
+app.post('/api/friends/steamfriendlist', function (req, res) {
+
+  console.log(req.body)
+  let host = steamAPI + "ISteamUser/GetFriendList/v0001/?key=" + steamAPIKey + "&steamid=" + req.body.accountID + "&relationship=friend";
+  console.log(host)
+  request(host, function(err, apiRes, body)  {
+    if (!err && apiRes.statusCode === 200) {
+      var obj = JSON.parse(body);
+      let friends = [];
+      for (let i in obj.friendslist.friends){
+        friends.push(calcSteamID(obj.friendslist.friends[i].steamid));
+      }
+      //console.log(obj.friendslist.friends);
+      /*
+      let opendotaHost = " https://api.opendota.com/api/players/";
+
+
+      for (let i in obj.friendslist.friends){
+        //console.log(obj.friendslist.friends[i])
+
+        request(opendotaHost + calcSteamID(obj.friendslist.friends[i].steamid), function(opendotaErr, opendotaApiRes, opendotaBody)  {
+          if (!opendotaErr && opendotaApiRes.statusCode === 200) {
+            var opendotaObj = JSON.parse(opendotaBody);
+            console.log(opendotaObj);
+          }
+        });
+
+
+      }
+      */
+      res.send(friends);
+    } else {
+      console.log ("Steam API is busy - " + apiRes.statusCode + " - getFriendList");
+      res.send("Error");
+    }
+
+
+  });
+
+
+
+
+
 });
 
 app.post('/api/matchid', function (req, res){
@@ -409,6 +463,7 @@ app.post('/api/friends/friendHeroList', function (req, res) {
     }
 
     reqSQL.query("SELECT * FROM AccountFriendHero WHERE AccountID=(" + calcSteamID(req.body.accountID) + ") AND FriendName='" + req.body.name + "'").then(function (recordset) {
+      console.log(req.body.accountID)
       res.send(JSON.stringify(recordset));
     }).catch(function (err) {
       console.log('Request error: ' + err);

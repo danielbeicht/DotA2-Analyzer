@@ -1,5 +1,4 @@
 <div class="col-sm-4">
-
     <form layout layout-align="center" layout-padding>
         <div layout="row" flex>
             <md-input-container flex class="md-icon-float md-block md-title">
@@ -14,40 +13,78 @@
     </form>
 
 
-    <md-list ng-cloak>
+    <md-list ng-cloak class="make-scrollable" ng-style="{height: getHeightPercentage(0.42)}" flex>
         <md-subheader class="md-no-sticky"><h2>Friendlist</h2></md-subheader>
-        <div layout="row" layout-sm="column" layout-align="space-around" style="margin-top: 20px" ng-show="!spinnerFriendsLoaded">
+        <div layout="row" layout-sm="column" layout-align="space-around" style="margin-top: 20px"
+             ng-show="!spinnerFriendsLoaded">
             <md-progress-circular md-mode="indeterminate"></md-progress-circular>
         </div>
-        <md-list-item ng-repeat="friend in friendList" ng-click="friendSelected(friend)" class="noright" ng-show="spinnerFriendsLoaded">
+        <md-list-item ng-repeat="friend in friendList" ng-click="friendSelected(friend)" class="noright"
+                      ng-show="spinnerFriendsLoaded">
             <p>{{ friend.FriendName }}</p>
-            <md-button aria-label="sf" ng-click="deleteFriend(friend.FriendName)"><i class="fa fa-trash"></i></md-button>
+            <md-button aria-label="sf" ng-click="deleteFriend(friend.FriendName)"><i class="fa fa-trash"></i>
+            </md-button>
+        </md-list-item>
+    </md-list>
+
+    <md-list ng-cloak class="make-scrollable" ng-style="{height: getHeightPercentage(0.42)}" flex>
+        <md-subheader class="md-no-sticky"><h2>Steam DotA Friendlist</h2></md-subheader>
+        <div layout="row" layout-sm="column" layout-align="space-around" style="margin-top: 20px" ng-hide="opendotaFriendRequestCounter == 0">
+            We don't want to stress the API server. Please stand by while we try to gather all your friends :)
+            <md-progress-circular md-mode="indeterminate"></md-progress-circular>
+        </div>
+        <md-list-item class="md-3-line" ng-repeat="steamFriend in datastorage.steamFriends"
+                      ng-click="steamFriendSelected(steamFriend)" class="noright">
+
+            <img alt="{{ steamFriend.name }}" ng-src="{{ steamFriend.avatar }}" class="md-avatar"/>
+            <p>{{ steamFriend.name }}</p>
         </md-list-item>
     </md-list>
 </div>
 
 <div class="col-sm-4" ng-show="selectedFriend">
-    <md-list>
+    <md-list ng-cloak class="make-scrollable" ng-style="{height: getHeightPercentage(0.5)}" flex>
         <md-subheader class="md-no-sticky"><h2>Heroes from {{ selectedFriend }}</h2></md-subheader>
-        <div layout="row" layout-sm="column" layout-align="space-around" style="margin-top: 20px" ng-show="!spinnerHeroListLoaded">
+        <div layout="row" layout-sm="column" layout-align="space-around" style="margin-top: 20px"
+             ng-show="!spinnerHeroListLoaded">
             <md-progress-circular md-mode="indeterminate"></md-progress-circular>
         </div>
 
-        <md-list-item ng-repeat="hero in heroList" ng-click="goToPerson(person.name, $event)" class="noright" ng-show="spinnerHeroListLoaded">
+        <md-list-item ng-repeat="hero in heroList" ng-click="goToPerson(person.name, $event)" class="noright"
+                      ng-show="spinnerHeroListLoaded">
             <img alt="{{ hero.heroFullName }}" ng-src="assets/images/heroes_cut/{{ analyzerService.heroes[hero.HeroID].heroImageURL.substring(21)
-}}" class="md-avatar" />
+}}" class="md-avatar"/>
             <p>{{ analyzerService.heroes[hero.HeroID].heroFullName }}</p>
             <md-button aria-label="sf" ng-click="deleteFriendHero(hero)"><i class="fa fa-trash"></i></md-button>
         </md-list-item>
     </md-list>
+
+
+    <md-list ng-cloak class="make-scrollable" ng-style="{height: getHeightPercentage(0.42)}" flex>
+        <md-subheader class="md-no-sticky"><h2>Top played heroes from {{ selectedSteamFriend.name }}</h2></md-subheader>
+
+        <md-list-item class="md-3-line" ng-repeat="hero in steamFriendHeroes" ng-click="addSteamHeroToFriend(hero.hero_id)">
+            <img ng-src="assets/images/heroes_cut/{{ analyzerService.heroes[hero.hero_id].heroImageURL.substring(21)
+}}" class="md-avatar" alt="{{ analyzerService.hero[hero.hero_id] }}"/>
+            <div class="md-list-item-text" layout="column">
+                <h3>{{ analyzerService.heroes[hero.hero_id].heroFullName }}</h3>
+                <div>Matches: {{ hero.games }} ({{ hero.win }}/{{ hero.games - hero.win }})</div>
+                <p>Last match: {{ getLastMatchDate(hero.last_played) }}</p>
+            </div>
+        </md-list-item>
+
+    </md-list>
+
+
 </div>
 <div class="col-sm-4" ng-show="selectedFriend">
     <h2>Hero Selection</h2>
     <md-input-container class="md-block">
         <label>Select hero</label>
         <md-select ng-model="selectHeroAdd" ng-change="addHeroToFriend(selectHeroAdd); selectHeroAdd=''">
-            <md-option ng-value="hero.heroID" ng-repeat="hero in heroesArray | orderBy:'heroFullName'">{{hero.heroFullName}}</md-option>
+            <md-option ng-value="hero.heroID" ng-repeat="hero in heroesArray | orderBy:'heroFullName'">
+                {{hero.heroFullName}}
+            </md-option>
         </md-select>
     </md-input-container>
 </div>
-

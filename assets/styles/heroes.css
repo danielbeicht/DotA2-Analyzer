@@ -26,3 +26,8 @@ p.attributes {
 .tableHeroPicker {
     border: 2px solid black;
 }
+
+md-list.make-scrollable {
+    height: 20%;
+    overflow-y: scroll;
+}
