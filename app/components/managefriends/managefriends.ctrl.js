@@ -32,13 +32,12 @@
 
 
     $scope.getHeightPercentage = function(percentage){
-      console.log(window.innerHeight*percentage + 'px')
-      return (window.innerHeight*percentage + 'px')
+      return (window.innerHeight*percentage + 'px');
     };
 
     $scope.getLastMatchDate = function(dateInSeconds){
-      var utcSeconds = dateInSeconds;
-      var d = new Date(0); // The 0 there is the key, which sets the date to the epoch
+      let utcSeconds = dateInSeconds;
+      let d = new Date(0); // The 0 there is the key, which sets the date to the epoch
       d.setUTCSeconds(utcSeconds);
       return d.toLocaleDateString();
     };
@@ -73,10 +72,6 @@
 
 
     $scope.loadSteamFriends = function() {
-      let requestsFinished = 0;
-      let opendotaRequest = [];
-
-
       if (typeof datastorage.steamFriends == 'undefined'){
         let dataObj = {
           accountID: DALogin.getSteamID(),
@@ -89,8 +84,6 @@
 
           datastorage.steamFriends = [];
           for (let i in steamfriendlistResponse.data){
-
-            //opendotaRequest.push('https://api.opendota.com/api/players/' + steamfriendlistResponse.data[i]);
             $scope.opendotaFriendRequestCounter++;
             GetRequestWithRetry('https://api.opendota.com/api/players/' + steamfriendlistResponse.data[i], loadSteamFriendsCallback);
           }
@@ -98,10 +91,7 @@
         }, function errorCallback(response) {
 
         });
-      } else {
-        console.log(datastorage.steamFriends)
       }
-
     };
     $scope.loadSteamFriends();
 

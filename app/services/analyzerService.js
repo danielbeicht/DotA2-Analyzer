@@ -147,8 +147,6 @@
           this.heroes[heroID.toString()].enemyTeamAdvantage = parseFloat(enemyAdvantage.toFixed(2));
           this.heroes[heroID.toString()].yourTeamWinrate = (parseFloat(teamWinrate) / parseFloat(enemyHeroCount)).toFixed(2);
           this.heroes[heroID.toString()].enemyTeamWinrate = (parseFloat(enemyWinrate) / parseFloat(teamHeroCount)).toFixed(2);
-
-
         }
 
         this.yourTeamOverallAdvantage = 0;

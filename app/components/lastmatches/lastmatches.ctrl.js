@@ -62,7 +62,7 @@
 
     function parseMatch() {
       // Parse matches
-      for (let i = 0; i < $scope.matches.length; i++) {
+      for (let i = 0; i < 20; i++) { // $scope.matches.length
         if ($scope.matches[i].lobby_type === 0 || $scope.matches[i].lobby_type === 7) { // Normal or ranked
 
           let data = {matchID: $scope.matches[i].match_id};
@@ -77,15 +77,15 @@
               for (let j = 0; j < (response.data.result.players.length); j++) {
 
                 if (response.data.result.players[j].player_slot < 5) {
-                  //DAAnalyzer.yourTeamHeroPick(datastorage.heroesValve[response.data.result.players[j].hero_id].heroIndex);
                   DAAnalyzer.yourTeamHeroPick(datastorage.heroes[(response.data.result.players[j].hero_id).toString()].heroID);
                 } else {
-                  //DAAnalyzer.enemyTeamHeroPick(datastorage.heroesValve[response.data.result.players[j].hero_id].heroIndex);
                   DAAnalyzer.enemyTeamHeroPick(datastorage.heroes[(response.data.result.players[j].hero_id).toString()].heroID);
                 }
-                if (response.data.result.players[j].account_id === $scope.accountID) {
+                if (response.data.result.players[j].account_id.toString() === $scope.accountID) {
                   singleMatch.firstPlayerHero = $scope.heroes[(response.data.result.players[j].hero_id).toString()].heroFullName;
                   singleMatch.heroImageURL = $scope.heroes[(response.data.result.players[j].hero_id).toString()].heroImageURL;
+                  console.log("AAA")
+                  console.log(response.data.result.players[j].hero_id)
                   singleMatch.matchID = response.data.result.match_id;
                   singleMatch.date = new Date(response.data.result.start_time * 1000).toLocaleString();
                   singleMatch.starttime = response.data.result.start_time;
@@ -102,6 +102,7 @@
 
                   singleMatch.isRadiant = response.data.result.players[j].player_slot < 5;
                 }
+
                 if (j === response.data.result.players.length - 1) {
                   singleMatch.stacked = DAAnalyzer.getBarValues(singleMatch.isRadiant);
                   $scope.tableMatches.push(singleMatch);
