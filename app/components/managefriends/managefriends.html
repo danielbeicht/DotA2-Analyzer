@@ -33,7 +33,7 @@
             We don't want to stress the API server. Please stand by while we try to gather all your friends :)
             <md-progress-circular md-mode="indeterminate"></md-progress-circular>
         </div>
-        <md-list-item class="md-3-line" ng-repeat="steamFriend in datastorage.steamFriends"
+        <md-list-item class="md-3-line" ng-repeat="steamFriend in datastorage.steamFriends | orderBy:'name'"
                       ng-click="steamFriendSelected(steamFriend)" class="noright">
 
             <img alt="{{ steamFriend.name }}" ng-src="{{ steamFriend.avatar }}" class="md-avatar"/>
