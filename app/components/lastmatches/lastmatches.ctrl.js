@@ -84,8 +84,6 @@
                 if (response.data.result.players[j].account_id.toString() === $scope.accountID) {
                   singleMatch.firstPlayerHero = $scope.heroes[(response.data.result.players[j].hero_id).toString()].heroFullName;
                   singleMatch.heroImageURL = $scope.heroes[(response.data.result.players[j].hero_id).toString()].heroImageURL;
-                  console.log("AAA")
-                  console.log(response.data.result.players[j].hero_id)
                   singleMatch.matchID = response.data.result.match_id;
                   singleMatch.date = new Date(response.data.result.start_time * 1000).toLocaleString();
                   singleMatch.starttime = response.data.result.start_time;
